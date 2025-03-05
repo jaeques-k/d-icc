@@ -17,7 +17,6 @@
         }
         
         body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             line-height: 1.6;
             color: var(--text-color);
             max-width: 1200px;
@@ -25,10 +24,10 @@
             padding: 20px;
         }
         
-        header {
+        .persona-header {
             background-image: 
                 linear-gradient(120deg, rgba(21, 87, 153, 0.7), rgba(21, 153, 87, 0.7)), 
-                url('banner.jpg');
+                url('../assets/images/banner.jpg');
             background-size: cover;
             background-position: center;
             color: white;
@@ -38,7 +37,7 @@
             text-align: center;
         }
         
-        h1 {
+        .persona-title {
             font-size: 2.5rem;
             margin-bottom: 1rem;
         }
@@ -94,14 +93,6 @@
             display: grid;
             grid-template-columns: 3fr 1fr;
             gap: 20px;
-        }
-        
-        .content {
-            /* No styles needed here */
-        }
-        
-        aside {
-            /* No styles needed here */
         }
         
         .feature-block {
@@ -264,20 +255,31 @@
             border-bottom: 1px solid var(--border-color);
         }
         
-        footer {
+        .persona-footer {
             text-align: center;
             margin-top: 3rem;
             padding-top: 2rem;
             border-top: 1px solid var(--border-color);
             color: #888;
         }
+        
+        /* Media queries for responsiveness */
+        @media (max-width: 768px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+            
+            .digital-tools-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
     <!-- Header with persona title -->
-    <header>
-        <h1>Voor Wijkbewoners</h1>
+    <header class="persona-header">
+        <h1 class="persona-title">Voor Wijkbewoners</h1>
         <div class="subtitle">Digitale hulpmiddelen en wijkmonitor voor bewoners</div>
     </header>
     
@@ -292,7 +294,7 @@
     
     <!-- Breadcrumb for returning to main landing page -->
     <div class="breadcrumb">
-        <a href="index.html">Home</a> &gt; Voor Wijkbewoners
+        <a href="../index.html">Home</a> &gt; Voor Wijkbewoners
     </div>
     
     <main>
@@ -394,13 +396,13 @@
                 <h3>Deel uw ervaringen via de Wijkmonitor</h3>
                 <p>De Wijkmonitor is een belangrijk instrument om inzicht te krijgen in de ervaringen van bewoners met zorg en digitale oplossingen in de wijk. Door de monitor in te vullen, helpt u om de zorg en ondersteuning in uw wijk te verbeteren.</p>
                 <p>Het invullen van de monitor duurt ongeveer 10 minuten. Uw antwoorden worden anoniem verwerkt en gebruikt om verbeteringen in de wijk door te voeren.</p>
-                <a href="#" class="feature-action">Wijkmonitor invullen</a>
+                <a href="../wijkmonitor.html" class="feature-action">Wijkmonitor invullen</a>
             </div>
             
             <div class="feature-block">
                 <h3>Bekijk de resultaten van de Wijkmonitor</h3>
                 <p>Benieuwd naar wat andere bewoners hebben gedeeld? Bekijk de resultaten van de wijkmonitor en ontdek hoe uw wijk scoort op verschillende aspecten van zorg en digitale oplossingen.</p>
-                <a href="#" class="feature-action">Resultaten bekijken</a>
+                <a href="../wijkmonitor.html#results-tab" class="feature-action">Resultaten bekijken</a>
             </div>
         </div>
         
@@ -431,14 +433,14 @@
                 <p>Heeft u vragen over het gebruik van digitale hulpmiddelen? Neem contact met ons op:</p>
                 <p>Email: digitaal@projectnaam.nl</p>
                 <p>Tel: 020-1234567</p>
-                <a href="#" class="feature-action">Contact opnemen</a>
+                <a href="../contact.html" class="feature-action">Contact opnemen</a>
             </div>
         </aside>
     </main>
     
-    <footer>
+    <footer class="persona-footer">
         <p>© 2025 Project Kennisportaal - Alle rechten voorbehouden</p>
-        <p><a href="index.html">Terug naar de hoofdpagina</a></p>
+        <p><a href="../index.html">Terug naar de hoofdpagina</a></p>
     </footer>
 </body>
 </html>
