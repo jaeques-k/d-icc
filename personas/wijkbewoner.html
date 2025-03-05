@@ -48,6 +48,7 @@
             margin-bottom: 0.5rem;
         }
         
+        /* Main navigation */
         .persona-nav {
             background-color: var(--light-bg);
             padding: 15px;
@@ -73,6 +74,39 @@
         .persona-nav a.active {
             background-color: var(--primary-color);
             color: white;
+        }
+        
+        /* Sub navigation for Wijkmonitor */
+        .sub-nav {
+            background-color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none; /* Hidden by default */
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .sub-nav a {
+            padding: 8px 15px;
+            background-color: var(--light-bg);
+            color: var(--link-color);
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+        
+        .sub-nav a:hover,
+        .sub-nav a.active {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        /* Show sub-nav when wijkmonitor is active */
+        .sub-nav.active {
+            display: flex;
         }
         
         .breadcrumb {
@@ -326,6 +360,16 @@
             display: block;
         }
         
+        /* Hide sub-content sections by default */
+        .sub-content-section {
+            display: none;
+        }
+        
+        /* Show the default sub-section */
+        .sub-content-section.active {
+            display: block;
+        }
+        
         /* Results visualization styles */
         .results-visualization {
             background-color: var(--light-bg);
@@ -359,6 +403,51 @@
             margin: 30px 0;
             border-top: 1px solid var(--border-color);
         }
+        
+        /* Survey question styles (from wijkmonitor.html) */
+        .scale-labels {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0 10px;
+            font-size: 0.9rem;
+        }
+        
+        .question-group {
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+        
+        .question {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .rating-buttons {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .rating-button {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .rating-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: var(--light-bg);
+            line-height: 30px;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+        
+        input[type="radio"] {
+            cursor: pointer;
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
@@ -369,16 +458,22 @@
         <div class="subtitle">Digitale hulpmiddelen en wijkmonitor voor bewoners</div>
     </header>
     
-    <!-- Persona-specific navigation with IDs for JavaScript targeting -->
+    <!-- Main navigation with links for main sections -->
     <div class="persona-nav">
-        <a href="#digitaal" id="digitaal-tab" class="active">Digitale hulpmiddelen</a>
-        <a href="#wijkmonitor" id="wijkmonitor-tab">Wijkmonitor</a>
-        <a href="#resultaten" id="resultaten-tab">Resultaten</a>
-        <a href="#ervaringen" id="ervaringen-tab">Ervaringen delen</a>
-        <a href="#hulp" id="hulp-tab">Hulp vinden</a>
+        <a href="#digitaal" id="digitaal-tab" class="main-tab active">Digitale hulpmiddelen</a>
+        <a href="#wijkmonitor" id="wijkmonitor-tab" class="main-tab">Wijkmonitor</a>
+        <a href="#ervaringen" id="ervaringen-tab" class="main-tab">Ervaringen delen</a>
+        <a href="#hulp" id="hulp-tab" class="main-tab">Hulp vinden</a>
     </div>
     
-    <!-- Breadcrumb for returning to main landing page - FIXED -->
+    <!-- Sub navigation for wijkmonitor - hidden by default -->
+    <div class="sub-nav" id="wijkmonitor-subnav">
+        <a href="#wijkmonitor-about" id="wijkmonitor-about-tab" class="sub-tab active">Over de Wijkmonitor</a>
+        <a href="#wijkmonitor-survey" id="wijkmonitor-survey-tab" class="sub-tab">Vragenlijst</a>
+        <a href="#wijkmonitor-results" id="wijkmonitor-results-tab" class="sub-tab">Resultaten</a>
+    </div>
+    
+    <!-- Breadcrumb for returning to main landing page -->
     <div class="breadcrumb">
         <a href="../index.html">Home</a> &gt; Voor Wijkbewoners
     </div>
@@ -481,331 +576,212 @@
                 </div>
             </div>
             
-            <!-- Wijkmonitor section -->
+            <!-- Wijkmonitor section with sub-sections -->
             <div id="wijkmonitor-content" class="content-section">
-                <div class="feature-block">
-                    <h3>Deel uw ervaringen via de Wijkmonitor</h3>
-                    <p>De Wijkmonitor is een belangrijk instrument om inzicht te krijgen in de ervaringen van bewoners met zorg en digitale oplossingen in de wijk. Door de monitor in te vullen, helpt u om de zorg en ondersteuning in uw wijk te verbeteren.</p>
-                    <p>Het invullen van de monitor duurt ongeveer 10 minuten. Uw antwoorden worden anoniem verwerkt en gebruikt om verbeteringen in de wijk door te voeren.</p>
-                    
-                    <div class="form-progress">
-                        <p>Voortgang: <span id="progress-percent">0%</span> voltooid</p>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 0%"></div>
-                        </div>
+                <!-- About the Wijkmonitor sub-section -->
+                <div id="wijkmonitor-about-content" class="sub-content-section active">
+                    <div class="feature-block">
+                        <h3>Over de Wijkmonitor</h3>
+                        <p>De Wijkmonitor Zorgzame Gemeenschappen is ontwikkeld om inzicht te krijgen in de ervaringen en behoeften van wijkbewoners op het gebied van zorg en welzijn. Met deze monitor meten we verschillende aspecten:</p>
+                        
+                        <ul>
+                            <li><strong>Algemene Gegevens & Levenssituatie</strong> - Basisinformatie over zelfstandigheid en ondersteuningsbehoefte</li>
+                            <li><strong>Ervaringen met Zorg & Gemeenschap</strong> - Inzicht in de toegankelijkheid en kwaliteit van zorg</li>
+                            <li><strong>Gebruik van Digitale Zorg</strong> - Mate waarin digitale oplossingen worden gebruikt en gewaardeerd</li>
+                            <li><strong>Samenwerking binnen de Gemeenschap</strong> - Sociale verbondenheid en onderlinge hulp</li>
+                            <li><strong>Toekomstbeeld & Verwachtingen</strong> - Visie op de toekomst van zorg in de wijk</li>
+                        </ul>
+                        
+                        <p>Door de resultaten van deze monitor kunnen we:</p>
+                        <ul>
+                            <li>Gerichte verbeteringen aanbrengen in zorgvoorzieningen</li>
+                            <li>Digitale oplossingen beter laten aansluiten bij behoeften</li>
+                            <li>Samenwerkingen tussen zorgaanbieders versterken</li>
+                            <li>Beleid ontwikkelen dat aansluit bij de werkelijke situatie in wijken</li>
+                        </ul>
+                        
+                        <a href="#" class="feature-action" onclick="showWijkmonitorSection('wijkmonitor-survey')">Vragenlijst invullen</a>
                     </div>
-                    
-                    <form id="wijkmonitor-form" class="monitor-form">
-                        <!-- Section 1: Digital Tools Usage -->
-                        <h4>1. Uw ervaring met digitale zorgoplossingen</h4>
-                        
-                        <div class="form-group">
-                            <label for="digital-usage">1.1 In welke mate maakt u gebruik van digitale hulpmiddelen voor uw gezondheid?</label>
-                            <select id="digital-usage" name="digital-usage" required>
-                                <option value="">Selecteer een antwoord</option>
-                                <option value="daily">Dagelijks</option>
-                                <option value="weekly">Wekelijks</option>
-                                <option value="monthly">Maandelijks</option>
-                                <option value="rarely">Zelden</option>
-                                <option value="never">Nooit</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>1.2 Welke digitale hulpmiddelen gebruikt u? (Meerdere antwoorden mogelijk)</label>
-                            <div class="checkbox-group">
-                                <div><input type="checkbox" id="tool-appointment" name="tools" value="appointment"> <label for="tool-appointment">Online afspraken maken</label></div>
-                                <div><input type="checkbox" id="tool-medication" name="tools" value="medication"> <label for="tool-medication">Medicatie-herinneringen</label></div>
-                                <div><input type="checkbox" id="tool-videocall" name="tools" value="videocall"> <label for="tool-videocall">Videoconsulten</label></div>
-                                <div><input type="checkbox" id="tool-community" name="tools" value="community"> <label for="tool-community">Buurtplatform</label></div>
-                                <div><input type="checkbox" id="tool-monitoring" name="tools" value="monitoring"> <label for="tool-monitoring">Gezondheidswaarden monitoren</label></div>
-                                <div><input type="checkbox" id="tool-other" name="tools" value="other"> <label for="tool-other">Anders, namelijk:</label></div>
-                                <div><input type="text" id="tool-other-text" name="tool-other-text" placeholder="Vul in indien 'Anders' is geselecteerd"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="digital-satisfaction">1.3 Hoe tevreden bent u over de beschikbare digitale hulpmiddelen in uw wijk?</label>
-                            <select id="digital-satisfaction" name="digital-satisfaction" required>
-                                <option value="">Selecteer een antwoord</option>
-                                <option value="very-satisfied">Zeer tevreden</option>
-                                <option value="satisfied">Tevreden</option>
-                                <option value="neutral">Neutraal</option>
-                                <option value="dissatisfied">Ontevreden</option>
-                                <option value="very-dissatisfied">Zeer ontevreden</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>1.4 In hoeverre bent u het eens met de volgende stellingen?</label>
-                            
-                            <div class="stelling">
-                                <p>"Digitale hulpmiddelen maken het voor mij makkelijker om zorg te krijgen."</p>
-                                <div class="radio-group">
-                                    <div class="radio-option">
-                                        <input type="radio" id="stelling1-1" name="stelling1" value="strongly-agree">
-                                        <label for="stelling1-1">Helemaal mee eens</label>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" id="stelling1-2" name="stelling1" value="agree">
-                                        <label for="stelling1-2">Mee eens</label>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" id="stelling1-3" name="stelling1" value="neutral">
-                                        <label for="stelling1-3">Neutraal</label>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" id="stelling1-4" name="stelling1" value="disagree">
-                                        <label for="stelling1-4">Mee oneens</label>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" id="stelling1-5" name="stelling1" value="strongly-disagree">
-                                        <label for="stelling1-5">Helemaal mee oneens</label>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="stelling">
-                                <p>"Ik vind digitale hulpmiddelen makkelijk te gebruiken."</p>
-                                <div class="radio-group">
-                                    <div class="radio-option">
-                                        <input type="radio" id="stelling2-1" name="stelling2" value="strongly-agree">
-                                        <label for="stelling2-1">Helemaal mee eens</label>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" id="stelling2-2" name="stelling2" value="agree">
-                                        <label for="stelling2-2">Mee eens</label>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" id="stelling2-3" name="stelling2" value="neutral">
-                                        <label for="stelling2-3">Neutraal</label>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" id="stelling2-4" name="stelling2" value="disagree">
-                                        <label for="stelling2-4">Mee oneens</label>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" id="stelling2-5" name="stelling2" value="strongly-disagree">
-                                        <label for="stelling2-5">Helemaal mee oneens</label>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="stelling">
-                                <p>"Ik krijg voldoende ondersteuning bij het gebruik van digitale hulpmiddelen."</p>
-                                <div class="radio-group">
-                                    <div class="radio-option">
-                                        <input type="radio" id="stelling3-1" name="stelling3" value="strongly-agree">
-                                        <label for="stelling3-1">Helemaal mee eens</label>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" id="stelling3-2" name="stelling3" value="agree">
-                                        <label for="stelling3-2">Mee eens</label>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" id="stelling3-3" name="stelling3" value="neutral">
-                                        <label for="stelling3-3">Neutraal</label>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" id="stelling3-4" name="stelling3" value="disagree">
-                                        <label for="stelling3-4">Mee oneens</label>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" id="stelling3-5" name="stelling3" value="strongly-disagree">
-                                        <label for="stelling3-5">Helemaal mee oneens</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="digital-improvement">1.5 Welke verbeteringen zou u willen zien in de digitale hulpmiddelen?</label>
-                            <textarea id="digital-improvement" name="digital-improvement" rows="4"></textarea>
-                        </div>
-                        
-                        <div class="section-divider"></div>
-                        
-                        <!-- Section 2: Healthcare Experience -->
-                        <h4>2. Uw ervaring met zorgverleners in de wijk</h4>
-                        
-                        <div class="form-group">
-                            <label for="healthcare-usage">2.1 Van welke zorgverleners in de wijk maakt u gebruik? (Meerdere antwoorden mogelijk)</label>
-                            <div class="checkbox-group">
-                                <div><input type="checkbox" id="provider-gp" name="providers" value="gp"> <label for="provider-gp">Huisarts</label></div>
-                                <div><input type="checkbox" id="provider-pharmacy" name="providers" value="pharmacy"> <label for="provider-pharmacy">Apotheek</label></div>
-                                <div><input type="checkbox" id="provider-physio" name="providers" value="physio"> <label for="provider-physio">Fysiotherapeut</label></div>
-                                <div><input type="checkbox" id="provider-homecare" name="providers" value="homecare"> <label for="provider-homecare">Thuiszorg</label></div>
-                                <div><input type="checkbox" id="provider-mental" name="providers" value="mental"> <label for="provider-mental">GGZ / Psycholoog</label></div>
-                                <div><input type="checkbox" id="provider-other" name="providers" value="other"> <label for="provider-other">Anders, namelijk:</label></div>
-                                <div><input type="text" id="provider-other-text" name="provider-other-text" placeholder="Vul in indien 'Anders' is geselecteerd"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="care-satisfaction">2.2 Hoe tevreden bent u over de zorgverleners in uw wijk?</label>
-                            <select id="care-satisfaction" name="care-satisfaction" required>
-                                <option value="">Selecteer een antwoord</option>
-                                <option value="very-satisfied">Zeer tevreden</option>
-                                <option value="satisfied">Tevreden</option>
-                                <option value="neutral">Neutraal</option>
-                                <option value="dissatisfied">Ontevreden</option>
-                                <option value="very-dissatisfied">Zeer ontevreden</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>2.3 In hoeverre bent u het eens met de volgende stellingen?</label>
-                            
-                            <div class="stelling">
-                                <p>"De zorgverleners in mijn wijk werken goed samen."</p>
-                                <div class="radio-group">
-                                    <div class="radio-option">
-                                        <input type="radio" id="stelling4-1" name="stelling4" value="strongly-agree">
-                                        <label for="stelling4-1">Helemaal mee eens</label>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" id="stelling4-2" name="stelling4" value="agree">
-                                        <label for="stelling4-2">Mee eens</label>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" id="stelling4-3" name="stelling4" value="neutral">
-                                        <label for="stelling4-3">Neutraal</label>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" id="stelling4-4" name="stelling4" value="disagree">
-                                        <label for="stelling4-4">Mee oneens</label>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" id="stelling4-5" name="stelling4" value="strongly-disagree">
-                                        <label for="stelling4-5
-                                         <label for="stelling4-5">Helemaal mee oneens</label>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="stelling">
-                                <p>"Ik kan makkelijk terecht bij de zorgverleners in mijn wijk."</p>
-                                <div class="radio-group">
-                                    <div class="radio-option">
-                                        <input type="radio" id="stelling5-1" name="stelling5" value="strongly-agree">
-                                        <label for="stelling5-1">Helemaal mee eens</label>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" id="stelling5-2" name="stelling5" value="agree">
-                                        <label for="stelling5-2">Mee eens</label>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" id="stelling5-3" name="stelling5" value="neutral">
-                                        <label for="stelling5-3">Neutraal</label>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" id="stelling5-4" name="stelling5" value="disagree">
-                                        <label for="stelling5-4">Mee oneens</label>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" id="stelling5-5" name="stelling5" value="strongly-disagree">
-                                        <label for="stelling5-5">Helemaal mee oneens</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="care-improvement">2.4 Welke verbeteringen zou u willen zien in de zorgverlening in uw wijk?</label>
-                            <textarea id="care-improvement" name="care-improvement" rows="4"></textarea>
-                        </div>
-                        
-                        <div class="section-divider"></div>
-                        
-                        <!-- Section 3: Demographics for analysis purposes -->
-                        <h4>3. Demografische gegevens (optioneel)</h4>
-                        <p>Deze gegevens worden alleen gebruikt voor statistische doeleinden en zijn volledig anoniem.</p>
-                        
-                        <div class="form-group">
-                            <label for="age-group">3.1 Tot welke leeftijdsgroep behoort u?</label>
-                            <select id="age-group" name="age-group">
-                                <option value="">Selecteer een antwoord</option>
-                                <option value="18-30">18-30 jaar</option>
-                                <option value="31-45">31-45 jaar</option>
-                                <option value="46-60">46-60 jaar</option>
-                                <option value="61-75">61-75 jaar</option>
-                                <option value="76+">76 jaar of ouder</option>
-                                <option value="no-answer">Zeg ik liever niet</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>3.2 Hoe zou u uw digitale vaardigheden omschrijven?</label>
-                            <div class="radio-group">
-                                <div class="radio-option">
-                                    <input type="radio" id="digital-skills-1" name="digital-skills" value="very-good">
-                                    <label for="digital-skills-1">Zeer goed</label>
-                                </div>
-                                <div class="radio-option">
-                                    <input type="radio" id="digital-skills-2" name="digital-skills" value="good">
-                                    <label for="digital-skills-2">Goed</label>
-                                </div>
-                                <div class="radio-option">
-                                    <input type="radio" id="digital-skills-3" name="digital-skills" value="average">
-                                    <label for="digital-skills-3">Gemiddeld</label>
-                                </div>
-                                <div class="radio-option">
-                                    <input type="radio" id="digital-skills-4" name="digital-skills" value="basic">
-                                    <label for="digital-skills-4">Beperkt</label>
-                                </div>
-                                <div class="radio-option">
-                                    <input type="radio" id="digital-skills-5" name="digital-skills" value="none">
-                                    <label for="digital-skills-5">Geen</label>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="health-status">3.3 Hoe zou u uw algemene gezondheidstoestand omschrijven?</label>
-                            <select id="health-status" name="health-status">
-                                <option value="">Selecteer een antwoord</option>
-                                <option value="very-good">Zeer goed</option>
-                                <option value="good">Goed</option>
-                                <option value="average">Redelijk</option>
-                                <option value="poor">Matig</option>
-                                <option value="very-poor">Slecht</option>
-                                <option value="no-answer">Zeg ik liever niet</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="additional-comments">4. Heeft u nog andere opmerkingen of suggesties?</label>
-                            <textarea id="additional-comments" name="additional-comments" rows="4"></textarea>
-                        </div>
-                        
-                        <button type="submit" class="feature-action">Wijkmonitor verzenden</button>
-                    </form>
                 </div>
-            </div>
-            
-            <!-- Resultaten section -->
-            <div id="resultaten-content" class="content-section">
-                <div class="feature-block">
-                    <h3>Bekijk de resultaten van de Wijkmonitor</h3>
-                    <p>Benieuwd naar wat andere bewoners hebben gedeeld? Bekijk de resultaten van de wijkmonitor en ontdek hoe uw wijk scoort op verschillende aspecten van zorg en digitale oplossingen.</p>
-                    
-                    <div class="results-visualization">
-                        <h4>Overzicht van de resultaten</h4>
-                        <p>Hier worden de resultaten van de wijkmonitor gevisualiseerd. De visualisaties worden regelmatig bijgewerkt met nieuwe gegevens.</p>
+                
+                <!-- Survey sub-section -->
+                <div id="wijkmonitor-survey-content" class="sub-content-section">
+                    <div class="feature-block">
+                        <h3>Wijkmonitor Vragenlijst</h3>
+                        <p><strong>Doel:</strong> Inzicht krijgen in hoe bewoners zorg en ondersteuning ervaren en hoe digitale oplossingen hierop kunnen aansluiten.</p>
+                        <p>Beantwoord de volgende stellingen op een schaal van 1 (helemaal oneens) tot 10 (helemaal eens).</p>
                         
-                        <!-- Here would be graphs and charts visualizing the results -->
-                        <p><em>Visualisaties worden geladen...</em></p>
+                        <div class="form-progress">
+                            <p>Voortgang: <span id="progress-percent">0%</span> voltooid</p>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        
+                        <form id="wijkmonitor-form" class="monitor-form">
+                            <!-- Sectie 1 -->
+                            <div class="section">
+                                <h2 class="section-title">1. Algemene Gegevens (Context & Levenssituatie)</h2>
+                                <div class="section-description">
+                                    Deze vragen geven inzicht in de levenssituatie en zorgbehoeften van bewoners.
+                                </div>
+                                
+                                <div class="scale-labels">
+                                    <span class="scale-label">Helemaal oneens</span>
+                                    <span class="scale-label"></span>
+                                    <span class="scale-label"></span>
+                                    <span class="scale-label"></span>
+                                    <span class="scale-label">Neutraal</span>
+                                    <span class="scale-label"></span>
+                                    <span class="scale-label"></span>
+                                    <span class="scale-label"></span>
+                                    <span class="scale-label"></span>
+                                    <span class="scale-label">Helemaal eens</span>
+                                </div>
+                                
+                                <div class="question-group">
+                                    <div class="question">1. Ik voel me zelfstandig in mijn dagelijks leven.</div>
+                                    <div class="rating-buttons">
+                                        <div class="rating-button">
+                                            <div class="rating-number">1</div>
+                                            <input type="radio" name="q1_1" value="1" required>
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">2</div>
+                                            <input type="radio" name="q1_1" value="2">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">3</div>
+                                            <input type="radio" name="q1_1" value="3">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">4</div>
+                                            <input type="radio" name="q1_1" value="4">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">5</div>
+                                            <input type="radio" name="q1_1" value="5">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">6</div>
+                                            <input type="radio" name="q1_1" value="6">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">7</div>
+                                            <input type="radio" name="q1_1" value="7">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">8</div>
+                                            <input type="radio" name="q1_1" value="8">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">9</div>
+                                            <input type="radio" name="q1_1" value="9">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">10</div>
+                                            <input type="radio" name="q1_1" value="10">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="question-group">
+                                    <div class="question">2. Ik ontvang voldoende ondersteuning wanneer ik dat nodig heb.</div>
+                                    <div class="rating-buttons">
+                                        <div class="rating-button">
+                                            <div class="rating-number">1</div>
+                                            <input type="radio" name="q1_2" value="1" required>
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">2</div>
+                                            <input type="radio" name="q1_2" value="2">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">3</div>
+                                            <input type="radio" name="q1_2" value="3">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">4</div>
+                                            <input type="radio" name="q1_2" value="4">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">5</div>
+                                            <input type="radio" name="q1_2" value="5">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">6</div>
+                                            <input type="radio" name="q1_2" value="6">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">7</div>
+                                            <input type="radio" name="q1_2" value="7">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">8</div>
+                                            <input type="radio" name="q1_2" value="8">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">9</div>
+                                            <input type="radio" name="q1_2" value="9">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">10</div>
+                                            <input type="radio" name="q1_2" value="10">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- More questions would continue here -->
+                            </div>
+                            
+                            <!-- More sections would continue here -->
+                            
+                            <button type="submit" class="feature-action">Vragenlijst verzenden</button>
+                        </form>
                     </div>
-                    
-                    <h4>Belangrijkste bevindingen</h4>
-                    <ul>
-                        <li>75% van de wijkbewoners is tevreden of zeer tevreden over de beschikbare digitale hulpmiddelen.</li>
-                        <li>De meest gebruikte digitale tool is ZorgAfspraak Online, gevolgd door BuurtConnect.</li>
-                        <li>Wijkbewoners geven gemiddeld een 7.2 voor de zorgverlening in de wijk.</li>
-                        <li>Verbeterpunten zijn vooral gericht op betere integratie tussen verschillende zorgverleners.</li>
-                    </ul>
-                    
-                    <a href="#" class="feature-action">Download volledige rapportage</a>
+                </div>
+                
+                <!-- Results sub-section -->
+                <div id="wijkmonitor-results-content" class="sub-content-section">
+                    <div class="feature-block">
+                        <h3>Resultaten Wijkmonitor</h3>
+                        <p>Hier vindt u de verzamelde resultaten van de wijkmonitor. Deze resultaten geven inzicht in de ervaringen en behoeften van wijkbewoners op het gebied van zorg en welzijn.</p>
+                        
+                        <div class="results-visualization">
+                            <h4>Overzicht van de resultaten</h4>
+                            <p>Hier worden de resultaten van de wijkmonitor gevisualiseerd.
+    <p>Hier worden de resultaten van de wijkmonitor gevisualiseerd. De visualisaties worden regelmatig bijgewerkt met nieuwe gegevens.</p>
+                            
+                            <!-- Here would be graphs and charts visualizing the results -->
+                            <p><em>Visualisaties worden geladen...</em></p>
+                        </div>
+                        
+                        <h4>Belangrijkste bevindingen</h4>
+                        <ul>
+                            <li>75% van de wijkbewoners is tevreden of zeer tevreden over de beschikbare digitale hulpmiddelen.</li>
+                            <li>De meest gebruikte digitale tool is ZorgAfspraak Online, gevolgd door BuurtConnect.</li>
+                            <li>Wijkbewoners geven gemiddeld een 7.2 voor de zorgverlening in de wijk.</li>
+                            <li>Verbeterpunten zijn vooral gericht op betere integratie tussen verschillende zorgverleners.</li>
+                        </ul>
+                        
+                        <div class="section">
+                            <h4>Regionale Vergelijking</h4>
+                            <p>In vergelijking met andere wijken scoort deze wijk bovengemiddeld op:</p>
+                            <ul>
+                                <li>Toegankelijkheid van zorg (8,1 vs. gemiddeld 7,4)</li>
+                                <li>Gebruik van digitale hulpmiddelen (78% vs. gemiddeld 65%)</li>
+                                <li>Burenhulp en sociale cohesie (7,2 vs. gemiddeld 6,8)</li>
+                            </ul>
+                            
+                            <p>Aandachtspunten voor verbetering zijn:</p>
+                            <ul>
+                                <li>Bekendheid van het zorgaanbod (6,5 vs. gemiddeld 7,2)</li>
+                                <li>Afstemming tussen verschillende zorgverleners (6,3 vs. gemiddeld 6,9)</li>
+                            </ul>
+                        </div>
+                        
+                        <a href="#" class="feature-action">Download volledige rapportage</a>
+                    </div>
                 </div>
             </div>
             
@@ -911,12 +887,13 @@
         <p><a href="../index.html">Terug naar de hoofdpagina</a></p>
     </footer>
 
-    <!-- JavaScript for tab navigation -->
+    <!-- JavaScript for tab and sub-tab navigation -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Get URL parameters
             const urlParams = new URLSearchParams(window.location.search);
             const tab = urlParams.get('tab');
+            const subtab = urlParams.get('subtab');
             
             // Function to hide all content sections
             function hideAllSections() {
@@ -934,15 +911,60 @@
                     section.style.display = 'block';
                     section.classList.add('active');
                 }
+                
+                // Handle wijkmonitor sub-navigation
+                if (sectionId === 'wijkmonitor') {
+                    document.getElementById('wijkmonitor-subnav').classList.add('active');
+                } else {
+                    document.getElementById('wijkmonitor-subnav').classList.remove('active');
+                }
             }
             
-            // Add click events to all navigation tabs
-            document.querySelectorAll('.persona-nav a').forEach(link => {
+            // Function to hide all sub-content sections
+            function hideAllSubSections() {
+                document.querySelectorAll('.sub-content-section').forEach(section => {
+                    section.style.display = 'none';
+                    section.classList.remove('active');
+                });
+            }
+            
+            // Function to show a specific sub-content section
+            function showSubSection(sectionId) {
+                hideAllSubSections();
+                const section = document.getElementById(sectionId + '-content');
+                if (section) {
+                    section.style.display = 'block';
+                    section.classList.add('active');
+                }
+            }
+            
+            // Function to easily show a wijkmonitor section (combines showing wijkmonitor and the specific sub-section)
+            function showWijkmonitorSection(subSectionId) {
+                // Show the wijkmonitor section
+                showSection('wijkmonitor');
+                
+                // Deactivate all sub-tabs
+                document.querySelectorAll('.sub-tab').forEach(tab => {
+                    tab.classList.remove('active');
+                });
+                
+                // Activate the requested sub-tab
+                const subTabElement = document.querySelector('#' + subSectionId + '-tab');
+                if (subTabElement) {
+                    subTabElement.classList.add('active');
+                }
+                
+                // Show the requested sub-section
+                showSubSection(subSectionId);
+            }
+            
+            // Add click events to all main navigation tabs
+            document.querySelectorAll('.main-tab').forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
                     
                     // Remove active class from all tabs
-                    document.querySelectorAll('.persona-nav a').forEach(tab => {
+                    document.querySelectorAll('.main-tab').forEach(tab => {
                         tab.classList.remove('active');
                     });
                     
@@ -952,13 +974,42 @@
                     // Show the corresponding section
                     const tabId = this.getAttribute('href').substring(1); // Remove the # character
                     showSection(tabId);
+                    
+                    // If wijkmonitor is shown, also show the default sub-section
+                    if (tabId === 'wijkmonitor') {
+                        // Default to the "about" sub-tab
+                        document.querySelectorAll('.sub-tab').forEach(tab => {
+                            tab.classList.remove('active');
+                        });
+                        document.querySelector('#wijkmonitor-about-tab').classList.add('active');
+                        showSubSection('wijkmonitor-about');
+                    }
+                });
+            });
+            
+            // Add click events to all sub-navigation tabs
+            document.querySelectorAll('.sub-tab').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all sub-tabs
+                    document.querySelectorAll('.sub-tab').forEach(tab => {
+                        tab.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked sub-tab
+                    this.classList.add('active');
+                    
+                    // Show the corresponding sub-section
+                    const subTabId = this.getAttribute('href').substring(1); // Remove the # character
+                    showSubSection(subTabId);
                 });
             });
             
             // If tab parameter exists, activate the appropriate tab
             if (tab) {
                 // Remove active class from all tabs
-                document.querySelectorAll('.persona-nav a').forEach(link => {
+                document.querySelectorAll('.main-tab').forEach(link => {
                     link.classList.remove('active');
                 });
                 
@@ -967,6 +1018,29 @@
                 if (tabElement) {
                     tabElement.classList.add('active');
                     showSection(tab);
+                    
+                    // If it's the wijkmonitor tab and a subtab is specified
+                    if (tab === 'wijkmonitor' && subtab) {
+                        // Remove active class from all sub-tabs
+                        document.querySelectorAll('.sub-tab').forEach(subTab => {
+                            subTab.classList.remove('active');
+                        });
+                        
+                        // Show the requested sub-tab and its content
+                        const subTabElement = document.querySelector('#' + subtab + '-tab');
+                        if (subTabElement) {
+                            subTabElement.classList.add('active');
+                            showSubSection(subtab);
+                        } else {
+                            // Default to the "about" sub-tab
+                            document.querySelector('#wijkmonitor-about-tab').classList.add('active');
+                            showSubSection('wijkmonitor-about');
+                        }
+                    } else if (tab === 'wijkmonitor') {
+                        // Default to the "about" sub-tab
+                        document.querySelector('#wijkmonitor-about-tab').classList.add('active');
+                        showSubSection('wijkmonitor-about');
+                    }
                 }
             } else {
                 // If no tab parameter, show the default tab (digitaal)
