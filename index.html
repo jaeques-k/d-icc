@@ -3,132 +3,320 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Kennisportaal</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+    <title>Project Kennisportaal - Welkom</title>
+    <style>
+        :root {
+            --primary-color: #159957;
+            --secondary-color: #155799;
+            --text-color: #606c71;
+            --link-color: #1e6bb8;
+            --border-color: #dce6f0;
+            --light-bg: #f3f6fa;
+            --card-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            /* These styles work with Cayman theme */
+            line-height: 1.6;
+            color: var(--text-color);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .main-header {
+            background-image: 
+                linear-gradient(120deg, rgba(21, 87, 153, 0.7), rgba(21, 153, 87, 0.7)), 
+                url('assets/images/banner.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 3rem 1rem;
+            margin-bottom: 2rem;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        .main-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .main-nav {
+            background-color: var(--light-bg);
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .main-nav a {
+            padding: 10px 20px;
+            background-color: white;
+            color: var(--link-color);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .main-nav a:hover,
+        .main-nav a.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem auto;
+            padding: 0 1rem;
+        }
+        
+        .intro p {
+            font-size: 1.1rem;
+        }
+        
+        .persona-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .persona-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+        
+        .persona-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 16px rgba(0,0,0,0.1);
+        }
+        
+        .card-header {
+            padding: 1.5rem;
+            text-align: center;
+            background-image: linear-gradient(120deg, var(--secondary-color), var(--primary-color));
+            color: white;
+        }
+        
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .card-title {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+        
+        .card-content {
+            padding: 1.5rem;
+        }
+        
+        .user-story {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 3px solid var(--primary-color);
+        }
+        
+        .story-section {
+            margin-bottom: 2rem;
+        }
+        
+        .story-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .action-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .action-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .action-link {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--light-bg);
+            color: var(--link-color);
+            text-decoration: none;
+            border-radius: 4px;
+            transition: var(--transition);
+            width: 100%;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        
+        .action-link:hover {
+            background-color: var(--link-color);
+            color: white;
+        }
+        
+        .primary-action {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: bold;
+        }
+        
+        .primary-action:hover {
+            background-color: #107745;
+        }
+        
+        .main-footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: #888;
+        }
+        
+        /* Media queries for responsive design */
+        @media (max-width: 768px) {
+            .persona-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-    <header>
-        <h1>Project Kennisportaal</h1>
-        <p>Centraal punt voor alle kennis over ons project</p>
+    <header class="main-header">
+        <h1 class="main-title">Project Kennisportaal</h1>
+        <div class="subtitle">Centraal punt voor kennis over zorg en digitale oplossingen in de wijk</div>
     </header>
     
-    <nav>
-        <ul>
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="manifest.html">Manifest</a></li>
-            <li><a href="handreikingen.html">Handreikingen</a></li>
-            <li><a href="architectuur.html">Referentie-architectuur</a></li>
-            <li><a href="wijkmonitor.html">Wijkmonitor</a></li>
-            <li><a href="documentatie.html">Documentatie</a></li>
-            <li><a href="faq.html">FAQ</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
-    
-    <div class="search-container">
-        <input type="text" placeholder="Zoek in kennisbank...">
-        <button type="submit">Zoeken</button>
+    <!-- Main site navigation -->
+    <div class="main-nav">
+        <a href="#" class="active">Home</a>
+        <a href="manifest.html">Over het project</a>
+        <a href="manifest.html">Manifest</a>
+        <a href="faq.html">Veelgestelde vragen</a>
+        <a href="contact.html">Contact</a>
     </div>
     
-    <!-- Home Pagina (standaard weergave) -->
-    <div id="home-page" class="page active">
-        <main>
-            <div class="content">
-                <h2>Welkom bij ons Kennisportaal</h2>
-                <p>Dit portaal bevat alle informatie die je nodig hebt over ons project. Gebruik de navigatie of de zoekfunctie om snel de gewenste informatie te vinden.</p>
-                
-                <div class="category-section" id="manifest">
-                    <h3>Manifest</h3>
-                    
-                    <div class="resource-card">
-                        <h4>Project Manifest 2025</h4>
-                        <p>De visie, missie en kernwaarden van ons project.</p>
-                        <a href="manifest.html">Bekijk manifest »</a>
+    <div class="intro">
+        <p>Welkom bij het Kennisportaal. Kies hieronder de rol die het beste bij u past om snel de relevante informatie te vinden.</p>
+    </div>
+    
+    <div class="persona-grid">
+        <!-- Wijkbewoner with revised user stories -->
+        <div class="persona-card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <h2 class="card-title">Wijkbewoner</h2>
+            </div>
+            <div class="card-content">
+                <div class="story-section">
+                    <div class="user-story">
+                        "Als wijkbewoner wil ik deelnemen aan de wijkmonitor om mijn ervaringen te delen en zorgverbeteringen te stimuleren."
                     </div>
+                    <ul class="action-links">
+                        <li><a href="personas/wijkbewoner.html" class="action-link primary-action">Wijkmonitor invullen</a></li>
+                    </ul>
                 </div>
                 
-                <div class="category-section" id="handreikingen">
-                    <h3>Handreikingen</h3>
-                    
-                    <div class="resource-card">
-                        <h4>Handreiking Implementatie</h4>
-                        <p>Praktische handvatten voor het implementeren van het project in jouw organisatie.</p>
-                        <a href="handreikingen.html">Bekijk handreiking »</a>
+                <div class="story-section">
+                    <div class="user-story">
+                        "Als wijkbewoner wil ik weten welke lokale digitale hulpmiddelen beschikbaar zijn."
                     </div>
-                    
-                    <div class="resource-card">
-                        <h4>Handreiking Stakeholdermanagement</h4>
-                        <p>Hulpmiddelen voor effectieve communicatie met belanghebbenden.</p>
-                        <a href="handreikingen.html">Bekijk handreiking »</a>
-                    </div>
-                </div>
-
-                <div class="category-section" id="referentie-architectuur">
-                    <h3>Referentie-architectuur</h3>
-                    
-                    <div class="resource-card">
-                        <h4>Technische Referentie-architectuur v2.0</h4>
-                        <p>Het overzicht van de technische componenten en hun samenhang.</p>
-                        <a href="architectuur.html">Bekijk referentie-architectuur »</a>
-                    </div>
-                    
-                    <div class="resource-card">
-                        <h4>Architectuurprincipes</h4>
-                        <p>De leidende principes voor onze technische beslissingen.</p>
-                        <a href="architectuur.html">Bekijk architectuurprincipes »</a>
-                    </div>
-                </div>
-                
-                <div class="category-section" id="wijkmonitor">
-                    <h3>Wijkmonitor</h3>
-                    
-                    <div class="resource-card">
-                        <h4>Wijkmonitor Zorgzame Gemeenschappen</h4>
-                        <p>Tool voor het meten van ervaringen met zorg en digitale oplossingen in de wijk.</p>
-                        <a href="wijkmonitor.html">Ga naar wijkmonitor »</a>
-                    </div>
-                </div>
-                
-                <div class="category-section">
-                    <h3>Veel Gestelde Vragen</h3>
-                    
-                    <div class="resource-card">
-                        <h4>Hoe start ik met het project?</h4>
-                        <p>Een eenvoudige gids om je op weg te helpen met de basisbeginselen.</p>
-                        <a href="faq.html">Lees meer »</a>
-                    </div>
-                    
-                    <div class="resource-card">
-                        <h4>Hoe kan ik bijdragen aan het project?</h4>
-                        <p>Informatie over hoe je kunt deelnemen en bijdragen aan het succes.</p>
-                        <a href="faq.html">Lees meer »</a>
-                    </div>
+                    <ul class="action-links">
+                        <li><a href="personas/wijkbewoner.html" class="action-link primary-action">Digitale hulpmiddelen</a></li>
+                    </ul>
                 </div>
             </div>
-            
-            <aside>
-                <h3>Projectnieuws</h3>
-                <div class="news-item">
-                    <h4>Nieuwe release v3.2</h4>
-                    <p>15 februari 2025</p>
-                    <p>De nieuwste versie bevat verbeterde zoekfunctionaliteit.</p>
+        </div>
+        
+        <!-- Wijkinitiatief with two user stories -->
+        <div class="persona-card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h2 class="card-title">Wijkinitiatief</h2>
+            </div>
+            <div class="card-content">
+                <div class="story-section">
+                    <div class="user-story">
+                        "Als wijkinitiatief wil ik inzicht krijgen in best practices en ideeën voor mijn buurt."
+                    </div>
+                    <ul class="action-links">
+                        <li><a href="handreikingen.html" class="action-link primary-action">Best practices</a></li>
+                    </ul>
                 </div>
                 
-                <div class="news-item">
-                    <h4>Teamuitbreiding</h4>
-                    <p>5 februari 2025</p>
-                    <p>We verwelkomen drie nieuwe teamleden deze maand.</p>
+                <div class="story-section">
+                    <div class="user-story">
+                        "Als wijkinitiatief wil ik een digitale voorziening implementeren."
+                    </div>
+                    <ul class="action-links">
+                        <li><a href="architectuur.html" class="action-link primary-action">Implementatiehandleiding</a></li>
+                    </ul>
                 </div>
-                
-                <h3>Contact Informatie</h3>
-                <p>Email: info@projectnaam.nl</p>
-                <p>Tel: 020-1234567</p>
-            </aside>
-        </main>
+            </div>
+        </div>
+        
+        <!-- Project implementator -->
+        <div class="persona-card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-tasks"></i>
+                </div>
+                <h2 class="card-title">Project Implementator</h2>
+            </div>
+            <div class="card-content">
+                <div class="user-story">
+                    "Als project implementator wil ik concrete stappen vinden om het project succesvol uit te rollen."
+                </div>
+                <ul class="action-links">
+                    <li><a href="handreikingen.html" class="action-link primary-action">Implementatie stappenplan</a></li>
+                    <li><a href="architectuur.html" class="action-link">Referentie-architectuur</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Onderzoeker/Student -->
+        <div class="persona-card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-microscope"></i>
+                </div>
+                <h2 class="card-title">Onderzoeker / Student</h2>
+            </div>
+            <div class="card-content">
+                <div class="user-story">
+                    "Als onderzoeker wil ik toegang tot data en methodologische informatie voor mijn onderzoeksproject."
+                </div>
+                <ul class="action-links">
+                    <li><a href="wijkmonitor.html#results-tab" class="action-link primary-action">Onderzoeksdata</a></li>
+                    <li><a href="documentatie.html" class="action-link">Methodologische documentatie</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
     
-    <footer>
+    <footer class="main-footer">
         <p>© 2025 Project Kennisportaal - Alle rechten voorbehouden</p>
     </footer>
 </body>
