@@ -1,12 +1,12 @@
-# GitHub Pages Configuration
+# GitHub Pages Configuration with Remote Theme
 
 # Site settings
 title: Project Kennisportaal
 description: Centraal punt voor alle kennis over ons project
 lang: nl
 
-# Theme settings (using default GitHub Pages theme)
-theme: jekyll-theme-cayman
+# Theme settings using remote theme
+remote_theme: pages-themes/cayman@v0.2.0
 
 # Exclude specific files from being processed
 exclude:
@@ -24,6 +24,7 @@ highlighter: rouge
 
 # Plugins
 plugins:
+  - jekyll-remote-theme
   - jekyll-seo-tag
 
 # Timezone
