@@ -16,13 +16,22 @@
             --transition: all 0.3s ease;
         }
         
+        /* Use Cayman theme font settings */
         body {
-            /* These styles work with Cayman theme */
-            line-height: 1.6;
+            font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            line-height: 1.5;
             color: var(--text-color);
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: normal;
+            color: #159957;
         }
         
         .main-header {
@@ -38,13 +47,18 @@
             text-align: center;
         }
         
+        .main-header h1 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
         .main-title {
-            font-size: 2.5rem;
+            font-size: 2.25rem;
             margin-bottom: 1rem;
         }
         
         .subtitle {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-bottom: 2rem;
         }
         
@@ -73,6 +87,16 @@
         .main-nav a.active {
             background-color: var(--primary-color);
             color: white;
+            text-decoration: none;
+        }
+        
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
         }
         
         .intro {
@@ -112,6 +136,11 @@
             text-align: center;
             background-image: linear-gradient(120deg, var(--secondary-color), var(--primary-color));
             color: white;
+        }
+        
+        .card-header h2 {
+            color: white;
+            margin-top: 0;
         }
         
         .card-icon {
@@ -170,6 +199,7 @@
         .action-link:hover {
             background-color: var(--link-color);
             color: white;
+            text-decoration: none;
         }
         
         .primary-action {
