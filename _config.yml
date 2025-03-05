@@ -1,0 +1,30 @@
+# GitHub Pages Configuration
+
+# Site settings
+title: Project Kennisportaal
+description: Centraal punt voor alle kennis over ons project
+lang: nl
+
+# Theme settings (using default GitHub Pages theme)
+theme: jekyll-theme-cayman
+
+# Exclude specific files from being processed
+exclude:
+  - github-setup.md
+  - zip-instructies.md
+  - LICENSE
+  - README.md
+
+# URL settings
+baseurl: ""  # the subpath of your site, e.g. /blog
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
+# Plugins
+plugins:
+  - jekyll-seo-tag
+
+# Timezone
+timezone: Europe/Amsterdam
