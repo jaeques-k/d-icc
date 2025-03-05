@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wijkmonitor - Project Kennisportaal</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Project Kennisportaal</h1>
+        <p>Centraal punt voor alle kennis over ons project</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="manifest.html">Manifest</a></li>
+            <li><a href="handreikingen.html">Handreikingen</a></li>
+            <li><a href="architectuur.html">Referentie-architectuur</a></li>
+            <li><a href="wijkmonitor.html">Wijkmonitor</a></li>
+            <li><a href="documentatie.html">Documentatie</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <div class="search-container">
+        <input type="text" placeholder="Zoek in kennisbank...">
+        <button type="submit">Zoeken</button>
+    </div>
+    
+    <!-- Wijkmonitor Pagina -->
+    <div id="wijkmonitor-page" class="page">
+        <main>
+            <div class="content">
+                <h2>Wijkmonitor Zorgzame Gemeenschappen</h2>
+                <p>De wijkmonitor is een tool om de ervaringen van bewoners met zorg en digitale oplossingen in kaart te brengen. Hiermee kunnen we de zorg en ondersteuning in de wijk verbeteren.</p>
+                
+                <div class="tabs">
+                    <div class="tab active" onclick="showTab('about-tab')">Over de Wijkmonitor</div>
+                    <div class="tab" onclick="showTab('survey-tab')">Vragenlijst</div>
+                    <div class="tab" onclick="showTab('results-tab')">Resultaten</div>
+                </div>
+                
+                <div id="about-tab" class="tab-content active" style="display: block;">
+                    <h3>Over de Wijkmonitor</h3>
+                    <p>De Wijkmonitor Zorgzame Gemeenschappen is ontwikkeld om inzicht te krijgen in de ervaringen en behoeften van wijkbewoners op het gebied van zorg en welzijn. Met deze monitor meten we verschillende aspecten:</p>
+                    
+                    <ul>
+                        <li><strong>Algemene Gegevens & Levenssituatie</strong> - Basisinformatie over zelfstandigheid en ondersteuningsbehoefte</li>
+                        <li><strong>Ervaringen met Zorg & Gemeenschap</strong> - Inzicht in de toegankelijkheid en kwaliteit van zorg</li>
+                        <li><strong>Gebruik van Digitale Zorg</strong> - Mate waarin digitale oplossingen worden gebruikt en gewaardeerd</li>
+                        <li><strong>Samenwerking binnen de Gemeenschap</strong> - Sociale verbondenheid en onderlinge hulp</li>
+                        <li><strong>Toekomstbeeld & Verwachtingen</strong> - Visie op de toekomst van zorg in de wijk</li>
+                    </ul>
+                    
+                    <p>Door de resultaten van deze monitor kunnen we:</p>
+                    <ul>
+                        <li>Gerichte verbeteringen aanbrengen in zorgvoorzieningen</li>
+                        <li>Digitale oplossingen beter laten aansluiten bij behoeften</li>
+                        <li>Samenwerkingen tussen zorgaanbieders versterken</li>
+                        <li>Beleid ontwikkelen dat aansluit bij de werkelijke situatie in wijken</li>
+                    </ul>
+                    
+                    <p>Klik op het tabblad 'Vragenlijst' om de monitor in te vullen of op 'Resultaten' om de verzamelde gegevens te bekijken.</p>
+                </div>
+                
+                <div id="survey-tab" class="tab-content" style="display: none;">
+                    <div class="wijkmonitor-container">
+                        <h1>Wijkmonitor Zorgzame Gemeenschappen</h1>
+                        
+                        <div class="intro">
+                            <h2>Vragenlijst: Bewoners & Digitale Geïntegreerde Zorg</h2>
+                            <p><strong>Doel:</strong> Inzicht krijgen in hoe bewoners zorg en ondersteuning ervaren en hoe digitale oplossingen hierop kunnen aansluiten.</p>
+                            <p>Beantwoord de volgende stellingen op een schaal van 1 (helemaal oneens) tot 10 (helemaal eens).</p>
+                        </div>
+                        
+                        <form id="survey-form">
+                            <!-- Sectie 1 -->
+                            <div class="section">
+                                <h2 class="section-title">1. Algemene Gegevens (Context & Levenssituatie)</h2>
+                                <div class="section-description">
+                                    Deze vragen geven inzicht in de levenssituatie en zorgbehoeften van bewoners.
+                                </div>
+                                
+                                <div class="scale-labels">
+                                    <span class="scale-label">Helemaal oneens</span>
+                                    <span class="scale-label"></span>
+                                    <span class="scale-label"></span>
+                                    <span class="scale-label"></span>
+                                    <span class="scale-label">Neutraal</span>
+                                    <span class="scale-label"></span>
+                                    <span class="scale-label"></span>
+                                    <span class="scale-label"></span>
+                                    <span class="scale-label"></span>
+                                    <span class="scale-label">Helemaal eens</span>
+                                </div>
+                                
+                                <div class="question-group">
+                                    <div class="question">1. Ik voel me zelfstandig in mijn dagelijks leven.</div>
+                                    <div class="rating-buttons">
+                                        <div class="rating-button">
+                                            <div class="rating-number">1</div>
+                                            <input type="radio" name="q1_1" value="1" required>
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">2</div>
+                                            <input type="radio" name="q1_1" value="2">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">3</div>
+                                            <input type="radio" name="q1_1" value="3">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">4</div>
+                                            <input type="radio" name="q1_1" value="4">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">5</div>
+                                            <input type="radio" name="q1_1" value="5">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">6</div>
+                                            <input type="radio" name="q1_1" value="6">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">7</div>
+                                            <input type="radio" name="q1_1" value="7">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">8</div>
+                                            <input type="radio" name="q1_1" value="8">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">9</div>
+                                            <input type="radio" name="q1_1" value="9">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">10</div>
+                                            <input type="radio" name="q1_1" value="10">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="question-group">
+                                    <div class="question">2. Ik ontvang voldoende ondersteuning wanneer ik dat nodig heb.</div>
+                                    <div class="rating-buttons">
+                                        <div class="rating-button">
+                                            <div class="rating-number">1</div>
+                                            <input type="radio" name="q1_2" value="1" required>
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">2</div>
+                                            <input type="radio" name="q1_2" value="2">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">3</div>
+                                            <input type="radio" name="q1_2" value="3">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">4</div>
+                                            <input type="radio" name="q1_2" value="4">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">5</div>
+                                            <input type="radio" name="q1_2" value="5">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">6</div>
+                                            <input type="radio" name="q1_2" value="6">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">7</div>
+                                            <input type="radio" name="q1_2" value="7">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">8</div>
+                                            <input type="radio" name="q1_2" value="8">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">9</div>
+                                            <input type="radio" name="q1_2" value="9">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">10</div>
+                                            <input type="radio" name="q1_2" value="10">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="question-group">
+                                    <div class="question">3. Ik weet goed waar ik terecht kan voor zorg en ondersteuning.</div>
+                                    <div class="rating-buttons">
+                                        <div class="rating-button">
+                                            <div class="rating-number">1</div>
+                                            <input type="radio" name="q1_3" value="1" required>
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">2</div>
+                                            <input type="radio" name="q1_3" value="2">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">3</div>
+                                            <input type="radio" name="q1_3" value="3">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">4</div>
+                                            <input type="radio" name="q1_3" value="4">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">5</div>
+                                            <input type="radio" name="q1_3" value="5">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">6</div>
+                                            <input type="radio" name="q1_3" value="6">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">7</div>
+                                            <input type="radio" name="q1_3" value="7">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">8</div>
+                                            <input type="radio" name="q1_3" value="8">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">9</div>
+                                            <input type="radio" name="q1_3" value="9">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">10</div>
+                                            <input type="radio" name="q1_3" value="10">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Sectie 2 -->
+                            <div class="section">
+                                <h2 class="section-title">2. Ervaringen met Zorg & Gemeenschap</h2>
+                                <div class="section-description">
+                                    Deze vragen meten de toegankelijkheid en tevredenheid met zorg en ondersteuning in de gemeenschap.
+                                </div>
+                                
+                                <div class="scale-labels">
+                                    <span class="scale-label">Helemaal oneens</span>
+                                    <span class="scale-label"></span>
+                                    <span class="scale-label"></span>
+                                    <span class="scale-label"></span>
+                                    <span class="scale-label">Neutraal</span>
+                                    <span class="scale-label"></span>
+                                    <span class="scale-label"></span>
+                                    <span class="scale-label"></span>
+                                    <span class="scale-label"></span>
+                                    <span class="scale-label">Helemaal eens</span>
+                                </div>
+                                
+                                <div class="question-group">
+                                    <div class="question">1. De zorg in mijn buurt is gemakkelijk toegankelijk.</div>
+                                    <div class="rating-buttons">
+                                        <div class="rating-button">
+                                            <div class="rating-number">1</div>
+                                            <input type="radio" name="q2_1" value="1" required>
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">2</div>
+                                            <input type="radio" name="q2_1" value="2">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">3</div>
+                                            <input type="radio" name="q2_1" value="3">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">4</div>
+                                            <input type="radio" name="q2_1" value="4">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">5</div>
+                                            <input type="radio" name="q2_1" value="5">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">6</div>
+                                            <input type="radio" name="q2_1" value="6">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">7</div>
+                                            <input type="radio" name="q2_1" value="7">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">8</div>
+                                            <input type="radio" name="q2_1" value="8">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">9</div>
+                                            <input type="radio" name="q2_1" value="9">
+                                        </div>
+                                        <div class="rating-button">
+                                            <div class="rating-number">10</div>
+                                            <input type="radio" name="q2_1" value="10">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Verkorte versie (verwijzing naar overige secties) -->
+                            <div class="section">
+                                <h2 class="section-title">3-5. Overige Secties</h2>
+                                <div class="section-description">
+                                    De volledige vragenlijst bevat ook vragen over:
+                                    <ul>
+                                        <li>Gebruik van Digitale Zorg & Technologie</li>
+                                        <li>Samenwerking binnen de Gemeenschap</li>
+                                        <li>Toekomstbeeld & Verwachtingen</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="submit-button">Verstuur vragenlijst</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div id="results-tab" class="tab-content" style="display: none;">
+                    <h3>Resultaten Wijkmonitor</h3>
+                    <p>Op deze pagina worden de verzamelde resultaten van de wijkmonitor getoond. De data wordt momenteel verzameld en zal binnenkort beschikbaar zijn.</p>
+                    
+                    <div class="resource-card">
+                        <h4>Resultaten 2024 (Voorbeeld)</h4>
+                        <p>Bekijk de samenvatting van de resultaten uit de wijkmonitor van het vorige jaar.</p>
+                        <a href="#">Download rapport (PDF) »</a>
+                    </div>
+                    
+                    <h4>Voorlopige Inzichten</h4>
+                    <ul>
+                        <li>De tevredenheid over digitale zorgoplossingen is met 15% gestegen t.o.v. vorig jaar</li>
+                        <li>Bewoners ervaren nog steeds drempels bij het vinden van de juiste zorg</li>
+                        <li>De sociale cohesie in de wijk scoort gemiddeld een 7,2</li>
+                        <li>78% van de respondenten geeft aan digitale zorgoplossingen te gebruiken</li>
+                        <li>Bewoners boven de 70 jaar hebben meer behoefte aan persoonlijk contact</li>
+                    </ul>
+                    
+                    <div class="section">
+                        <h4>Regionale Vergelijking</h4>
+                        <p>In vergelijking met andere wijken scoort deze wijk bovengemiddeld op:</p>
+                        <ul>
+                            <li>Toegankelijkheid van zorg (8,1 vs. gemiddeld 7,4)</li>
+                            <li>Gebruik van digitale hulpmiddelen (78% vs. gemiddeld 65%)</li>
+                            <li>Burenhulp en sociale cohesie (7,2 vs. gemiddeld 6,8)</li>
+                        </ul>
+                        
+                        <p>Aandachtspunten voor verbetering zijn:</p>
+                        <ul>
+                            <li>Bekendheid van het zorgaanbod (6,5 vs. gemiddeld 7,2)</li>
+                            <li>Afstemming tussen verschillende zorgverleners (6,3 vs. gemiddeld 6,9)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <aside>
+                <h3>Projectnieuws</h3>
+                <div class="news-item">
+                    <h4>Nieuwe release v3.2</h4>
+                    <p>15 februari 2025</p>
+                    <p>De nieuwste versie bevat verbeterde zoekfunctionaliteit.</p>
+                </div>
+                
+                <div class="news-item">
+                    <h4>Teamuitbreiding</h4>
+                    <p>5 februari 2025</p>
+                    <p>We verwelkomen drie nieuwe teamleden deze maand.</p>
+                </div>
+                
+                <h3>Contact Informatie</h3>
+                <p>Email: info@projectnaam.nl</p>
+                <p>Tel: 020-1234567</p>
+            </aside>
+        </main>
+    </div>
+    
+    <footer>
+        <p>© 2025 Project Kennisportaal - Alle rechten voorbehouden</p>
+    </footer>
+</body>
+</html>

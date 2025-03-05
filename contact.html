@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Project Kennisportaal</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Project Kennisportaal</h1>
+        <p>Centraal punt voor alle kennis over ons project</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="manifest.html">Manifest</a></li>
+            <li><a href="handreikingen.html">Handreikingen</a></li>
+            <li><a href="architectuur.html">Referentie-architectuur</a></li>
+            <li><a href="wijkmonitor.html">Wijkmonitor</a></li>
+            <li><a href="documentatie.html">Documentatie</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <div class="search-container">
+        <input type="text" placeholder="Zoek in kennisbank...">
+        <button type="submit">Zoeken</button>
+    </div>
+    
+    <!-- Contact Pagina -->
+    <div id="contact-page" class="page">
+        <main>
+            <div class="content">
+                <h2>Contact</h2>
+                <p>Neem contact met ons op voor vragen of ondersteuning.</p>
+                
+                <div class="section">
+                    <h3>Contactgegevens</h3>
+                    <p><strong>Email:</strong> info@projectnaam.nl</p>
+                    <p><strong>Telefoon:</strong> 020-1234567</p>
+                    <p><strong>Adres:</strong> Voorbeeldstraat 123, 1234 AB Amsterdam</p>
+                    
+                    <h3>Openingstijden</h3>
+                    <p>Maandag t/m vrijdag: 9:00 - 17:00</p>
+                    <p>In het weekend zijn wij gesloten.</p>
+                    
+                    <h3>Contactformulier</h3>
+                    <div class="contact-form-container">
+                        <form id="contact-form">
+                            <div>
+                                <label for="name">Naam</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            
+                            <div>
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            
+                            <div>
+                                <label for="subject">Onderwerp</label>
+                                <input type="text" id="subject" name="subject" required>
+                            </div>
+                            
+                            <div>
+                                <label for="message">Bericht</label>
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            
+                            <button type="submit">Verstuur</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h3>Veelgestelde vragen</h3>
+                    <p>Bekijk onze <a href="faq.html">FAQ pagina</a> voor antwoorden op veelgestelde vragen.</p>
+                    
+                    <h3>Feedback</h3>
+                    <p>We staan altijd open voor feedback over het project. Deel je ervaringen of suggesties via het contactformulier of stuur een e-mail naar feedback@projectnaam.nl.</p>
+                </div>
+            </div>
+            
+            <aside>
+                <h3>Projectnieuws</h3>
+                <div class="news-item">
+                    <h4>Nieuwe release v3.2</h4>
+                    <p>15 februari 2025</p>
+                    <p>De nieuwste versie bevat verbeterde zoekfunctionaliteit.</p>
+                </div>
+                
+                <div class="news-item">
+                    <h4>Teamuitbreiding</h4>
+                    <p>5 februari 2025</p>
+                    <p>We verwelkomen drie nieuwe teamleden deze maand.</p>
+                </div>
+                
+                <h3>Volg ons</h3>
+                <p>
+                    <a href="#">LinkedIn</a> | 
+                    <a href="#">Twitter</a> | 
+                    <a href="#">Facebook</a>
+                </p>
+            </aside>
+        </main>
+    </div>
+    
+    <footer>
+        <p>© 2025 Project Kennisportaal - Alle rechten voorbehouden</p>
+    </footer>
+</body>
+</html>
