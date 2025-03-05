@@ -16,7 +16,11 @@ body {
 }
 
 header {
-    background-image: linear-gradient(120deg, var(--cayman-secondary), var(--cayman-primary));
+    background-image: 
+        linear-gradient(120deg, rgba(21, 87, 153, 0.7), rgba(21, 153, 87, 0.7)), 
+        url('banner.jpg');
+    background-size: cover;
+    background-position: center;
     color: white;
     padding: 2rem 1rem;
     margin-bottom: 2rem;
