@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voor Wijkbewoners - Project Kennisportaal</title>
+    <style>
+        :root {
+            --primary-color: #159957;
+            --secondary-color: #155799;
+            --text-color: #606c71;
+            --link-color: #1e6bb8;
+            --border-color: #dce6f0;
+            --light-bg: #f3f6fa;
+            --card-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        /* Use Cayman theme font settings */
+        body {
+            font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            line-height: 1.5;
+            color: var(--text-color);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: normal;
+            color: #159957;
+        }
+        
+        .persona-header {
+            background-image: 
+                linear-gradient(120deg, rgba(21, 87, 153, 0.7), rgba(21, 153, 87, 0.7)), 
+                url('../assets/images/banner.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 3rem 1rem;
+            margin-bottom: 2rem;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        .persona-header h1 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .persona-title {
+            font-size: 2.25rem;
+            margin-bottom: 1rem;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .persona-nav {
+            background-color: var(--light-bg);
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .persona-nav a {
+            padding: 10px 20px;
+            background-color: white;
+            color: var(--link-color);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .persona-nav a:hover,
+        .persona-nav a.active {
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+        }
+        
+        .breadcrumb {
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .breadcrumb a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        main {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 20px;
+        }
+        
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        .feature-block {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .feature-block h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .feature-action {
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+            width: fit-content;
+            transition: background-color 0.2s;
+        }
+        
+        .feature-action:hover {
+            background-color: #107745;
+            text-decoration: none;
+        }
+        
+        .news-updates {
+            background-color: var(--light-bg);
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .news-updates h3 {
+            color: var(--secondary-color);
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .news-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .news-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .news-item h4 {
+            margin: 0 0 5px 0;
+            color: var(--secondary-color);
+        }
+        
+        .news-date {
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 5px;
+        }
+        
+        .digital-tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .tool-card {
+            background-color: white;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        
+        .tool-header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .tool-header h4 {
+            margin: 0;
+            color: white;
+        }
+        
+        .tool-icon {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .tool-content {
+            padding: 15px;
+        }
+        
+        .tool-footer {
+            background-color: var(--light-bg);
+            padding: 12px 15px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .tool-footer a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+        
+        .tool-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .availability-tag {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-top: 10px;
+        }
+        
+        .available {
+            background-color: #e6f7e6;
+            color: #2e7d32;
+        }
+        
+        .coming-soon {
+            background-color: #fff8e1;
+            color: #f57f17;
+        }
+        
+        .contact-block {
+            background-color: var(--light-bg);
+            border-radius: 5px;
+            padding: 20px;
+        }
+        
+        .contact-block h3 {
+            color: var(--secondary-color);
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .persona-footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: #888;
+        }
+        
+        /* Media queries for responsiveness */
+        @media (max-width: 768px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+            
+            .digital-tools-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Header with persona title -->
+    <header class="persona-header">
+        <h1 class="persona-title">Voor Wijkbewoners</h1>
+        <div class="subtitle">Digitale hulpmiddelen en wijkmonitor voor bewoners</div>
+    </header>
+    
+    <!-- Persona-specific navigation -->
+    <div class="persona-nav">
+        <a href="#" class="active">Digitale hulpmiddelen</a>
+        <a href="#">Wijkmonitor</a>
+        <a href="#">Resultaten</a>
+        <a href="#">Ervaringen delen</a>
+        <a href="#">Hulp vinden</a>
+    </div>
+    
+    <!-- Breadcrumb for returning to main landing page -->
+    <div class="breadcrumb">
+        <a href="../index.html">Home</a> &gt; Voor Wijkbewoners
+    </div>
+    
+    <main>
+        <div class="content">
+            <div class="feature-block">
+                <h3>Lokale digitale hulpmiddelen</h3>
+                <p>Ontdek welke digitale hulpmiddelen beschikbaar zijn in uw wijk om uw gezondheid en welzijn te ondersteunen. Deze hulpmiddelen zijn ontwikkeld om de zorg toegankelijker en gemakkelijker te maken.</p>
+                
+                <div class="digital-tools-grid">
+                    <div class="tool-card">
+                        <div class="tool-header">
+                            <div class="tool-icon"><i class="fas fa-calendar-check"></i></div>
+                            <h4>ZorgAfspraak Online</h4>
+                        </div>
+                        <div class="tool-content">
+                            <p>Maak eenvoudig afspraken met zorgverleners in uw buurt, zonder te bellen of langs te gaan.</p>
+                            <div class="availability-tag available">Beschikbaar in uw wijk</div>
+                        </div>
+                        <div class="tool-footer">
+                            <a href="#">Meer informatie &raquo;</a>
+                        </div>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <div class="tool-header">
+                            <div class="tool-icon"><i class="fas fa-pills"></i></div>
+                            <h4>MedicijnRemindr</h4>
+                        </div>
+                        <div class="tool-content">
+                            <p>Ontvang herinneringen voor uw medicijnen en houd uw medicatiegebruik bij via deze handige app.</p>
+                            <div class="availability-tag available">Beschikbaar in uw wijk</div>
+                        </div>
+                        <div class="tool-footer">
+                            <a href="#">Meer informatie &raquo;</a>
+                        </div>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <div class="tool-header">
+                            <div class="tool-icon"><i class="fas fa-comments"></i></div>
+                            <h4>BuurtConnect</h4>
+                        </div>
+                        <div class="tool-content">
+                            <p>Een platform waar buurtbewoners elkaar kunnen helpen met praktische zaken en sociale ondersteuning.</p>
+                            <div class="availability-tag available">Beschikbaar in uw wijk</div>
+                        </div>
+                        <div class="tool-footer">
+                            <a href="#">Meer informatie &raquo;</a>
+                        </div>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <div class="tool-header">
+                            <div class="tool-icon"><i class="fas fa-video"></i></div>
+                            <h4>TeleZorg</h4>
+                        </div>
+                        <div class="tool-content">
+                            <p>Videoconsulten met uw huisarts, specialist of wijkverpleegkundige vanuit uw eigen huis.</p>
+                            <div class="availability-tag available">Beschikbaar in uw wijk</div>
+                        </div>
+                        <div class="tool-footer">
+                            <a href="#">Meer informatie &raquo;</a>
+                        </div>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <div class="tool-header">
+                            <div class="tool-icon"><i class="fas fa-heartbeat"></i></div>
+                            <h4>VitaalApp</h4>
+                        </div>
+                        <div class="tool-content">
+                            <p>Monitor uw gezondheidswaarden en deel deze indien gewenst met uw zorgverleners.</p>
+                            <div class="availability-tag coming-soon">Binnenkort beschikbaar</div>
+                        </div>
+                        <div class="tool-footer">
+                            <a href="#">Meer informatie &raquo;</a>
+                        </div>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <div class="tool-header">
+                            <div class="tool-icon"><i class="fas fa-hands-helping"></i></div>
+                            <h4>MantelzorgHub</h4>
+                        </div>
+                        <div class="tool-content">
+                            <p>Ondersteunt mantelzorgers bij de coördinatie van zorg en biedt toegang tot relevante informatie.</p>
+                            <div class="availability-tag coming-soon">Binnenkort beschikbaar</div>
+                        </div>
+                        <div class="tool-footer">
+                            <a href="#">Meer informatie &raquo;</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="#" class="feature-action">Alle digitale hulpmiddelen bekijken</a>
+            </div>
+            
+            <div class="feature-block">
+                <h3>Deel uw ervaringen via de Wijkmonitor</h3>
+                <p>De Wijkmonitor is een belangrijk instrument om inzicht te krijgen in de ervaringen van bewoners met zorg en digitale oplossingen in de wijk. Door de monitor in te vullen, helpt u om de zorg en ondersteuning in uw wijk te verbeteren.</p>
+                <p>Het invullen van de monitor duurt ongeveer 10 minuten. Uw antwoorden worden anoniem verwerkt en gebruikt om verbeteringen in de wijk door te voeren.</p>
+                <a href="../wijkmonitor.html" class="feature-action">Wijkmonitor invullen</a>
+            </div>
+            
+            <div class="feature-block">
+                <h3>Bekijk de resultaten van de Wijkmonitor</h3>
+                <p>Benieuwd naar wat andere bewoners hebben gedeeld? Bekijk de resultaten van de wijkmonitor en ontdek hoe uw wijk scoort op verschillende aspecten van zorg en digitale oplossingen.</p>
+                <a href="../wijkmonitor.html#results-tab" class="feature-action">Resultaten bekijken</a>
+            </div>
+        </div>
+        
+        <aside>
+            <div class="news-updates">
+                <h3>Nieuws</h3>
+                <div class="news-item">
+                    <h4>Nieuwe digitale hulpmiddelen gelanceerd</h4>
+                    <div class="news-date">20 februari 2025</div>
+                    <p>Deze maand zijn er twee nieuwe digitale hulpmiddelen beschikbaar gekomen in onze wijk: ZorgAfspraak Online en MedicijnRemindr.</p>
+                </div>
+                
+                <div class="news-item">
+                    <h4>Digitale vaardigheden workshop</h4>
+                    <div class="news-date">15 februari 2025</div>
+                    <p>Op 10 maart wordt een workshop georganiseerd om senioren te helpen met het gebruik van digitale zorgoplossingen.</p>
+                </div>
+                
+                <div class="news-item">
+                    <h4>Resultaten wijkmonitor 2024</h4>
+                    <div class="news-date">5 februari 2025</div>
+                    <p>De resultaten van de wijkmonitor van vorig jaar zijn nu beschikbaar. Ontdek wat er is veranderd in uw wijk.</p>
+                </div>
+            </div>
+            
+            <div class="contact-block">
+                <h3>Hulp nodig?</h3>
+                <p>Heeft u vragen over het gebruik van digitale hulpmiddelen? Neem contact met ons op:</p>
+                <p>Email: digitaal@projectnaam.nl</p>
+                <p>Tel: 020-1234567</p>
+                <a href="../contact.html" class="feature-action">Contact opnemen</a>
+            </div>
+        </aside>
+    </main>
+    
+    <footer class="persona-footer">
+        <p>© 2025 Project Kennisportaal - Alle rechten voorbehouden</p>
+        <p><a href="../index.html">Terug naar de hoofdpagina</a></p>
+    </footer>
+</body>
+</html>
