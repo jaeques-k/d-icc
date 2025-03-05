@@ -16,28 +16,19 @@
             --transition: all 0.3s ease;
         }
         
-        /* Use Cayman theme font settings */
         body {
-            font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-            line-height: 1.5;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
             color: var(--text-color);
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
         
-        h1, h2, h3, h4, h5, h6 {
-            font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            font-weight: normal;
-            color: #159957;
-        }
-        
-        .persona-header {
+        header {
             background-image: 
                 linear-gradient(120deg, rgba(21, 87, 153, 0.7), rgba(21, 153, 87, 0.7)), 
-                url('../assets/images/banner.jpg');
+                url('banner.jpg');
             background-size: cover;
             background-position: center;
             color: white;
@@ -47,18 +38,13 @@
             text-align: center;
         }
         
-        .persona-header h1 {
-            color: white;
-            margin-bottom: 1rem;
-        }
-        
-        .persona-title {
-            font-size: 2.25rem;
+        h1 {
+            font-size: 2.5rem;
             margin-bottom: 1rem;
         }
         
         .subtitle {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             margin-bottom: 0.5rem;
         }
         
@@ -87,7 +73,6 @@
         .persona-nav a.active {
             background-color: var(--primary-color);
             color: white;
-            text-decoration: none;
         }
         
         .breadcrumb {
@@ -111,13 +96,12 @@
             gap: 20px;
         }
         
-        a {
-            color: var(--link-color);
-            text-decoration: none;
+        .content {
+            /* No styles needed here */
         }
         
-        a:hover {
-            text-decoration: underline;
+        aside {
+            /* No styles needed here */
         }
         
         .feature-block {
@@ -221,14 +205,13 @@
             align-items: center;
         }
         
-        .tool-header h4 {
-            margin: 0;
-            color: white;
-        }
-        
         .tool-icon {
             margin-right: 10px;
             font-size: 1.5rem;
+        }
+        
+        .tool-header h4 {
+            margin: 0;
         }
         
         .tool-content {
@@ -281,7 +264,7 @@
             border-bottom: 1px solid var(--border-color);
         }
         
-        .persona-footer {
+        footer {
             text-align: center;
             margin-top: 3rem;
             padding-top: 2rem;
@@ -289,7 +272,7 @@
             color: #888;
         }
         
-        /* Style for form elements in Wijkmonitor tab */
+        /* Form styles */
         .monitor-form {
             margin-top: 20px;
         }
@@ -317,40 +300,30 @@
             min-height: 100px;
         }
         
-        /* Styles for the Resultaten tab */
+        /* Hide content sections by default */
+        .content-section {
+            display: none;
+        }
+        
+        /* Show the default section */
+        .content-section.active {
+            display: block;
+        }
+        
+        /* Results visualization styles */
         .results-visualization {
             background-color: var(--light-bg);
             padding: 20px;
             border-radius: 5px;
             margin: 20px 0;
         }
-        
-        /* Styles for FAQ items */
-        .faq-item {
-            margin-bottom: 20px;
-        }
-        
-        .faq-item h5 {
-            margin-bottom: 5px;
-        }
-        
-        /* Media queries for responsiveness */
-        @media (max-width: 768px) {
-            main {
-                grid-template-columns: 1fr;
-            }
-            
-            .digital-tools-grid {
-                grid-template-columns: 1fr;
-            }
-        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
     <!-- Header with persona title -->
-    <header class="persona-header">
-        <h1 class="persona-title">Voor Wijkbewoners</h1>
+    <header>
+        <h1>Voor Wijkbewoners</h1>
         <div class="subtitle">Digitale hulpmiddelen en wijkmonitor voor bewoners</div>
     </header>
     
@@ -365,13 +338,13 @@
     
     <!-- Breadcrumb for returning to main landing page -->
     <div class="breadcrumb">
-        <a href="../index.html">Home</a> &gt; Voor Wijkbewoners
+        <a href="index.html">Home</a> &gt; Voor Wijkbewoners
     </div>
     
     <main>
         <div class="content">
             <!-- Digitale hulpmiddelen section -->
-            <div id="digitaal-content" class="content-section">
+            <div id="digitaal-content" class="content-section active">
                 <div class="feature-block">
                     <h3>Lokale digitale hulpmiddelen</h3>
                     <p>Ontdek welke digitale hulpmiddelen beschikbaar zijn in uw wijk om uw gezondheid en welzijn te ondersteunen. Deze hulpmiddelen zijn ontwikkeld om de zorg toegankelijker en gemakkelijker te maken.</p>
@@ -467,7 +440,7 @@
             </div>
             
             <!-- Wijkmonitor section -->
-            <div id="wijkmonitor-content" class="content-section" style="display: none;">
+            <div id="wijkmonitor-content" class="content-section">
                 <div class="feature-block">
                     <h3>Deel uw ervaringen via de Wijkmonitor</h3>
                     <p>De Wijkmonitor is een belangrijk instrument om inzicht te krijgen in de ervaringen van bewoners met zorg en digitale oplossingen in de wijk. Door de monitor in te vullen, helpt u om de zorg en ondersteuning in uw wijk te verbeteren.</p>
@@ -528,7 +501,7 @@
             </div>
             
             <!-- Resultaten section -->
-            <div id="resultaten-content" class="content-section" style="display: none;">
+            <div id="resultaten-content" class="content-section">
                 <div class="feature-block">
                     <h3>Bekijk de resultaten van de Wijkmonitor</h3>
                     <p>Benieuwd naar wat andere bewoners hebben gedeeld? Bekijk de resultaten van de wijkmonitor en ontdek hoe uw wijk scoort op verschillende aspecten van zorg en digitale oplossingen.</p>
@@ -554,7 +527,7 @@
             </div>
             
             <!-- Ervaringen delen section -->
-            <div id="ervaringen-content" class="content-section" style="display: none;">
+            <div id="ervaringen-content" class="content-section">
                 <div class="feature-block">
                     <h3>Deel uw ervaringen</h3>
                     <p>Deel uw persoonlijke ervaringen met digitale hulpmiddelen en zorgverleners in de wijk. Uw verhaal kan anderen helpen bij het maken van keuzes.</p>
@@ -600,7 +573,7 @@
             </div>
             
             <!-- Hulp vinden section -->
-            <div id="hulp-content" class="content-section" style="display: none;">
+            <div id="hulp-content" class="content-section">
                 <div class="feature-block">
                     <h3>Hulp bij digitale zorgoplossingen</h3>
                     <p>Heeft u moeite met het gebruik van digitale hulpmiddelen? Er zijn verschillende mogelijkheden om ondersteuning te krijgen.</p>
@@ -612,22 +585,6 @@
                         <li><strong>Telefonische helpdesk:</strong> Bereikbaar op werkdagen van 9:00 tot 17:00 via 020-1234567</li>
                         <li><strong>Online tutorials:</strong> Bekijk instructievideo's voor het gebruik van digitale hulpmiddelen</li>
                     </ul>
-                    
-                    <h4>Veelgestelde vragen</h4>
-                    <div class="faq-item">
-                        <h5>Hoe maak ik een account aan voor ZorgAfspraak Online?</h5>
-                        <p>U kunt een account aanmaken door naar de website van ZorgAfspraak Online te gaan en te klikken op 'Registreren'. Volg daarna de instructies op het scherm.</p>
-                    </div>
-                    
-                    <div class="faq-item">
-                        <h5>Zijn mijn gegevens veilig bij het gebruik van deze apps?</h5>
-                        <p>Ja, alle digitale hulpmiddelen voldoen aan de strenge privacywetgeving (AVG). Uw gegevens worden versleuteld opgeslagen en zijn alleen toegankelijk voor geautoriseerde personen.</p>
-                    </div>
-                    
-                    <div class="faq-item">
-                        <h5>Wat als ik geen smartphone of computer heb?</h5>
-                        <p>In het buurtcentrum zijn computers beschikbaar die u kunt gebruiken. Ook kunt u hulp vragen aan een van onze digitale coaches.</p>
-                    </div>
                     
                     <a href="#" class="feature-action">Afspraak maken voor hulp</a>
                 </div>
@@ -661,14 +618,14 @@
                 <p>Heeft u vragen over het gebruik van digitale hulpmiddelen? Neem contact met ons op:</p>
                 <p>Email: digitaal@projectnaam.nl</p>
                 <p>Tel: 020-1234567</p>
-                <a href="../contact.html" class="feature-action">Contact opnemen</a>
+                <a href="#" class="feature-action">Contact opnemen</a>
             </div>
         </aside>
     </main>
     
-    <footer class="persona-footer">
+    <footer>
         <p>© 2025 Project Kennisportaal - Alle rechten voorbehouden</p>
-        <p><a href="../index.html">Terug naar de hoofdpagina</a></p>
+        <p><a href="index.html">Terug naar de hoofdpagina</a></p>
     </footer>
 
     <!-- JavaScript for tab navigation -->
@@ -682,6 +639,7 @@
             function hideAllSections() {
                 document.querySelectorAll('.content-section').forEach(section => {
                     section.style.display = 'none';
+                    section.classList.remove('active');
                 });
             }
             
@@ -691,8 +649,10 @@
                 const section = document.getElementById(sectionId + '-content');
                 if (section) {
                     section.style.display = 'block';
+                    section.classList.add('active');
                 }
             }
+            
             // Add click events to all navigation tabs
             document.querySelectorAll('.persona-nav a').forEach(link => {
                 link.addEventListener('click', function(e) {
@@ -731,5 +691,5 @@
             }
         });
     </script>
-    </body>
+</body>
 </html>
