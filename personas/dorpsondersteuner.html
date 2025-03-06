@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voor Dorpsondersteuners - Project Kennisportaal</title>
+    <style>
+        :root {
+            --primary-color: #159957;
+            --secondary-color: #155799;
+            --text-color: #606c71;
+            --link-color: #1e6bb8;
+            --border-color: #dce6f0;
+            --light-bg: #f3f6fa;
+            --card-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-image: 
+                linear-gradient(120deg, rgba(21, 87, 153, 0.7), rgba(21, 153, 87, 0.7)), 
+                url('../assets/images/banner.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 3rem 1rem;
+            margin-bottom: 1rem; /* Reduced margin to place breadcrumb closer */
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Breadcrumb positioned right after header */
+        .breadcrumb {
+            margin: 0.5rem 0 1.5rem 0;
+            font-size: 0.9rem;
+            color: #666;
+            padding: 0.5rem 0;
+        }
+        
+        .breadcrumb a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Main navigation */
+        .persona-nav {
+            background-color: var(--light-bg);
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .persona-nav a {
+            padding: 10px 20px;
+            background-color: white;
+            color: var(--link-color);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .persona-nav a:hover,
+        .persona-nav a.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* Sub navigation - hidden by default, shown when needed */
+        .sub-nav {
+            background-color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none; /* Hidden by default */
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .sub-nav a {
+            padding: 8px 15px;
+            background-color: var(--light-bg);
+            color: var(--link-color);
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+        
+        .sub-nav a:hover,
+        .sub-nav a.active {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        /* Show sub-nav when needed */
+        .sub-nav.active {
+            display: flex;
+        }
+        
+        main {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 20px;
+        }
+        
+        .content {
+            /* No styles needed here */
+        }
+        
+        aside {
+            /* No styles needed here */
+        }
+        
+        .feature-block {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .feature-block h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .feature-action {
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+            width: fit-content;
+            transition: background-color 0.2s;
+        }
+        
+        .feature-action:hover {
+            background-color: #107745;
+            text-decoration: none;
+        }
+        
+        .news-updates {
+            background-color: var(--light-bg);
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .news-updates h3 {
+            color: var(--secondary-color);
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .news-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .news-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .news-item h4 {
+            margin: 0 0 5px 0;
+            color: var(--secondary-color);
+        }
+        
+        .news-date {
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 5px;
+        }
+        
+        .contact-block {
+            background-color: var(--light-bg);
+            border-radius: 5px;
+            padding: 20px;
+        }
+        
+        .contact-block h3 {
+            color: var(--secondary-color);
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: #888;
+        }
+        
+        /* Hide content sections by default */
+        .content-section {
+            display: none;
+        }
+        
+        /* Show the default section */
+        .content-section.active {
+            display: block;
+        }
+        
+        /* Hide sub-content sections by default */
+        .sub-content-section {
+            display: none;
+        }
+        
+        /* Show the default sub-section */
+        .sub-content-section.active {
+            display: block;
+        }
+        
+        /* Tool library grid */
+        .tool-library-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .tool-card {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s, box-shadow 0.2s;
+            overflow: hidden;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        
+        .tool-header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .tool-header h4 {
+            margin: 0;
+            color: white;
+        }
+        
+        .tool-icon {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .tool-content {
+            padding: 15px;
+        }
+        
+        .tool-footer {
+            background-color: var(--light-bg);
+            padding: 12px 15px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        /* Community Map styles */
+        .map-container {
+            height: 400px;
+            background-color: #e9e9e9;
+            border-radius: 5px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .map-placeholder {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        
+        /* Resources list styles */
+        .resource-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        
+        .resource-list li {
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: var(--light-bg);
+            border-radius: 5px;
+            border-left: 3px solid var(--primary-color);
+        }
+        
+        .resource-list li h4 {
+            margin: 0 0 5px 0;
+        }
+        
+        .resource-list li p {
+            margin: 0;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Header with persona title -->
+    <header>
+        <h1>Voor Dorpsondersteuners</h1>
+        <div class="subtitle">Hulpmiddelen en informatie voor ondersteuners in de wijk</div>
+    </header>
+    
+    <!-- Breadcrumb positioned right after the header -->
+    <div class="breadcrumb">
+        <a href="../index.html">Home</a> &gt; Voor Dorpsondersteuners
+    </div>
+    
+    <!-- Main navigation with tabs -->
+    <div class="persona-nav">
+        <a href="#ondersteuningstools" id="ondersteuningstools-tab" class="main-tab active">Ondersteuningstools</a>
+        <a href="#coordinatie" id="coordinatie-tab" class="main-tab">Coördinatie</a>
+        <a href="#wijkkaart" id="wijkkaart-tab" class="main-tab">Wijkkaart</a>
+        <a href="#kennisbank" id="kennisbank-tab" class="main-tab">Kennisbank</a>
+    </div>
+    
+    <main>
+        <div class="content">
+            <!-- Ondersteuningstools section -->
+            <div id="ondersteuningstools-content" class="content-section active">
+                <div class="feature-block">
+                    <h3>Ondersteuningstools voor dorpsondersteuners</h3>
+                    <p>Als dorpsondersteuner staat u middenin de gemeenschap en helpt u bewoners bij het vinden van de juiste ondersteuning. Hier vindt u tools die u kunnen helpen bij uw dagelijkse werkzaamheden.</p>
+                    
+                    <div class="tool-library-grid">
+                        <div class="tool-card">
+                            <div class="tool-header">
+                                <div class="tool-icon"><i class="fas fa-clipboard-list"></i></div>
+                                <h4>Intake Tool</h4>
+                            </div>
+                            <div class="tool-content">
+                                <p>Structureer uw gesprekken met wijkbewoners met deze digitale gespreksleidraad voor een complete behoefteanalyse.</p>
+                            </div>
+                            <div class="tool-footer">
+                                <a href="#">Bekijk tool &raquo;</a>
+                            </div>
+                        </div>
+                        
+                        <div class="tool-card">
+                            <div class="tool-header">
+                                <div class="tool-icon"><i class="fas fa-network-wired"></i></div>
+                                <h4>Verwijzingsmatrix</h4>
+                            </div>
+                            <div class="tool-content">
+                                <p>Een handige matrix die u helpt om bewoners door te verwijzen naar de juiste instanties en zorgverleners.</p>
+                            </div>
+                            <div class="tool-footer">
+                                <a href="#">Bekijk tool &raquo;</a>
+                            </div>
+                        </div>
+                        
+                        <div class="tool-card">
+                            <div class="tool-header">
+                                <div class="tool-icon"><i class="fas fa-calendar-alt"></i></div>
+                                <h4>Afsprakenplanner</h4>
+                            </div>
+                            <div class="tool-content">
+                                <p>Plan en beheer uw afspraken met bewoners en zorgverleners in deze overzichtelijke planningsmodule.</p>
+                            </div>
+                            <div class="tool-footer">
+                                <a href="#">Bekijk tool &raquo;</a>
+                            </div>
+                        </div>
+                        
+                        <div class="tool-card">
+                            <div class="tool-header">
+                                <div class="tool-icon"><i class="fas fa-file-alt"></i></div>
+                                <h4>Documentatie Generator</h4>
+                            </div>
+                            <div class="tool-content">
+                                <p>Genereer gemakkelijk gespreksverslagen, actieplannen en andere relevante documentatie voor uw werkzaamheden.</p>
+                            </div>
+                            <div class="tool-footer">
+                                <a href="#">Bekijk tool &raquo;</a>
+                            </div>
+                        </div>
+                        
+                        <div class="tool-card">
+                            <div class="tool-header">
+                                <div class="tool-icon"><i class="fas fa-info-circle"></i></div>
+                                <h4>Voorzieningen Wijzer</h4>
+                            </div>
+                            <div class="tool-content">
+                                <p>Een compleet overzicht van beschikbare voorzieningen, inclusief criteria, contactgegevens en aanvraagprocedures.</p>
+                            </div>
+                            <div class="tool-footer">
+                                <a href="#">Bekijk tool &raquo;</a>
+                            </div>
+                        </div>
+                        
+                        <div class="tool-card">
+                            <div class="tool-header">
+                                <div class="tool-icon"><i class="fas fa-users"></i></div>
+                                <h4>Vrijwilligers Matching</h4>
+                            </div>
+                            <div class="tool-content">
+                                <p>Koppel bewoners met hulpvragen aan vrijwilligers op basis van beschikbaarheid, interesses en vaardigheden.</p>
+                            </div>
+                            <div class="tool-footer">
+                                <a href="#">Bekijk tool &raquo;</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="feature-action">Alle ondersteuningstools bekijken</a>
+                </div>
+            </div>
+            
+            <!-- Coördinatie section -->
+            <div id="coordinatie-content" class="content-section">
+                <div class="feature-block">
+                    <h3>Coördinatie van zorg en ondersteuning</h3>
+                    <p>Effectieve coördinatie tussen verschillende zorgverleners en ondersteuners is essentieel voor goede wijkzorg. Hier vindt u hulpmiddelen en richtlijnen voor het coördineren van zorg en ondersteuning.</p>
+                    
+                    <h4>Coördinatiemodellen</h4>
+                    <p>Er zijn verschillende modellen voor het coördineren van zorg en ondersteuning in de wijk. Hieronder vindt u een overzicht van veelgebruikte modellen:</p>
+                    
+                    <div class="feature-block">
+                        <h4>1. Centrale Coördinatie</h4>
+                        <p>Bij centrale coördinatie is er één aanspreekpunt (zoals u als dorpsondersteuner) die het overzicht houdt over alle zorg en ondersteuning voor een bewoner.</p>
+                        <ul>
+                            <li>Voordeel: Duidelijk aanspreekpunt voor bewoners</li>
+                            <li>Voordeel: Goed overzicht van alle ondersteuning</li>
+                            <li>Nadeel: Hoge werklast voor de coördinator</li>
+                        </ul>
+                        <a href="#" class="feature-action">Toolkit Centrale Coördinatie</a>
+                    </div>
+                    
+                    <div class="feature-block">
+                        <h4>2. Netwerkcoördinatie</h4>
+                        <p>Bij netwerkcoördinatie werken verschillende zorgverleners samen in een netwerk, waarbij de coördinatie wordt gedeeld.</p>
+                        <ul>
+                            <li>Voordeel: Gedeelde verantwoordelijkheid</li>
+                            <li>Voordeel: Brede expertise</li>
+                            <li>Nadeel: Vraagt goede afstemming</li>
+                        </ul>
+                        <a href="#" class="feature-action">Toolkit Netwerkcoördinatie</a>
+                    </div>
+                    
+                    <h4>Multidisciplinair Overleg (MDO)</h4>
+                    <p>Een effectief multidisciplinair overleg is essentieel voor goede zorgcoördinatie. Hier vindt u richtlijnen en tools voor het organiseren van een MDO:</p>
+                    <ul>
+                        <li><a href="#">Leidraad MDO opzetten en leiden</a></li>
+                        <li><a href="#">Format Agenda MDO</a></li>
+                        <li><a href="#">MDO Verslaglegging sjabloon</a></li>
+                        <li><a href="#">Checklist MDO voorbereiding</a></li>
+                    </ul>
+                    
+                    <a href="#" class="feature-action">Alle coördinatietools bekijken</a>
+                </div>
+            </div>
+            
+            <!-- Wijkkaart section -->
+            <div id="wijkkaart-content" class="content-section">
+                <div class="feature-block">
+                    <h3>Sociale kaart van de wijk</h3>
+                    <p>De sociale kaart geeft een overzicht van alle zorg- en welzijnsvoorzieningen in de wijk. Gebruik deze kaart om bewoners te helpen de juiste ondersteuning te vinden.</p>
+                    
+                    <div class="map-container">
+                        <div class="map-placeholder">
+                            <i class="fas fa-map-marked-alt" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                            <p>Interactieve wijkkaart wordt geladen...</p>
+                        </div>
+                    </div>
+                    
+                    <h4>Filteren op categorie</h4>
+                    <div class="filter-buttons">
+                        <button class="filter-button active">Alle categorieën</button>
+                        <button class="filter-button">Zorgverleners</button>
+                        <button class="filter-button">Welzijnsorganisaties</button>
+                        <button class="filter-button">Vrijwilligersinitiatieven</button>
+                        <button class="filter-button">Gemeentelijke voorzieningen</button>
+                        <button class="filter-button">Activiteiten</button>
+                    </div>
+                    
+                    <h4>Legenda</h4>
+                    <div class="legend">
+                        <div class="legend-item"><span class="legend-color" style="background-color: #FF5733;"></span> Zorgverleners</div>
+                        <div class="legend-item"><span class="legend-color" style="background-color: #33FF57;"></span> Welzijnsorganisaties</div>
+                        <div class="legend-item"><span class="legend-color" style="background-color: #3357FF;"></span> Vrijwilligersinitiatieven</div>
+                        <div class="legend-item"><span class="legend-color" style="background-color: #F3FF33;"></span> Gemeentelijke voorzieningen</div>
+                        <div class="legend-item"><span class="legend-color" style="background-color: #FF33F3;"></span> Activiteiten</div>
+                    </div>
+                    
+                    <h4>Bekijk per lijst</h4>
+                    <p>Liever de sociale kaart als lijst bekijken? Klik op een van de onderstaande categorieën:</p>
+                    <ul>
+                        <li><a href="#">Lijst van zorgverleners</a></li>
+                        <li><a href="#">Lijst van welzijnsorganisaties</a></li>
+                        <li><a href="#">Lijst van vrijwilligersinitiatieven</a></li>
+                        <li><a href="#">Lijst van gemeentelijke voorzieningen</a></li>
+                        <li><a href="#">Lijst van activiteiten</a></li>
+                    </ul>
+                    
+                    <a href="#" class="feature-action">Wijkkaart downloaden (PDF)</a>
+                </div>
+            </div>
+            
+            <!-- Kennisbank section -->
+            <div id="kennisbank-content" class="content-section">
+                <div class="feature-block">
+                    <h3>Kennisbank voor dorpsondersteuners</h3>
+                    <p>In deze kennisbank vindt u handige informatie, richtlijnen en handreikingen om u te ondersteunen bij uw werk als dorpsondersteuner.</p>
+                    
+                    <h4>Recente publicaties</h4>
+                    <ul class="resource-list">
+                        <li>
+                            <h4>Handreiking: Effectieve Gespreksvoering</h4>
+                            <p>Een praktische handleiding met gesprekstechnieken voor keukentafelgesprekken en intake interviews.</p>
+                            <a href="#">Bekijk handreiking</a>
+                        </li>
+                        <li>
+                            <h4>Checklist: Signaleren van Zorgbehoeften</h4>
+                            <p>Een checklist die helpt bij het herkennen van zorgbehoeften bij wijkbewoners.</p>
+                            <a href="#">Bekijk checklist</a>
+                        </li>
+                        <li>
+                            <h4>Stappenplan: Vrijwilligers Werven en Behouden</h4>
+                            <p>Een stapsgewijs plan voor het werven, inwerken en behouden van vrijwilligers in de wijk.</p>
+                            <a href="#">Bekijk stappenplan</a>
+                        </li>
+                        <li>
+                            <h4>Rapport: Impact van Dorpsondersteuners</h4>
+                            <p>Een onderzoeksrapport naar de impact van dorpsondersteuners op het welzijn in de wijk.</p>
+                            <a href="#">Bekijk rapport</a>
+                        </li>
+                    </ul>
+                    
+                    <h4>Regelgeving en beleid</h4>
+                    <ul class="resource-list">
+                        <li>
+                            <h4>WMO (Wet Maatschappelijke Ondersteuning)</h4>
+                            <p>Uitleg over de WMO en de rol van dorpsondersteuners binnen dit wettelijk kader.</p>
+                            <a href="#">Meer informatie</a>
+                        </li>
+                        <li>
+                            <h4>AVG en privacy in de wijkondersteuning</h4>
+                            <p>Richtlijnen voor het omgaan met persoonsgegevens binnen uw rol als dorpsondersteuner.</p>
+                            <a href="#">Meer informatie</a>
+                        </li>
+                    </ul>
+                    
+                    <a href="#" class="feature-action">Volledige kennisbank doorzoeken</a>
+                </div>
+            </div>
+        </div>
+        
+        <aside>
+            <div class="news-updates">
+                <h3>Nieuws voor dorpsondersteuners</h3>
+                <div class="news-item">
+                    <h4>Nieuwe cursus gespreksvaardigheden</h4>
+                    <div class="news-date">22 februari 2025</div>
+                    <p>In maart start een nieuwe cursus gespreksvaardigheden voor dorpsondersteuners.</p>
+                </div>
+                
+                <div class="news-item">
+                    <h4>Uitbreiding Wijkkaart</h4>
+                    <div class="news-date">15 februari 2025</div>
+                    <p>De wijkkaart is uitgebreid met nieuwe categorieën en locaties.</p>
+                </div>
+                
+                <div class="news-item">
+                    <h4>Netwerkbijeenkomst Dorpsondersteuners</h4>
+                    <div class="news-date">8 februari 2025</div>
+                    <p>Op 12 maart is er een netwerkbijeenkomst voor alle dorpsondersteuners in de regio.</p>
+                </div>
+            </div>
+            
+            <div class="contact-block">
+                <h3>Contact</h3>
+                <p>Heeft u vragen of suggesties? Neem contact met ons op:</p>
+                <p>Email: ondersteuning@projectnaam.nl</p>
+                <p>Tel: 020-1234567</p>
+                <a href="../contact.html" class="feature-action">Contact opnemen</a>
+            </div>
+            
+            <div class="news-updates">
+                <h3>Agenda</h3>
+                <div class="news-item">
+                    <h4>Workshop Intakegesprekken</h4>
+                    <div class="news-date">5 maart 2025</div>
+                    <p>Workshop over het voeren van effectieve intakegesprekken.</p>
+                </div>
+                
+                <div class="news-item">
+                    <h4>Netwerkbijeenkomst</h4>
+                    <div class="news-date">12 maart 2025</div>
+                    <p>Netwerkbijeenkomst voor dorpsondersteuners in de regio.</p>
+                </div>
+                
+                <div class="news-item">
+                    <h4>Training Digitale Tools</h4>
+                    <div class="news-date">20 maart 2025</div>
+                    <p>Training over het gebruik van digitale tools in de wijkondersteuning.</p>
+                </div>
+            </div>
+        </aside>
+    </main>
+    
+    <footer>
+        <p>© 2025 Project Kennisportaal - Alle rechten voorbehouden</p>
+        <p><a href="../index.html">Terug naar de hoofdpagina</a></p>
+    </footer>
+
+    <!-- JavaScript for tab navigation -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const tab = urlParams.get('tab');
+            const subtab = urlParams.get('subtab');
+            
+            // Function to hide all content sections
+            function hideAllSections() {
+                document.querySelectorAll('.content-section').forEach(section => {
+                    section.style.display = 'none';
+                    section.classList.remove('active');
+                });
+            }
+            
+            // Function to show a specific content section
+            function showSection(sectionId) {
+                hideAllSections();
+                const section = document.getElementById(sectionId + '-content');
+                if (section) {
+                    section.style.display = 'block';
+                    section.classList.add('active');
+                }
+                
+                // Handle sub-navigation if needed
+                const subNav = document.getElementById(sectionId + '-subnav');
+                if (subNav) {
+                    subNav.classList.add('active');
+                } else {
+                    document.querySelectorAll('.sub-nav').forEach(nav => {
+                        nav.classList.remove('active');
+                    });
+                }
+            }
+            
+            // Function to hide all sub-content sections
+            function hideAllSubSections() {
+                document.querySelectorAll('.sub-content-section').forEach(section => {
+                    section.style.display = 'none';
+                    section.classList.remove('active');
+                });
+            }
+            
+            // Function to show a specific sub-content section
+            function showSubSection(sectionId) {
+                hideAllSubSections();
+                const section =
+                const section = document.getElementById(sectionId + '-content');
+                if (section) {
+                    section.style.display = 'block';
+                    section.classList.add('active');
+                }
+            }
+            
+            // Add click events to all main navigation tabs
+            document.querySelectorAll('.main-tab').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all tabs
+                    document.querySelectorAll('.main-tab').forEach(tab => {
+                        tab.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Show the corresponding section
+                    const tabId = this.getAttribute('href').substring(1); // Remove the # character
+                    showSection(tabId);
+                    
+                    // If this tab has sub-tabs, show the default sub-section
+                    const subNav = document.getElementById(tabId + '-subnav');
+                    if (subNav) {
+                        // Default to the first sub-tab
+                        const firstSubTab = subNav.querySelector('a');
+                        if (firstSubTab) {
+                            // Remove active class from all sub-tabs
+                            document.querySelectorAll('.sub-tab').forEach(subTab => {
+                                subTab.classList.remove('active');
+                            });
+                            
+                            // Activate the first sub-tab
+                            firstSubTab.classList.add('active');
+                            
+                            // Show the corresponding sub-section
+                            const subTabId = firstSubTab.getAttribute('href').substring(1);
+                            showSubSection(subTabId);
+                        }
+                    }
+                });
+            });
+            
+            // Add click events to all sub-navigation tabs (if present)
+            document.querySelectorAll('.sub-tab').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all sub-tabs
+                    document.querySelectorAll('.sub-tab').forEach(tab => {
+                        tab.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked sub-tab
+                    this.classList.add('active');
+                    
+                    // Show the corresponding sub-section
+                    const subTabId = this.getAttribute('href').substring(1); // Remove the # character
+                    showSubSection(subTabId);
+                });
+            });
+            
+            // If tab parameter exists, activate the appropriate tab
+            if (tab) {
+                // Remove active class from all tabs
+                document.querySelectorAll('.main-tab').forEach(link => {
+                    link.classList.remove('active');
+                });
+                
+                // Show the requested tab and its content
+                const tabElement = document.querySelector('#' + tab + '-tab');
+                if (tabElement) {
+                    tabElement.classList.add('active');
+                    showSection(tab);
+                    
+                    // If subtab is specified and the tab has sub-navigation
+                    const subNav = document.getElementById(tab + '-subnav');
+                    if (subtab && subNav) {
+                        // Remove active class from all sub-tabs
+                        document.querySelectorAll('.sub-tab').forEach(subTab => {
+                            subTab.classList.remove('active');
+                        });
+                        
+                        // Show the requested sub-tab and its content
+                        const subTabElement = document.querySelector('#' + subtab + '-tab');
+                        if (subTabElement) {
+                            subTabElement.classList.add('active');
+                            showSubSection(subtab);
+                        } else {
+                            // Default to the first sub-tab
+                            const firstSubTab = subNav.querySelector('a');
+                            if (firstSubTab) {
+                                firstSubTab.classList.add('active');
+                                const subTabId = firstSubTab.getAttribute('href').substring(1);
+                                showSubSection(subTabId);
+                            }
+                        }
+                    }
+                }
+            } else {
+                // If no tab parameter, show the default tab (ondersteuningstools)
+                showSection('ondersteuningstools');
+            }
+        });
+    </script>
+</body>
+</html>
