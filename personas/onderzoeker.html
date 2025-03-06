@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voor Onderzoekers & Studenten - Project Kennisportaal</title>
+    <style>
+        :root {
+            --primary-color: #159957;
+            --secondary-color: #155799;
+            --text-color: #606c71;
+            --link-color: #1e6bb8;
+            --border-color: #dce6f0;
+            --light-bg: #f3f6fa;
+            --card-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        /* Use Cayman theme font settings */
+        body {
+            font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            line-height: 1.5;
+            color: var(--text-color);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: normal;
+            color: #159957;
+        }
+        
+        .persona-header {
+            background-image: 
+                linear-gradient(120deg, rgba(21, 87, 153, 0.7), rgba(21, 153, 87, 0.7)), 
+                url('../assets/images/banner.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 3rem 1rem;
+            margin-bottom: 2rem;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        .persona-header h1 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .persona-title {
+            font-size: 2.25rem;
+            margin-bottom: 1rem;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .persona-nav {
+            background-color: var(--light-bg);
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .persona-nav a {
+            padding: 10px 20px;
+            background-color: white;
+            color: var(--link-color);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .persona-nav a:hover,
+        .persona-nav a.active {
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+        }
+        
+        .breadcrumb {
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .breadcrumb a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        main {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 20px;
+        }
+        
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        .feature-block {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .feature-block h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .feature-action {
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+            width: fit-content;
+            transition: background-color 0.2s;
+        }
+        
+        .feature-action:hover {
+            background-color: #107745;
+            text-decoration: none;
+        }
+        
+        .news-updates {
+            background-color: var(--light-bg);
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .news-updates h3 {
+            color: var(--secondary-color);
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .news-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .news-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .news-item h4 {
+            margin: 0 0 5px 0;
+            color: var(--secondary-color);
+        }
+        
+        .news-date {
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 5px;
+        }
+        
+        .contact-block {
+            background-color: var(--light-bg);
+            border-radius: 5px;
+            padding: 20px;
+        }
+        
+        .contact-block h3 {
+            color: var(--secondary-color);
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .persona-footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: #888;
+        }
+        
+        /* Specific styles for onderzoeker page */
+        .resource-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            margin-bottom: 20px;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .resource-header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 15px;
+        }
+        
+        .resource-header h4 {
+            margin: 0;
+            color: white;
+        }
+        
+        .resource-content {
+            padding: 15px;
+        }
+        
+        .resource-footer {
+            background-color: var(--light-bg);
+            padding: 12px 15px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .data-item {
+            background-color: var(--light-bg);
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .data-item h4 {
+            margin-top: 0;
+            color: var(--secondary-color);
+        }
+        
+        .data-meta {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .tag {
+            display: inline-block;
+            background-color: #e6eef7;
+            color: var(--link-color);
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.75rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        
+        .publication-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .publication-list li {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .publication-list li:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .publication-authors {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .publication-journal {
+            font-weight: bold;
+            color: #555;
+        }
+        
+        .research-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .research-topic {
+            background-color: var(--light-bg);
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+        
+        .research-topic:hover {
+            background-color: var(--border-color);
+            text-decoration: none;
+        }
+        
+        .citation-box {
+            background-color: #f5f5f5;
+            border-left: 4px solid var(--secondary-color);
+            padding: 15px;
+            margin: 15px 0;
+            font-family: monospace;
+            white-space: pre-wrap;
+            font-size: 0.9rem;
+            overflow-x: auto;
+        }
+        
+        /* Media queries for responsiveness */
+        @media (max-width: 768px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Header with persona title -->
+    <header class="persona-header">
+        <h1 class="persona-title">Voor Onderzoekers & Studenten</h1>
+        <div class="subtitle">Onderzoeksdata, methodologie en academische samenwerkingen</div>
+    </header>
+    
+    <!-- Persona-specific navigation -->
+    <div class="persona-nav">
+        <a href="#data" id="data-tab" class="active">Onderzoeksdata</a>
+        <a href="#methodologie" id="methodologie-tab">Methodologie</a>
+        <a href="#publicaties" id="publicaties-tab">Publicaties</a>
+        <a href="#samenwerking" id="samenwerking-tab">Samenwerking</a>
+    </div>
+    
+    <!-- Breadcrumb for returning to main landing page -->
+    <div class="breadcrumb">
+        <a href="../index.html">Home</a> &gt; Voor Onderzoekers & Studenten
+    </div>
+    
+    <main>
+        <div class="content">
+            <!-- Data content section -->
+            <div id="data-content" class="content-section">
+                <div class="feature-block">
+                    <h3>Beschikbare onderzoeksdata</h3>
+                    <p>Het Project Kennisportaal stelt geanonimiseerde datasets beschikbaar voor onderzoekers en studenten. Deze data kan worden gebruikt voor onderzoeksdoeleinden, scripties, en andere academische werkzaamheden.</p>
+                    
+                    <h4>Toegang tot data</h4>
+                    <p>Om toegang te krijgen tot de data, moet u een korte aanvraag indienen waarin u het doel van uw onderzoek beschrijft en hoe u de data wilt gebruiken. Na goedkeuring krijgt u toegang tot de datasets die relevant zijn voor uw onderzoek.</p>
+                    
+                    <div class="resource-card">
+                        <div class="resource-header">
+                            <h4>Wijkmonitor Dataset</h4>
+                        </div>
+                        <div class="resource-content">
+                            <p>Geanonimiseerde data uit de wijkmonitor, inclusief ervaringen van wijkbewoners met zorgvoorzieningen en digitale oplossingen.</p>
+                            <div class="data-meta">
+                                <strong>Periode:</strong> 2023 - heden | 
+                                <strong>Updates:</strong> Kwartaalbasis | 
+                                <strong>Formaat:</strong> CSV, JSON
+                            </div>
+                            <p><strong>Variabelen:</strong></p>
+                            <div>
+                                <span class="tag">Demografische gegevens</span>
+                                <span class="tag">Zorggebruik</span>
+                                <span class="tag">Digitale vaardigheden</span>
+                                <span class="tag">Tevredenheid zorg</span>
+                                <span class="tag">Gebruik digitale middelen</span>
+                                <span class="tag">Sociale cohesie</span>
+                            </div>
+                        </div>
+                        <div class="resource-footer">
+                            <a href="#">Meer informatie en aanvraagformulier &raquo;</a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <div class="resource-header">
+                            <h4>Implementatiedata Wijkinitiatieven</h4>
+                        </div>
+                        <div class="resource-content">
+                            <p>Data over de implementatie van digitale oplossingen bij verschillende wijkinitiatieven, inclusief succes- en faalfactoren.</p>
+                            <div class="data-meta">
+                                <strong>Periode:</strong> 2022 - heden | 
+                                <strong>Updates:</strong> Halfjaarlijks | 
+                                <strong>Formaat:</strong> CSV, Excel
+                            </div>
+                            <p><strong>Variabelen:</strong></p>
+                            <div>
+                                <span class="tag">Type wijkinitiatief</span>
+                                <span class="tag">Gekozen oplossingen</span>
+                                <span class="tag">Implementatiefase</span>
+                                <span class="tag">Ervaren barrières</span>
+                                <span class="tag">Succesfactoren</span>
+                                <span class="tag">Gebruikersstatistieken</span>
+                            </div>
+                        </div>
+                        <div class="resource-footer">
+                            <a href="#">Meer informatie en aanvraagformulier &raquo;</a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <div class="resource-header">
+                            <h4>Effectmeting Digitale Zorgoplossingen</h4>
+                        </div>
+                        <div class="resource-content">
+                            <p>Evaluatiedata over de effecten van verschillende digitale zorgoplossingen op zorgkwaliteit, toegankelijkheid en kosten.</p>
+                            <div class="data-meta">
+                                <strong>Periode:</strong> 2021 - heden | 
+                                <strong>Updates:</strong> Jaarlijks | 
+                                <strong>Formaat:</strong> CSV, SPSS
+                            </div>
+                            <p><strong>Variabelen:</strong></p>
+                            <div>
+                                <span class="tag">Type oplossing</span>
+                                <span class="tag">Gebruikersprofiel</span>
+                                <span class="tag">Zorguitkomsten</span>
+                                <span class="tag">Patiënttevredenheid</span>
+                                <span class="tag">Kosteneffectiviteit</span>
+                                <span class="tag">Toegankelijkheid</span>
+                            </div>
+                        </div>
+                        <div class="resource-footer">
+                            <a href="#">Meer informatie en aanvraagformulier &raquo;</a>
+                        </div>
+                    </div>
+                    
+                    <h4>Data ethiek en richtlijnen</h4>
+                    <p>Bij het gebruik van onze datasets gelden de volgende richtlijnen:</p>
+                    <ul>
+                        <li>De data mag alleen worden gebruikt voor het opgegeven onderzoeksdoel</li>
+                        <li>Alle publicaties die gebruikmaken van de datasets moeten correct refereren naar de bron</li>
+                        <li>De privacy van individuen moet te allen tijde worden gerespecteerd</li>
+                        <li>Het is niet toegestaan om de data te gebruiken voor pogingen tot re-identificatie</li>
+                        <li>Bij publicatie van resultaten moet een kopie van de publicatie worden gedeeld</li>
+                    </ul>
+                    
+                    <a href="#" class="feature-action">Data aanvragen</a>
+                </div>
+            </div>
+            
+            <!-- Methodologie content section -->
+            <div id="methodologie-content" class="content-section" style="display: none;">
+                <div class="feature-block">
+                    <h3>Methodologische documentatie</h3>
+                    <p>Deze sectie biedt inzicht in de methodologische keuzes, onderzoeksopzet en evaluatieraamwerken die worden gebruikt binnen het Project Kennisportaal. Deze documentatie kan onderzoekers en studenten helpen bij het ontwikkelen van hun eigen onderzoek.</p>
+                    
+                    <h4>Wijkmonitor methodologie</h4>
+                    <div class="resource-card">
+                        <div class="resource-header">
+                            <h4>Onderzoeksopzet Wijkmonitor</h4>
+                        </div>
+                        <div class="resource-content">
+                            <p>Gedetailleerde beschrijving van de wijkmonitor: theoretisch kader, vragenlijstconstructie, validatie en betrouwbaarheid.</p>
+                            <p><strong>Inhoud:</strong></p>
+                            <ul>
+                                <li>Wetenschappelijke onderbouwing van de gekozen indicatoren</li>
+                                <li>Validiteit en betrouwbaarheid van het meetinstrument</li>
+                                <li>Steekproeftrekking en responsstrategie</li>
+                                <li>Dataverzamelings- en verwerkingsmethoden</li>
+                                <li>Aanpak voor inclusie van moeilijk bereikbare doelgroepen</li>
+                            </ul>
+                        </div>
+                        <div class="resource-footer">
+                            <a href="#">Methodologisch document downloaden (PDF) &raquo;</a>
+                        </div>
+                    </div>
+                    
+                    <h4>Evaluatieraamwerken</h4>
+                    <div class="resource-card">
+                        <div class="resource-header">
+                            <h4>MAST: Model for Assessment of Telemedicine</h4>
+                        </div>
+                        <div class="resource-content">
+                            <p>Het MAST-model wordt gebruikt voor de evaluatie van digitale zorgoplossingen binnen het project. Het model beoordeelt zeven domeinen:</p>
+                            <ol>
+                                <li>Gezondheidsprobleem en eigenschappen van de applicatie</li>
+                                <li>Veiligheid</li>
+                                <li>Klinische effectiviteit</li>
+                                <li>Ervaringen en percepties van patiënten</li>
+                                <li>Economische aspecten</li>
+                                <li>Organisatorische aspecten</li>
+                                <li>Sociaal-culturele, ethische en juridische aspecten</li>
+                            </ol>
+                            <p>Dit raamwerk kan worden gebruikt of aangepast voor eigen onderzoek naar digitale zorgoplossingen.</p>
+                        </div>
+                        <div class="resource-footer">
+                            <a href="#">MAST-handleiding downloaden (PDF) &raquo;</a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <div class="resource-header">
+                            <h4>RE-AIM Framework voor Implementatie</h4>
+                        </div>
+                        <div class="resource-content">
+                            <p>Voor het evalueren van de implementatie van digitale oplossingen gebruiken we het RE-AIM framework dat zich richt op:</p>
+                            <ul>
+                                <li><strong>Reach</strong> (Bereik): Het absolute aantal, aandeel en representativiteit van deelnemers</li>
+                                <li><strong>Effectiveness</strong> (Effectiviteit): De impact op relevante uitkomsten</li>
+                                <li><strong>Adoption</strong> (Adoptie): Het absolute aantal, aandeel en representativiteit van betrokken locaties/organisaties</li>
+                                <li><strong>Implementation</strong> (Implementatie): Consistentie en kosten van uitvoering</li>
+                                <li><strong>Maintenance</strong> (Behoud): Langetermijneffecten en institutionalisering van de interventie</li>
+                            </ul>
+                        </div>
+                        <div class="resource-footer">
+                            <a href="#">RE-AIM handleiding downloaden (PDF) &raquo;</a>
+                        </div>
+                    </div>
+                    
+                    <h4>Data-analysetechnieken</h4>
+                    <p>We gebruiken verschillende analysetechnieken voor het verwerken en interpreteren van de verzamelde data:</p>
+                    <ul>
+                        <li><strong>Kwantitatieve analyse</strong> - Statistische methoden voor het identificeren van patronen en correlaties</li>
+                        <li><strong>Kwalitatieve analyse</strong> - Thematische analyse van interviews en open antwoorden</li>
+                        <li><strong>Mixed methods</strong> - Integratie van kwantitatieve en kwalitatieve inzichten</li>
+                        <li><strong>Longitudinale analyse</strong> - Voor het monitoren van veranderingen over tijd</li>
+                        <li><strong>Benchmarking</strong> - Vergelijking tussen wijken en projecten</li>
+                    </ul>
+                    
+                    <a href="#" class="feature-action">Methodologische advies aanvragen</a>
+                </div>
+            </div>
+            
+            <!-- Publicaties content section -->
+            <div id="publicaties-content" class="content-section" style="display: none;">
+                <div class="feature-block">
+                    <h3>Publicaties en onderzoek</h3>
+                    <p>Deze sectie biedt een overzicht van wetenschappelijke publicaties, onderzoeksrapporten en scripties die zijn voortgekomen uit of verband houden met het Project Kennisportaal.</p>
+                    
+                    <h4>Recente publicaties</h4>
+                    <ul class="publication-list">
+                        <li>
+                            <h4>Digitale inclusie bij wijkinitiatieven: Een multiple case study</h4>
+                            <div class="publication-authors">De Vries, M., Jansen, K., & Visser, P. (2024)</div>
+                            <div class="publication-journal">Journal of Digital Health, 15(2), 78-92</div>
+                            <p>Dit onderzoek analyseerde verschillende wijkinitiatieven om te bepalen welke factoren bijdragen aan digitale inclusie, met speciale aandacht voor ouderen en laaggeletterden.</p>
+                            <a href="#">Abstract bekijken &raquo;</a>
+                        </li>
+                        
+                        <li>
+                            <h4>Het effect van digitale wijkplatforms op sociale cohesie: Een longitudinale studie</h4>
+                            <div class="publication-authors">Bakker, J., Smit, A., Willemsen, F., & de Jong, T. (2023)</div>
+                            <div class="publication-journal">Tijdschrift voor Sociale Wetenschappen, 42(3), 145-162</div>
+                            <p>Een driejarige studie die de impact van digitale wijkplatforms op sociale cohesie en onderlinge hulp in vijf Nederlandse wijken onderzocht.</p>
+                            <a href="#">Abstract bekijken &raquo;</a>
+                        </li>
+                        
+                        <li>
+                            <h4>Implementatiebarrières bij digitale zorginnovaties in de wijk: Perspectieven van stakeholders</h4>
+                            <div class="publication-authors">Van den Berg, E., Steenbergen, M., & Mulder, H. (2023)</div>
+                            <div class="publication-journal">Implementation Science, 18(4), 245-260</div>
+                            <p>Dit onderzoek identificeerde de belangrijkste barrières en succesfactoren bij de implementatie van digitale zorginnovaties in wijken.</p>
+                            <a href="#">Abstract bekijken &raquo;</a>
+                        </li>
+                    </ul>
+                    
+                    <h4>Onderzoeksrapporten</h4>
+                    <div class="resource-card">
+                        <div class="resource-header">
+                            <h4>Jaarlijkse Evaluatie Digitale Wijkzorg 2023</h4>
+                        </div>
+                        <div class="resource-content">
+                            <p>Uitgebreid rapport over de stand van zaken, effecten en uitdagingen van digitale wijkzorg in Nederland, gebaseerd op data uit de wijkmonitor en diepte-interviews met stakeholders.</p>
+                            <p><strong>Belangrijkste bevindingen:</strong></p>
+                            <ul>
+                                <li>Digitale zorgoplossingen worden door steeds meer wijkbewoners gebruikt (stijging van 23% t.o.v. 2022)</li>
+                                <li>De toegankelijkheid van digitale oplossingen blijft een uitdaging voor 30% van de wijkbewoners</li>
+                                <li>Succesvolle implementatie hangt sterk samen met betrokkenheid van eindgebruikers bij het ontwikkelproces</li>
+                                <li>Kosteneffectiviteit wordt met name gezien bij preventieve toepassingen</li>
+                            </ul>
+                        </div>
+                        <div class="resource-footer">
+                            <a href="#">Rapport downloaden (PDF) &raquo;</a>
+                        </div>
+                    </div>
+                    
+                    <h4>Scriptie-onderwerpen</h4>
+                    <p>Voor studenten die op zoek zijn naar een scriptie-onderwerp, zijn hier enkele suggesties die aansluiten bij het Project Kennisportaal:</p>
+                    <div class="research-topics">
+                        <a href="#" class="research-topic">Digitale inclusie in wijkzorg</a>
+                        <a href="#" class="research-topic">Privacy en gegevensuitwisseling</a>
+                        <a href="#" class="research-topic">Kosteneffectiviteit van e-health</a>
+                        <a href="#" class="research-topic">Gebruikerservaringen met digitale zorg</a>
+                        <a href="#" class="research-topic">Implementatiestrategieën voor wijkinitiatieven</a>
+                        <a href="#" class="research-topic">Digital health literacy</a>
+                        <a href="#" class="research-topic">Sociale impact van digitale wijkplatforms</a>
+                        <a href="#" class="research-topic">Interoperabiliteit van zorgsystemen</a>
+                    </div>
+                    
+                    <h4>Citeren van het Project Kennisportaal</h4>
+                    <p>Als u data of methodologie van het Project Kennisportaal gebruikt in uw onderzoek, gebruik dan de volgende citatie:</p>
+                    <div class="citation-box">Project Kennisportaal. (2025). Wijkmonitor Digitale Zorg [Dataset]. 
+DOI: 10.xxxx/wijkmonitor.2025
+
+of 
+
+Project Kennisportaal. (2023-2025). Project Kennisportaal: Een platform voor digitale wijkzorg. 
+https://www.projectkennisportaal.nl</div>
+                    
+                    <a href="#" class="feature-action">Alle publicaties bekijken</a>
+                </div>
+            </div>
+            
+            <!-- Samenwerking content section -->
+            <div id="samenwerking-content" class="content-section" style="display: none;">
+                <div class="feature-block">
+                    <h3>Academische samenwerking</h3>
+                    <p>Het Project Kennisportaal werkt samen met onderzoeksinstellingen, universiteiten en hogescholen om onderzoek naar digitale wijkzorg te bevorderen. We bieden verschillende samenwerkingsmogelijkheden voor onderzoekers en studenten.</p>
+                    
+                    <h4>Samenwerkingsvormen</h4>
+                    <div class="resource-card">
+                        <div class="resource-header">
+                            <h4>Onderzoeksstages</h4>
+                        </div>
+                        <div class="resource-content">
+                            <p>We bieden stagemogelijkheden voor studenten (HBO en WO) die willen werken aan onderzoeksprojecten rond digitale wijkzorg. Stages kunnen gericht zijn op:</p>
+                            <ul>
+                                <li>Data-analyse van wijkmonitorgegevens</li>
+                                <li>Evaluatie van implementatieprojecten</li>
+                                <li>Ontwikkeling en validatie van meetinstrumenten</li>
+                                <li>Gebruikerstesten van digitale oplossingen</li>
+                                <li>Literatuuronderzoek en synthese</li>
+                            </ul>
+                            <p>Stages hebben een minimale duur van 3 maanden en een maximale duur van 6 maanden.</p>
+                        </div>
+                        <div class="resource-footer">
+                            <a href="#">Stageopties bekijken &raquo;</a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <div class="resource-header">
+                            <h4>Gezamenlijke onderzoeksprojecten</h4>
+                        </div>
+                        <div class="resource-content">
+                            <p>We zoeken actief naar samenwerkingen met universiteiten en onderzoeksinstituten voor gezamenlijke onderzoeksprojecten. Hierbij kan het Project Kennisportaal dienen als:</p>
+                            <ul>
+                                <li>Casus of onderzoeksobject</li>
+                                <li>Living lab voor nieuwe digitale oplossingen</li>
+                                <li>Partner in subsidieaanvragen (zoals ZonMw, NWO)</li>
+                                <li>Bemiddelaar naar wijkinitiatieven voor veldonderzoek</li>
+                                <li>Data-leverancier (geanonimiseerde datasets)</li>
+                            </ul>
+                        </div>
+                        <div class="resource-footer">
+                            <a href="#">Samenwerkingsvoorstel indienen &raquo;</a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <div class="resource-header">
+                            <h4>Gastcolleges en workshops</h4>
+                        </div>
+                        <div class="resource-content">
+                            <p>Experts van het Project Kennisportaal kunnen gastcolleges of workshops verzorgen op universiteiten en hogescholen over onderwerpen als:</p>
+                            <ul>
+                                <li>Digitale innovatie in de wijkzorg</li>
+                                <li>Implementatieuitdagingen bij digitale zorginnovaties</li>
+                                <li>Privacy en ethische kwesties bij digitale zorg</li>
+                                <li>Onderzoeksmethodologie voor digitale interventies</li>
+                                <li>User-centered design in de zorg</li>
+                            </ul>
+                        </div>
+                        <div class="resource-footer">
+                            <a href="#">Gastcollege of workshop aanvragen &raquo;</a>
+                        </div>
+                    </div>
+                    
+                    <h4>Huidige academische partners</h4>
+                    <p>Het Project Kennisportaal werkt momenteel samen met de volgende instellingen:</p>
+                    <ul>
+                        <li>Universiteit van Amsterdam - Faculteit Maatschappij- en Gedragswetenschappen</li>
+                        <li>Technische Universiteit Eindhoven - Research Group Health Innovation</li>
+                        <li>Hogeschool Utrecht - Lectoraat Innovatie van Zorgprocessen met Technologie</li>
+                        <li>Radboud Universiteit - Institute for Computing and Information Sciences</li>
+                        <li>NIVEL - Nederlands Instituut voor onderzoek van de gezondheidszorg</li>
+                    </ul>
+                    
+                    <h4>Onderzoeksagenda 2025</h4>
+                    <p>Voor 2025 hebben we de volgende onderzoeksprioriteiten gedefinieerd:</p>
+                    <ol>
+                        <li><strong>Digitale inclusie</strong> - Hoe kunnen we zorgen dat digitale oplossingen toegankelijk zijn voor alle wijkbewoners, inclusief kwetsbare groepen?</li>
+                        <li><strong>Effectmeting</strong> - Wat zijn de langetermijneffecten van digitale oplossingen op zorguitkomsten, kwaliteit van leven en kosten?</li>
+                        <li><strong>Implementatiestrategieën</strong> - Welke factoren dragen bij aan succesvolle implementatie van digitale oplossingen in wijken?</li>
+                        <li><strong>Gegevensuitwisseling</strong> - Hoe kunnen we veilige en effectieve gegevensuitwisseling tussen verschillende systemen bevorderen?</li>
+                        <li><strong>Opschaling</strong> - Wat zijn de voorwaarden voor succesvolle opschaling van bewezen interventies naar meerdere wijken?</li>
+                    </ol>
+                    <p>Onderzoeksvoorstellen die aansluiten bij deze thema's worden met prioriteit behandeld.</p>
+                    
+                    <a href="#" class="feature-action">Contact opnemen over samenwerking</a>
+                </div>
+            </div>
+        </div>
+        
+        <aside>
+            <div class="news-updates">
+                <h3>Onderzoeksnieuws</h3>
+                <div class="news-item">
+                    <h4>Call for Papers: Special Issue Digital Health</h4>
+                    <div class="news-date">1 maart 2025</div>
+                    <p>Het tijdschrift "Digital Health Innovation" bereidt een special issue voor over digitale wijkzorg.</p>
+                </div>
+                
+                <div class="news-item">
+                    <h4>Nieuwe Wijkmonitor dataset beschikbaar</h4>
+                    <div class="news-date">15 februari 2025</div>
+                    <p>De geanonimiseerde dataset van de wijkmonitor Q4 2024 is nu beschikbaar voor onderzoekers.</p>
+                </div>
+                
+                <div class="news-item">
+                    <h4>Onderzoeksseminar Digitale Wijkzorg</h4>
+                    <div class="news-date">5 februari 2025</div>
+                    <p>Op 28 maart organiseren we een onderzoeksseminar voor academische partners.</p>
+                </div>
+            </div>
+            
+            <div class="contact-block">
+                <h3>Onderzoeksondersteuning</h3>
+                <p>Heeft u vragen over onderzoeksdata, methodologie of samenwerking? Neem contact op met ons onderzoeksteam:</p>
+                <p>Email: onderzoek@projectkennisportaal.nl</p>
+                <p>Tel: 020-1234570</p>
+                <a href="../contact.html" class="feature-action">Contact opnemen</a>
+            </div>
+            
+            <div class="news-updates">
+                <h3>Belangrijke datums</h3>
+                <div class="news-item">
+                    <h4>Onderzoeksseminar</h4>
+                    <div class="news-date">28 maart 2025</div>
+                </div>
+                
+                <div class="news-item">
+                    <h4>Deadline data-aanvragen Q2</h4>
+                    <div class="news-date">15 april 2025</div>
+                </div>
+                
+                <div class="news-item">
+                    <h4>Nationale E-health Week</h4>
+                    <div class="news-date">12-16 mei 2025</div>
+                </div>
+            </div>
+        </aside>
+    </main>
+    
+    <footer class="persona-footer">
+        <p>© 2025 Project Kennisportaal - Alle rechten voorbehouden</p>
+        <p><a href="../index.html">Terug naar de hoofdpagina</a></p>
+    </footer>
+
+    <!-- JavaScript for tab navigation -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const tab = urlParams.get('tab');
+            
+            // Function to hide all content sections
+            function hideAllSections() {
+                document.querySelectorAll('.content-section').forEach(section => {
+                    section.style.display = 'none';
+                });
+            }
+            
+            // Function to show a specific content section
+            function showSection(sectionId) {
+                hideAllSections();
+                const section = document.getElementById(sectionId + '-content');
+                if (section) {
+                    section.style.display = 'block';
+                }
+            }
+            
+            // Add click events to all navigation tabs
+            document.querySelectorAll('.persona-nav a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all tabs
+                    document.querySelectorAll('.persona-nav a').forEach(tab => {
+                        tab.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Show the corresponding section
+                    const tabId = this.getAttribute('href').substring(1); // Remove the # character
+                    showSection(tabId);
+                });
+            });
+            
+            // If tab parameter exists, activate the appropriate tab
+            if (tab) {
+                // Remove active class from all tabs
+                document.querySelectorAll('.persona-nav a').forEach(link => {
+                    link.classList.remove('active');
+                });
+                
+                // Show the requested tab and its content
+                const tabElement = document.querySelector('#' + tab + '-tab');
+                if (tabElement) {
+                    tabElement.classList.add('active');
+                    showSection(tab);
+                }
+            } else {
+                // If no tab parameter, show the default tab (data)
+                showSection('data');
+            }
+        });
+    </script>
+</body>
+</html>
