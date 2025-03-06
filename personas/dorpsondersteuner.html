@@ -655,160 +655,63 @@
     </footer>
 
     <!-- JavaScript for tab navigation -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Get URL parameters
-            const urlParams = new URLSearchParams(window.location.search);
-            const tab = urlParams.get('tab');
-            const subtab = urlParams.get('subtab');
-            
-            // Function to hide all content sections
-            function hideAllSections() {
-                document.querySelectorAll('.content-section').forEach(section => {
-                    section.style.display = 'none';
-                    section.classList.remove('active');
-                });
-            }
-            
-            // Function to show a specific content section
-            function showSection(sectionId) {
-                hideAllSections();
-                const section = document.getElementById(sectionId + '-content');
-                if (section) {
-                    section.style.display = 'block';
-                    section.classList.add('active');
-                }
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get all tab links
+        const tabLinks = document.querySelectorAll('.persona-nav a');
+        
+        // Get all content sections
+        const contentSections = document.querySelectorAll('.content-section');
+        
+        // Add click event to each tab
+        tabLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault(); // Prevent default anchor behavior
                 
-                // Handle sub-navigation if needed
-                const subNav = document.getElementById(sectionId + '-subnav');
-                if (subNav) {
-                    subNav.classList.add('active');
-                } else {
-                    document.querySelectorAll('.sub-nav').forEach(nav => {
-                        nav.classList.remove('active');
-                    });
-                }
-            }
-            
-            // Function to hide all sub-content sections
-            function hideAllSubSections() {
-                document.querySelectorAll('.sub-content-section').forEach(section => {
-                    section.style.display = 'none';
-                    section.classList.remove('active');
-                });
-            }
-            
-            // Function to show a specific sub-content section
-            function showSubSection(sectionId) {
-                hideAllSubSections();
-                const section =
-                const section = document.getElementById(sectionId + '-content');
-                if (section) {
-                    section.style.display = 'block';
-                    section.classList.add('active');
-                }
-            }
-            
-            // Add click events to all main navigation tabs
-            document.querySelectorAll('.main-tab').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // Remove active class from all tabs
-                    document.querySelectorAll('.main-tab').forEach(tab => {
-                        tab.classList.remove('active');
-                    });
-                    
-                    // Add active class to clicked tab
-                    this.classList.add('active');
-                    
-                    // Show the corresponding section
-                    const tabId = this.getAttribute('href').substring(1); // Remove the # character
-                    showSection(tabId);
-                    
-                    // If this tab has sub-tabs, show the default sub-section
-                    const subNav = document.getElementById(tabId + '-subnav');
-                    if (subNav) {
-                        // Default to the first sub-tab
-                        const firstSubTab = subNav.querySelector('a');
-                        if (firstSubTab) {
-                            // Remove active class from all sub-tabs
-                            document.querySelectorAll('.sub-tab').forEach(subTab => {
-                                subTab.classList.remove('active');
-                            });
-                            
-                            // Activate the first sub-tab
-                            firstSubTab.classList.add('active');
-                            
-                            // Show the corresponding sub-section
-                            const subTabId = firstSubTab.getAttribute('href').substring(1);
-                            showSubSection(subTabId);
-                        }
-                    }
-                });
-            });
-            
-            // Add click events to all sub-navigation tabs (if present)
-            document.querySelectorAll('.sub-tab').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // Remove active class from all sub-tabs
-                    document.querySelectorAll('.sub-tab').forEach(tab => {
-                        tab.classList.remove('active');
-                    });
-                    
-                    // Add active class to clicked sub-tab
-                    this.classList.add('active');
-                    
-                    // Show the corresponding sub-section
-                    const subTabId = this.getAttribute('href').substring(1); // Remove the # character
-                    showSubSection(subTabId);
-                });
-            });
-            
-            // If tab parameter exists, activate the appropriate tab
-            if (tab) {
                 // Remove active class from all tabs
-                document.querySelectorAll('.main-tab').forEach(link => {
-                    link.classList.remove('active');
+                tabLinks.forEach(t => t.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                this.classList.add('active');
+                
+                // Get the tab ID from href attribute
+                const tabId = this.getAttribute('href').substring(1);
+                
+                // Hide all content sections
+                contentSections.forEach(section => {
+                    section.style.display = 'none';
+                    section.classList.remove('active');
                 });
                 
-                // Show the requested tab and its content
-                const tabElement = document.querySelector('#' + tab + '-tab');
-                if (tabElement) {
-                    tabElement.classList.add('active');
-                    showSection(tab);
-                    
-                    // If subtab is specified and the tab has sub-navigation
-                    const subNav = document.getElementById(tab + '-subnav');
-                    if (subtab && subNav) {
-                        // Remove active class from all sub-tabs
-                        document.querySelectorAll('.sub-tab').forEach(subTab => {
-                            subTab.classList.remove('active');
-                        });
-                        
-                        // Show the requested sub-tab and its content
-                        const subTabElement = document.querySelector('#' + subtab + '-tab');
-                        if (subTabElement) {
-                            subTabElement.classList.add('active');
-                            showSubSection(subtab);
-                        } else {
-                            // Default to the first sub-tab
-                            const firstSubTab = subNav.querySelector('a');
-                            if (firstSubTab) {
-                                firstSubTab.classList.add('active');
-                                const subTabId = firstSubTab.getAttribute('href').substring(1);
-                                showSubSection(subTabId);
-                            }
-                        }
-                    }
+                // Show the corresponding content section
+                const targetSection = document.getElementById(tabId + '-content');
+                if (targetSection) {
+                    targetSection.style.display = 'block';
+                    targetSection.classList.add('active');
                 }
-            } else {
-                // If no tab parameter, show the default tab (ondersteuningstools)
-                showSection('ondersteuningstools');
-            }
+            });
         });
-    </script>
+        
+        // Handle URL fragment/hash on page load
+        const hash = window.location.hash;
+        if (hash) {
+            const tabId = hash.substring(1); // Remove the # character
+            const tabToActivate = document.querySelector(`.persona-nav a[href="#${tabId}"]`);
+            if (tabToActivate) {
+                tabToActivate.click(); // Trigger the click event
+            }
+        }
+        
+        // Handle URL parameters too
+        const urlParams = new URLSearchParams(window.location.search);
+        const tab = urlParams.get('tab');
+        if (tab) {
+            const tabToActivate = document.querySelector(`#${tab}-tab`);
+            if (tabToActivate) {
+                tabToActivate.click(); // Trigger the click event
+            }
+        }
+    });
+</script>
 </body>
 </html>
