@@ -335,26 +335,26 @@
             font-weight: bold;
         }
         
-        .pricing-table {
-            width: 100%;
-            border-collapse: collapse;
+        .assessment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
             margin: 20px 0;
         }
         
-        .pricing-table th, 
-        .pricing-table td {
-            padding: 12px 15px;
-            text-align: left;
+        .assessment-card {
+            background-color: white;
+            border-radius: 5px;
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .assessment-card h4 {
+            color: var(--secondary-color);
+            margin-top: 0;
             border-bottom: 1px solid var(--border-color);
-        }
-        
-        .pricing-table th {
-            background-color: var(--light-bg);
-            font-weight: bold;
-        }
-        
-        .pricing-table tr:hover {
-            background-color: rgba(0,0,0,0.02);
+            padding-bottom: 10px;
         }
         
         /* Media queries for responsiveness */
@@ -381,8 +381,7 @@
     <div class="persona-nav">
         <a href="#netwerk" id="netwerk-tab" class="active">Aansluiten bij Netwerk</a>
         <a href="#ondersteunen" id="ondersteunen-tab">Wijkinitiatieven Ondersteunen</a>
-        <a href="#partners" id="partners-tab">Partnerschap</a>
-        <a href="#certificering" id="certificering-tab">Certificering</a>
+        <a href="#partnerschap" id="partnerschap-tab">Partnerschap</a>
     </div>
     
     <!-- Breadcrumb for returning to main landing page -->
@@ -411,7 +410,7 @@
                     <ol class="steps-list">
                         <li>
                             <h5>Voorbereiden</h5>
-                            <p>Bereid uw oplossing voor op integratie met het platform. Gebruik de <a href="#architecture-tab">Referentie-architectuur</a> en <a href="#standaarden-tab">Open Standaarden</a> als leidraad.</p>
+                            <p>Bereid uw oplossing voor op integratie met het platform. Gebruik de <a href="../architectuur.html">Referentie-architectuur</a> en bijbehorende open standaarden als leidraad.</p>
                         </li>
                         <li>
                             <h5>Aanmelden</h5>
@@ -422,12 +421,12 @@
                             <p>Test uw oplossing in de testomgeving en valideer de interoperabiliteit met het platform en andere oplossingen.</p>
                         </li>
                         <li>
-                            <h5>Certificeren</h5>
-                            <p>Doorloop het certificeringsproces om te garanderen dat uw oplossing voldoet aan alle technische en functionele eisen.</p>
+                            <h5>Beoordeling</h5>
+                            <p>Uw oplossing wordt beoordeeld op compatibiliteit, veiligheid, en aansluiting bij de standaarden van het platform.</p>
                         </li>
                         <li>
                             <h5>Publiceren</h5>
-                            <p>Na certificering wordt uw oplossing gepubliceerd in de catalogus en kunnen wijkinitiatieven uw oplossing gaan gebruiken.</p>
+                            <p>Na goedkeuring wordt uw oplossing gepubliceerd in de catalogus en kunnen wijkinitiatieven uw oplossing gaan gebruiken.</p>
                         </li>
                     </ol>
                     
@@ -540,47 +539,84 @@
                 </div>
             </div>
             
-            <!-- Partners content section -->
-            <div id="partners-content" class="content-section" style="display: none;">
+            <!-- Partnerschap content section -->
+            <div id="partnerschap-content" class="content-section" style="display: none;">
                 <div class="feature-block">
                     <h3>Partnerschap met Project Kennisportaal</h3>
-                    <p>Wij bieden verschillende partnerschapsprogramma's voor leveranciers die nauwer willen samenwerken met het Project Kennisportaal. Als partner krijgt u toegang tot extra voordelen en ondersteuning.</p>
+                    <p>Als partner van Project Kennisportaal werkt u samen met ons aan het verbeteren van digitale wijkzorg. Partners onderschrijven de gedeelde waarden en principes, en hun oplossingen voldoen aan de open standaarden.</p>
                     
-                    <h4>Partnerniveaus</h4>
-                    <div class="certification-levels">
-                        <div class="certification-level">
-                            <h4>Basis Partner</h4>
+                    <h4>Visie en waarden</h4>
+                    <p>Partners van Project Kennisportaal onderschrijven de volgende visie en waarden:</p>
+                    <ul>
+                        <li><strong>Toegankelijkheid</strong> - Digitale zorg moet toegankelijk zijn voor alle wijkbewoners, ongeacht hun digitale vaardigheden of beperkingen</li>
+                        <li><strong>Privacy en veiligheid</strong> - De privacy van gebruikers staat centraal en gegevens worden veilig verwerkt</li>
+                        <li><strong>Samenwerking</strong> - Alleen door samen te werken kunnen we de zorg in de wijk verbeteren</li>
+                        <li><strong>Openheid</strong> - Open standaarden en interoperabiliteit zijn essentieel voor een duurzaam ecosysteem</li>
+                        <li><strong>Mensgerichtheid</strong> - Technologie staat ten dienste van de mens, niet andersom</li>
+                    </ul>
+                    
+                    <h4>Assessment en screening</h4>
+                    <p>Alle partners doorlopen een assessment om te bepalen of hun oplossing in lijn is met onze waarden en voldoet aan de technische vereisten. Dit assessment bestaat uit:</p>
+                    
+                    <div class="assessment-grid">
+                        <div class="assessment-card">
+                            <h4>Alignment met waarden</h4>
                             <ul class="check-list">
-                                <li>Vermelding in de oplossingencatalogus</li>
-                                <li>Toegang tot basis ontwikkelaarsondersteuning</li>
-                                <li>Deelname aan partnerevenementen</li>
-                                <li>Gebruik van partner-badge</li>
+                                <li>Uw oplossing ondersteunt de kernwaarden van het platform</li>
+                                <li>De oplossing draagt bij aan betere wijkzorg</li>
+                                <li>Eindgebruikers staan centraal in het ontwerp</li>
+                                <li>De oplossing is inclusief en toegankelijk</li>
                             </ul>
                         </div>
                         
-                        <div class="certification-level">
-                            <h4>Premium Partner</h4>
+                        <div class="assessment-card">
+                            <h4>Technische compliance</h4>
                             <ul class="check-list">
-                                <li>Alle voordelen van Basis Partner</li>
-                                <li>Uitgebreide technische ondersteuning</li>
-                                <li>Prioritaire vermelding in de catalogus</li>
-                                <li>Co-marketingmogelijkheden</li>
-                                <li>Toegang tot beta-programma's</li>
+                                <li>Gebruik van open standaarden</li>
+                                <li>Interoperabiliteit met andere systemen</li>
+                                <li>Voldoet aan beveiligingsrichtlijnen</li>
+                                <li>Privacy by design principes</li>
                             </ul>
                         </div>
                         
-                        <div class="certification-level">
-                            <h4>Strategisch Partner</h4>
+                        <div class="assessment-card">
+                            <h4>Gebruikskwaliteit</h4>
                             <ul class="check-list">
-                                <li>Alle voordelen van Premium Partner</li>
-                                <li>Gezamenlijke productontwikkeling</li>
-                                <li>Dedicated accountmanager</li>
-                                <li>Invloed op roadmap</li>
-                                <li>Gezamenlijke pilotprojecten</li>
-                                <li>Toegang tot exclusieve events</li>
+                                <li>Gebruiksvriendelijk ontwerp</li>
+                                <li>Toegankelijkheid (WCAG 2.1)</li>
+                                <li>Betrouwbaarheid en stabiliteit</li>
+                                <li>Responsieve ondersteuning</li>
                             </ul>
                         </div>
                     </div>
+                    
+                    <h4>Partnerschapsproces</h4>
+                    <ol class="steps-list">
+                        <li>
+                            <h5>Aanvraag indienen</h5>
+                            <p>Dien een partnerschapsaanvraag in via het leveranciersportaal, inclusief informatie over uw oplossing en hoe deze aansluit bij onze waarden.</p>
+                        </li>
+                        <li>
+                            <h5>Kennismakingsgesprek</h5>
+                            <p>We plannen een gesprek om uw oplossing en de mogelijke samenwerking te bespreken.</p>
+                        </li>
+                        <li>
+                            <h5>Assessment</h5>
+                            <p>Uw oplossing wordt beoordeeld op alignment met onze waarden en compliance met technische standaarden.</p>
+                        </li>
+                        <li>
+                            <h5>Partnerschapsverklaring</h5>
+                            <p>Bij een positieve beoordeling ondertekenen beide partijen een partnerschapsverklaring waarin wederzijdse verwachtingen worden vastgelegd.</p>
+                        </li>
+                        <li>
+                            <h5>Integratie en implementatie</h5>
+                            <p>We werken samen aan de integratie van uw oplossing in het platform en de implementatie bij wijkinitiatieven.</p>
+                        </li>
+                        <li>
+                            <h5>Evaluatie en doorontwikkeling</h5>
+                            <p>Regelmatige evaluaties en gezamenlijke doorontwikkeling van de samenwerking en de oplossing.</p>
+                        </li>
+                    </ol>
                     
                     <h4>Huidige partners</h4>
                     <p>Deze leveranciers zijn al partner van het Project Kennisportaal:</p>
@@ -593,150 +629,26 @@
                         <div class="partner-logo">ZorgBuddy</div>
                     </div>
                     
-                    <h4>Partner worden</h4>
-                    <p>Interesse in een partnerschap? Wij bieden verschillende pakketten aan:</p>
-                    <table class="pricing-table">
-                        <thead>
-                            <tr>
-                                <th>Pakket</th>
-                                <th>Jaarlijkse bijdrage</th>
-                                <th>Geschikt voor</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Basis Partner</td>
-                                <td>€1.500 per jaar</td>
-                                <td>Startups en kleine leveranciers</td>
-                            </tr>
-                            <tr>
-                                <td>Premium Partner</td>
-                                <td>€5.000 per jaar</td>
-                                <td>Middelgrote leveranciers</td>
-                            </tr>
-                            <tr>
-                                <td>Strategisch Partner</td>
-                                <td>€15.000 per jaar</td>
-                                <td>Grote leveranciers met strategische focus</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    
-                    <a href="#" class="feature-action">Partner worden</a>
-                </div>
-            </div>
-            
-            <!-- Certificering content section -->
-            <div id="certificering-content" class="content-section" style="display: none;">
-                <div class="feature-block">
-                    <h3>Certificering van oplossingen</h3>
-                    <p>Om de kwaliteit en betrouwbaarheid van oplossingen in het platform te waarborgen, bieden wij een certificeringsprogramma aan. Certificering geeft gebruikers vertrouwen in uw oplossing en verhoogt de zichtbaarheid in de catalogus.</p>
-                    
-                    <h4>Certificeringsniveaus</h4>
-                    <div class="certification-levels">
-                        <div class="certification-level">
-                            <h4>Niveau 1: Basis</h4>
-                            <p>De basisversie van uw oplossing is getest en voldoet aan de minimale vereisten.</p>
-                            <ul class="check-list">
-                                <li>Technische validatie van API-integratie</li>
-                                <li>Basisbeveiliging en privacy-checks</li>
-                                <li>Minimale gebruiksvriendelijkheid</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="certification-level">
-                            <h4>Niveau 2: Geavanceerd</h4>
-                            <p>Uw oplossing voldoet aan hogere standaarden en biedt uitgebreide functionaliteit.</p>
-                            <ul class="check-list">
-                                <li>Alle Niveau 1 vereisten</li>
-                                <li>Uitgebreide beveiligingsaudit</li>
-                                <li>Gebruikerstesten met doelgroep</li>
-                                <li>Voldoen aan toegankelijkheidseisen</li>
-                                <li>Integratie met meerdere API's</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="certification-level">
-                            <h4>Niveau 3: Premium</h4>
-                            <p>Het hoogste certificeringsniveau voor oplossingen die aan alle standaarden voldoen.</p>
-                            <ul class="check-list">
-                                <li>Alle Niveau 2 vereisten</li>
-                                <li>Penetratietesten</li>
-                                <li>Uitgebreide gebruikerstesten</li>
-                                <li>Volledige interoperabiliteit</li>
-                                <li>Schaalbaarheidstesten</li>
-                                <li>Beschikbaarheid van SLA's</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <h4>Certificeringsproces</h4>
-                    <ol class="steps-list">
-                        <li>
-                            <h5>Aanvraag indienen</h5>
-                            <p>Dien een certificeringsaanvraag in via het leveranciersportaal en geef aan welk niveau u wilt behalen.</p>
-                        </li>
-                        <li>
-                            <h5>Zelfassessment</h5>
-                            <p>Voer een zelfassessment uit aan de hand van de certificeringschecklist en verbeter uw oplossing waar nodig.</p>
-                        </li>
-                        <li>
-                            <h5>Documentatie aanleveren</h5>
-                            <p>Lever de vereiste documentatie aan, waaronder technische specificaties, beveiligingsbeleid en gebruikersdocumentatie.</p>
-                        </li>
-                        <li>
-                            <h5>Technische validatie</h5>
-                            <p>Ons testteam voert een technische validatie uit om te controleren of uw oplossing aan de vereisten voldoet.</p>
-                        </li>
-                        <li>
-                            <h5>Gebruikerstesten</h5>
-                            <p>Voor niveau 2 en 3 worden gebruikerstesten uitgevoerd met representatieve gebruikers uit de doelgroep.</p>
-                        </li>
-                        <li>
-                            <h5>Certificaat ontvangen</h5>
-                            <p>Na succesvolle afronding ontvangt u het certificaat en wordt uw oplossing als gecertificeerd gemarkeerd in de catalogus.</p>
-                        </li>
-                    </ol>
-                    
                     <div class="solution-card">
                         <div class="solution-header">
-                            <h4>Kosten certificering</h4>
+                            <h4>Open Standaarden Compliance</h4>
                         </div>
                         <div class="solution-content">
-                            <table class="pricing-table">
-                                <thead>
-                                    <tr>
-                                        <th>Certificeringsniveau</th>
-                                        <th>Kosten</th>
-                                        <th>Doorlooptijd</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Niveau 1: Basis</td>
-                                        <td>€1.000</td>
-                                        <td>2-4 weken</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Niveau 2: Geavanceerd</td>
-                                        <td>€2.500</td>
-                                        <td>4-6 weken</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Niveau 3: Premium</td>
-                                        <td>€5.000</td>
-                                        <td>6-8 weken</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <p><small>* Partners ontvangen korting op certificeringskosten: 10% voor Basis Partners, 20% voor Premium Partners en 30% voor Strategisch Partners.</small></p>
+                            <p>Als partner is het essentieel dat uw oplossing de open standaarden van het platform ondersteunt. Deze standaarden zijn gebaseerd op:</p>
+                            <ul>
+                                <li><strong>FHIR (Fast Healthcare Interoperability Resources)</strong> - Voor uitwisseling van zorginformatie</li>
+                                <li><strong>Zorg Informatie Bouwstenen (ZIB's)</strong> - Voor gestandaardiseerde gegevensuitwisseling</li>
+                                <li><strong>OAuth 2.0 & OpenID Connect</strong> - Voor veilige authenticatie en autorisatie</li>
+                                <li><strong>Web Content Accessibility Guidelines (WCAG) 2.1</strong> - Voor toegankelijkheid</li>
+                            </ul>
+                            <p>De volledige lijst van standaarden en implementatierichtlijnen is beschikbaar in de technische documentatie.</p>
                         </div>
                         <div class="solution-footer">
-                            <a href="#">Certificeringsvereisten downloaden &raquo;</a>
+                            <a href="../architectuur.html">Bekijk de referentie-architectuur &raquo;</a>
                         </div>
                     </div>
                     
-                    <a href="#" class="feature-action">Certificering aanvragen</a>
+                    <a href="#" class="feature-action">Partner worden</a>
                 </div>
             </div>
         </div>
@@ -745,9 +657,9 @@
             <div class="news-updates">
                 <h3>Leveranciersnieuws</h3>
                 <div class="news-item">
-                    <h4>Nieuwe certificeringseisen 2025</h4>
+                    <h4>Nieuwe open standaarden implementatiegids</h4>
                     <div class="news-date">1 maart 2025</div>
-                    <p>De certificeringseisen voor 2025 zijn gepubliceerd, met nieuwe vereisten op het gebied van privacy en interoperabiliteit.</p>
+                    <p>De nieuwe implementatiegids voor open standaarden is nu beschikbaar voor alle leveranciers.</p>
                 </div>
                 
                 <div class="news-item">
@@ -765,7 +677,7 @@
             
             <div class="contact-block">
                 <h3>Leveranciersondersteuning</h3>
-                <p>Heeft u vragen over aansluiten of certificering? Neem contact op met ons leveranciersteam:</p>
+                <p>Heeft u vragen over aansluiten of partnerschap? Neem contact op met ons leveranciersteam:</p>
                 <p>Email: leveranciers@projectkennisportaal.nl</p>
                 <p>Tel: 020-1234569</p>
                 <a href="../contact.html" class="feature-action">Contact opnemen</a>
@@ -779,12 +691,12 @@
                 </div>
                 
                 <div class="news-item">
-                    <h4>Partnermiddagen</h4>
+                    <h4>Kennisdelingsbijeenkomsten</h4>
                     <div class="news-date">Elke eerste donderdag van de maand</div>
                 </div>
                 
                 <div class="news-item">
-                    <h4>Workshop API Integratie</h4>
+                    <h4>Workshop Open Standaarden</h4>
                     <div class="news-date">22 maart 2025</div>
                 </div>
             </div>
