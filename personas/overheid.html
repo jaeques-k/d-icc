@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voor (Lokale) Overheid - Project Kennisportaal</title>
+    <style>
+        :root {
+            --primary-color: #159957;
+            --secondary-color: #155799;
+            --text-color: #606c71;
+            --link-color: #1e6bb8;
+            --border-color: #dce6f0;
+            --light-bg: #f3f6fa;
+            --card-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-image: 
+                linear-gradient(120deg, rgba(21, 87, 153, 0.7), rgba(21, 153, 87, 0.7)), 
+                url('../assets/images/banner.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 3rem 1rem;
+            margin-bottom: 1rem; /* Reduced margin to place breadcrumb closer */
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Breadcrumb positioned right after header */
+        .breadcrumb {
+            margin: 0.5rem 0 1.5rem 0;
+            font-size: 0.9rem;
+            color: #666;
+            padding: 0.5rem 0;
+        }
+        
+        .breadcrumb a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Main navigation */
+        .persona-nav {
+            background-color: var(--light-bg);
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .persona-nav a {
+            padding: 10px 20px;
+            background-color: white;
+            color: var(--link-color);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .persona-nav a:hover,
+        .persona-nav a.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* Sub navigation - hidden by default, shown when needed */
+        .sub-nav {
+            background-color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none; /* Hidden by default */
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .sub-nav a {
+            padding: 8px 15px;
+            background-color: var(--light-bg);
+            color: var(--link-color);
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+        
+        .sub-nav a:hover,
+        .sub-nav a.active {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        /* Show sub-nav when needed */
+        .sub-nav.active {
+            display: flex;
+        }
+        
+        main {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 20px;
+        }
+        
+        .content {
+            /* No styles needed here */
+        }
+        
+        aside {
+            /* No styles needed here */
+        }
+        
+        .feature-block {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .feature-block h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .feature-action {
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+            width: fit-content;
+            transition: background-color 0.2s;
+        }
+        
+        .feature-action:hover {
+            background-color: #107745;
+            text-decoration: none;
+        }
+        
+        .news-updates {
+            background-color: var(--light-bg);
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .news-updates h3 {
+            color: var(--secondary-color);
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .news-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .news-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .news-item h4 {
+            margin: 0 0 5px 0;
+            color: var(--secondary-color);
+        }
+        
+        .news-date {
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 5px;
+        }
+        
+        .contact-block {
+            background-color: var(--light-bg);
+            border-radius: 5px;
+            padding: 20px;
+        }
+        
+        .contact-block h3 {
+            color: var(--secondary-color);
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: #888;
+        }
+        
+        /* Hide content sections by default */
+        .content-section {
+            display: none;
+        }
+        
+        /* Show the default section */
+        .content-section.active {
+            display: block;
+        }
+        
+        /* Hide sub-content sections by default */
+        .sub-content-section {
+            display: none;
+        }
+        
+        /* Show the default sub-section */
+        .sub-content-section.active {
+            display: block;
+        }
+        
+        /* Policy framework cards */
+        .policy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .policy-card {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s, box-shadow 0.2s;
+            overflow: hidden;
+        }
+        
+        .policy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        
+        .policy-header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 15px;
+        }
+        
+        .policy-header h4 {
+            margin: 0;
+            color: white;
+        }
+        
+        .policy-content {
+            padding: 15px;
+        }
+        
+        .policy-footer {
+            background-color: var(--light-bg);
+            padding: 12px 15px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        /* Dashboard styles */
+        .dashboard-container {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .chart-container {
+            height: 300px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            margin: 15px 0;
+            position: relative;
+            border: 1px solid var(--border-color);
+        }
+        
+        .chart-placeholder {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        
+        /* Implementation steps */
+        .implementation-steps {
+            counter-reset: step-counter;
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .implementation-steps li {
+            position: relative;
+            padding-left: 50px;
+            margin-bottom: 30px;
+            counter-increment: step-counter;
+        }
+        
+        .implementation-steps li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 36px;
+            height: 36px;
+            background-color: var(--secondary-color);
+            color: white;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        /* Case study styles */
+        .case-study {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .case-study h4 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+        
+        .case-meta {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+        
+        .case-meta span {
+            display: flex;
+            align-items: center;
+        }
+        
+        .case-meta i {
+            margin-right: 5px;
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+        
+        .tag {
+            background-color: var(--light-bg);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--text-color);
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Header with persona title -->
+    <header>
+        <h1>Voor (Lokale) Overheid</h1>
+        <div class="subtitle">Beleidskaders en implementatiehandleidingen voor gemeenten en provincies</div>
+    </header>
+    
+    <!-- Breadcrumb positioned right after the header -->
+    <div class="breadcrumb">
+        <a href="../index.html">Home</a> &gt; Voor (Lokale) Overheid
+    </div>
+    
+    <!-- Main navigation with tabs -->
+    <div class="persona-nav">
+        <a href="#beleidskaders" id="beleidskaders-tab" class="active">Beleidskaders</a>
+        <a href="#monitoring" id="monitoring-tab">Monitoring</a>
+        <a href="#implementatie" id="implementatie-tab">Implementatie</a>
+        <a href="#voorbeelden" id="voorbeelden-tab">Voorbeelden</a>
+    </div>
+    
+    <main>
+        <div class="content">
+            <!-- Beleidskaders section -->
+            <div id="beleidskaders-content" class="content-section active">
+                <div class="feature-block">
+                    <h3>Beleidskaders voor digitale zorg in de wijk</h3>
+                    <p>Op deze pagina vindt u beleidskaders die gemeenten en provincies kunnen gebruiken bij het ontwikkelen en implementeren van beleid voor digitale zorgoplossingen in de wijk.</p>
+                    
+                    <div class="policy-grid">
+                        <div class="policy-card">
+                            <div class="policy-header">
+                                <h4>Visiedocument Digitale Wijkzorg</h4>
+                            </div>
+                            <div class="policy-content">
+                                <p>Een overkoepelend visiedocument voor gemeenten over de rol van digitale oplossingen in de wijkgerichte zorg.</p>
+                                <p><strong>Thema's:</strong> Visievorming, Strategische planning, Langetermijndoelen</p>
+                            </div>
+                            <div class="policy-footer">
+                                <a href="#">Document bekijken &raquo;</a>
+                            </div>
+                        </div>
+                        
+                        <div class="policy-card">
+                            <div class="policy-header">
+                                <h4>Beleidskader Digitale Inclusie</h4>
+                            </div>
+                            <div class="policy-content">
+                                <p>Richtlijnen voor het ontwikkelen van inclusief beleid dat alle wijkbewoners meeneemt in de digitalisering van zorg.</p>
+                                <p><strong>Thema's:</strong> Digitale vaardigheid, Inclusie, Toegankelijkheid</p>
+                            </div>
+                            <div class="policy-footer">
+                                <a href="#">Document bekijken &raquo;</a>
+                            </div>
+                        </div>
+                        
+                        <div class="policy-card">
+                            <div class="policy-header">
+                                <h4>Raamwerk Samenwerking</h4>
+                            </div>
+                            <div class="policy-content">
+                                <p>Kaders voor samenwerking tussen gemeenten, zorgaanbieders en technologiebedrijven in de digitale wijkzorg.</p>
+                                <p><strong>Thema's:</strong> Partnerschappen, Inkoop, Governance</p>
+                            </div>
+                            <div class="policy-footer">
+                                <a href="#">Document bekijken &raquo;</a>
+                            </div>
+                        </div>
+                        
+                        <div class="policy-card">
+                            <div class="policy-header">
+                                <h4>WMO en Digitale Zorg</h4>
+                            </div>
+                            <div class="policy-content">
+                                <p>Beleidskader voor de implementatie van digitale zorgtoepassingen binnen de WMO-context.</p>
+                                <p><strong>Thema's:</strong> Wetgeving, Verordeningen, Aanbesteding</p>
+                            </div>
+                            <div class="policy-footer">
+                                <a href="#">Document bekijken &raquo;</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h4>Recente wijzigingen in landelijk beleid</h4>
+                    <p>Op landelijk niveau zijn er verschillende beleidswijzigingen die impact hebben op lokaal beleid voor digitale zorg:</p>
+                    
+                    <ul>
+                        <li><strong>Wet Digitale Overheid (WDO)</strong> - Implicaties voor digitale zorgprocessen bij gemeenten (ingangsdatum: 1 januari 2024)</li>
+                        <li><strong>Europese verordening AI</strong> - Gevolgen voor de inzet van AI in zorgprocessen (effectief vanaf 2025)</li>
+                        <li><strong>Vernieuwde Governancecode Zorg</strong> - Nieuwe eisen aan de governance van zorginstellingen, inclusief digitale zorg</li>
+                    </ul>
+                    
+                    <h4>Subsidies en financiering</h4>
+                    <p>Voor de implementatie van digitale zorgoplossingen zijn verschillende subsidies beschikbaar:</p>
+                    
+                    <ul>
+                        <li><strong>Subsidieregeling SET (Stimuleringsregeling E-health Thuis)</strong> - Voor implementatie van e-health toepassingen</li>
+                        <li><strong>Transformatiefonds Sociaal Domein</strong> - Voor innovatieve projecten in het sociaal domein</li>
+                        <li><strong>Provinciale innovatiesubsidies</strong> - Verschillende provincies hebben eigen subsidieregelingen</li>
+                    </ul>
+                    
+                    <a href="#" class="feature-action">Alle beleidskaders bekijken</a>
+                </div>
+            </div>
+            
+            <!-- Monitoring section -->
+            <div id="monitoring-content" class="content-section">
+                <div class="feature-block">
+                    <h3>Monitoring van digitale zorg in de wijk</h3>
+                    <p>Monitoring en evaluatie zijn essentieel om de effectiviteit van digitale zorgoplossingen te meten en beleid te verbeteren. Deze pagina biedt tools en dashboards voor monitoring op gemeentelijk niveau.</p>
+                    
+                    <div class="dashboard-container">
+                        <h4>Wijkmonitor Dashboard</h4>
+                        <p>Bekijk real-time data over het gebruik en de effectiviteit van digitale zorgoplossingen in uw gemeente of provincie.</p>
+                        
+                        <div class="chart-container">
+                            <div class="chart-placeholder">
+                                <i class="fas fa-chart-bar" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                                <p>Dashboard wordt geladen...</p>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; gap: 20px; margin-top: 20px;">
+                            <a href="#" class="feature-action">Dashboard openen</a>
+                            <a href="#" class="feature-action" style="background-color: #888;">PDF Rapport genereren</a>
+                        </div>
+                    </div>
+                    
+                    <h4>Essentiële indicatoren</h4>
+                    <p>Voor effectieve monitoring van digitale zorgoplossingen raden we aan om de volgende indicatoren te meten:</p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 20px 0;">
+                        <div class="feature-block" style="margin-bottom: 0;">
+                            <h5><i class="fas fa-users"></i> Bereik & Gebruik</h5>
+                            <ul>
+                                <li>Aantal gebruikers per tool/platform</li>
+                                <li>Gebruiksfrequentie</li>
+                                <li>Demografische spreiding</li>
+                                <li>Digitale inclusie index</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="feature-block" style="margin-bottom: 0;">
+                            <h5><i class="fas fa-heart"></i> Gezondheidsuitkomsten</h5>
+                            <ul>
+                                <li>Zelfgerapporteerde gezondheid</li>
+                                <li>Zorgconsumptie</li>
+                                <li>Preventie-indicatoren</li>
+                                <li>Kwaliteit van leven</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="feature-block" style="margin-bottom: 0;">
+                            <h5><i class="fas fa-coins"></i> Kosten & Efficiëntie</h5>
+                            <ul>
+                                <li>Kosten per gebruiker</li>
+                                <li>Vermeden zorgkosten</li>
+                                <li>Return on Investment (ROI)</li>
+                                <li>Efficiëntiewinst zorgprofessionals</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="feature-block" style="margin-bottom: 0;">
+                            <h5><i class="fas fa-smile"></i> Tevredenheid & Ervaring</h5>
+                            <ul>
+                                <li>Gebruikerstevredenheid (NPS)</li>
+                                <li>Ervaren gebruiksgemak</li>
+                                <li>Vertrouwen in digitale oplossingen</li>
+                                <li>Tevredenheid zorgverleners</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <h4>Evaluatie-instrumenten</h4>
+                    <p>Voor een grondige evaluatie van digitale zorgoplossingen bieden we de volgende instrumenten:</p>
+                    
+                    <ul>
+                        <li><a href="#">Wijkmonitor Vragenlijst</a> - Voor het verzamelen van gebruikerservaringen</li>
+                        <li><a href="#">Kosten-batenanalyse Tool</a> - Voor financiële evaluatie van digitale zorgoplossingen</li>
+                        <li><a href="#">Impact Assessment Framework</a> - Voor het meten van maatschappelijke impact</li>
+                        <li><a href="#">Benchmark Database</a> - Voor vergelijking met andere gemeenten/regio's</li>
+                    </ul>
+                    
+                    <a href="#" class="feature-action">Meer monitoring tools</a>
+                </div>
+            </div>
+            
+            <!-- Implementatie section -->
+            <div id="implementatie-content" class="content-section">
+                <div class="feature-block">
+                    <h3>Implementatie van digitale zorgoplossingen</h3>
+                    <p>Effectieve implementatie van digitale zorgoplossingen vereist een strategische aanpak. Deze pagina biedt stappenplannen en handreikingen voor lokale overheden die digitale zorgoplossingen willen implementeren.</p>
+                    
+                    <h4>Stappenplan voor gemeenten</h4>
+                    <p>Volg dit stappenplan voor een succesvolle implementatie van digitale zorgoplossingen in uw gemeente:</p>
+                    
+                    <ol class="implementation-steps">
+                        <li>
+                            <h5>Inventarisatie & Behoefteanalyse</h5>
+                            <p>Breng de huidige situatie en behoeften in kaart door gesprekken met stakeholders, analyse van demografische gegevens en inventarisatie van bestaande initiatieven.</p>
+                            <p><a href="#">Tool: Behoefteanalyse Template</a></p>
+                        </li>
+                        
+                        <li>
+                            <h5>Visie & Strategie Ontwikkeling</h5>
+                            <p>Ontwikkel een duidelijke visie en strategie voor digitale zorg in de wijk, afgestemd op de gemeentelijke beleidsplannen en WMO-verordening.</p>
+                            <p><a href="#">Template: Visiedocument Digitale Wijkzorg</a></p>
+                        </li>
+                        
+                        <li>
+                            <h5>Stakeholder Management</h5>
+                            <p>Betrek alle relevante stakeholders zoals zorgaanbieders, patiëntorganisaties, wijkinitiatieven, technologieleveranciers en financiers.</p>
+                            <p><a href="#">Tool: Stakeholder Mapping Template</a></p>
+                        </li>
+                        
+                        <li>
+                            <h5>Selectie & Aanbesteding</h5>
+                            <p>Selecteer passende digitale oplossingen via een zorgvuldig aanbestedingsproces met duidelijke criteria en eisen.</p>
+                            <p><a href="#">Template: Programma van Eisen voor Digitale Wijkoplossingen</a></p>
+                        </li>
+                        
+                        <li>
+                            <h5>Pilot & Evaluatie</h5>
+                            <p>Start met een kleine pilot, evalueer de resultaten en pas aan waar nodig voordat u de oplossing breed uitrolt.</p>
+                            <p><a href="#">Tool: Pilot Evaluatieraamwerk</a></p>
+                        </li>
+                        
+                        <li>
+                            <h5>Opschaling & Borging</h5>
+                            <p>Schaal succesvolle oplossingen op naar andere wijken of doelgroepen en borg ze in reguliere processen en financiering.</p>
+                            <p><a href="#">Template: Opschalingsplan</a></p>
+                        </li>
+                        
+                        <li>
+                            <h5>Monitoring & Doorontwikkeling</h5>
+                            <p>Monitor de resultaten continu en werk samen met stakeholders aan doorontwikkeling van de oplossingen.</p>
+                            <p><a href="#">Tool: Monitoring Dashboard</a></p>
+                        </li>
+                    </ol>
+                    
+                    <h4>Financieringsmodellen</h4>
+                    <p>Verschillende financieringsmodellen voor digitale zorgoplossingen:</p>
+                    
+                    <ul>
+                        <li><strong>Subsidiegefinancierd model</strong> - Financiering via (tijdelijke) subsidies</li>
+                        <li><strong>Licentiemodel</strong> - Gemeente neemt licentie af en stelt beschikbaar aan wijkinitiatieven</li>
+                        <li><strong>Inkoopmodel</strong> - Inkoop via WMO/Zvw-middelen</li>
+                        <li><strong>Publiek-private samenwerking</strong> - Gezamenlijke investering van gemeente en private partijen</li>
+                        <li><strong>Sociaal investeringsmodel</strong> - Financiering op basis van maatschappelijke impact</li>
+                    </ul>
+                    
+                    <a href="#" class="feature-action">Implementatiehandleiding downloaden</a>
+                </div>
+            </div>
+            
+            <!-- Voorbeelden section -->
+            <div id="voorbeelden-content" class="content-section">
+                <div class="feature-block">
+                    <h3>Voorbeelden van succesvolle implementaties</h3>
+                    <p>Leer van succesvolle implementaties van digitale zorgoplossingen in andere gemeenten en regio's. Deze voorbeelden bieden waardevolle inzichten en lessen voor uw eigen implementatie.</p>
+                    
+                    <div class="case-study">
+                        <h4>Digitaal Wijkplatform Amsterdam-West</h4>
+                        <div class="case-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Amsterdam</span>
+                            <span><i class="fas fa-calendar"></i> 2023 - heden</span>
+                            <span><i class="fas fa-users"></i> 15.000+ gebruikers</span>
+                        </div>
+                        <p>De gemeente Amsterdam implementeerde een digitaal wijkplatform in Amsterdam-West om buurtbewoners te verbinden met zorg- en welzijnsvoorzieningen. Het platform biedt een sociale kaart, mogelijkheden voor burenhulp en directe toegang tot zorgprofessionals.</p>
+                        <p><strong>Resultaten:</strong></p>
+                        <ul>
+                            <li>30% toename in wijkbetrokkenheid</li>
+                            <li>25% afname in onnodige zorgverwijzingen</li>
+                            <li>Geschatte kostenbesparing: €450.000 per jaar</li>
+                        </ul>
+                        <p><strong>Succesfactoren:</strong> Sterke betrokkenheid wijkbewoners, goede samenwerking met zorgaanbieders, stapsgewijze implementatie</p>
+                        <div class="tags">
+                            <span class="tag">Wijkplatform</span>
+                            <span class="tag">Burenhulp</span>
+                            <span class="tag">Grote gemeente</span>
+                        </div>
+                        <p><a href="#" style="display: block; margin-top: 15px;">Volledig case rapport bekijken &raquo;</a></p>
+                    </div>
+                    
+                    <div class="case-study">
+                        <h4>Digitale Zorgcoördinatie Drenthe</h4>
+                        <div class="case-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Provincie Drenthe</span>
+                            <span><i class="fas fa-calendar"></i> 2022 - heden</span>
+                            <span><i class="fas fa-users"></i> 7 gemeenten</span>
+                        </div>
+                        <p>De provincie Drenthe implementeerde een digitaal coördinatieplatform dat zeven plattelandsgemeenten verbindt met zorgaanbieders. Het platform faciliteert multidisciplinair overleg, gedeelde zorgplannen en telemo
+                        <p>De provincie Drenthe implementeerde een digitaal coördinatieplatform dat zeven plattelandsgemeenten verbindt met zorgaanbieders. Het platform faciliteert multidisciplinair overleg, gedeelde zorgplannen en telemonitoring van kwetsbare ouderen.</p>
+                        <p><strong>Resultaten:</strong></p>
+                        <ul>
+                            <li>40% reductie in administratieve lasten voor zorgverleners</li>
+                            <li>20% minder ziekenhuisopnames onder kwetsbare ouderen</li>
+                            <li>Hogere tevredenheid onder zowel zorgverleners als cliënten</li>
+                        </ul>
+                        <p><strong>Succesfactoren:</strong> Regionale samenwerking, goede integratie met bestaande systemen, investering in opleiding en ondersteuning</p>
+                        <div class="tags">
+                            <span class="tag">Plattelandsregio</span>
+                            <span class="tag">Ouderenzorg</span>
+                            <span class="tag">Regionale samenwerking</span>
+                        </div>
+                        <p><a href="#" style="display: block; margin-top: 15px;">Volledig case rapport bekijken &raquo;</a></p>
+                    </div>
+                    
+                    <div class="case-study">
+                        <h4>E-health Innovatiehub Eindhoven</h4>
+                        <div class="case-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Eindhoven</span>
+                            <span><i class="fas fa-calendar"></i> 2021 - heden</span>
+                            <span><i class="fas fa-users"></i> 12 wijken</span>
+                        </div>
+                        <p>De gemeente Eindhoven richtte een innovatiehub op waar e-health oplossingen worden getest in een living lab-omgeving voordat ze worden uitgerold in de hele gemeente. Wijkbewoners, zorgverleners en technologiebedrijven werken samen aan het ontwikkelen en valideren van nieuwe oplossingen.</p>
+                        <p><strong>Resultaten:</strong></p>
+                        <ul>
+                            <li>15 succesvolle innovaties geïmplementeerd in twee jaar</li>
+                            <li>Verkorting van implementatietijd van gemiddeld 2 jaar naar 8 maanden</li>
+                            <li>Aantrekking van €3,5 miljoen aan externe financiering</li>
+                        </ul>
+                        <p><strong>Succesfactoren:</strong> Sterke publiek-private samenwerking, flexibele governance, actieve betrokkenheid van eindgebruikers</p>
+                        <div class="tags">
+                            <span class="tag">Living Lab</span>
+                            <span class="tag">Innovatie</span>
+                            <span class="tag">Publiek-private samenwerking</span>
+                        </div>
+                        <p><a href="#" style="display: block; margin-top: 15px;">Volledig case rapport bekijken &raquo;</a></p>
+                    </div>
+                    
+                    <h4>Wilt u uw ervaring delen?</h4>
+                    <p>Heeft uw gemeente of provincie een succesvol project met digitale zorgoplossingen geïmplementeerd? Deel uw ervaringen en help andere overheden te leren van uw inzichten.</p>
+                    <a href="#" class="feature-action">Deel uw case study</a>
+                </div>
+            </div>
+        </div>
+        
+        <aside>
+            <div class="news-updates">
+                <h3>Nieuws & updates</h3>
+                <div class="news-item">
+                    <h4>Nieuwe subsidieronde SET 2026</h4>
+                    <div class="news-date">1 maart 2025</div>
+                    <p>VWS opent in april een nieuwe subsidieronde voor de Stimuleringsregeling E-health Thuis.</p>
+                </div>
+                
+                <div class="news-item">
+                    <h4>VNG publicatie digitale inclusie</h4>
+                    <div class="news-date">20 februari 2025</div>
+                    <p>De VNG heeft een nieuwe handleiding gepubliceerd over digitale inclusie in gemeentelijke dienstverlening.</p>
+                </div>
+                
+                <div class="news-item">
+                    <h4>Wijzigingen WMO-kader</h4>
+                    <div class="news-date">5 februari 2025</div>
+                    <p>Per 1 juli 2025 treden wijzigingen in werking in het WMO-kader die relevant zijn voor digitale zorg.</p>
+                </div>
+            </div>
+            
+            <div class="contact-block">
+                <h3>Contact Expertteam</h3>
+                <p>Het VNG Expertteam Digitale Zorg staat klaar om gemeenten te ondersteunen bij vraagstukken rondom de implementatie van digitale zorgoplossingen.</p>
+                <p>Email: expertteam@vng.nl</p>
+                <p>Tel: 070-1234567</p>
+                <a href="#" class="feature-action">Contact opnemen</a>
+            </div>
+            
+            <div class="news-updates">
+                <h3>Bijeenkomsten</h3>
+                <div class="news-item">
+                    <h4>VNG Congres Digitale Zorg</h4>
+                    <div class="news-date">15 april 2025</div>
+                    <p>Jaarlijks congres over digitale zorg in het gemeentelijk domein.</p>
+                </div>
+                
+                <div class="news-item">
+                    <h4>Webinar WMO en E-health</h4>
+                    <div class="news-date">22 maart 2025</div>
+                    <p>Online sessie over de inpassing van e-health in WMO-beleid.</p>
+                </div>
+                
+                <div class="news-item">
+                    <h4>Werkbezoek Amsterdam</h4>
+                    <div class="news-date">8 maart 2025</div>
+                    <p>Werkbezoek voor bestuurders aan het Digitaal Wijkplatform Amsterdam-West.</p>
+                </div>
+            </div>
+        </aside>
+    </main>
+    
+    <footer>
+        <p>© 2025 Project Kennisportaal - Alle rechten voorbehouden</p>
+        <p><a href="../index.html">Terug naar de hoofdpagina</a></p>
+    </footer>
+
+    <!-- JavaScript for tab navigation -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all tab links
+            const tabLinks = document.querySelectorAll('.persona-nav a');
+            
+            // Get all content sections
+            const contentSections = document.querySelectorAll('.content-section');
+            
+            // Add click event to each tab
+            tabLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault(); // Prevent default anchor behavior
+                    
+                    // Remove active class from all tabs
+                    tabLinks.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Get the tab ID from href attribute
+                    const tabId = this.getAttribute('href').substring(1);
+                    
+                    // Hide all content sections
+                    contentSections.forEach(section => {
+                        section.style.display = 'none';
+                        section.classList.remove('active');
+                    });
+                    
+                    // Show the corresponding content section
+                    const targetSection = document.getElementById(tabId + '-content');
+                    if (targetSection) {
+                        targetSection.style.display = 'block';
+                        targetSection.classList.add('active');
+                    }
+                });
+            });
+            
+            // Handle URL fragment/hash on page load
+            const hash = window.location.hash;
+            if (hash) {
+                const tabId = hash.substring(1); // Remove the # character
+                const tabToActivate = document.querySelector(`.persona-nav a[href="#${tabId}"]`);
+                if (tabToActivate) {
+                    tabToActivate.click(); // Trigger the click event
+                }
+            }
+            
+            // Handle URL parameters too
+            const urlParams = new URLSearchParams(window.location.search);
+            const tab = urlParams.get('tab');
+            if (tab) {
+                const tabToActivate = document.querySelector(`#${tab}-tab`);
+                if (tabToActivate) {
+                    tabToActivate.click(); // Trigger the click event
+                }
+            }
+        });
+    </script>
+</body>
+</html>
