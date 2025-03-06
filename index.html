@@ -117,6 +117,26 @@
             margin-bottom: 3rem;
         }
         
+        /* To ensure top row has exactly 3 items and proper order */
+        .persona-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        @media (max-width: 992px) {
+            .persona-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .persona-row {
+                grid-template-columns: 1fr;
+            }
+        }
+        
         .persona-card {
             background-color: white;
             border-radius: 8px;
@@ -219,13 +239,6 @@
             border-top: 1px solid var(--border-color);
             color: #888;
         }
-        
-        /* Media queries for responsive design */
-        @media (max-width: 768px) {
-            .persona-grid {
-                grid-template-columns: 1fr;
-            }
-        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
@@ -248,8 +261,9 @@
         <p>Welkom bij het Kennisportaal. Kies hieronder de rol die het beste bij u past om snel de relevante informatie te vinden.</p>
     </div>
     
-    <div class="persona-grid">
-        <!-- Wijkbewoner with existing user stories -->
+    <!-- First row with Wijkbewoner, Wijkinitiatief, and Dorpsondersteuner -->
+    <div class="persona-row">
+        <!-- Wijkbewoner -->
         <div class="persona-card">
             <div class="card-header">
                 <div class="card-icon">
@@ -278,7 +292,7 @@
             </div>
         </div>
         
-        <!-- Wijkinitiatief with existing user stories -->
+        <!-- Wijkinitiatief -->
         <div class="persona-card">
             <div class="card-header">
                 <div class="card-icon">
@@ -307,26 +321,39 @@
             </div>
         </div>
         
-        <!-- Onderzoeker/Student with existing user stories -->
+        <!-- Dorpsondersteuner -->
         <div class="persona-card">
             <div class="card-header">
                 <div class="card-icon">
-                    <i class="fas fa-microscope"></i>
+                    <i class="fas fa-hands-helping"></i>
                 </div>
-                <h2 class="card-title">Onderzoeker / Student</h2>
+                <h2 class="card-title">Dorpsondersteuner</h2>
             </div>
             <div class="card-content">
-                <div class="user-story">
-                    "Als onderzoeker wil ik toegang tot data en methodologische informatie voor mijn onderzoeksproject."
+                <div class="story-section">
+                    <div class="user-story">
+                        "Als dorpsondersteuner wil ik effectieve tools vinden om bewoners te helpen met digitale zorg."
+                    </div>
+                    <ul class="action-links">
+                        <li><a href="personas/dorpsondersteuner.html?tab=ondersteuningstools" class="action-link primary-action">Ondersteuningstools ontdekken</a></li>
+                    </ul>
                 </div>
-                <ul class="action-links">
-                    <li><a href="personas/onderzoeker.html?tab=data" class="action-link primary-action">Onderzoeksdata</a></li>
-                    <li><a href="personas/onderzoeker.html?tab=methodologie" class="action-link">Methodologische documentatie</a></li>
-                </ul>
+                
+                <div class="story-section">
+                    <div class="user-story">
+                        "Als dorpsondersteuner wil ik inzicht krijgen in de sociale kaart van de wijk."
+                    </div>
+                    <ul class="action-links">
+                        <li><a href="personas/dorpsondersteuner.html?tab=wijkkaart" class="action-link primary-action">Wijkkaart raadplegen</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-        
-        <!-- (Lokale) Overheid - NEW -->
+    </div>
+    
+    <!-- Remaining personas in a standard grid -->
+    <div class="persona-grid">
+        <!-- (Lokale) Overheid -->
         <div class="persona-card">
             <div class="card-header">
                 <div class="card-icon">
@@ -355,36 +382,7 @@
             </div>
         </div>
         
-        <!-- Dorpsondersteuner - NEW -->
-        <div class="persona-card">
-            <div class="card-header">
-                <div class="card-icon">
-                    <i class="fas fa-hands-helping"></i>
-                </div>
-                <h2 class="card-title">Dorpsondersteuner</h2>
-            </div>
-            <div class="card-content">
-                <div class="story-section">
-                    <div class="user-story">
-                        "Als dorpsondersteuner wil ik effectieve tools vinden om bewoners te helpen met digitale zorg."
-                    </div>
-                    <ul class="action-links">
-                        <li><a href="personas/dorpsondersteuner.html?tab=ondersteuningstools" class="action-link primary-action">Ondersteuningstools ontdekken</a></li>
-                    </ul>
-                </div>
-                
-                <div class="story-section">
-                    <div class="user-story">
-                        "Als dorpsondersteuner wil ik inzicht krijgen in de sociale kaart van de wijk."
-                    </div>
-                    <ul class="action-links">
-                        <li><a href="personas/dorpsondersteuner.html?tab=wijkkaart" class="action-link primary-action">Wijkkaart raadplegen</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Techneut - NEW -->
+        <!-- Techneut -->
         <div class="persona-card">
             <div class="card-header">
                 <div class="card-icon">
@@ -413,7 +411,7 @@
             </div>
         </div>
         
-        <!-- Leverancier - NEW -->
+        <!-- Leverancier -->
         <div class="persona-card">
             <div class="card-header">
                 <div class="card-icon">
@@ -439,6 +437,25 @@
                         <li><a href="personas/leverancier.html?tab=ondersteunen" class="action-link primary-action">Wijkinitiatieven ondersteunen</a></li>
                     </ul>
                 </div>
+            </div>
+        </div>
+        
+        <!-- Onderzoeker/Student moved to bottom -->
+        <div class="persona-card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-microscope"></i>
+                </div>
+                <h2 class="card-title">Onderzoeker / Student</h2>
+            </div>
+            <div class="card-content">
+                <div class="user-story">
+                    "Als onderzoeker wil ik toegang tot data en methodologische informatie voor mijn onderzoeksproject."
+                </div>
+                <ul class="action-links">
+                    <li><a href="personas/onderzoeker.html?tab=data" class="action-link primary-action">Onderzoeksdata</a></li>
+                    <li><a href="personas/onderzoeker.html?tab=methodologie" class="action-link">Methodologische documentatie</a></li>
+                </ul>
             </div>
         </div>
     </div>
