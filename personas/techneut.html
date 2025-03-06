@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voor Techneuten - Project Kennisportaal</title>
+    <style>
+        :root {
+            --primary-color: #159957;
+            --secondary-color: #155799;
+            --text-color: #606c71;
+            --link-color: #1e6bb8;
+            --border-color: #dce6f0;
+            --light-bg: #f3f6fa;
+            --card-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        /* Use Cayman theme font settings */
+        body {
+            font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            line-height: 1.5;
+            color: var(--text-color);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: normal;
+            color: #159957;
+        }
+        
+        .persona-header {
+            background-image: 
+                linear-gradient(120deg, rgba(21, 87, 153, 0.7), rgba(21, 153, 87, 0.7)), 
+                url('../assets/images/banner.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 3rem 1rem;
+            margin-bottom: 2rem;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        .persona-header h1 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .persona-title {
+            font-size: 2.25rem;
+            margin-bottom: 1rem;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .persona-nav {
+            background-color: var(--light-bg);
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .persona-nav a {
+            padding: 10px 20px;
+            background-color: white;
+            color: var(--link-color);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .persona-nav a:hover,
+        .persona-nav a.active {
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+        }
+        
+        .breadcrumb {
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .breadcrumb a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        main {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 20px;
+        }
+        
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        .feature-block {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .feature-block h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .feature-action {
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+            width: fit-content;
+            transition: background-color 0.2s;
+        }
+        
+        .feature-action:hover {
+            background-color: #107745;
+            text-decoration: none;
+        }
+        
+        .news-updates {
+            background-color: var(--light-bg);
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .news-updates h3 {
+            color: var(--secondary-color);
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .news-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .news-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .news-item h4 {
+            margin: 0 0 5px 0;
+            color: var(--secondary-color);
+        }
+        
+        .news-date {
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 5px;
+        }
+        
+        .contact-block {
+            background-color: var(--light-bg);
+            border-radius: 5px;
+            padding: 20px;
+        }
+        
+        .contact-block h3 {
+            color: var(--secondary-color);
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .persona-footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: #888;
+        }
+        
+        /* Specific styles for techneut page */
+        .architecture-diagram {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        
+        .tech-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            margin-bottom: 20px;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .tech-header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 15px;
+        }
+        
+        .tech-header h4 {
+            margin: 0;
+            color: white;
+        }
+        
+        .tech-content {
+            padding: 15px;
+        }
+        
+        .tech-footer {
+            background-color: var(--light-bg);
+            padding: 12px 15px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .code-block {
+            background-color: #f6f8fa;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            word-break: break-all;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+        
+        .standard-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .standard-table th, 
+        .standard-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .standard-table th {
+            background-color: var(--light-bg);
+            font-weight: bold;
+        }
+        
+        .standard-table tr:hover {
+            background-color: rgba(0,0,0,0.02);
+        }
+        
+        .api-section {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: var(--light-bg);
+            border-radius: 5px;
+            border-left: 4px solid var(--secondary-color);
+        }
+        
+        .api-section h5 {
+            margin-top: 0;
+            color: var(--secondary-color);
+        }
+        
+        /* Media queries for responsiveness */
+        @media (max-width: 768px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Header with persona title -->
+    <header class="persona-header">
+        <h1 class="persona-title">Voor Techneuten</h1>
+        <div class="subtitle">Technische documentatie, referentie-architectuur en open standaarden</div>
+    </header>
+    
+    <!-- Persona-specific navigation -->
+    <div class="persona-nav">
+        <a href="#architectuur" id="architectuur-tab" class="active">Referentie-architectuur</a>
+        <a href="#standaarden" id="standaarden-tab">Open Standaarden</a>
+        <a href="#api" id="api-tab">API-documentatie</a>
+        <a href="#integratie" id="integratie-tab">Integratiehandleiding</a>
+    </div>
+    
+    <!-- Breadcrumb for returning to main landing page -->
+    <div class="breadcrumb">
+        <a href="../index.html">Home</a> &gt; Voor Techneuten
+    </div>
+    
+    <main>
+        <div class="content">
+            <!-- Architectuur content section -->
+            <div id="architectuur-content" class="content-section">
+                <div class="feature-block">
+                    <h3>Referentie-architectuur voor wijkoplossingen</h3>
+                    <p>De referentie-architectuur vormt het fundament voor het ontwikkelen en integreren van digitale oplossingen in wijken. Deze architectuur zorgt voor standaardisatie, interoperabiliteit en herbruikbaarheid van componenten.</p>
+                    
+                    <h4>Architectuuroverzicht</h4>
+                    <p>De referentie-architectuur bestaat uit vier hoofdlagen:</p>
+                    <div class="tech-card">
+                        <div class="tech-header">
+                            <h4>Architectuurlagen</h4>
+                        </div>
+                        <div class="tech-content">
+                            <ol>
+                                <li><strong>Gebruikerslaag</strong> - Verschillende interfaces voor eindgebruikers (bewoners, zorgverleners, etc.)</li>
+                                <li><strong>Applicatielaag</strong> - Functionele modules en services die specifieke functionaliteiten leveren</li>
+                                <li><strong>Integratie- & Gegevenslaag</strong> - Zorgt voor gestandaardiseerde gegevensuitwisseling en dataopslag</li>
+                                <li><strong>Infrastructuurlaag</strong> - Hardware, netwerken en basisplatformen</li>
+                            </ol>
+                            <p>Doorsnijdend zijn de lagen voor beveiliging, privacy en toegangsbeheer die alle vier hoofdlagen omvatten.</p>
+                        </div>
+                        <div class="tech-footer">
+                            <a href="../architectuur.html">Volledige architectuurdocumentatie bekijken &raquo;</a>
+                        </div>
+                    </div>
+                    
+                    <h4>Architectuurdiagram</h4>
+                    <!-- Placeholder for an architecture diagram -->
+                    <div style="background-color: #f0f0f0; height: 300px; display: flex; align-items: center; justify-content: center; border-radius: 5px; margin: 20px 0;">
+                        <div style="text-align: center;">
+                            <i class="fas fa-project-diagram" style="font-size: 3rem; color: #155799; margin-bottom: 15px;"></i>
+                            <p>Architectuurdiagram (klik voor grotere weergave)</p>
+                        </div>
+                    </div>
+                    
+                    <h4>Architectuurprincipes</h4>
+                    <div class="tech-card">
+                        <div class="tech-content">
+                            <ul>
+                                <li><strong>Modulair ontwerp</strong> - Componenten kunnen onafhankelijk worden ontwikkeld, geïmplementeerd en vervangen</li>
+                                <li><strong>Interoperabiliteit</strong> - Systemen kunnen effectief gegevens uitwisselen en samenwerken</li>
+                                <li><strong>Open standaarden</strong> - Gebruik van publiekelijk beschikbare, breed gedragen standaarden</li>
+                                <li><strong>Privacy by design</strong> - Privacy-overwegingen zijn vanaf het begin geïntegreerd in het ontwerp</li>
+                                <li><strong>Toegankelijkheid</strong> - Oplossingen zijn toegankelijk voor alle gebruikers, inclusief gebruikers met beperkingen</li>
+                                <li><strong>Schaalbaarheid</strong> - Architectuur kan meegroeien met het aantal gebruikers en data</li>
+                                <li><strong>Beveiliging in elke laag</strong> - Beveiligingsmaatregelen zijn geïntegreerd in alle architectuurlagen</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <h4>Technische componenten</h4>
+                    <table class="standard-table">
+                        <thead>
+                            <tr>
+                                <th>Component</th>
+                                <th>Beschrijving</th>
+                                <th>Functie</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>API Gateway</td>
+                                <td>Centraal toegangspunt voor alle API-aanroepen</td>
+                                <td>Routing, beveiliging, throttling</td>
+                            </tr>
+                            <tr>
+                                <td>Identity Service</td>
+                                <td>Centrale identiteits- en toegangsbeheerservice</td>
+                                <td>Authenticatie, autorisatie</td>
+                            </tr>
+                            <tr>
+                                <td>Data Exchange</td>
+                                <td>Platform voor veilige gegevensuitwisseling</td>
+                                <td>Dataconversie, validatie</td>
+                            </tr>
+                            <tr>
+                                <td>Analytics Engine</td>
+                                <td>Verwerking en analyse van wijkgegevens</td>
+                                <td>Rapportage, dashboarding</td>
+                            </tr>
+                            <tr>
+                                <td>Notification Service</td>
+                                <td>Service voor het versturen van berichten en notificaties</td>
+                                <td>E-mail, SMS, app-notificaties</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <a href="#" class="feature-action">Technische specificaties downloaden</a>
+                </div>
+            </div>
+            
+            <!-- Standaarden content section -->
+            <div id="standaarden-content" class="content-section" style="display: none;">
+                <div class="feature-block">
+                    <h3>Open standaarden voor wijkoplossingen</h3>
+                    <p>Het gebruik van open standaarden is essentieel voor het creëren van interoperabele en toekomstbestendige digitale wijkoplossingen. Hieronder volgt een overzicht van de belangrijkste standaarden.</p>
+                    
+                    <h4>Gegevensuitwisseling in de zorg</h4>
+                    <div class="tech-card">
+                        <div class="tech-header">
+                            <h4>Zorg Informatie Bouwstenen (ZIB)</h4>
+                        </div>
+                        <div class="tech-content">
+                            <p>Zorg Informatie Bouwstenen (ZIB's) zijn gestandaardiseerde gegevensbouwstenen voor het vastleggen en uitwisselen van patiëntgegevens.</p>
+                            <p><strong>Voordelen:</strong></p>
+                            <ul>
+                                <li>Eenduidige registratie van zorggegevens</li>
+                                <li>Betere interoperabiliteit tussen zorgsystemen</li>
+                                <li>Verhoogde herbruikbaarheid van gegevens</li>
+                            </ul>
+                            <p><strong>Implementatie:</strong></p>
+                            <p>Alle nieuwe wijkoplossingen dienen ZIB's te ondersteunen voor relevante gegevensdomeinen. Voor bestaande systemen is een migratiepad beschikbaar.</p>
+                        </div>
+                        <div class="tech-footer">
+                            <a href="#">ZIB implementatiehandleiding &raquo;</a>
+                        </div>
+                    </div>
+                    
+                    <div class="tech-card">
+                        <div class="tech-header">
+                            <h4>FHIR (Fast Healthcare Interoperability Resources)</h4>
+                        </div>
+                        <div class="tech-content">
+                            <p>FHIR is een internationale standaard voor elektronische uitwisseling van zorginformatie.</p>
+                            <p><strong>Voordelen:</strong></p>
+                            <ul>
+                                <li>Moderne webtechnologie (REST, JSON, XML)</li>
+                                <li>Flexibel en eenvoudig te implementeren</li>
+                                <li>Breed gedragen internationale standaard</li>
+                            </ul>
+                            <p><strong>Implementatie:</strong></p>
+                            <p>Voor nieuwe wijkoplossingen wordt FHIR R4 aanbevolen als primaire standaard voor API-ontwikkeling. Voorbeeld van een FHIR resource:</p>
+                            <div class="code-block">{
+  "resourceType": "Patient",
+  "id": "example",
+  "name": [
+    {
+      "use": "official",
+      "family": "Jansen",
+      "given": ["Jan"]
+    }
+  ],
+  "gender": "male",
+  "birthDate": "1974-12-25"
+}</div>
+                        </div>
+                        <div class="tech-footer">
+                            <a href="#">FHIR implementatiegids &raquo;</a>
+                        </div>
+                    </div>
+                    
+                    <h4>Beveiliging en authenticatie</h4>
+                    <div class="tech-card">
+                        <div class="tech-header">
+                            <h4>OAuth 2.0 & OpenID Connect</h4>
+                        </div>
+                        <div class="tech-content">
+                            <p>OAuth 2.0 en OpenID Connect zijn de standaarden voor autorisatie en authenticatie in het wijkplatform.</p>
+                            <p><strong>Implementatie:</strong></p>
+                            <p>Alle digitale wijkoplossingen moeten deze standaarden implementeren voor een uniforme gebruikerservaring en veilige toegang. Dit betekent:</p>
+                            <ul>
+                                <li>Gebruik van JWT (JSON Web Tokens) voor beveiligde informatieoverdracht</li>
+                                <li>Ondersteuning voor verschillende authenticatieflows (Authorization Code, Client Credentials)</li>
+                                <li>Uitwisseling van gebruikerskenmerken via standaard claims</li>
+                            </ul>
+                        </div>
+                        <div class="tech-footer">
+                            <a href="#">Security implementatierichtlijnen &raquo;</a>
+                        </div>
+                    </div>
+                    
+                    <h4>Overige relevante standaarden</h4>
+                    <table class="standard-table">
+                        <thead>
+                            <tr>
+                                <th>Standaard</th>
+                                <th>Domein</th>
+                                <th>Toepassing</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>eOverdracht</td>
+                                <td>Zorgoverdracht</td>
+                                <td>Overdracht tussen zorginstellingen</td>
+                            </tr>
+                            <tr>
+                                <td>MedMij</td>
+                                <td>Persoonlijke gezondheidsomgeving</td>
+                                <td>Uitwisseling met PGO's</td>
+                            </tr>
+                            <tr>
+                                <td>SNOMED CT</td>
+                                <td>Terminologie</td>
+                                <td>Eenduidige medische terminologie</td>
+                            </tr>
+                            <tr>
+                                <td>HL7v3</td>
+                                <td>Berichten</td>
+                                <td>Legacy systemen</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <a href="#" class="feature-action">Standaardenhandboek downloaden</a>
+                </div>
+            </div>
+            
+            <!-- API content section -->
+            <div id="api-content" class="content-section" style="display: none;">
+                <div class="feature-block">
+                    <h3>API-documentatie</h3>
+                    <p>De Project Kennisportaal API stelt ontwikkelaars in staat om zorgapplicaties te integreren met het centrale platform. De API is RESTful en gebruikt JSON als data-uitwisselingsformaat.</p>
+                    
+                    <h4>API Endpoints</h4>
+                    <div class="api-section">
+                        <h5>Wijkmonitor Data</h5>
+                        <p><code>GET /api/v1/wijkmonitor/data</code></p>
+                        <p>Opvragen van geanonimiseerde aggregatiedata uit de wijkmonitor.</p>
+                        <p><strong>Parameters:</strong></p>
+                        <ul>
+                            <li><code>wijk</code> - Wijkcode (optioneel)</li>
+                            <li><code>periode</code> - Jaar en kwartaal (bijv. "2024Q1")</li>
+                            <li><code>categorie</code> - Datacategorie (optioneel)</li>
+                        </ul>
+                        <p><strong>Voorbeeld request:</strong></p>
+                        <div class="code-block">GET /api/v1/wijkmonitor/data?wijk=1234&periode=2024Q1 HTTP/1.1
+Host: api.projectkennisportaal.nl
+Authorization: Bearer {token}</div>
+                    </div>
+                    
+                    <div class="api-section">
+                        <h5>Zorgaanbod</h5>
+                        <p><code>GET /api/v1/zorgaanbod</code></p>
+                        <p>Opvragen van beschikbare zorgaanbod in een wijk.</p>
+                        <p><strong>Parameters:</strong></p>
+                        <ul>
+                            <li><code>wijk</code> - Wijkcode (verplicht)</li>
+                            <li><code>categorie</code> - Type zorgaanbod (optioneel)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="api-section">
+                        <h5>Digitale Hulpmiddelen</h5>
+                        <p><code>GET /api/v1/hulpmiddelen</code></p>
+                        <p>Opvragen van beschikbare digitale hulpmiddelen.</p>
+                        <p><strong>Parameters:</strong></p>
+                        <ul>
+                            <li><code>wijk</code> - Wijkcode (optioneel)</li>
+                            <li><code>type</code> - Type hulpmiddel (optioneel)</li>
+                            <li><code>doelgroep</code> - Doelgroep (optioneel)</li>
+                        </ul>
+                    </div>
+                    
+                    <h4>Authenticatie</h4>
+                    <p>De API gebruikt OAuth 2.0 voor authenticatie. Ontwikkelaars moeten eerst een account aanmaken en client credentials verkrijgen.</p>
+                    <div class="code-block">POST /oauth/token HTTP/1.1
+Host: api.projectkennisportaal.nl
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials&client_id={client_id}&client_secret={client_secret}</div>
+                    
+                    <h4>Foutafhandeling</h4>
+                    <p>De API gebruikt standaard HTTP statuscodes en retourneert gedetailleerde foutberichten in JSON-formaat:</p>
+                    <div class="code-block">{
+  "error": {
+    "code": "RESOURCE_NOT_FOUND",
+    "message": "De gevraagde resource kon niet worden gevonden",
+    "status": 404,
+    "details": {
+      "resource": "wijkmonitor/data",
+      "id": "1234"
+    }
+  }
+}</div>
+                    
+                    <a href="#" class="feature-action">Interactieve API-documentatie openen</a>
+                </div>
+            </div>
+            
+            <!-- Integratie content section -->
+            <div id="integratie-content" class="content-section" style="display: none;">
+                <div class="feature-block">
+                    <h3>Integratiehandleiding</h3>
+                    <p>Deze handleiding biedt stapsgewijs instructies voor het integreren van uw applicatie met het Project Kennisportaal ecosysteem.</p>
+                    
+                    <h4>Integratiemethoden</h4>
+                    <p>Er zijn verschillende manieren om te integreren met het platform:</p>
+                    <table class="standard-table">
+                        <thead>
+                            <tr>
+                                <th>Methode</th>
+                                <th>Gebruik</th>
+                                <th>Voordelen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>REST API</td>
+                                <td>Voor directe gegevensuitwisseling</td>
+                                <td>Eenvoudig, laagdrempelig, breed ondersteund</td>
+                            </tr>
+                            <tr>
+                                <td>WebHooks</td>
+                                <td>Voor event-gedreven koppelingen</td>
+                                <td>Real-time updates, efficiënt</td>
+                            </tr>
+                            <tr>
+                                <td>SMART on FHIR</td>
+                                <td>Voor zorgspecifieke toepassingen</td>
+                                <td>Standaard in zorgsector, contextrijke integratie</td>
+                            </tr>
+                            <tr>
+                                <td>Single Sign-On</td>
+                                <td>Voor naadloze gebruikerservaring</td>
+                                <td>Verbeterde gebruikerservaring, centraal identiteitsbeheer</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h4>Integratie stappenplan</h4>
+                    <ol>
+                        <li>
+                            <h5>Voorbereiding</h5>
+                            <p>Bepaal welke gegevens en functionaliteiten u wilt integreren en kies de geschikte integratiemethode.</p>
+                        </li>
+                        <li>
+                            <h5>Registratie</h5>
+                            <p>Registreer uw applicatie in het ontwikkelaarsportaal om API-credentials te krijgen.</p>
+                        </li>
+                        <li>
+                            <h5>Ontwikkeling</h5>
+                            <p>Ontwikkel de integratie volgens de technische specificaties en best practices.</p>
+                        </li>
+                        <li>
+                            <h5>Testen</h5>
+                            <p>Test de integratie in de testomgeving en valideer de functionaliteit.</p>
+                        </li>
+                        <li>
+                            <h5>Certificering</h5>
+                            <p>Doorloop het certificeringsproces om te garanderen dat uw integratie voldoet aan alle eisen.</p>
+                        </li>
+                        <li>
+                            <h5>Productie</h5>
+                            <p>Na goedkeuring kan de integratie in productie worden genomen.</p>
+                        </li>
+                    </ol>
+                    
+                    <h4>Code voorbeelden</h4>
+                    <div class="tech-card">
+                        <div class="tech-header">
+                            <h4>API-integratie (JavaScript)</h4>
+                        </div>
+                        <div class="tech-content">
+                            <div class="code-block">// Authenticatie verkrijgen
+async function getAuthToken() {
+    const response = await fetch('https://api.projectkennisportaal.nl/oauth/token', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: new URLSearchParams({
+            'grant_type': 'client_credentials',
+            'client_id': 'YOUR_CLIENT_ID
+            'client_id': 'YOUR_CLIENT_ID',
+            'client_secret': 'YOUR_CLIENT_SECRET'
+        })
+    });
+    
+    const data = await response.json();
+    return data.access_token;
+}
+
+// Wijkmonitor data ophalen
+async function getWijkmonitorData(wijk, periode) {
+    const token = await getAuthToken();
+    
+    const response = await fetch(`https://api.projectkennisportaal.nl/api/v1/wijkmonitor/data?wijk=${wijk}&periode=${periode}`, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Accept': 'application/json'
+        }
+    });
+    
+    if (!response.ok) {
+        const error = await response.json();
+        console.error('API Error:', error);
+        throw new Error('Failed to fetch wijkmonitor data');
+    }
+    
+    return await response.json();
+}
+
+// Voorbeeld van gebruik
+async function displayWijkmonitorData() {
+    try {
+        const data = await getWijkmonitorData('1234', '2024Q1');
+        console.log('Wijkmonitor data:', data);
+        
+        // Verwerk en toon de data
+        const resultsContainer = document.getElementById('results-container');
+        resultsContainer.innerHTML = JSON.stringify(data, null, 2);
+    } catch (error) {
+        console.error('Error displaying wijkmonitor data:', error);
+    }
+}</div>
+                        </div>
+                        <div class="tech-footer">
+                            <a href="#">Download volledige code voorbeelden &raquo;</a>
+                        </div>
+                    </div>
+                    
+                    <div class="tech-card">
+                        <div class="tech-header">
+                            <h4>FHIR-integratie (Python)</h4>
+                        </div>
+                        <div class="tech-content">
+                            <div class="code-block">import requests
+import json
+
+# FHIR server configuratie
+FHIR_BASE_URL = "https://fhir.projectkennisportaal.nl/fhir"
+AUTH_URL = "https://api.projectkennisportaal.nl/oauth/token"
+CLIENT_ID = "YOUR_CLIENT_ID"
+CLIENT_SECRET = "YOUR_CLIENT_SECRET"
+
+def get_auth_token():
+    """Verkrijg een OAuth2 token voor FHIR API-toegang"""
+    payload = {
+        'grant_type': 'client_credentials',
+        'client_id': CLIENT_ID,
+        'client_secret': CLIENT_SECRET
+    }
+    
+    response = requests.post(AUTH_URL, data=payload)
+    response.raise_for_status()
+    
+    return response.json()['access_token']
+
+def search_patients(search_params):
+    """Zoek patiënten met de gegeven parameters"""
+    token = get_auth_token()
+    
+    headers = {
+        'Authorization': f'Bearer {token}',
+        'Accept': 'application/fhir+json'
+    }
+    
+    response = requests.get(
+        f"{FHIR_BASE_URL}/Patient",
+        headers=headers,
+        params=search_params
+    )
+    
+    response.raise_for_status()
+    return response.json()
+
+# Voorbeeld gebruik
+if __name__ == "__main__":
+    # Zoek patiënten in een specifieke wijk
+    params = {
+        'address-postalcode': '1234AB',
+        '_count': 10
+    }
+    
+    try:
+        results = search_patients(params)
+        print(f"Aantal gevonden patiënten: {results.get('total', 0)}")
+        
+        # Verwerk de resultaten
+        for entry in results.get('entry', []):
+            patient = entry.get('resource', {})
+            name = patient.get('name', [{}])[0]
+            family = name.get('family', '')
+            given = ' '.join(name.get('given', []))
+            
+            print(f"Patiënt: {given} {family}")
+    
+    except Exception as e:
+        print(f"Error: {e}")</div>
+                        </div>
+                        <div class="tech-footer">
+                            <a href="#">Download FHIR voorbeeldcode &raquo;</a>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="feature-action">Integratiehandleiding downloaden</a>
+                </div>
+            </div>
+        </div>
+        
+        <aside>
+            <div class="news-updates">
+                <h3>Nieuws</h3>
+                <div class="news-item">
+                    <h4>Nieuwe API-versie (v1.2) gelanceerd</h4>
+                    <div class="news-date">28 februari 2025</div>
+                    <p>De nieuwe API-versie bevat verbeterde FHIR-ondersteuning en nieuwe endpoints voor de wijkmonitor.</p>
+                </div>
+                
+                <div class="news-item">
+                    <h4>Developer Meetup</h4>
+                    <div class="news-date">15 februari 2025</div>
+                    <p>Op 20 maart organiseren we een Developer Meetup voor ontwikkelaars die werken met de API.</p>
+                </div>
+                
+                <div class="news-item">
+                    <h4>Open Source Referentie-implementatie</h4>
+                    <div class="news-date">5 februari 2025</div>
+                    <p>De open source referentie-implementatie voor wijkoplossingen is nu beschikbaar op GitHub.</p>
+                </div>
+            </div>
+            
+            <div class="contact-block">
+                <h3>Ontwikkelaarsondersteuning</h3>
+                <p>Heeft u technische vragen over integratie of implementatie? Neem contact op met ons ontwikkelaarsteam:</p>
+                <p>Email: developers@projectkennisportaal.nl</p>
+                <p>Tel: 020-1234568</p>
+                <a href="../contact.html" class="feature-action">Contact opnemen</a>
+            </div>
+            
+            <div class="news-updates">
+                <h3>Technische Resources</h3>
+                <ul>
+                    <li><a href="#">GitHub Repository</a></li>
+                    <li><a href="#">Developer Portal</a></li>
+                    <li><a href="#">API Changelog</a></li>
+                    <li><a href="#">Swagger Documentatie</a></li>
+                    <li><a href="#">Sandboxomgeving</a></li>
+                </ul>
+            </div>
+        </aside>
+    </main>
+    
+    <footer class="persona-footer">
+        <p>© 2025 Project Kennisportaal - Alle rechten voorbehouden</p>
+        <p><a href="../index.html">Terug naar de hoofdpagina</a></p>
+    </footer>
+
+    <!-- JavaScript for tab navigation -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const tab = urlParams.get('tab');
+            
+            // Function to hide all content sections
+            function hideAllSections() {
+                document.querySelectorAll('.content-section').forEach(section => {
+                    section.style.display = 'none';
+                });
+            }
+            
+            // Function to show a specific content section
+            function showSection(sectionId) {
+                hideAllSections();
+                const section = document.getElementById(sectionId + '-content');
+                if (section) {
+                    section.style.display = 'block';
+                }
+            }
+            
+            // Add click events to all navigation tabs
+            document.querySelectorAll('.persona-nav a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all tabs
+                    document.querySelectorAll('.persona-nav a').forEach(tab => {
+                        tab.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Show the corresponding section
+                    const tabId = this.getAttribute('href').substring(1); // Remove the # character
+                    showSection(tabId);
+                });
+            });
+            
+            // If tab parameter exists, activate the appropriate tab
+            if (tab) {
+                // Remove active class from all tabs
+                document.querySelectorAll('.persona-nav a').forEach(link => {
+                    link.classList.remove('active');
+                });
+                
+                // Show the requested tab and its content
+                const tabElement = document.querySelector('#' + tab + '-tab');
+                if (tabElement) {
+                    tabElement.classList.add('active');
+                    showSection(tab);
+                }
+            } else {
+                // If no tab parameter, show the default tab (architectuur)
+                showSection('architectuur');
+            }
+        });
+    </script>
+</body>
+</html>
