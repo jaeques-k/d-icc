@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voor Leveranciers - Project Kennisportaal</title>
+    <style>
+        :root {
+            --primary-color: #159957;
+            --secondary-color: #155799;
+            --text-color: #606c71;
+            --link-color: #1e6bb8;
+            --border-color: #dce6f0;
+            --light-bg: #f3f6fa;
+            --card-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        /* Use Cayman theme font settings */
+        body {
+            font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            line-height: 1.5;
+            color: var(--text-color);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: normal;
+            color: #159957;
+        }
+        
+        .persona-header {
+            background-image: 
+                linear-gradient(120deg, rgba(21, 87, 153, 0.7), rgba(21, 153, 87, 0.7)), 
+                url('../assets/images/banner.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 3rem 1rem;
+            margin-bottom: 2rem;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        .persona-header h1 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .persona-title {
+            font-size: 2.25rem;
+            margin-bottom: 1rem;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .persona-nav {
+            background-color: var(--light-bg);
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .persona-nav a {
+            padding: 10px 20px;
+            background-color: white;
+            color: var(--link-color);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .persona-nav a:hover,
+        .persona-nav a.active {
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+        }
+        
+        .breadcrumb {
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .breadcrumb a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        main {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 20px;
+        }
+        
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        .feature-block {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .feature-block h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .feature-action {
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+            width: fit-content;
+            transition: background-color 0.2s;
+        }
+        
+        .feature-action:hover {
+            background-color: #107745;
+            text-decoration: none;
+        }
+        
+        .news-updates {
+            background-color: var(--light-bg);
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .news-updates h3 {
+            color: var(--secondary-color);
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .news-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .news-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .news-item h4 {
+            margin: 0 0 5px 0;
+            color: var(--secondary-color);
+        }
+        
+        .news-date {
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 5px;
+        }
+        
+        .contact-block {
+            background-color: var(--light-bg);
+            border-radius: 5px;
+            padding: 20px;
+        }
+        
+        .contact-block h3 {
+            color: var(--secondary-color);
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .persona-footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: #888;
+        }
+        
+        /* Specific styles for leverancier page */
+        .solution-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            margin-bottom: 20px;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .solution-header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 15px;
+        }
+        
+        .solution-header h4 {
+            margin: 0;
+            color: white;
+        }
+        
+        .solution-content {
+            padding: 15px;
+        }
+        
+        .solution-footer {
+            background-color: var(--light-bg);
+            padding: 12px 15px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .certification-levels {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .certification-level {
+            background-color: var(--light-bg);
+            padding: 15px;
+            border-radius: 5px;
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .certification-level h4 {
+            color: var(--secondary-color);
+            margin-top: 0;
+        }
+        
+        .check-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .check-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+        }
+        
+        .check-list li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .partner-logos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+        }
+        
+        .partner-logo {
+            width: 120px;
+            height: 80px;
+            background-color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            color: #555;
+        }
+        
+        .steps-list {
+            counter-reset: step-counter;
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .steps-list li {
+            position: relative;
+            padding-left: 50px;
+            margin-bottom: 20px;
+            counter-increment: step-counter;
+        }
+        
+        .steps-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 36px;
+            height: 36px;
+            background-color: var(--secondary-color);
+            color: white;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .pricing-table th, 
+        .pricing-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .pricing-table th {
+            background-color: var(--light-bg);
+            font-weight: bold;
+        }
+        
+        .pricing-table tr:hover {
+            background-color: rgba(0,0,0,0.02);
+        }
+        
+        /* Media queries for responsiveness */
+        @media (max-width: 768px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+            
+            .certification-levels {
+                flex-direction: column;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Header with persona title -->
+    <header class="persona-header">
+        <h1 class="persona-title">Voor Leveranciers</h1>
+        <div class="subtitle">Aansluiten bij het netwerk, ondersteunen van wijkinitiatieven en partnerschap</div>
+    </header>
+    
+    <!-- Persona-specific navigation -->
+    <div class="persona-nav">
+        <a href="#netwerk" id="netwerk-tab" class="active">Aansluiten bij Netwerk</a>
+        <a href="#ondersteunen" id="ondersteunen-tab">Wijkinitiatieven Ondersteunen</a>
+        <a href="#partners" id="partners-tab">Partnerschap</a>
+        <a href="#certificering" id="certificering-tab">Certificering</a>
+    </div>
+    
+    <!-- Breadcrumb for returning to main landing page -->
+    <div class="breadcrumb">
+        <a href="../index.html">Home</a> &gt; Voor Leveranciers
+    </div>
+    
+    <main>
+        <div class="content">
+            <!-- Netwerk content section -->
+            <div id="netwerk-content" class="content-section">
+                <div class="feature-block">
+                    <h3>Aansluiten bij het netwerk</h3>
+                    <p>Als leverancier van zorg- en welzijnsoplossingen kunt u aansluiten bij het Project Kennisportaal netwerk. Door aan te sluiten, maakt u uw oplossingen beschikbaar voor wijkinitiatieven en wordt u onderdeel van een groeiend ecosysteem voor digitale wijkzorg.</p>
+                    
+                    <h4>Voordelen van aansluiten</h4>
+                    <ul>
+                        <li><strong>Toegang tot gebruikers</strong> - Bereik lokale wijkinitiatieven en hun gebruikers</li>
+                        <li><strong>Interoperabiliteit</strong> - Sluit aan op een interoperabel platform met bestaande koppelingen</li>
+                        <li><strong>Zichtbaarheid</strong> - Profileer uw oplossing in de platformcatalogus</li>
+                        <li><strong>Innovatie</strong> - Werk samen met andere leveranciers aan innovatieve oplossingen</li>
+                        <li><strong>Implementatieondersteuning</strong> - Ontvang ondersteuning bij het implementeren van uw oplossing</li>
+                    </ul>
+                    
+                    <h4>Aansluitproces</h4>
+                    <ol class="steps-list">
+                        <li>
+                            <h5>Voorbereiden</h5>
+                            <p>Bereid uw oplossing voor op integratie met het platform. Gebruik de <a href="#architecture-tab">Referentie-architectuur</a> en <a href="#standaarden-tab">Open Standaarden</a> als leidraad.</p>
+                        </li>
+                        <li>
+                            <h5>Aanmelden</h5>
+                            <p>Meld uw oplossing aan via het leveranciersportaal. Geef informatie over uw oplossing, doelgroep en de wijze waarop u wilt aansluiten.</p>
+                        </li>
+                        <li>
+                            <h5>Testen en valideren</h5>
+                            <p>Test uw oplossing in de testomgeving en valideer de interoperabiliteit met het platform en andere oplossingen.</p>
+                        </li>
+                        <li>
+                            <h5>Certificeren</h5>
+                            <p>Doorloop het certificeringsproces om te garanderen dat uw oplossing voldoet aan alle technische en functionele eisen.</p>
+                        </li>
+                        <li>
+                            <h5>Publiceren</h5>
+                            <p>Na certificering wordt uw oplossing gepubliceerd in de catalogus en kunnen wijkinitiatieven uw oplossing gaan gebruiken.</p>
+                        </li>
+                    </ol>
+                    
+                    <div class="solution-card">
+                        <div class="solution-header">
+                            <h4>Technische aansluitmogelijkheden</h4>
+                        </div>
+                        <div class="solution-content">
+                            <p>Er zijn verschillende manieren om aan te sluiten op het platform:</p>
+                            <ul>
+                                <li><strong>API-integratie</strong> - Sluit aan via de REST API voor directe gegevensuitwisseling</li>
+                                <li><strong>FHIR-integratie</strong> - Gebruik FHIR voor zorgspecifieke gegevensuitwisseling</li>
+                                <li><strong>Single Sign-On</strong> - Integreer met het centrale identiteitsbeheer</li>
+                                <li><strong>App-integratie</strong> - Embed uw applicatie in het platform via widgets of iframes</li>
+                            </ul>
+                        </div>
+                        <div class="solution-footer">
+                            <a href="#">Technische integratiehandleiding downloaden &raquo;</a>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="feature-action">Aanmelden als leverancier</a>
+                </div>
+            </div>
+            
+            <!-- Ondersteunen content section -->
+            <div id="ondersteunen-content" class="content-section" style="display: none;">
+                <div class="feature-block">
+                    <h3>Wijkinitiatieven ondersteunen met uw oplossingen</h3>
+                    <p>Wijkinitiatieven zijn op zoek naar digitale oplossingen die hun specifieke uitdagingen kunnen adresseren. Als leverancier kunt u deze initiatieven ondersteunen door uw oplossingen aan te bieden en aan te passen aan hun behoeften.</p>
+                    
+                    <h4>Huidige behoeften van wijkinitiatieven</h4>
+                    <div class="solution-card">
+                        <div class="solution-header">
+                            <h4>Communicatie en coördinatie</h4>
+                        </div>
+                        <div class="solution-content">
+                            <p>Wijkinitiatieven hebben behoefte aan oplossingen voor effectieve communicatie en coördinatie tussen bewoners, zorgverleners en vrijwilligers.</p>
+                            <p><strong>Gewenste functionaliteiten:</strong></p>
+                            <ul>
+                                <li>Berichtenuitwisseling tussen verschillende betrokkenen</li>
+                                <li>Agendabeheer en afsprakenplanning</li>
+                                <li>Taakcoördinatie en toewijzing</li>
+                                <li>Statusupdates en notificaties</li>
+                            </ul>
+                        </div>
+                        <div class="solution-footer">
+                            <a href="#">Meer informatie over communicatiebehoeften &raquo;</a>
+                        </div>
+                    </div>
+                    
+                    <div class="solution-card">
+                        <div class="solution-header">
+                            <h4>Monitoring en ondersteuning op afstand</h4>
+                        </div>
+                        <div class="solution-content">
+                            <p>Er is een groeiende behoefte aan oplossingen voor monitoring en ondersteuning van kwetsbare bewoners op afstand.</p>
+                            <p><strong>Gewenste functionaliteiten:</strong></p>
+                            <ul>
+                                <li>Videoconsulten met zorgprofessionals</li>
+                                <li>Monitoring van gezondheidsparameters</li>
+                                <li>Medicatieherinneringen en -beheer</li>
+                                <li>Alarmering bij afwijkende waarden</li>
+                            </ul>
+                        </div>
+                        <div class="solution-footer">
+                            <a href="#">Meer informatie over monitoring &raquo;</a>
+                        </div>
+                    </div>
+                    
+                    <div class="solution-card">
+                        <div class="solution-header">
+                            <h4>Vraag en aanbod matching</h4>
+                        </div>
+                        <div class="solution-content">
+                            <p>Wijkinitiatieven zoeken naar effectieve manieren om hulpvragen van bewoners te matchen met beschikbare hulp en diensten.</p>
+                            <p><strong>Gewenste functionaliteiten:</strong></p>
+                            <ul>
+                                <li>Registratie van hulpvragen en -aanbod</li>
+                                <li>Intelligente matching-algoritmes</li>
+                                <li>Feedback- en waarderingssysteem</li>
+                                <li>Rapportage en analysetools</li>
+                            </ul>
+                        </div>
+                        <div class="solution-footer">
+                            <a href="#">Meer informatie over matching-behoeften &raquo;</a>
+                        </div>
+                    </div>
+                    
+                    <h4>Succesverhalen</h4>
+                    <div class="solution-card">
+                        <div class="solution-header">
+                            <h4>BuurtConnect implementatie in Rotterdam-Zuid</h4>
+                        </div>
+                        <div class="solution-content">
+                            <p>MediTech Solutions heeft hun BuurtConnect-platform geïmplementeerd in Rotterdam-Zuid, wat heeft geleid tot een aanzienlijke verbetering in de communicatie tussen bewoners en zorgverleners.</p>
+                            <p><strong>Resultaten:</strong></p>
+                            <ul>
+                                <li>35% meer onderlinge hulp tussen bewoners</li>
+                                <li>Afname van eenzaamheid met 24%</li>
+                                <li>Efficiëntere inzet van professionele zorg</li>
+                            </ul>
+                        </div>
+                        <div class="solution-footer">
+                            <a href="#">Lees het volledige succesverhaal &raquo;</a>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="feature-action">Contact opnemen voor ondersteuning van wijkinitiatieven</a>
+                </div>
+            </div>
+            
+            <!-- Partners content section -->
+            <div id="partners-content" class="content-section" style="display: none;">
+                <div class="feature-block">
+                    <h3>Partnerschap met Project Kennisportaal</h3>
+                    <p>Wij bieden verschillende partnerschapsprogramma's voor leveranciers die nauwer willen samenwerken met het Project Kennisportaal. Als partner krijgt u toegang tot extra voordelen en ondersteuning.</p>
+                    
+                    <h4>Partnerniveaus</h4>
+                    <div class="certification-levels">
+                        <div class="certification-level">
+                            <h4>Basis Partner</h4>
+                            <ul class="check-list">
+                                <li>Vermelding in de oplossingencatalogus</li>
+                                <li>Toegang tot basis ontwikkelaarsondersteuning</li>
+                                <li>Deelname aan partnerevenementen</li>
+                                <li>Gebruik van partner-badge</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="certification-level">
+                            <h4>Premium Partner</h4>
+                            <ul class="check-list">
+                                <li>Alle voordelen van Basis Partner</li>
+                                <li>Uitgebreide technische ondersteuning</li>
+                                <li>Prioritaire vermelding in de catalogus</li>
+                                <li>Co-marketingmogelijkheden</li>
+                                <li>Toegang tot beta-programma's</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="certification-level">
+                            <h4>Strategisch Partner</h4>
+                            <ul class="check-list">
+                                <li>Alle voordelen van Premium Partner</li>
+                                <li>Gezamenlijke productontwikkeling</li>
+                                <li>Dedicated accountmanager</li>
+                                <li>Invloed op roadmap</li>
+                                <li>Gezamenlijke pilotprojecten</li>
+                                <li>Toegang tot exclusieve events</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <h4>Huidige partners</h4>
+                    <p>Deze leveranciers zijn al partner van het Project Kennisportaal:</p>
+                    <div class="partner-logos">
+                        <div class="partner-logo">Zorg & Zo</div>
+                        <div class="partner-logo">DigiCare</div>
+                        <div class="partner-logo">HealthConnect</div>
+                        <div class="partner-logo">MediTech</div>
+                        <div class="partner-logo">WijkApp</div>
+                        <div class="partner-logo">ZorgBuddy</div>
+                    </div>
+                    
+                    <h4>Partner worden</h4>
+                    <p>Interesse in een partnerschap? Wij bieden verschillende pakketten aan:</p>
+                    <table class="pricing-table">
+                        <thead>
+                            <tr>
+                                <th>Pakket</th>
+                                <th>Jaarlijkse bijdrage</th>
+                                <th>Geschikt voor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Basis Partner</td>
+                                <td>€1.500 per jaar</td>
+                                <td>Startups en kleine leveranciers</td>
+                            </tr>
+                            <tr>
+                                <td>Premium Partner</td>
+                                <td>€5.000 per jaar</td>
+                                <td>Middelgrote leveranciers</td>
+                            </tr>
+                            <tr>
+                                <td>Strategisch Partner</td>
+                                <td>€15.000 per jaar</td>
+                                <td>Grote leveranciers met strategische focus</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <a href="#" class="feature-action">Partner worden</a>
+                </div>
+            </div>
+            
+            <!-- Certificering content section -->
+            <div id="certificering-content" class="content-section" style="display: none;">
+                <div class="feature-block">
+                    <h3>Certificering van oplossingen</h3>
+                    <p>Om de kwaliteit en betrouwbaarheid van oplossingen in het platform te waarborgen, bieden wij een certificeringsprogramma aan. Certificering geeft gebruikers vertrouwen in uw oplossing en verhoogt de zichtbaarheid in de catalogus.</p>
+                    
+                    <h4>Certificeringsniveaus</h4>
+                    <div class="certification-levels">
+                        <div class="certification-level">
+                            <h4>Niveau 1: Basis</h4>
+                            <p>De basisversie van uw oplossing is getest en voldoet aan de minimale vereisten.</p>
+                            <ul class="check-list">
+                                <li>Technische validatie van API-integratie</li>
+                                <li>Basisbeveiliging en privacy-checks</li>
+                                <li>Minimale gebruiksvriendelijkheid</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="certification-level">
+                            <h4>Niveau 2: Geavanceerd</h4>
+                            <p>Uw oplossing voldoet aan hogere standaarden en biedt uitgebreide functionaliteit.</p>
+                            <ul class="check-list">
+                                <li>Alle Niveau 1 vereisten</li>
+                                <li>Uitgebreide beveiligingsaudit</li>
+                                <li>Gebruikerstesten met doelgroep</li>
+                                <li>Voldoen aan toegankelijkheidseisen</li>
+                                <li>Integratie met meerdere API's</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="certification-level">
+                            <h4>Niveau 3: Premium</h4>
+                            <p>Het hoogste certificeringsniveau voor oplossingen die aan alle standaarden voldoen.</p>
+                            <ul class="check-list">
+                                <li>Alle Niveau 2 vereisten</li>
+                                <li>Penetratietesten</li>
+                                <li>Uitgebreide gebruikerstesten</li>
+                                <li>Volledige interoperabiliteit</li>
+                                <li>Schaalbaarheidstesten</li>
+                                <li>Beschikbaarheid van SLA's</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <h4>Certificeringsproces</h4>
+                    <ol class="steps-list">
+                        <li>
+                            <h5>Aanvraag indienen</h5>
+                            <p>Dien een certificeringsaanvraag in via het leveranciersportaal en geef aan welk niveau u wilt behalen.</p>
+                        </li>
+                        <li>
+                            <h5>Zelfassessment</h5>
+                            <p>Voer een zelfassessment uit aan de hand van de certificeringschecklist en verbeter uw oplossing waar nodig.</p>
+                        </li>
+                        <li>
+                            <h5>Documentatie aanleveren</h5>
+                            <p>Lever de vereiste documentatie aan, waaronder technische specificaties, beveiligingsbeleid en gebruikersdocumentatie.</p>
+                        </li>
+                        <li>
+                            <h5>Technische validatie</h5>
+                            <p>Ons testteam voert een technische validatie uit om te controleren of uw oplossing aan de vereisten voldoet.</p>
+                        </li>
+                        <li>
+                            <h5>Gebruikerstesten</h5>
+                            <p>Voor niveau 2 en 3 worden gebruikerstesten uitgevoerd met representatieve gebruikers uit de doelgroep.</p>
+                        </li>
+                        <li>
+                            <h5>Certificaat ontvangen</h5>
+                            <p>Na succesvolle afronding ontvangt u het certificaat en wordt uw oplossing als gecertificeerd gemarkeerd in de catalogus.</p>
+                        </li>
+                    </ol>
+                    
+                    <div class="solution-card">
+                        <div class="solution-header">
+                            <h4>Kosten certificering</h4>
+                        </div>
+                        <div class="solution-content">
+                            <table class="pricing-table">
+                                <thead>
+                                    <tr>
+                                        <th>Certificeringsniveau</th>
+                                        <th>Kosten</th>
+                                        <th>Doorlooptijd</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Niveau 1: Basis</td>
+                                        <td>€1.000</td>
+                                        <td>2-4 weken</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Niveau 2: Geavanceerd</td>
+                                        <td>€2.500</td>
+                                        <td>4-6 weken</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Niveau 3: Premium</td>
+                                        <td>€5.000</td>
+                                        <td>6-8 weken</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p><small>* Partners ontvangen korting op certificeringskosten: 10% voor Basis Partners, 20% voor Premium Partners en 30% voor Strategisch Partners.</small></p>
+                        </div>
+                        <div class="solution-footer">
+                            <a href="#">Certificeringsvereisten downloaden &raquo;</a>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="feature-action">Certificering aanvragen</a>
+                </div>
+            </div>
+        </div>
+        
+        <aside>
+            <div class="news-updates">
+                <h3>Leveranciersnieuws</h3>
+                <div class="news-item">
+                    <h4>Nieuwe certificeringseisen 2025</h4>
+                    <div class="news-date">1 maart 2025</div>
+                    <p>De certificeringseisen voor 2025 zijn gepubliceerd, met nieuwe vereisten op het gebied van privacy en interoperabiliteit.</p>
+                </div>
+                
+                <div class="news-item">
+                    <h4>Leverancierssymposium 2025</h4>
+                    <div class="news-date">15 februari 2025</div>
+                    <p>Op 15 april organiseren we het jaarlijkse leverancierssymposium. Meld u nu aan!</p>
+                </div>
+                
+                <div class="news-item">
+                    <h4>Platform-update v3.2</h4>
+                    <div class="news-date">5 februari 2025</div>
+                    <p>De nieuwste platformversie bevat verbeterde API's voor leveranciers. Lees de release notes.</p>
+                </div>
+            </div>
+            
+            <div class="contact-block">
+                <h3>Leveranciersondersteuning</h3>
+                <p>Heeft u vragen over aansluiten of certificering? Neem contact op met ons leveranciersteam:</p>
+                <p>Email: leveranciers@projectkennisportaal.nl</p>
+                <p>Tel: 020-1234569</p>
+                <a href="../contact.html" class="feature-action">Contact opnemen</a>
+            </div>
+            
+            <div class="news-updates">
+                <h3>Belangrijke datums</h3>
+                <div class="news-item">
+                    <h4>Leverancierssymposium</h4>
+                    <div class="news-date">15 april 2025</div>
+                </div>
+                
+                <div class="news-item">
+                    <h4>Partnermiddagen</h4>
+                    <div class="news-date">Elke eerste donderdag van de maand</div>
+                </div>
+                
+                <div class="news-item">
+                    <h4>Workshop API Integratie</h4>
+                    <div class="news-date">22 maart 2025</div>
+                </div>
+            </div>
+        </aside>
+    </main>
+    
+    <footer class="persona-footer">
+        <p>© 2025 Project Kennisportaal - Alle rechten voorbehouden</p>
+        <p><a href="../index.html">Terug naar de hoofdpagina</a></p>
+    </footer>
+
+    <!-- JavaScript for tab navigation -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const tab = urlParams.get('tab');
+            
+            // Function to hide all content sections
+            function hideAllSections() {
+                document.querySelectorAll('.content-section').forEach(section => {
+                    section.style.display = 'none';
+                });
+            }
+            
+            // Function to show a specific content section
+            function showSection(sectionId) {
+                hideAllSections();
+                const section = document.getElementById(sectionId + '-content');
+                if (section) {
+                    section.style.display = 'block';
+                }
+            }
+            
+            // Add click events to all navigation tabs
+            document.querySelectorAll('.persona-nav a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all tabs
+                    document.querySelectorAll('.persona-nav a').forEach(tab => {
+                        tab.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Show the corresponding section
+                    const tabId = this.getAttribute('href').substring(1); // Remove the # character
+                    showSection(tabId);
+                });
+            });
+            
+            // If tab parameter exists, activate the appropriate tab
+            if (tab) {
+                // Remove active class from all tabs
+                document.querySelectorAll('.persona-nav a').forEach(link => {
+                    link.classList.remove('active');
+                });
+                
+                // Show the requested tab and its content
+                const tabElement = document.querySelector('#' + tab + '-tab');
+                if (tabElement) {
+                    tabElement.classList.add('active');
+                    showSection(tab);
+                }
+            } else {
+                // If no tab parameter, show the default tab (netwerk)
+                showSection('netwerk');
+            }
+        });
+    </script>
+</body>
+</html>
