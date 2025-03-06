@@ -134,51 +134,18 @@
         .card-header {
             padding: 1.5rem;
             text-align: center;
-            position: relative;
-            height: 180px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-        
-        .card-header:before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
             background-image: linear-gradient(120deg, var(--secondary-color), var(--primary-color));
-            opacity: 0.8;
-            z-index: 1;
+            color: white;
         }
         
         .card-header h2 {
             color: white;
             margin-top: 0;
-            position: relative;
-            z-index: 2;
-        }
-        
-        /* Styles for persona images as backgrounds */
-        .persona-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 0;
         }
         
         .card-icon {
             font-size: 3rem;
             margin-bottom: 1rem;
-            position: relative;
-            z-index: 2;
-            color: white;
         }
         
         .card-title {
@@ -282,10 +249,9 @@
     </div>
     
     <div class="persona-grid">
-        <!-- Wijkbewoner with revised user stories and image -->
+        <!-- Wijkbewoner with existing user stories -->
         <div class="persona-card">
             <div class="card-header">
-                <img src="assets/images/wijkbewoner.jpg" alt="Wijkbewoner" class="persona-image">
                 <div class="card-icon">
                     <i class="fas fa-home"></i>
                 </div>
@@ -312,10 +278,9 @@
             </div>
         </div>
         
-        <!-- Wijkinitiatief with image -->
+        <!-- Wijkinitiatief with existing user stories -->
         <div class="persona-card">
             <div class="card-header">
-                <img src="assets/images/wijkinitiatief.jpg" alt="Wijkinitiatief" class="persona-image">
                 <div class="card-icon">
                     <i class="fas fa-users"></i>
                 </div>
@@ -342,30 +307,9 @@
             </div>
         </div>
         
-        <!-- Project implementator with image -->
+        <!-- Onderzoeker/Student with existing user stories -->
         <div class="persona-card">
             <div class="card-header">
-                <img src="assets/images/implementator.jpg" alt="Project Implementator" class="persona-image">
-                <div class="card-icon">
-                    <i class="fas fa-tasks"></i>
-                </div>
-                <h2 class="card-title">Project Implementator</h2>
-            </div>
-            <div class="card-content">
-                <div class="user-story">
-                    "Als project implementator wil ik concrete stappen vinden om het project succesvol uit te rollen."
-                </div>
-                <ul class="action-links">
-                    <li><a href="personas/implementator.html?tab=stappenplan" class="action-link primary-action">Implementatie stappenplan</a></li>
-                    <li><a href="personas/implementator.html?tab=architectuur" class="action-link">Referentie-architectuur</a></li>
-                </ul>
-            </div>
-        </div>
-        
-        <!-- Onderzoeker/Student with image -->
-        <div class="persona-card">
-            <div class="card-header">
-                <img src="assets/images/onderzoeker.jpg" alt="Onderzoeker / Student" class="persona-image">
                 <div class="card-icon">
                     <i class="fas fa-microscope"></i>
                 </div>
@@ -379,6 +323,122 @@
                     <li><a href="personas/onderzoeker.html?tab=data" class="action-link primary-action">Onderzoeksdata</a></li>
                     <li><a href="personas/onderzoeker.html?tab=methodologie" class="action-link">Methodologische documentatie</a></li>
                 </ul>
+            </div>
+        </div>
+        
+        <!-- (Lokale) Overheid - NEW -->
+        <div class="persona-card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-landmark"></i>
+                </div>
+                <h2 class="card-title">(Lokale) Overheid</h2>
+            </div>
+            <div class="card-content">
+                <div class="story-section">
+                    <div class="user-story">
+                        "Als lokale overheid wil ik inzicht krijgen in effectieve beleidskaders voor digitale zorg in de wijk."
+                    </div>
+                    <ul class="action-links">
+                        <li><a href="personas/overheid.html?tab=beleidskaders" class="action-link primary-action">Beleidskaders bekijken</a></li>
+                    </ul>
+                </div>
+                
+                <div class="story-section">
+                    <div class="user-story">
+                        "Als lokale overheid wil ik leren van succesvolle implementaties in andere gemeenten."
+                    </div>
+                    <ul class="action-links">
+                        <li><a href="personas/overheid.html?tab=voorbeelden" class="action-link primary-action">Voorbeelden verkennen</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Dorpsondersteuner - NEW -->
+        <div class="persona-card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-hands-helping"></i>
+                </div>
+                <h2 class="card-title">Dorpsondersteuner</h2>
+            </div>
+            <div class="card-content">
+                <div class="story-section">
+                    <div class="user-story">
+                        "Als dorpsondersteuner wil ik effectieve tools vinden om bewoners te helpen met digitale zorg."
+                    </div>
+                    <ul class="action-links">
+                        <li><a href="personas/dorpsondersteuner.html?tab=ondersteuningstools" class="action-link primary-action">Ondersteuningstools ontdekken</a></li>
+                    </ul>
+                </div>
+                
+                <div class="story-section">
+                    <div class="user-story">
+                        "Als dorpsondersteuner wil ik inzicht krijgen in de sociale kaart van de wijk."
+                    </div>
+                    <ul class="action-links">
+                        <li><a href="personas/dorpsondersteuner.html?tab=wijkkaart" class="action-link primary-action">Wijkkaart raadplegen</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Techneut - NEW -->
+        <div class="persona-card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h2 class="card-title">Techneut</h2>
+            </div>
+            <div class="card-content">
+                <div class="story-section">
+                    <div class="user-story">
+                        "Als techneut wil ik de referentie-architectuur begrijpen om oplossingen goed te integreren."
+                    </div>
+                    <ul class="action-links">
+                        <li><a href="personas/techneut.html?tab=architectuur" class="action-link primary-action">Referentie-architectuur bekijken</a></li>
+                    </ul>
+                </div>
+                
+                <div class="story-section">
+                    <div class="user-story">
+                        "Als techneut wil ik open standaarden implementeren in bestaande wijkinitiatieven."
+                    </div>
+                    <ul class="action-links">
+                        <li><a href="personas/techneut.html?tab=standaarden" class="action-link primary-action">Open standaarden toepassen</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Leverancier - NEW -->
+        <div class="persona-card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-building"></i>
+                </div>
+                <h2 class="card-title">Leverancier</h2>
+            </div>
+            <div class="card-content">
+                <div class="story-section">
+                    <div class="user-story">
+                        "Als leverancier wil ik aansluiten bij het netwerk van wijkoplossingen."
+                    </div>
+                    <ul class="action-links">
+                        <li><a href="personas/leverancier.html?tab=netwerk" class="action-link primary-action">Aansluiten bij netwerk</a></li>
+                    </ul>
+                </div>
+                
+                <div class="story-section">
+                    <div class="user-story">
+                        "Als leverancier wil ik wijkinitiatieven ondersteunen met mijn oplossingen."
+                    </div>
+                    <ul class="action-links">
+                        <li><a href="personas/leverancier.html?tab=ondersteunen" class="action-link primary-action">Wijkinitiatieven ondersteunen</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
