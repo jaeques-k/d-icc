@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voor Wijkinitiatieven - Project Kennisportaal</title>
+    <style>
+        :root {
+            --primary-color: #159957;
+            --secondary-color: #155799;
+            --text-color: #606c71;
+            --link-color: #1e6bb8;
+            --border-color: #dce6f0;
+            --light-bg: #f3f6fa;
+            --card-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        /* Use Cayman theme font settings */
+        body {
+            font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            line-height: 1.5;
+            color: var(--text-color);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: normal;
+            color: #159957;
+        }
+        
+        .persona-header {
+            background-image: 
+                linear-gradient(120deg, rgba(21, 87, 153, 0.7), rgba(21, 153, 87, 0.7)), 
+                url('../assets/images/banner.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 3rem 1rem;
+            margin-bottom: 2rem;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        .persona-header h1 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .persona-title {
+            font-size: 2.25rem;
+            margin-bottom: 1rem;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .persona-nav {
+            background-color: var(--light-bg);
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .persona-nav a {
+            padding: 10px 20px;
+            background-color: white;
+            color: var(--link-color);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .persona-nav a:hover,
+        .persona-nav a.active {
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+        }
+        
+        .breadcrumb {
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .breadcrumb a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        main {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 20px;
+        }
+        
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        .feature-block {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .feature-block h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .feature-action {
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+            width: fit-content;
+            transition: background-color 0.2s;
+        }
+        
+        .feature-action:hover {
+            background-color: #107745;
+            text-decoration: none;
+        }
+        
+        .news-updates {
+            background-color: var(--light-bg);
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .news-updates h3 {
+            color: var(--secondary-color);
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .news-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .news-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .news-item h4 {
+            margin: 0 0 5px 0;
+            color: var(--secondary-color);
+        }
+        
+        .news-date {
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 5px;
+        }
+        
+        .contact-block {
+            background-color: var(--light-bg);
+            border-radius: 5px;
+            padding: 20px;
+        }
+        
+        .contact-block h3 {
+            color: var(--secondary-color);
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .persona-footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: #888;
+        }
+        
+        /* Specific styles for wijkinitiatief page */
+        .best-practice-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            margin-bottom: 20px;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .practice-header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 15px;
+        }
+        
+        .practice-header h4 {
+            margin: 0;
+            color: white;
+        }
+        
+        .practice-content {
+            padding: 15px;
+        }
+        
+        .practice-footer {
+            background-color: var(--light-bg);
+            padding: 12px 15px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .implementation-steps {
+            counter-reset: step-counter;
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .implementation-steps li {
+            position: relative;
+            padding-left: 50px;
+            margin-bottom: 20px;
+            counter-increment: step-counter;
+        }
+        
+        .implementation-steps li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 36px;
+            height: 36px;
+            background-color: var(--secondary-color);
+            color: white;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        /* Media queries for responsiveness */
+        @media (max-width: 768px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Header with persona title -->
+    <header class="persona-header">
+        <h1 class="persona-title">Voor Wijkinitiatieven</h1>
+        <div class="subtitle">Best practices en implementatiehandleidingen voor lokale initiatieven</div>
+    </header>
+    
+    <!-- Persona-specific navigation -->
+    <div class="persona-nav">
+        <a href="#best-practices" id="best-practices-tab" class="active">Best Practices</a>
+        <a href="#implementatie" id="implementatie-tab">Implementatiehandleiding</a>
+        <a href="#subsidies" id="subsidies-tab">Subsidiemogelijkheden</a>
+        <a href="#netwerk" id="netwerk-tab">Netwerk</a>
+    </div>
+    
+    <!-- Breadcrumb for returning to main landing page -->
+    <div class="breadcrumb">
+        <a href="../index.html">Home</a> &gt; Voor Wijkinitiatieven
+    </div>
+    
+    <main>
+        <div class="content">
+            <!-- Best Practices content section -->
+            <div id="best-practices-content" class="content-section">
+                <div class="feature-block">
+                    <h3>Best practices voor wijkinitiatieven</h3>
+                    <p>Ontdek succesvolle aanpakken van andere wijkinitiatieven voor het implementeren van digitale zorgoplossingen. Deze best practices kunnen u helpen om uw eigen initiatief te verbeteren of nieuwe ideeën op te doen.</p>
+                    
+                    <div class="best-practice-card">
+                        <div class="practice-header">
+                            <h4>Buurtverbinder App in Amsterdam-West</h4>
+                        </div>
+                        <div class="practice-content">
+                            <p>In Amsterdam-West is een succesvol platform opgezet dat buurtbewoners helpt om hulpvragen en -aanbod bij elkaar te brengen. Via een laagdrempelige app kunnen buurtbewoners aangeven waarbij ze hulp nodig hebben of juist hulp kunnen bieden.</p>
+                            <p><strong>Resultaten:</strong> 75% van de hulpvragen wordt binnen 48 uur beantwoord. Meer dan 500 buurtbewoners maken actief gebruik van het platform.</p>
+                        </div>
+                        <div class="practice-footer">
+                            <a href="#">Lees de volledige case study &raquo;</a>
+                        </div>
+                    </div>
+                    
+                    <div class="best-practice-card">
+                        <div class="practice-header">
+                            <h4>Digitale Huiskamer in Groningen</h4>
+                        </div>
+                        <div class="practice-content">
+                            <p>In Groningen is een 'Digitale Huiskamer' opgezet waar ouderen terecht kunnen voor ondersteuning bij het gebruik van digitale middelen. Vrijwilligers bieden één-op-één begeleiding en er worden regelmatig workshops georganiseerd.</p>
+                            <p><strong>Resultaten:</strong> Meer dan 200 ouderen hebben geleerd om te videobellen met familie. 80% van de deelnemers geeft aan zich minder eenzaam te voelen.</p>
+                        </div>
+                        <div class="practice-footer">
+                            <a href="#">Lees de volledige case study &raquo;</a>
+                        </div>
+                    </div>
+                    
+                    <div class="best-practice-card">
+                        <div class="practice-header">
+                            <h4>Gezondheidsmonitor Eindhoven-Noord</h4>
+                        </div>
+                        <div class="practice-content">
+                            <p>In Eindhoven-Noord is een lokale gezondheidsmonitor opgezet die bewoners helpt om hun gezondheid te monitoren en te verbeteren. De monitor wordt ondersteund door lokale huisartsen en fysiotherapeuten.</p>
+                            <p><strong>Resultaten:</strong> 30% minder no-shows bij huisartsafspraken. Verbeterde gezondheidsuitkomsten voor chronische patiënten.</p>
+                        </div>
+                        <div class="practice-footer">
+                            <a href="#">Lees de volledige case study &raquo;</a>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="feature-action">Alle best practices bekijken</a>
+                </div>
+            </div>
+            
+            <!-- Implementatie content section -->
+            <div id="implementatie-content" class="content-section" style="display: none;">
+                <div class="feature-block">
+                    <h3>Implementatiehandleiding voor digitale wijkoplossingen</h3>
+                    <p>Deze handleiding biedt een stapsgewijze aanpak voor het implementeren van digitale oplossingen in uw wijk. Volg deze stappen voor een succesvolle uitrol van uw initiatief.</p>
+                    
+                    <h4>Stapsgewijs implementeren</h4>
+                    <ul class="implementation-steps">
+                        <li>
+                            <h5>Behoefteanalyse</h5>
+                            <p>Breng de behoeften van de buurtbewoners in kaart door middel van interviews, enquêtes of buurtbijeenkomsten. Identificeer de belangrijkste uitdagingen die met digitale middelen kunnen worden aangepakt.</p>
+                        </li>
+                        <li>
+                            <h5>Stakeholders betrekken</h5>
+                            <p>Identificeer en betrek alle relevante partijen: buurtbewoners, zorgverleners, welzijnsorganisaties, gemeente en eventuele financiers.</p>
+                        </li>
+                        <li>
+                            <h5>Oplossing selecteren</h5>
+                            <p>Kies een passende digitale oplossing die aansluit bij de behoeften van de wijk. Overweeg bestaande tools of ontwikkel een oplossing op maat.</p>
+                        </li>
+                        <li>
+                            <h5>Pilotfase</h5>
+                            <p>Start met een kleine groep gebruikers om de oplossing te testen en feedback te verzamelen. Pas de oplossing aan op basis van deze feedback.</p>
+                        </li>
+                        <li>
+                            <h5>Implementatie</h5>
+                            <p>Rol de oplossing uit naar de gehele doelgroep. Zorg voor adequate ondersteuning en training voor gebruikers.</p>
+                        </li>
+                        <li>
+                            <h5>Evaluatie en verbetering</h5>
+                            <p>Monitor het gebruik en effect van de oplossing. Verzamel feedback en verbeter de oplossing continu.</p>
+                        </li>
+                    </ul>
+                    
+                    <a href="#" class="feature-action">Download volledige implementatiehandleiding</a>
+                </div>
+            </div>
+            
+            <!-- Subsidies content section -->
+            <div id="subsidies-content" class="content-section" style="display: none;">
+                <div class="feature-block">
+                    <h3>Subsidiemogelijkheden voor wijkinitiatieven</h3>
+                    <p>Er zijn verschillende subsidiemogelijkheden beschikbaar voor wijkinitiatieven die zich richten op digitale zorgoplossingen. Hieronder vindt u een overzicht van actuele subsidieregelingen.</p>
+                    
+                    <div class="best-practice-card">
+                        <div class="practice-header">
+                            <h4>ZonMw - Programma Digitale Zorg</h4>
+                        </div>
+                        <div class="practice-content">
+                            <p>Subsidie voor innovatieve projecten die bijdragen aan de ontwikkeling en implementatie van digitale zorgoplossingen.</p>
+                            <p><strong>Subsidiebedrag:</strong> €50.000 - €200.000</p>
+                            <p><strong>Deadline aanvraag:</strong> 30 april 2025</p>
+                        </div>
+                        <div class="practice-footer">
+                            <a href="#">Meer informatie &raquo;</a>
+                        </div>
+                    </div>
+                    
+                    <div class="best-practice-card">
+                        <div class="practice-header">
+                            <h4>VWS - Stimuleringsregeling E-health Thuis</h4>
+                        </div>
+                        <div class="practice-content">
+                            <p>Subsidie voor het opschalen en borgen van het gebruik van bestaande e-health toepassingen bij ouderen en mensen met een chronische ziekte of beperking.</p>
+                            <p><strong>Subsidiebedrag:</strong> Tot €75.000</p>
+                            <p><strong>Deadline aanvraag:</strong> Doorlopend tot 31 december 2025</p>
+                        </div>
+                        <div class="practice-footer">
+                            <a href="#">Meer informatie &raquo;</a>
+                        </div>
+                    </div>
+                    
+                    <div class="best-practice-card">
+                        <div class="practice-header">
+                            <h4>Gemeente Subsidieregelingen</h4>
+                        </div>
+                        <div class="practice-content">
+                            <p>Veel gemeenten hebben lokale subsidieregelingen voor buurtinitiatieven. Neem contact op met uw gemeente voor meer informatie over de mogelijkheden.</p>
+                        </div>
+                        <div class="practice-footer">
+                            <a href="#">Zoek uw gemeente &raquo;</a>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="feature-action">Alle subsidiemogelijkheden bekijken</a>
+                </div>
+            </div>
+            
+            <!-- Netwerk content section -->
+            <div id="netwerk-content" class="content-section" style="display: none;">
+                <div class="feature-block">
+                    <h3>Netwerk voor wijkinitiatieven</h3>
+                    <p>Maak deel uit van een netwerk van wijkinitiatieven die zich bezighouden met digitale zorgoplossingen. Deel ervaringen, leer van elkaar en werk samen aan nieuwe oplossingen.</p>
+                    
+                    <h4>Aankomende netwerkbijeenkomsten</h4>
+                    <div class="best-practice-card">
+                        <div class="practice-header">
+                            <h4>Kennisuitwisseling Digitale Wijkzorg</h4>
+                        </div>
+                        <div class="practice-content">
+                            <p><strong>Datum:</strong> 25 maart 2025</p>
+                            <p><strong>Locatie:</strong> Congrescentrum Utrecht</p>
+                            <p><strong>Thema:</strong> Dataveiligheid en privacy bij digitale wijkinitiatieven</p>
+                        </div>
+                        <div class="practice-footer">
+                            <a href="#">Aanmelden &raquo;</a>
+                        </div>
+                    </div>
+                    
+                    <h4>Online community</h4>
+                    <p>Word lid van onze online community waar wijkinitiatieven kennis en ervaringen delen. Stel vragen, deel successen en leer van uitdagingen van anderen.</p>
+                    
+                    <a href="#" class="feature-action">Lid worden van de community</a>
+                </div>
+            </div>
+        </div>
+        
+        <aside>
+            <div class="news-updates">
+                <h3>Nieuws</h3>
+                <div class="news-item">
+                    <h4>Nieuwe subsidieregeling digitale wijkoplossingen</h4>
+                    <div class="news-date">22 februari 2025</div>
+                    <p>Het ministerie van VWS stelt €5 miljoen beschikbaar voor digitale oplossingen in wijken.</p>
+                </div>
+                
+                <div class="news-item">
+                    <h4>Succesvol wijkinitiatief wint innovatieprijs</h4>
+                    <div class="news-date">18 februari 2025</div>
+                    <p>Het digitale wijkinitiatief 'Buurtverbinder' uit Amsterdam heeft de nationale innovatieprijs gewonnen.</p>
+                </div>
+                
+                <div class="news-item">
+                    <h4>Webinar over privacywetgeving</h4>
+                    <div class="news-date">10 februari 2025</div>
+                    <p>Op 5 maart wordt een webinar georganiseerd over privacywetgeving voor wijkinitiatieven.</p>
+                </div>
+            </div>
+            
+            <div class="contact-block">
+                <h3>Hulp nodig?</h3>
+                <p>Heeft u vragen over het opzetten van een wijkinitiatief? Neem contact met ons op:</p>
+                <p>Email: initiatieven@projectnaam.nl</p>
+                <p>Tel: 020-1234567</p>
+                <a href="../contact.html" class="feature-action">Contact opnemen</a>
+            </div>
+        </aside>
+    </main>
+    
+    <footer class="persona-footer">
+        <p>© 2025 Project Kennisportaal - Alle rechten voorbehouden</p>
+        <p><a href="../index.html">Terug naar de hoofdpagina</a></p>
+    </footer>
+
+    <!-- JavaScript for tab navigation -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const tab = urlParams.get('tab');
+            
+            // Function to hide all content sections
+            function hideAllSections() {
+                document.querySelectorAll('.content-section').forEach(section => {
+                    section.style.display = 'none';
+                });
+            }
+            
+            // Function to show a specific content section
+            function showSection(sectionId) {
+                hideAllSections();
+                const section = document.getElementById(sectionId + '-content');
+                if (section) {
+                    section.style.display = 'block';
+                }
+            }
+            
+            // Add click events to all navigation tabs
+            document.querySelectorAll('.persona-nav a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all tabs
+                    document.querySelectorAll('.persona-nav a').forEach(tab => {
+                        tab.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Show the corresponding section
+                    const tabId = this.getAttribute('href').substring(1); // Remove the # character
+                    showSection(tabId);
+                });
+            });
+            
+            // If tab parameter exists, activate the appropriate tab
+            if (tab) {
+                // Remove active class from all tabs
+                document.querySelectorAll('.persona-nav a').forEach(link => {
+                    link.classList.remove('active');
+                });
+                
+                // Show the requested tab and its content
+                const tabElement = document.querySelector('#' + tab + '-tab');
+                if (tabElement) {
+                    tabElement.classList.add('active');
+                    showSection(tab);
+                }
+            } else {
+                // If no tab parameter, show the default tab (best-practices)
+                showSection('best-practices');
+            }
+        });
+    </script>
+</body>
+</html>
