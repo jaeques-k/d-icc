@@ -274,6 +274,150 @@
             border-top: 1px solid var(--border-color);
             color: #888;
         }
+
+        /* Main content section styles */
+        .main-content-section {
+        display: none;
+        margin-bottom: 2rem;
+    }
+    
+    .main-content-section.active {
+        display: block;
+    }
+    
+    .content-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 1rem;
+    }
+    
+    /* Manifest styles */
+    .manifest-principles {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+        margin: 2rem 0;
+    }
+    
+    .principle {
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: var(--card-shadow);
+        padding: 1.5rem;
+        border-top: 4px solid var(--primary-color);
+    }
+    
+    .principle h3 {
+        color: var(--primary-color);
+        margin-top: 0;
+    }
+    
+    .manifest-endorsement {
+        background-color: var(--light-bg);
+        padding: 2rem;
+        text-align: center;
+        border-radius: 5px;
+        margin-top: 2rem;
+    }
+    
+    /* FAQ styles */
+    .faq-section {
+        margin-bottom: 2rem;
+    }
+    
+    .faq-item {
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    .faq-item:last-child {
+        border-bottom: none;
+    }
+    
+    .faq-item h4 {
+        color: var(--secondary-color);
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Contact styles */
+    .contact-grid {
+        display: grid;
+        grid-template-columns: 3fr 2fr;
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+    
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+    
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        padding: 0.8rem;
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+    }
+    
+    .social-icons {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+    
+    .social-icons a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background-color: var(--light-bg);
+        color: var(--secondary-color);
+        border-radius: 50%;
+        font-size: 1.2rem;
+        transition: var(--transition);
+    }
+    
+    .social-icons a:hover {
+        background-color: var(--secondary-color);
+        color: white;
+    }
+    
+    /* Partner styles */
+    .partners-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+    
+    .partner-logo {
+        height: 80px;
+        background-color: var(--light-bg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 5px;
+    }
+    
+    /* Media queries for responsiveness */
+    @media (max-width: 768px) {
+        .manifest-principles {
+            grid-template-columns: 1fr;
+        }
+        
+        .contact-grid {
+            grid-template-columns: 1fr;
+        }
+    }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
@@ -285,12 +429,14 @@
     
     <!-- Main site navigation -->
     <div class="main-nav">
-        <a href="#" class="active">Home</a>
-        <a href="manifest.html">Over het project</a>
-        <a href="manifest.html">Manifest</a>
-        <a href="faq.html">Veelgestelde vragen</a>
-        <a href="contact.html">Contact</a>
+        <a href="#home" id="home-tab" class="main-tab active">Home</a>
+        <a href="#over" id="over-tab" class="main-tab">Over het project</a>
+        <a href="#manifest" id="manifest-tab" class="main-tab">Manifest</a>
+        <a href="#faq" id="faq-tab" class="main-tab">Veelgestelde vragen</a>
+        <a href="#contact" id="contact-tab" class="main-tab">Contact</a>
     </div>
+
+ <div id="home-content" class="main-content-section active"></div>
     
     <div class="intro">
         <p>Welkom bij het Kennisportaal. Kies hieronder de rol die het beste bij u past om snel de relevante informatie te vinden.</p>
@@ -501,9 +647,275 @@
             </div>
         </div>
     </div>
+    <div id="over-content" class="main-content-section">
+        <div class="content-container">
+            <h2>Over het project</h2>
+            <p>Het Project Kennisportaal is opgezet om kennis en ervaringen rondom digitale zorgoplossingen in de wijk te verzamelen en te delen. Het doel is om wijkinitiatieven, gemeenten, zorgprofessionals en andere betrokkenen te ondersteunen bij het implementeren van effectieve digitale zorgoplossingen.</p>
+            
+            <h3>Doelstellingen</h3>
+            <ul>
+                <li>Kennis en ervaringen toegankelijk maken voor alle betrokkenen</li>
+                <li>Best practices verzamelen en delen</li>
+                <li>Effectieve implementatie van digitale zorgoplossingen bevorderen</li>
+                <li>Samenwerking tussen verschillende partijen stimuleren</li>
+                <li>De digitale inclusie in de wijkzorg vergroten</li>
+            </ul>
+            
+            <h3>Achtergrond</h3>
+            <p>Dit kennisportaal is ontstaan uit een samenwerkingsverband tussen gemeenten, zorginstellingen, patiëntenorganisaties en kennisinstituten. Samen werken we aan het verbeteren van de digitale zorg in de wijk, met als doel het verhogen van de kwaliteit van leven van wijkbewoners en het efficiënter maken van zorgprocessen.</p>
+            
+            <h3>Partners</h3>
+            <div class="partners-grid">
+                <div class="partner-logo">Logo Partner 1</div>
+                <div class="partner-logo">Logo Partner 2</div>
+                <div class="partner-logo">Logo Partner 3</div>
+                <div class="partner-logo">Logo Partner 4</div>
+                <div class="partner-logo">Logo Partner 5</div>
+                <div class="partner-logo">Logo Partner 6</div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="manifest-content" class="main-content-section">
+        <div class="content-container">
+            <h2>Manifest Digitale Wijkzorg</h2>
+            <p>Dit manifest beschrijft onze gemeenschappelijke visie en uitgangspunten voor digitale zorgoplossingen in de wijk. Het dient als kompas voor alle betrokkenen bij het ontwikkelen, implementeren en gebruiken van digitale wijkzorg.</p>
+            
+            <div class="manifest-principles">
+                <div class="principle">
+                    <h3>1. Mensgerichte benadering</h3>
+                    <p>Digitale wijkzorg stelt de mens centraal. Technologie is ondersteunend aan menselijk contact en niet vervangend. De behoeften en mogelijkheden van wijkbewoners zijn leidend bij de ontwikkeling en implementatie van digitale oplossingen.</p>
+                </div>
+                
+                <div class="principle">
+                    <h3>2. Inclusiviteit</h3>
+                    <p>Digitale wijkzorg is voor iedereen toegankelijk, ongeacht leeftijd, digitale vaardigheid of achtergrond. Speciale aandacht gaat uit naar het voorkomen van digitale uitsluiting.</p>
+                </div>
+                
+                <div class="principle">
+                    <h3>3. Samenwerking</h3>
+                    <p>Succesvolle digitale wijkzorg komt tot stand door samenwerking tussen wijkbewoners, zorgprofessionals, gemeente, technologieontwikkelaars en andere stakeholders. Samen ontwikkelen en implementeren we oplossingen die aansluiten bij de praktijk.</p>
+                </div>
+                
+                <div class="principle">
+                    <h3>4. Toegevoegde waarde</h3>
+                    <p>Digitale wijkzorg levert aantoonbare toegevoegde waarde voor wijkbewoners, zorgverleners en/of de samenleving als geheel. We implementeren alleen technologie die het welzijn of de efficiëntie daadwerkelijk verbetert.</p>
+                </div>
+                
+                <div class="principle">
+                    <h3>5. Privacy & veiligheid</h3>
+                    <p>Bij digitale wijkzorg staat de bescherming van persoonsgegevens voorop. We zorgen voor veilige systemen, transparante communicatie over gegevensverwerking en respecteren het recht op privacy.</p>
+                </div>
+                
+                <div class="principle">
+                    <h3>6. Duurzaamheid & schaalbaarheid</h3>
+                    <p>We ontwikkelen digitale wijkzorg met het oog op de toekomst. Oplossingen zijn duurzaam, schaalbaar en hebben een langetermijnperspectief, zowel technisch als financieel.</p>
+                </div>
+                
+                <div class="principle">
+                    <h3>7. Continu leren & verbeteren</h3>
+                    <p>Digitale wijkzorg ontwikkelt zich voortdurend. We monitoren, evalueren en verbeteren continu, en delen onze kennis en ervaringen met elkaar.</p>
+                </div>
+            </div>
+            
+            <div class="manifest-endorsement">
+                <h3>Onderschrijf het manifest</h3>
+                <p>Wilt u als organisatie of persoon ook het Manifest Digitale Wijkzorg onderschrijven? Vul dan onderstaand formulier in.</p>
+                <a href="#contact" class="feature-action" onclick="activateTab('contact-tab')">Manifest onderschrijven</a>
+            </div>
+        </div>
+    </div>
+    
+    <div id="faq-content" class="main-content-section">
+        <div class="content-container">
+            <h2>Veelgestelde vragen</h2>
+            
+            <div class="faq-section">
+                <h3>Algemene vragen</h3>
+                
+                <div class="faq-item">
+                    <h4>Wat is het Project Kennisportaal?</h4>
+                    <p>Het Project Kennisportaal is een centraal platform voor kennis over zorg en digitale oplossingen in de wijk. Het doel is om alle betrokkenen te ondersteunen bij het implementeren van effectieve digitale zorgoplossingen.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h4>Voor wie is het Kennisportaal bedoeld?</h4>
+                    <p>Het Kennisportaal is bedoeld voor verschillende doelgroepen, waaronder wijkbewoners, wijkinitiatieven, dorpsondersteuners, lokale overheden, techneuten, leveranciers en onderzoekers/studenten. Voor elke doelgroep is er specifieke informatie beschikbaar.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h4>Hoe kan ik bijdragen aan het Kennisportaal?</h4>
+                    <p>Er zijn verschillende manieren om bij te dragen aan het Kennisportaal. U kunt uw ervaringen delen via de Wijkmonitor, best practices aanleveren, of contact opnemen met ons team om andere mogelijkheden te bespreken.</p>
+                </div>
+            </div>
+            
+            <div class="faq-section">
+                <h3>Wijkmonitor</h3>
+                
+                <div class="faq-item">
+                    <h4>Wat is de Wijkmonitor?</h4>
+                    <p>De Wijkmonitor is een instrument om inzicht te krijgen in de ervaringen van bewoners met zorg en digitale oplossingen in de wijk. Het helpt bij het verbeteren van de zorg en ondersteuning in de wijk.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h4>Hoe worden de gegevens van de Wijkmonitor gebruikt?</h4>
+                    <p>De gegevens worden anoniem verwerkt en gebruikt om de zorg en ondersteuning in de wijk te verbeteren. Ze worden ook gebruikt voor onderzoek naar effectieve digitale zorgoplossingen.</p>
+                </div>
+            </div>
+            
+            <div class="faq-section">
+                <h3>Technische vragen</h3>
+                
+                <div class="faq-item">
+                    <h4>Wat is een referentie-architectuur?</h4>
+                    <p>Een referentie-architectuur is een blauwdruk voor het technisch ontwerp van digitale zorgoplossingen. Het helpt bij het maken van de juiste technische keuzes en zorgt voor een toekomstbestendige implementatie.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h4>Hoe kan ik aansluiten bij het netwerk van wijkoplossingen?</h4>
+                    <p>Als leverancier kunt u aansluiten bij het netwerk van wijkoplossingen door contact op te nemen met ons team. We bespreken dan de mogelijkheden en voorwaarden voor aansluiting.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="contact-content" class="main-content-section">
+        <div class="content-container">
+            <h2>Contact</h2>
+            <p>Heeft u vragen over het Project Kennisportaal of wilt u meer informatie? Neem dan contact met ons op via onderstaand formulier of de vermelde contactgegevens.</p>
+            
+            <div class="contact-grid">
+                <div class="contact-form">
+                    <h3>Contactformulier</h3>
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label for="name">Naam *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">E-mailadres *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="organization">Organisatie</label>
+                            <input type="text" id="organization" name="organization">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Onderwerp *</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Selecteer een onderwerp</option>
+                                <option value="general">Algemene vraag</option>
+                                <option value="manifest">Manifest onderschrijven</option>
+                                <option value="best-practice">Best practice delen</option>
+                                <option value="partnership">Samenwerking</option>
+                                <option value="technical">Technische vraag</option>
+                                <option value="other">Anders</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Bericht *</label>
+                            <textarea id="message" name="message" rows="6" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="feature-action">Versturen</button>
+                    </form>
+                </div>
+                
+                <div class="contact-info">
+                    <h3>Contactgegevens</h3>
+                    <p><strong>E-mail:</strong> info@projectnaam.nl</p>
+                    <p><strong>Telefoon:</strong> 020-1234567</p>
+                    <p><strong>Adres:</strong><br>
+                    Project Kennisportaal<br>
+                    Straatweg 123<br>
+                    1234 AB Amsterdam</p>
+                    
+                    <h3>Volg ons</h3>
+                    <div class="social-icons">
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div id="home-content" class="main-content-section active"></div>
     
     <footer class="main-footer">
         <p>© 2025 Project Kennisportaal - Alle rechten voorbehouden</p>
     </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all main tab links
+            const mainTabLinks = document.querySelectorAll('.main-nav a.main-tab');
+            
+            // Get all main content sections
+            const mainContentSections = document.querySelectorAll('.main-content-section');
+            
+            // Function to activate a specific tab
+            function activateTab(tabId) {
+                // Remove active class from all tabs
+                mainTabLinks.forEach(tab => {
+                    tab.classList.remove('active');
+                });
+                
+                // Add active class to the requested tab
+                const tabElement = document.getElementById(tabId);
+                if (tabElement) {
+                    tabElement.classList.add('active');
+                }
+                
+                // Get the content section ID from the tab ID
+                const contentId = tabId.replace('-tab', '-content');
+                
+                // Hide all content sections
+                mainContentSections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // Show the corresponding content section
+                const contentSection = document.getElementById(contentId);
+                if (contentSection) {
+                    contentSection.classList.add('active');
+                }
+                
+                // Update URL hash without scrolling
+                if (history.pushState) {
+                    const tabHash = tabId.replace('-tab', '');
+                    history.pushState(null, null, '#' + tabHash);
+                }
+            }
+            
+            // Add click event to all main navigation tabs
+            mainTabLinks.forEach(tab => {
+                tab.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const tabId = this.id;
+                    activateTab(tabId);
+                });
+            });
+            
+            // Handle URL hash on page load
+            const hash = window.location.hash;
+            if (hash) {
+                const tabId = hash.substring(1) + '-tab';
+                const tabToActivate = document.getElementById(tabId);
+                if (tabToActivate) {
+                    activateTab(tabId);
+                } else {
+                    // Default to home if hash doesn't match any tab
+                    activateTab('home-tab');
+                }
+            }
+            
+            // Make the activateTab function available globally for use in inline onclick handlers
+            window.activateTab = activateTab;
+        });
+    </script>
 </body>
 </html>
