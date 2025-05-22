@@ -110,30 +110,30 @@
             font-size: 1.1rem;
         }
         
-        /* Hero Wijkinitiatief Section */
-        .hero-wijkinitiatief {
-            max-width: 600px;
-            margin: 0 auto 4rem auto;
-            padding: 0 1rem;
+        /* Hero row with two cards */
+        .hero-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 4rem;
         }
-        
-        .hero-wijkinitiatief-card {
+
+        .hero-card {
             background-color: white;
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 8px 24px rgba(0,0,0,0.15);
             transition: var(--transition);
             border: 2px solid var(--primary-color);
-            transform: scale(1.05);
         }
-        
-        .hero-wijkinitiatief-card:hover {
-            transform: scale(1.08);
+
+        .hero-card:hover {
+            transform: translateY(-5px);
             box-shadow: 0 12px 32px rgba(0,0,0,0.2);
         }
-        
-        .hero-wijkinitiatief-header {
-            padding: 2.5rem 2rem;
+
+        .hero-card-header {
+            padding: 2rem 1.5rem;
             text-align: center;
             background-image: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
             color: white;
@@ -141,12 +141,12 @@
             transition: var(--transition);
             position: relative;
         }
-        
-        .hero-wijkinitiatief-header:hover {
+
+        .hero-card-header:hover {
             background-image: linear-gradient(135deg, var(--secondary-color), #0e7340);
         }
-        
-        .hero-wijkinitiatief-header::after {
+
+        .hero-card-header::after {
             content: '';
             position: absolute;
             bottom: 15px;
@@ -158,34 +158,34 @@
             opacity: 0.8;
             transition: transform 0.2s ease;
         }
-        
-        .hero-wijkinitiatief-header:hover::after {
+
+        .hero-card-header:hover::after {
             transform: translateX(4px);
             opacity: 1;
         }
-        
-        .hero-wijkinitiatief-icon {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
+
+        .hero-card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
             display: block;
         }
-        
-        .hero-wijkinitiatief-title {
-            font-size: 2rem;
-            margin: 0 0 1rem 0;
+
+        .hero-card-title {
+            font-size: 1.75rem;
+            margin: 0 0 0.5rem 0;
             color: white;
         }
-        
-        .hero-wijkinitiatief-subtitle {
-            font-size: 1.1rem;
+
+        .hero-card-subtitle {
+            font-size: 1rem;
             opacity: 0.9;
             margin: 0;
         }
-        
-        .hero-wijkinitiatief-content {
-            padding: 2.5rem 2rem;
+
+        .hero-card-content {
+            padding: 2rem 1.5rem;
         }
-        
+
         .hero-story {
             font-style: italic;
             color: #555;
@@ -194,9 +194,9 @@
             background-color: var(--light-bg);
             border-left: 4px solid var(--primary-color);
             border-radius: 0 8px 8px 0;
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
-        
+
         .hero-action-links {
             list-style: none;
             padding: 0;
@@ -205,10 +205,10 @@
             grid-template-columns: 1fr 1fr;
             gap: 1rem;
         }
-        
+
         .hero-action-link {
             display: block;
-            padding: 1rem 2rem;
+            padding: 0.8rem 1.5rem;
             background-color: var(--primary-color);
             color: white;
             text-decoration: none;
@@ -216,25 +216,33 @@
             transition: var(--transition);
             text-align: center;
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
         }
-        
+
         .hero-action-link:hover {
             background-color: #107745;
             text-decoration: none;
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
-        
+
         .hero-action-link.secondary {
             background-color: var(--light-bg);
             color: var(--link-color);
             border: 2px solid var(--border-color);
         }
-        
+
         .hero-action-link.secondary:hover {
             background-color: var(--link-color);
             color: white;
+        }
+
+        /* Two-column row for second tier */
+        .persona-row-two {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
         }
         
         /* Section divider */
@@ -267,38 +275,6 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-bottom: 3rem;
-        }
-        
-        /* Standard persona row styles remain the same */
-        .persona-row {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-        
-        @media (max-width: 992px) {
-            .persona-row {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media (max-width: 600px) {
-            .persona-row {
-                grid-template-columns: 1fr;
-            }
-            
-            .hero-wijkinitiatief-card {
-                transform: scale(1.02);
-            }
-            
-            .hero-wijkinitiatief-card:hover {
-                transform: scale(1.04);
-            }
-
-            .hero-action-links {
-                grid-template-columns: 1fr;
-            }
         }
         
         .persona-card {
@@ -441,147 +417,181 @@
 
         /* Main content section styles */
         .main-content-section {
-        display: none;
-        margin-bottom: 2rem;
-    }
-    
-    .main-content-section.active {
-        display: block;
-    }
-    
-    .content-container {
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 1rem;
-    }
-    
-    /* Manifest styles */
-    .manifest-principles {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 2rem;
-        margin: 2rem 0;
-    }
-    
-    .principle {
-        background-color: white;
-        border-radius: 5px;
-        box-shadow: var(--card-shadow);
-        padding: 1.5rem;
-        border-top: 4px solid var(--primary-color);
-    }
-    
-    .principle h3 {
-        color: var(--primary-color);
-        margin-top: 0;
-    }
-    
-    .manifest-endorsement {
-        background-color: var(--light-bg);
-        padding: 2rem;
-        text-align: center;
-        border-radius: 5px;
-        margin-top: 2rem;
-    }
-    
-    /* FAQ styles */
-    .faq-section {
-        margin-bottom: 2rem;
-    }
-    
-    .faq-item {
-        margin-bottom: 1.5rem;
-        padding-bottom: 1.5rem;
-        border-bottom: 1px solid var(--border-color);
-    }
-    
-    .faq-item:last-child {
-        border-bottom: none;
-    }
-    
-    .faq-item h4 {
-        color: var(--secondary-color);
-        margin-bottom: 0.5rem;
-    }
-    
-    /* Contact styles */
-    .contact-grid {
-        display: grid;
-        grid-template-columns: 3fr 2fr;
-        gap: 2rem;
-        margin-top: 2rem;
-    }
-    
-    .form-group {
-        margin-bottom: 1.5rem;
-    }
-    
-    .form-group label {
-        display: block;
-        margin-bottom: 0.5rem;
-        font-weight: bold;
-    }
-    
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-        width: 100%;
-        padding: 0.8rem;
-        border: 1px solid var(--border-color);
-        border-radius: 4px;
-    }
-    
-    .social-icons {
-        display: flex;
-        gap: 1rem;
-        margin-top: 1rem;
-    }
-    
-    .social-icons a {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 40px;
-        height: 40px;
-        background-color: var(--light-bg);
-        color: var(--secondary-color);
-        border-radius: 50%;
-        font-size: 1.2rem;
-        transition: var(--transition);
-    }
-    
-    .social-icons a:hover {
-        background-color: var(--secondary-color);
-        color: white;
-    }
-    
-    /* Partner styles */
-    .partners-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        gap: 1.5rem;
-        margin-top: 2rem;
-    }
-    
-    .partner-logo {
-        height: 80px;
-        background-color: var(--light-bg);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 5px;
-    }
-    
-    /* Media queries for responsiveness */
-    @media (max-width: 768px) {
-        .manifest-principles {
-            grid-template-columns: 1fr;
+            display: none;
+            margin-bottom: 2rem;
         }
         
-        .contact-grid {
-            grid-template-columns: 1fr;
+        .main-content-section.active {
+            display: block;
         }
-    }
+        
+        .content-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        
+        /* Manifest styles */
+        .manifest-principles {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .principle {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: var(--card-shadow);
+            padding: 1.5rem;
+            border-top: 4px solid var(--primary-color);
+        }
+        
+        .principle h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+        
+        .manifest-endorsement {
+            background-color: var(--light-bg);
+            padding: 2rem;
+            text-align: center;
+            border-radius: 5px;
+            margin-top: 2rem;
+        }
+        
+        /* FAQ styles */
+        .faq-section {
+            margin-bottom: 2rem;
+        }
+        
+        .faq-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        
+        .faq-item h4 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Contact styles */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--light-bg);
+            color: var(--secondary-color);
+            border-radius: 50%;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        /* Partner styles */
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .partner-logo {
+            height: 80px;
+            background-color: var(--light-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+        }
+        
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .hero-row,
+            .persona-row-two {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-card-header {
+                padding: 1.5rem 1rem;
+            }
+            
+            .hero-card-content {
+                padding: 1.5rem 1rem;
+            }
+            
+            .hero-action-links {
+                grid-template-columns: 1fr;
+            }
+            
+            .manifest-principles {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .feature-action {
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+            width: fit-content;
+            transition: background-color 0.2s;
+        }
+        
+        .feature-action:hover {
+            background-color: #107745;
+            text-decoration: none;
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
@@ -601,215 +611,214 @@
     </div>
 
     <div id="home-content" class="main-content-section active">
-    <div class="intro">
-        <p>Van wijkbehoefte naar digitale oplossingen. Kies hieronder de rol die het beste bij u past om snel de relevante informatie te vinden.</p>
-    </div>
-    
-    <!-- Hero Wijkinitiatief Section -->
-    <div class="hero-wijkinitiatief">
-        <div class="hero-wijkinitiatief-card">
-            <div class="hero-wijkinitiatief-header" onclick="window.location.href='personas/wijkinitiatief.html'">
-                <div class="hero-wijkinitiatief-icon">
-                    <i class="fas fa-users"></i>
-                </div>
-                <h2 class="hero-wijkinitiatief-title">Wijkinitiatief</h2>
-                <p class="hero-wijkinitiatief-subtitle">Start hier uw reis naar digitale wijkoplossingen</p>
-            </div>
-            <div class="hero-wijkinitiatief-content">
-                <div class="hero-story">
-                    "Als wijkinitiatief willen wij van ongestructureerde behoeften in onze wijk komen tot concrete, implementeerbare digitale oplossingen die onze gemeenschap versterken."
-                </div>
-                <ul class="hero-action-links">
-                    <li><a href="personas/wijkinitiatief.html?tab=stappenplan" class="hero-action-link">Start met het stappenplan</a></li>
-                    <li><a href="personas/wijkinitiatief.html?tab=best-practices" class="hero-action-link secondary">Best practices</a></li>
-                    <li><a href="personas/wijkinitiatief.html?tab=subsidies" class="hero-action-link secondary">Subsidiemogelijkheden</a></li>
-                    <li><a href="personas/wijkinitiatief.html?tab=netwerk" class="hero-action-link secondary">Netwerk</a></li>
-                </ul>
-            </div>
+        <div class="intro">
+            <p>Van wijkbehoefte naar digitale oplossingen. Kies hieronder de rol die het beste bij u past om snel de relevante informatie te vinden.</p>
         </div>
-    </div>
-    
-    <!-- Section divider -->
-    <div class="section-divider">
-        <h3>Andere rollen</h3>
-    </div>
-    
-    <!-- First row with Wijkbewoner and Dorpsondersteuner -->
-    <div class="persona-row" style="grid-template-columns: repeat(2, 1fr);">
-        <!-- Wijkbewoner -->
-        <div class="persona-card">
-            <div class="card-header">
-                <a href="personas/wijkbewoner.html" class="card-header-link" aria-label="Ga naar wijkbewoner pagina"></a>
-                <div class="card-icon">
-                    <i class="fas fa-home"></i>
+        
+        <!-- Hero Row with Two Cards -->
+        <div class="hero-row">
+            <!-- Wijkinitiatief Hero Card -->
+            <div class="hero-card">
+                <div class="hero-card-header" onclick="window.location.href='personas/wijkinitiatief.html'">
+                    <div class="hero-card-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h2 class="hero-card-title">Wijkinitiatief</h2>
+                    <p class="hero-card-subtitle">Start hier uw reis naar digitale wijkoplossingen</p>
                 </div>
-                <h2 class="card-title">Wijkbewoner</h2>
+                <div class="hero-card-content">
+                    <div class="hero-story">
+                        "Als wijkinitiatief willen wij van ongestructureerde behoeften in onze wijk komen tot concrete, implementeerbare digitale oplossingen die onze gemeenschap versterken."
+                    </div>
+                    <ul class="hero-action-links">
+                        <li><a href="personas/wijkinitiatief.html?tab=stappenplan" class="hero-action-link">Start met het stappenplan</a></li>
+                        <li><a href="personas/wijkinitiatief.html?tab=best-practices" class="hero-action-link secondary">Best practices</a></li>
+                        <li><a href="personas/wijkinitiatief.html?tab=subsidies" class="hero-action-link secondary">Subsidiemogelijkheden</a></li>
+                        <li><a href="personas/wijkinitiatief.html?tab=netwerk" class="hero-action-link secondary">Netwerk</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="card-content">
-                <div class="story-section">
-                    <div class="user-story">
+            
+            <!-- Wijkbewoner Hero Card -->
+            <div class="hero-card">
+                <div class="hero-card-header" onclick="window.location.href='personas/wijkbewoner.html'">
+                    <div class="hero-card-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h2 class="hero-card-title">Wijkbewoner</h2>
+                    <p class="hero-card-subtitle">Deel uw ervaringen en ontdek digitale hulpmiddelen</p>
+                </div>
+                <div class="hero-card-content">
+                    <div class="hero-story">
                         "Als wijkbewoner wil ik deelnemen aan de wijkmonitor om mijn ervaringen te delen en zorgverbeteringen te stimuleren."
                     </div>
-                    <ul class="action-links">
-                        <li><a href="personas/wijkbewoner.html?tab=wijkmonitor" class="action-link primary-action">Wijkmonitor invullen</a></li>
-                    </ul>
-                </div>
-                
-                <div class="story-section">
-                    <div class="user-story">
-                        "Als wijkbewoner wil ik weten welke lokale digitale hulpmiddelen beschikbaar zijn."
-                    </div>
-                    <ul class="action-links">
-                        <li><a href="personas/wijkbewoner.html?tab=digitaal" class="action-link primary-action">Digitale hulpmiddelen</a></li>
+                    <ul class="hero-action-links">
+                        <li><a href="personas/wijkbewoner.html?tab=wijkmonitor" class="hero-action-link">Wijkmonitor invullen</a></li>
+                        <li><a href="personas/wijkbewoner.html?tab=digitaal" class="hero-action-link secondary">Digitale hulpmiddelen</a></li>
+                        <li><a href="personas/wijkbewoner.html?tab=ervaringen" class="hero-action-link secondary">Ervaringen delen</a></li>
+                        <li><a href="personas/wijkbewoner.html?tab=hulp" class="hero-action-link secondary">Hulp vinden</a></li>
                     </ul>
                 </div>
             </div>
         </div>
         
-        <!-- Dorpsondersteuner -->
-        <div class="persona-card">
-            <div class="card-header">
-                <a href="personas/dorpsondersteuner.html" class="card-header-link" aria-label="Ga naar dorpsondersteuner pagina"></a>
-                <div class="card-icon">
-                    <i class="fas fa-hands-helping"></i>
+        <!-- Section divider -->
+        <div class="section-divider">
+            <h3>Ondersteuning & Expertise</h3>
+        </div>
+        
+        <!-- Second row with Dorpsondersteuner and Local Government -->
+        <div class="persona-row-two">
+            <!-- Dorpsondersteuner -->
+            <div class="persona-card">
+                <div class="card-header">
+                    <a href="personas/dorpsondersteuner.html" class="card-header-link" aria-label="Ga naar dorpsondersteuner pagina"></a>
+                    <div class="card-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h2 class="card-title">Dorpsondersteuner</h2>
                 </div>
-                <h2 class="card-title">Dorpsondersteuner</h2>
+                <div class="card-content">
+                    <div class="story-section">
+                        <div class="user-story">
+                            "Als dorpsondersteuner wil ik effectieve tools vinden om bewoners te helpen met digitale zorg."
+                        </div>
+                        <ul class="action-links">
+                            <li><a href="personas/dorpsondersteuner.html?tab=ondersteuningstools" class="action-link primary-action">Ondersteuningstools</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="story-section">
+                        <div class="user-story">
+                            "Als dorpsondersteuner wil ik inzicht krijgen in de sociale kaart van de wijk."
+                        </div>
+                        <ul class="action-links">
+                            <li><a href="personas/dorpsondersteuner.html?tab=wijkkaart" class="action-link primary-action">Wijkkaart</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="card-content">
-                <div class="story-section">
-                    <div class="user-story">
-                        "Als dorpsondersteuner wil ik effectieve tools vinden om bewoners te helpen met digitale zorg."
+            
+            <!-- (Lokale) Overheid -->
+            <div class="persona-card">
+                <div class="card-header">
+                    <a href="personas/overheid.html" class="card-header-link" aria-label="Ga naar overheid pagina"></a>
+                    <div class="card-icon">
+                        <i class="fas fa-landmark"></i>
                     </div>
-                    <ul class="action-links">
-                        <li><a href="personas/dorpsondersteuner.html?tab=ondersteuningstools" class="action-link primary-action">Ondersteuningstools ontdekken</a></li>
-                    </ul>
+                    <h2 class="card-title">(Lokale) Overheid</h2>
                 </div>
-                
-                <div class="story-section">
+                <div class="card-content">
+                    <div class="story-section">
+                        <div class="user-story">
+                            "Als lokale overheid wil ik inzicht krijgen in effectieve beleidskaders voor digitale zorg in de wijk."
+                        </div>
+                        <ul class="action-links">
+                            <li><a href="personas/overheid.html?tab=beleidskaders" class="action-link primary-action">Beleidskaders</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="story-section">
+                        <div class="user-story">
+                            "Als lokale overheid wil ik leren van succesvolle implementaties in andere gemeenten."
+                        </div>
+                        <ul class="action-links">
+                            <li><a href="personas/overheid.html?tab=voorbeelden" class="action-link primary-action">Voorbeelden</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section divider -->
+        <div class="section-divider">
+            <h3>Technologie & Implementatie</h3>
+        </div>
+        
+        <!-- Remaining personas in standard 3-column grid -->
+        <div class="persona-grid">
+            <!-- Techneut -->
+            <div class="persona-card">
+                <div class="card-header">
+                    <a href="personas/techneut.html" class="card-header-link" aria-label="Ga naar techneut pagina"></a>
+                    <div class="card-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h2 class="card-title">Techneut</h2>
+                </div>
+                <div class="card-content">
+                    <div class="story-section">
+                        <div class="user-story">
+                            "Als techneut wil ik de referentie-architectuur begrijpen om oplossingen goed te integreren."
+                        </div>
+                        <ul class="action-links">
+                            <li><a href="personas/techneut.html?tab=architectuur" class="action-link primary-action">Referentie-architectuur</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="story-section">
+                        <div class="user-story">
+                            "Als techneut wil ik open standaarden implementeren in bestaande wijkinitiatieven."
+                        </div>
+                        <ul class="action-links">
+                            <li><a href="personas/techneut.html?tab=standaarden" class="action-link primary-action">Open standaarden</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Leverancier -->
+            <div class="persona-card">
+                <div class="card-header">
+                    <a href="personas/leverancier.html" class="card-header-link" aria-label="Ga naar leverancier pagina"></a>
+                    <div class="card-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h2 class="card-title">Leverancier</h2>
+                </div>
+                <div class="card-content">
+                    <div class="story-section">
+                        <div class="user-story">
+                            "Als leverancier wil ik aansluiten bij het netwerk van wijkoplossingen."
+                        </div>
+                        <ul class="action-links">
+                            <li><a href="personas/leverancier.html?tab=netwerk" class="action-link primary-action">Netwerk aansluiten</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="story-section">
+                        <div class="user-story">
+                            "Als leverancier wil ik wijkinitiatieven ondersteunen met mijn oplossingen."
+                        </div>
+                        <ul class="action-links">
+                            <li><a href="personas/leverancier.html?tab=ondersteunen" class="action-link primary-action">Wijkinitiatieven ondersteunen</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Onderzoeker/Student -->
+            <div class="persona-card">
+                <div class="card-header">
+                    <a href="personas/onderzoeker.html" class="card-header-link" aria-label="Ga naar onderzoeker pagina"></a>
+                    <div class="card-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h2 class="card-title">Onderzoeker / Student</h2>
+                </div>
+                <div class="card-content">
                     <div class="user-story">
-                        "Als dorpsondersteuner wil ik inzicht krijgen in de sociale kaart van de wijk."
+                        "Als onderzoeker wil ik toegang tot data en methodologische informatie voor mijn onderzoeksproject."
                     </div>
                     <ul class="action-links">
-                        <li><a href="personas/dorpsondersteuner.html?tab=wijkkaart" class="action-link primary-action">Wijkkaart raadplegen</a></li>
+                        <li><a href="personas/onderzoeker.html?tab=data" class="action-link primary-action">Onderzoeksdata</a></li>
+                        <li><a href="personas/onderzoeker.html?tab=methodologie" class="action-link">Methodologie</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
     
-    <!-- Remaining personas in a standard grid -->
-    <div class="persona-grid">
-        <!-- (Lokale) Overheid -->
-        <div class="persona-card">
-            <div class="card-header">
-                <a href="personas/overheid.html" class="card-header-link" aria-label="Ga naar overheid pagina"></a>
-                <div class="card-icon">
-                    <i class="fas fa-landmark"></i>
-                </div>
-                <h2 class="card-title">(Lokale) Overheid</h2>
-            </div>
-            <div class="card-content">
-                <div class="story-section">
-                    <div class="user-story">
-                        "Als lokale overheid wil ik inzicht krijgen in effectieve beleidskaders voor digitale zorg in de wijk."
-                    </div>
-                    <ul class="action-links">
-                        <li><a href="personas/overheid.html?tab=beleidskaders" class="action-link primary-action">Beleidskaders bekijken</a></li>
-                    </ul>
-                </div>
-                
-                <div class="story-section">
-                    <div class="user-story">
-                        "Als lokale overheid wil ik leren van succesvolle implementaties in andere gemeenten."
-                    </div>
-                    <ul class="action-links">
-                        <li><a href="personas/overheid.html?tab=voorbeelden" class="action-link primary-action">Voorbeelden verkennen</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Techneut -->
-        <div class="persona-card">
-            <div class="card-header">
-                <a href="personas/techneut.html" class="card-header-link" aria-label="Ga naar techneut pagina"></a>
-                <div class="card-icon">
-                    <i class="fas fa-laptop-code"></i>
-                </div>
-                <h2 class="card-title">Techneut</h2>
-            </div>
-            <div class="card-content">
-                <div class="story-section">
-                    <div class="user-story">
-                        "Als techneut wil ik de referentie-architectuur begrijpen om oplossingen goed te integreren."
-                    </div>
-                    <ul class="action-links">
-                        <li><a href="personas/techneut.html?tab=architectuur" class="action-link primary-action">Referentie-architectuur bekijken</a></li>
-                    </ul>
-                </div>
-                
-                <div class="story-section">
-                    <div class="user-story">
-                        "Als techneut wil ik open standaarden implementeren in bestaande wijkinitiatieven."
-                    </div>
-                    <ul class="action-links">
-                        <li><a href="personas/techneut.html?tab=standaarden" class="action-link primary-action">Open standaarden toepassen</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Leverancier -->
-        <div class="persona-card">
-            <div class="card-header">
-                <a href="personas/leverancier.html" class="card-header-link" aria-label="Ga naar leverancier pagina"></a>
-                <div class="card-icon">
-                    <i class="fas fa-building"></i>
-                </div>
-                <h2 class="card-title">Leverancier</h2>
-            </div>
-            <div class="card-content">
-                <div class="story-section">
-                    <div class="user-story">
-                        "Als leverancier wil ik aansluiten bij het netwerk van wijkoplossingen."
-                    </div>
-                    <ul class="action-links">
-                        <li><a href="personas/leverancier.html?tab=netwerk" class="action-link primary-action">Aansluiten bij netwerk</a></li>
-                    </ul>
-                </div>
-                
-                <div class="story-section">
-                    <div class="user-story">
-                        "Als leverancier wil ik wijkinitiatieven ondersteunen met mijn oplossingen."
-                    </div>
-                    <ul class="action-links">
-                        <li><a href="personas/leverancier.html?tab=ondersteunen" class="action-link primary-action">Wijkinitiatieven ondersteunen</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Onderzoeker/Student moved to bottom -->
-        <div class="persona-card">
-            <div class="card-header">
-                <a href="personas/onderzoeker.html" class="card-header-link" aria-label="Ga naar onderzoeker pagina"></a>
-                <div class="card-icon">
-                    <i class="fas fa-microscope"></i>
-                </div>
-                <h2 class="card-title">Onderzoeker / Student</h2>
-            </div>
-            <div class="card-content">
-                <div class="user-story">
-                    "Als onderzoeker wil ik toegang tot data en methodologische informatie voor mijn onderzoeksproject."
-                </div>
-                <ul class="action-links">
-                    <li><a href="personas/onderzoeker.html?tab=data" class="action-link primary-action">Onderzoeksdata</a></li>
-                    <li><a href="personas/onderzoeker.html?tab=methodologie" class="action-link">Methodologische documentatie</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
     <div id="over-content" class="main-content-section">
         <div class="content-container">
             <h2>Over het project</h2>
@@ -1011,6 +1020,7 @@
     <footer class="main-footer">
         <p>© 2025 Project Kennisportaal - Alle rechten voorbehouden</p>
     </footer>
+    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Get all main tab links
