@@ -110,6 +110,158 @@
             font-size: 1.1rem;
         }
         
+        /* Hero Wijkinitiatief Section */
+        .hero-wijkinitiatief {
+            max-width: 600px;
+            margin: 0 auto 4rem auto;
+            padding: 0 1rem;
+        }
+        
+        .hero-wijkinitiatief-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            transition: var(--transition);
+            border: 2px solid var(--primary-color);
+            transform: scale(1.05);
+        }
+        
+        .hero-wijkinitiatief-card:hover {
+            transform: scale(1.08);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+        }
+        
+        .hero-wijkinitiatief-header {
+            padding: 2.5rem 2rem;
+            text-align: center;
+            background-image: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .hero-wijkinitiatief-header:hover {
+            background-image: linear-gradient(135deg, var(--secondary-color), #0e7340);
+        }
+        
+        .hero-wijkinitiatief-header::after {
+            content: '';
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            width: 24px;
+            height: 24px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white' width='24px' height='24px'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            opacity: 0.8;
+            transition: transform 0.2s ease;
+        }
+        
+        .hero-wijkinitiatief-header:hover::after {
+            transform: translateX(4px);
+            opacity: 1;
+        }
+        
+        .hero-wijkinitiatief-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        
+        .hero-wijkinitiatief-title {
+            font-size: 2rem;
+            margin: 0 0 1rem 0;
+            color: white;
+        }
+        
+        .hero-wijkinitiatief-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin: 0;
+        }
+        
+        .hero-wijkinitiatief-content {
+            padding: 2.5rem 2rem;
+        }
+        
+        .hero-story {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background-color: var(--light-bg);
+            border-left: 4px solid var(--primary-color);
+            border-radius: 0 8px 8px 0;
+            font-size: 1.1rem;
+        }
+        
+        .hero-action-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .hero-action-link {
+            display: block;
+            padding: 1rem 2rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: var(--transition);
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .hero-action-link:hover {
+            background-color: #107745;
+            text-decoration: none;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        
+        .hero-action-link.secondary {
+            background-color: var(--light-bg);
+            color: var(--link-color);
+            border: 2px solid var(--border-color);
+        }
+        
+        .hero-action-link.secondary:hover {
+            background-color: var(--link-color);
+            color: white;
+        }
+        
+        /* Section divider */
+        .section-divider {
+            text-align: center;
+            margin: 4rem 0 3rem 0;
+            position: relative;
+        }
+        
+        .section-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background-color: var(--border-color);
+        }
+        
+        .section-divider h3 {
+            background-color: white;
+            padding: 0 2rem;
+            color: var(--secondary-color);
+            margin: 0;
+            display: inline-block;
+        }
+        
         .persona-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -117,7 +269,7 @@
             margin-bottom: 3rem;
         }
         
-        /* To ensure top row has exactly 3 items and proper order */
+        /* Standard persona row styles remain the same */
         .persona-row {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -134,6 +286,14 @@
         @media (max-width: 600px) {
             .persona-row {
                 grid-template-columns: 1fr;
+            }
+            
+            .hero-wijkinitiatief-card {
+                transform: scale(1.02);
+            }
+            
+            .hero-wijkinitiatief-card:hover {
+                transform: scale(1.04);
             }
         }
         
@@ -438,11 +598,40 @@
 
     <div id="home-content" class="main-content-section active">
     <div class="intro">
-        <p>Welkom bij het Kennisportaal. Kies hieronder de rol die het beste bij u past om snel de relevante informatie te vinden.</p>
+        <p>Van wijkbehoefte naar digitale oplossingen. Kies hieronder de rol die het beste bij u past om snel de relevante informatie te vinden.</p>
     </div>
     
-    <!-- First row with Wijkbewoner, Wijkinitiatief, and Dorpsondersteuner -->
-    <div class="persona-row">
+    <!-- Hero Wijkinitiatief Section -->
+    <div class="hero-wijkinitiatief">
+        <div class="hero-wijkinitiatief-card">
+            <div class="hero-wijkinitiatief-header" onclick="window.location.href='personas/wijkinitiatief.html'">
+                <div class="hero-wijkinitiatief-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h2 class="hero-wijkinitiatief-title">Wijkinitiatief</h2>
+                <p class="hero-wijkinitiatief-subtitle">Start hier uw reis naar digitale wijkoplossingen</p>
+            </div>
+            <div class="hero-wijkinitiatief-content">
+                <div class="hero-story">
+                    "Als wijkinitiatief willen wij van ongestructureerde behoeften in onze wijk komen tot concrete, implementeerbare digitale oplossingen die onze gemeenschap versterken."
+                </div>
+                <ul class="hero-action-links">
+                    <li><a href="personas/wijkinitiatief.html?tab=stappenplan" class="hero-action-link">Start met het stappenplan</a></li>
+                    <li><a href="personas/wijkinitiatief.html?tab=best-practices" class="hero-action-link secondary">Best practices</a></li>
+                    <li><a href="personas/wijkinitiatief.html?tab=subsidies" class="hero-action-link secondary">Subsidiemogelijkheden</a></li>
+                    <li><a href="personas/wijkinitiatief.html?tab=netwerk" class="hero-action-link secondary">Netwerk</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Section divider -->
+    <div class="section-divider">
+        <h3>Andere rollen</h3>
+    </div>
+    
+    <!-- First row with Wijkbewoner and Dorpsondersteuner -->
+    <div class="persona-row" style="grid-template-columns: repeat(2, 1fr);">
         <!-- Wijkbewoner -->
         <div class="persona-card">
             <div class="card-header">
@@ -468,36 +657,6 @@
                     </div>
                     <ul class="action-links">
                         <li><a href="personas/wijkbewoner.html?tab=digitaal" class="action-link primary-action">Digitale hulpmiddelen</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Wijkinitiatief -->
-        <div class="persona-card">
-            <div class="card-header">
-                <a href="personas/wijkinitiatief.html" class="card-header-link" aria-label="Ga naar wijkinitiatief pagina"></a>
-                <div class="card-icon">
-                    <i class="fas fa-users"></i>
-                </div>
-                <h2 class="card-title">Wijkinitiatief</h2>
-            </div>
-            <div class="card-content">
-                <div class="story-section">
-                    <div class="user-story">
-                        "Als wijkinitiatief wil ik inzicht krijgen in best practices en ideeën voor mijn buurt."
-                    </div>
-                    <ul class="action-links">
-                        <li><a href="personas/wijkinitiatief.html?tab=best-practices" class="action-link primary-action">Best practices</a></li>
-                    </ul>
-                </div>
-                
-                <div class="story-section">
-                    <div class="user-story">
-                        "Als wijkinitiatief wil ik een digitale voorziening implementeren."
-                    </div>
-                    <ul class="action-links">
-                        <li><a href="personas/wijkinitiatief.html?tab=implementatie" class="action-link primary-action">Implementatiehandleiding</a></li>
                     </ul>
                 </div>
             </div>
@@ -821,7 +980,7 @@
                             <textarea id="message" name="message" rows="6" required></textarea>
                         </div>
                         
-                        <button type="submit" class="feature-action">Versturen</button>
+                        <button type="submit" class="hero-action-link">Versturen</button>
                     </form>
                 </div>
                 
