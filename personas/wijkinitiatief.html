@@ -296,8 +296,8 @@
     
     <!-- Persona-specific navigation -->
     <div class="persona-nav">
+        <a href="#stappenplan" id="stappenplan-tab" class="active">Stappenplan</a>
         <a href="#best-practices" id="best-practices-tab" class="active">Best Practices</a>
-        <a href="#implementatie" id="implementatie-tab">Implementatiehandleiding</a>
         <a href="#subsidies" id="subsidies-tab">Subsidiemogelijkheden</a>
         <a href="#netwerk" id="netwerk-tab">Netwerk</a>
     </div>
@@ -353,8 +353,8 @@
                 </div>
             </div>
             
-            <!-- Implementatie content section -->
-            <div id="implementatie-content" class="content-section" style="display: none;">
+            <!-- Stappenplan content section -->
+            <div id="stappenplan-content" class="content-section" style="display: none;">
                 <div class="feature-block">
                     <h3>Implementatiehandleiding voor digitale wijkoplossingen</h3>
                     <p>Deze handleiding biedt een stapsgewijze aanpak voor het implementeren van digitale oplossingen in uw wijk. Volg deze stappen voor een succesvolle uitrol van uw initiatief.</p>
@@ -563,8 +563,8 @@
                     showSection(tab);
                 }
             } else {
-                // If no tab parameter, show the default tab (best-practices)
-                showSection('best-practices');
+                // If no tab parameter, show the default tab (stappenplan)
+                showSection('stappenplan');
             }
         });
     </script>
