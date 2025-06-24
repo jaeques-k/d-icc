@@ -1,45 +1,60 @@
-/* Cayman Theme Inspired Elements */
+/* Updated Theme with New Color Palette */
 :root {
-    --cayman-primary: #159957;
-    --cayman-secondary: #155799;
-    --cayman-text: #606c71;
-    --cayman-link: #1e6bb8;
+    --color-accent: #b1452f;
+    --color-accent-dark: #912f1d;
+    --color-bg: #f0e7d8;
+    --color-text: #333333;
+    --color-muted: #647d4d;
+    --color-sky: #c7dce9;
+    --font-body: 'Inter', sans-serif;
+    --font-size-base: 16px;
+    --font-size-h1: 2.4rem;
+    --font-size-h2: 1.8rem;
+    --font-size-h3: 1.4rem;
+    --spacing: 1.5rem;
+    
+    /* Legacy variables for compatibility */
+    --cayman-primary: #b1452f;
+    --cayman-secondary: #912f1d;
+    --cayman-text: #333333;
+    --cayman-link: #b1452f;
 }
 
 body {
-    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: var(--font-body);
     line-height: 1.6;
-    color: var(--cayman-text);
+    color: var(--color-text);
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    background-color: var(--color-bg);
 }
 
 header {
     background-image: 
-        linear-gradient(120deg, rgba(21, 87, 153, 0.7), rgba(21, 153, 87, 0.7)), 
+        linear-gradient(120deg, rgba(100, 125, 77, 0.7), rgba(177, 69, 47, 0.7)), 
         url('banner.jpg');
     background-size: cover;
     background-position: center;
     color: white;
     padding: 2rem 1rem;
     margin-bottom: 2rem;
-    border-radius: 0.3rem;
+    border-radius: 12px;
     text-align: center;
 }
 
 header h1 {
     margin-top: 0;
-    font-size: 2.25rem;
-    font-weight: normal;
+    font-size: var(--font-size-h1);
+    font-weight: 600;
 }
 
 nav {
-    background-color: #f3f6fa;
+    background-color: var(--color-bg);
     padding: 1rem;
-    border-radius: 0.3rem;
-    margin-bottom: 1.5rem;
-    border: 1px solid #dce6f0;
+    border-radius: 12px;
+    margin-bottom: var(--spacing);
+    border: 1px solid var(--color-sky);
 }
 
 nav ul {
@@ -54,23 +69,23 @@ nav li {
 }
 
 nav a {
-    color: var(--cayman-link);
+    color: var(--color-accent);
     text-decoration: none;
     padding: 5px 10px;
-    border-radius: 0.3rem;
+    border-radius: 8px;
     transition: color 0.2s, background-color 0.2s;
 }
 
 nav a:hover {
-    background-color: #f4f4f4;
+    background-color: white;
     text-decoration: none;
-    color: var(--cayman-primary);
+    color: var(--color-accent-dark);
 }
 
 nav a.active {
-    background-color: var(--cayman-primary);
+    background-color: var(--color-accent);
     color: white;
-    border-radius: 0.3rem;
+    border-radius: 8px;
 }
 
 main {
@@ -80,55 +95,63 @@ main {
 }
 
 .content {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 0.3rem;
-    border: 1px solid #dce6f0;
+    background-color: white;
+    padding: var(--spacing);
+    border-radius: 12px;
+    border: 1px solid var(--color-sky);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 .content h2 {
-    color: var(--cayman-primary);
+    color: var(--color-accent);
     margin-top: 0;
     margin-bottom: 1rem;
+    font-size: var(--font-size-h2);
+    font-weight: 600;
 }
 
 .content h3 {
-    color: var(--cayman-secondary);
+    color: var(--color-accent-dark);
     margin-top: 1.5rem;
     margin-bottom: 0.5rem;
+    font-size: var(--font-size-h3);
+    font-weight: 600;
 }
 
 .content a {
-    color: var(--cayman-link);
+    color: var(--color-accent);
     text-decoration: none;
 }
 
 .content a:hover {
+    color: var(--color-accent-dark);
     text-decoration: underline;
 }
 
 aside {
-    background-color: #f3f6fa;
-    padding: 20px;
-    border-radius: 0.3rem;
-    border: 1px solid #dce6f0;
+    background-color: var(--color-bg);
+    padding: var(--spacing);
+    border-radius: 12px;
+    border: 1px solid var(--color-sky);
 }
 
 aside h3 {
-    color: var(--cayman-secondary);
+    color: var(--color-accent-dark);
     margin-top: 0;
-    border-bottom: 1px solid #dce6f0;
+    border-bottom: 1px solid var(--color-sky);
     padding-bottom: 0.5rem;
+    font-weight: 600;
 }
 
 footer {
-    background-color: #f3f6fa;
-    color: var(--cayman-text);
+    background-color: var(--color-muted);
+    color: white;
     text-align: center;
-    padding: 20px;
+    padding: var(--spacing);
     margin-top: 2rem;
-    border-radius: 0.3rem;
-    border-top: 1px solid #dce6f0;
+    border-radius: 12px;
+    font-size: 0.875rem;
+    opacity: 0.9;
 }
 
 .search-container {
@@ -138,22 +161,23 @@ footer {
 .search-container input {
     padding: 10px;
     width: 70%;
-    border: 1px solid #dce6f0;
-    border-radius: 0.3rem;
+    border: 1px solid var(--color-sky);
+    border-radius: 8px;
 }
 
 .search-container button {
     padding: 10px 15px;
-    background-image: linear-gradient(120deg, var(--cayman-secondary), var(--cayman-primary));
+    background-color: var(--color-accent);
     color: white;
     border: none;
-    border-radius: 0.3rem;
+    border-radius: 8px;
     cursor: pointer;
-    transition: opacity 0.2s;
+    transition: background-color 0.2s;
+    font-weight: bold;
 }
 
 .search-container button:hover {
-    opacity: 0.9;
+    background-color: var(--color-accent-dark);
 }
 
 .category-section {
@@ -162,20 +186,22 @@ footer {
 
 .resource-card {
     background-color: white;
-    border: 1px solid #dce6f0;
-    border-radius: 0.3rem;
-    padding: 15px;
-    margin-bottom: 15px;
+    border: 1px solid var(--color-sky);
+    border-radius: 12px;
+    padding: var(--spacing);
+    margin-bottom: var(--spacing);
     transition: box-shadow 0.3s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 .resource-card:hover {
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
 }
 
 .resource-card h3, .resource-card h4 {
-    color: var(--cayman-secondary);
+    color: var(--color-accent-dark);
     margin-top: 0;
+    font-weight: 600;
 }
 
 /* Wijkmonitor vragenlijst stijlen */
@@ -183,43 +209,47 @@ footer {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    color: var(--cayman-text);
+    color: var(--color-text);
 }
 
 .wijkmonitor-container h1 {
-    color: var(--cayman-primary);
+    color: var(--color-accent);
     text-align: center;
+    font-size: var(--font-size-h1);
+    font-weight: 600;
 }
 
 .intro {
-    background-color: #f3f6fa;
-    padding: 15px;
-    border-radius: 0.3rem;
+    background-color: var(--color-bg);
+    padding: var(--spacing);
+    border-radius: 12px;
     margin-bottom: 25px;
-    border: 1px solid #dce6f0;
+    border: 1px solid var(--color-sky);
 }
 
 .section {
-    background-color: #fff;
-    border: 1px solid #dce6f0;
-    border-radius: 0.3rem;
-    padding: 20px;
+    background-color: white;
+    border: 1px solid var(--color-sky);
+    border-radius: 12px;
+    padding: var(--spacing);
     margin-bottom: 30px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 .section-title {
-    color: var(--cayman-primary);
-    border-bottom: 2px solid #dce6f0;
+    color: var(--color-accent);
+    border-bottom: 2px solid var(--color-sky);
     padding-bottom: 10px;
     margin-top: 0;
+    font-weight: 600;
 }
 
 .section-description {
-    background-color: #f9f9f9;
+    background-color: var(--color-bg);
     padding: 10px;
-    border-left: 4px solid var(--cayman-secondary);
+    border-left: 4px solid var(--color-accent-dark);
     margin-bottom: 20px;
+    border-radius: 0 8px 8px 0;
 }
 
 .question-group {
@@ -274,21 +304,22 @@ input[type="radio"] {
 }
 
 .submit-button {
-    background-image: linear-gradient(120deg, var(--cayman-secondary), var(--cayman-primary));
+    background-color: var(--color-accent);
     color: white;
     border: none;
     padding: 12px 20px;
     font-size: 16px;
-    border-radius: 0.3rem;
+    border-radius: 8px;
     cursor: pointer;
     display: block;
     margin: 30px auto 0;
     width: 200px;
-    transition: opacity 0.2s;
+    transition: background-color 0.2s;
+    font-weight: bold;
 }
 
 .submit-button:hover {
-    opacity: 0.9;
+    background-color: var(--color-accent-dark);
 }
 
 /* Tab systeem voor wijkmonitor pagina */
@@ -299,22 +330,22 @@ input[type="radio"] {
 
 .tab {
     padding: 10px 20px;
-    background-color: #f3f6fa;
-    border: 1px solid #dce6f0;
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-sky);
     cursor: pointer;
     margin-right: 5px;
-    border-radius: 0.3rem 0.3rem 0 0;
+    border-radius: 8px 8px 0 0;
     transition: background-color 0.2s;
 }
 
 .tab:hover {
-    background-color: #e6e6e6;
+    background-color: white;
 }
 
 .tab.active {
-    background-image: linear-gradient(120deg, var(--cayman-secondary), var(--cayman-primary));
+    background-color: var(--color-accent);
     color: white;
-    border-color: var(--cayman-primary);
+    border-color: var(--color-accent);
 }
 
 .tab-content {
@@ -341,8 +372,8 @@ input[type="radio"] {
     width: 100%;
     padding: 8px;
     margin-bottom: 15px;
-    border: 1px solid #dce6f0;
-    border-radius: 0.3rem;
+    border: 1px solid var(--color-sky);
+    border-radius: 8px;
 }
 
 .contact-form-container textarea {
@@ -350,30 +381,32 @@ input[type="radio"] {
 }
 
 .contact-form-container button {
-    background-image: linear-gradient(120deg, var(--cayman-secondary), var(--cayman-primary));
+    background-color: var(--color-accent);
     color: white;
     border: none;
     padding: 10px 20px;
     font-size: 16px;
-    border-radius: 0.3rem;
+    border-radius: 8px;
     cursor: pointer;
-    transition: opacity 0.2s;
+    transition: background-color 0.2s;
+    font-weight: bold;
 }
 
 .contact-form-container button:hover {
-    opacity: 0.9;
+    background-color: var(--color-accent-dark);
 }
 
 /* News items */
 .news-item {
-    border-bottom: 1px solid #dce6f0;
+    border-bottom: 1px solid var(--color-sky);
     padding-bottom: 10px;
     margin-bottom: 10px;
 }
 
 .news-item h4 {
     margin-bottom: 0.3rem;
-    color: var(--cayman-secondary);
+    color: var(--color-accent-dark);
+    font-weight: 600;
 }
 
 .news-item p {
@@ -383,6 +416,63 @@ input[type="radio"] {
 /* Ensure links in the content stand out */
 .content a {
     font-weight: 500;
+}
+
+/* Additional styling for cards */
+.card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    padding: var(--spacing);
+    margin-bottom: var(--spacing);
+}
+
+/* Image gradient styling */
+.image-gradient {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.image-gradient img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+}
+
+.image-gradient::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(240, 231, 216, 0.25), rgba(240, 231, 216, 0));
+    pointer-events: none;
+}
+
+/* Button styling */
+button {
+    background-color: var(--color-accent);
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: var(--color-accent-dark);
+}
+
+/* Container styling */
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: var(--spacing);
 }
 
 @media (max-width: 768px) {
