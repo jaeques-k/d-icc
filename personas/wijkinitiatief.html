@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
@@ -345,6 +345,172 @@
         }
         .transition-box li { margin-bottom: 0.25rem; }
 
+        /* ========== INTAKE STYLING ========== */
+        .wijkmonitor-banner {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 1px solid #c4b5fd;
+            border-radius: 5px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        .intake-progress {
+            display: flex;
+            justify-content: space-between;
+            margin: 1.5rem 0 0.5rem;
+            position: relative;
+        }
+        .intake-progress::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 5%;
+            right: 5%;
+            height: 3px;
+            background: var(--border-color);
+            z-index: 0;
+        }
+        .intake-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+            cursor: pointer;
+        }
+        .intake-step-num {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--border-color);
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s;
+        }
+        .intake-step.active .intake-step-num { background: var(--primary-color); color: white; }
+        .intake-step.completed .intake-step-num { background: #059669; color: white; }
+        .intake-step-label { font-size: 0.7rem; color: var(--text-color); text-align: center; }
+        .intake-step.active .intake-step-label { color: var(--primary-color); font-weight: 600; }
+        
+        .intake-section { margin-top: 1rem; }
+        .intake-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .intake-buttons { display: flex; justify-content: space-between; margin-top: 1.5rem; }
+        
+        .form-group { margin-bottom: 1rem; }
+        .form-group label { display: block; font-weight: 500; margin-bottom: 0.375rem; font-size: 0.9rem; }
+        .form-group input[type="text"],
+        .form-group input[type="number"],
+        .form-group input[type="email"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.625rem;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-family: inherit;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        .form-group textarea { min-height: 80px; resize: vertical; }
+        
+        .checkbox-group { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.5rem; }
+        .checkbox-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: normal;
+        }
+        .checkbox-option:hover { border-color: var(--primary-color); }
+        .checkbox-option input { margin: 0; }
+        
+        .info-box-success {
+            background: #ecfdf5;
+            border-left: 4px solid #059669;
+            padding: 1rem;
+            border-radius: 0 5px 5px 0;
+            font-size: 0.875rem;
+        }
+        .checklist-item {
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+            color: #065f46;
+        }
+        
+        /* Fase overview in introductie */
+        .fase-overview {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin: 1.5rem 0;
+        }
+        .fase-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 0.75rem;
+            background: var(--light-bg);
+            border-radius: 5px;
+        }
+        .fase-item .phase-badge {
+            flex-shrink: 0;
+            margin-top: 0.25rem;
+        }
+        .fase-item strong {
+            display: block;
+            color: var(--text-color);
+            margin-bottom: 0.25rem;
+        }
+        .fase-item p {
+            font-size: 0.85rem;
+            color: #888;
+            margin: 0;
+        }
+        
+        /* Gemeenschap cards voor netwerk */
+        .gemeenschap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .gemeenschap-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.25rem;
+            box-shadow: var(--card-shadow);
+        }
+        .gemeenschap-card h4 {
+            color: var(--primary-color);
+            margin: 0 0 0.5rem 0;
+            font-weight: 600;
+        }
+        .gemeenschap-card .location {
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 0.5rem;
+        }
+        .gemeenschap-card .fase-badge {
+            margin-top: 0.5rem;
+        }
+        
+        @media (max-width: 600px) {
+            .intake-grid { grid-template-columns: 1fr; }
+            .intake-step-label { display: none; }
+        }
+
         @media (max-width: 768px) {
             main { grid-template-columns: 1fr; }
             .phase-filter { flex-direction: column; align-items: stretch; }
@@ -365,22 +531,380 @@
     </div>
     
     <div class="persona-nav">
-        <a href="#stappenplan" id="stappenplan-tab" class="active">Stappenplan</a>
-        <a href="#best-practices" id="best-practices-tab">Best Practices</a>
-        <a href="#subsidies" id="subsidies-tab">Subsidiemogelijkheden</a>
+        <a href="#introductie" id="introductie-tab" class="active">Introductie</a>
+        <a href="#stappenplan" id="stappenplan-tab">Stappenplan</a>
+        <a href="#intake" id="intake-tab">Intake</a>
         <a href="#netwerk" id="netwerk-tab">Netwerk</a>
     </div>
     
     <main>
         <div class="content">
-            <!-- ========== STAPPENPLAN L0-L5 ========== -->
-            <div id="stappenplan-content" class="content-section">
+            <!-- ========== INTRODUCTIE TAB ========== -->
+            <div id="introductie-content" class="content-section">
+                <div class="feature-block">
+                    <h3>Digitale Wijkinfrastructuur voor Zorgzame Gemeenschappen</h3>
+                    <p>Wij ondersteunen dorpen, wijken en buurten bij het opzetten en versterken van digitale infrastructuur voor zorg en welzijn. Ons doel is om gemeenschappen te helpen bij het organiseren van onderlinge hulp, het coördineren van vrijwilligers en het samenwerken met formele zorgpartijen.</p>
+                    
+                    <h4>Wat doen wij voor gemeenschappen?</h4>
+                    <p>Veel zorgzame gemeenschappen lopen tegen dezelfde vragen aan: Hoe coördineren we hulpvragen? Welke digitale tools passen bij ons? Hoe werken we samen met de huisarts of thuiszorg? In plaats van dat elke gemeenschap het wiel opnieuw uitvindt, bundelen wij kennis en expertise.</p>
+                    
+                    <p>Wij bieden:</p>
+                    <ul style="margin: 1rem 0 1rem 1.5rem;">
+                        <li>Begeleiding bij het in kaart brengen van behoeften en mogelijkheden</li>
+                        <li>Toegang tot een kennisportaal met handreikingen en best practices</li>
+                        <li>Ondersteuning bij het selecteren en implementeren van digitale tools</li>
+                        <li>Verbinding met andere gemeenschappen en relevante partners</li>
+                    </ul>
+                    
+                    <h4>Waarom met ons samenwerken?</h4>
+                    <p>Wij werken vanuit het principe dat digitale oplossingen menselijk contact moeten versterken, niet vervangen. Onze aanpak is gebaseerd op jarenlange ervaring met zorgzame gemeenschappen in Nederland en sluit aan bij de behoeften van zowel bewoners als professionals.</p>
+                    
+                    <p>Door deel te nemen aan ons netwerk profiteert u van:</p>
+                    <ul style="margin: 1rem 0 1rem 1.5rem;">
+                        <li>Gedeelde kennis en ervaring van andere gemeenschappen</li>
+                        <li>Onafhankelijk advies over platforms en leveranciers</li>
+                        <li>Begeleiding op maat, afgestemd op uw ontwikkelfase</li>
+                        <li>Toegang tot subsidie- en financieringsmogelijkheden</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-block">
+                    <h4>Het Fasemodel: van oriëntatie tot kennisdeling</h4>
+                    <p>Elke gemeenschap is anders en bevindt zich in een andere fase van ontwikkeling. Wij werken met een fasemodel (F0-F5) dat helpt om te bepalen welke ondersteuning het beste past bij uw situatie.</p>
+                    
+                    <div class="fase-overview">
+                        <div class="fase-item">
+                            <span class="phase-badge f0">F0</span>
+                            <div>
+                                <strong>Oriëntatie & Behoeftebepaling</strong>
+                                <p>Behoeften in kaart brengen, persona's opstellen, netwerk analyseren</p>
+                            </div>
+                        </div>
+                        <div class="fase-item">
+                            <span class="phase-badge f1">F1</span>
+                            <div>
+                                <strong>Tool Oriëntatie & Selectie</strong>
+                                <p>Leveranciers verkennen, platforms vergelijken, onderbouwde keuze maken</p>
+                            </div>
+                        </div>
+                        <div class="fase-item">
+                            <span class="phase-badge f2">F2</span>
+                            <div>
+                                <strong>Implementatie & Adoptie</strong>
+                                <p>Tool inrichten, werkprocessen definiëren, gebruikers trainen</p>
+                            </div>
+                        </div>
+                        <div class="fase-item">
+                            <span class="phase-badge f3">F3</span>
+                            <div>
+                                <strong>Integratie & Samenwerking</strong>
+                                <p>Verbinding met formele zorg, data-uitwisseling, samenwerkingsafspraken</p>
+                            </div>
+                        </div>
+                        <div class="fase-item">
+                            <span class="phase-badge f4">F4</span>
+                            <div>
+                                <strong>Proactieve Coördinatie</strong>
+                                <p>Monitoring, signalering, preventieve interventies</p>
+                            </div>
+                        </div>
+                        <div class="fase-item">
+                            <span class="phase-badge f5">F5</span>
+                            <div>
+                                <strong>Kennisdeling & Innovatie</strong>
+                                <p>Documenteren, andere gemeenschappen begeleiden, blijven innoveren</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p style="margin-top: 1.5rem;">Wilt u weten in welke fase uw gemeenschap zich bevindt? Vul de <a href="#intake" onclick="showTab('intake'); return false;">intake</a> in en ontvang een advies op maat.</p>
+                </div>
+            </div>
+            
+            <!-- ========== INTAKE TAB ========== -->
+            <div id="intake-content" class="content-section" style="display: none;">
+                <div class="feature-block">
+                    <h3>Intake Zorgzame Gemeenschap</h3>
+                    <p>Breng uw gemeenschap in kaart en ontdek welke ondersteuning past bij uw fase.</p>
+                    
+                    <!-- Wijkmonitor check banner -->
+                    <div class="wijkmonitor-banner" id="wijkmonitorBanner">
+                        <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                            <div style="flex: 1;">
+                                <h4 style="margin: 0 0 0.5rem; color: #6d28d9;">Heeft u al Wijkmonitor-resultaten?</h4>
+                                <p style="font-size: 0.9rem; color: #5b21b6; margin-bottom: 1rem;">Als bewoners de Wijkmonitor al hebben ingevuld, kunnen we die gegevens meenemen voor een completer beeld.</p>
+                                <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                                    <button class="feature-action" style="background: #7c3aed;" onclick="hasWijkmonitorData()">Ja, resultaten koppelen</button>
+                                    <button class="feature-action" style="background: var(--border-color); color: var(--text-color);" onclick="noWijkmonitorYet()">Nee, nog niet</button>
+                                    <a href="wijkbewoner.html?tab=wijkmonitor" style="padding: 0.75rem 1rem; color: #7c3aed;">Eerst Wijkmonitor uitzetten</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="info-box-success section-hidden" id="wijkmonitorLinked">
+                        <strong>Wijkmonitor-resultaten gekoppeld</strong> 
+                        <span style="color: #888;">12 bewoners hebben de monitor ingevuld. Deze data wordt meegenomen.</span>
+                    </div>
+                    
+                    <!-- Progress bar -->
+                    <div class="intake-progress">
+                        <div class="intake-step active" data-step="1"><span class="intake-step-num">1</span><span class="intake-step-label">Kennismaking</span></div>
+                        <div class="intake-step" data-step="2"><span class="intake-step-num">2</span><span class="intake-step-label">Gemeenschap</span></div>
+                        <div class="intake-step" data-step="3"><span class="intake-step-num">3</span><span class="intake-step-label">Zorg & Welzijn</span></div>
+                        <div class="intake-step" data-step="4"><span class="intake-step-num">4</span><span class="intake-step-label">Digitaal</span></div>
+                        <div class="intake-step" data-step="5"><span class="intake-step-num">5</span><span class="intake-step-label">Resultaat</span></div>
+                    </div>
+                </div>
+                
+                <!-- Stap 1: Kennismaking -->
+                <div class="intake-section" data-intake="1">
+                    <div class="feature-block">
+                        <h4>Kennismaking</h4>
+                        <p style="color: #888; margin-bottom: 1.5rem;">Welkom! Met deze intake brengen we samen uw gemeenschap in kaart.</p>
+                        
+                        <div class="intake-grid">
+                            <div class="form-group">
+                                <label>Naam gemeenschap/initiatief</label>
+                                <input type="text" placeholder="bijv. Glimmen Zorgt">
+                            </div>
+                            <div class="form-group">
+                                <label>Type</label>
+                                <select><option value="">Selecteer...</option><option>Dorp</option><option>Wijk</option><option>Buurt</option><option>Anders</option></select>
+                            </div>
+                        </div>
+                        
+                        <div class="intake-grid">
+                            <div class="form-group">
+                                <label>Gemeente</label>
+                                <input type="text" placeholder="bijv. Groningen">
+                            </div>
+                            <div class="form-group">
+                                <label>Provincie</label>
+                                <select><option value="">Selecteer...</option><option>Groningen</option><option>Friesland</option><option>Drenthe</option><option>Overijssel</option><option>Gelderland</option><option>Utrecht</option><option>Noord-Holland</option><option>Zuid-Holland</option><option>Zeeland</option><option>Noord-Brabant</option><option>Limburg</option><option>Flevoland</option></select>
+                            </div>
+                        </div>
+                        
+                        <h4 style="margin-top: 1.5rem;">Contactpersoon</h4>
+                        <div class="intake-grid">
+                            <div class="form-group">
+                                <label>Naam</label>
+                                <input type="text">
+                            </div>
+                            <div class="form-group">
+                                <label>E-mail</label>
+                                <input type="email">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Uw rol in de gemeenschap</label>
+                            <select><option value="">Selecteer...</option><option>Coördinator/trekker</option><option>Bestuurslid</option><option>Vrijwilliger</option><option>Professional (bijv. welzijnswerk)</option><option>Betrokken bewoner</option><option>Anders</option></select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Wat is de aanleiding voor deze intake?</label>
+                            <textarea placeholder="Beschrijf kort waarom u contact zoekt..."></textarea>
+                        </div>
+                        
+                        <div class="intake-buttons">
+                            <div></div>
+                            <button class="feature-action" onclick="nextIntakeStep(2)">Volgende</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Stap 2: Gemeenschap -->
+                <div class="intake-section section-hidden" data-intake="2">
+                    <div class="feature-block">
+                        <h4>Uw Gemeenschap</h4>
+                        
+                        <h5>Demografische kenmerken</h5>
+                        <div class="intake-grid">
+                            <div class="form-group">
+                                <label>Aantal inwoners (schatting)</label>
+                                <input type="number" placeholder="bijv. 2500">
+                            </div>
+                            <div class="form-group">
+                                <label>Aandeel 65+</label>
+                                <select><option value="">Selecteer...</option><option>&lt; 15%</option><option>15-25%</option><option>25-35%</option><option>&gt; 35%</option></select>
+                            </div>
+                        </div>
+                        
+                        <h5>Organisatiestructuur</h5>
+                        <div class="form-group">
+                            <label>Welke organisaties/initiatieven zijn actief?</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-option"><input type="checkbox"> Dorps-/wijkvereniging</label>
+                                <label class="checkbox-option"><input type="checkbox"> Zorgcoöperatie</label>
+                                <label class="checkbox-option"><input type="checkbox"> Buurtvereniging</label>
+                                <label class="checkbox-option"><input type="checkbox"> Welzijnsorganisatie</label>
+                                <label class="checkbox-option"><input type="checkbox"> Kerkelijke organisatie</label>
+                                <label class="checkbox-option"><input type="checkbox"> Informele hulpnetwerken</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Hoe is het contact met de gemeente?</label>
+                            <select><option value="">Selecteer...</option><option>Actieve samenwerking</option><option>Regelmatig contact</option><option>Incidenteel contact</option><option>Nauwelijks contact</option></select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Belangrijkste leefbaarheidsvraagstukken</label>
+                            <textarea placeholder="bijv. vergrijzing, verdwijnen voorzieningen, eenzaamheid..."></textarea>
+                        </div>
+                        
+                        <div class="intake-buttons">
+                            <button class="feature-action" style="background: var(--border-color); color: var(--text-color);" onclick="prevIntakeStep(1)">Terug</button>
+                            <button class="feature-action" onclick="nextIntakeStep(3)">Volgende</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Stap 3: Zorg & Welzijn -->
+                <div class="intake-section section-hidden" data-intake="3">
+                    <div class="feature-block">
+                        <h4>Zorg & Welzijn</h4>
+                        
+                        <h5>Zorglandschap</h5>
+                        <div class="form-group">
+                            <label>Welke zorgvoorzieningen zijn lokaal aanwezig?</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-option"><input type="checkbox"> Huisarts in eigen dorp/wijk</label>
+                                <label class="checkbox-option"><input type="checkbox"> Apotheek</label>
+                                <label class="checkbox-option"><input type="checkbox"> Thuiszorg actief</label>
+                                <label class="checkbox-option"><input type="checkbox"> Fysiotherapie</label>
+                                <label class="checkbox-option"><input type="checkbox"> Wijkverpleging</label>
+                                <label class="checkbox-option"><input type="checkbox"> Sociaal wijkteam</label>
+                            </div>
+                        </div>
+                        
+                        <h5>Informele zorg</h5>
+                        <div class="form-group">
+                            <label>Welke onderlinge hulp bestaat er al?</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-option"><input type="checkbox"> Boodschappenhulp</label>
+                                <label class="checkbox-option"><input type="checkbox"> Vervoersdienst</label>
+                                <label class="checkbox-option"><input type="checkbox"> Maaltijdvoorziening</label>
+                                <label class="checkbox-option"><input type="checkbox"> Klussendienst</label>
+                                <label class="checkbox-option"><input type="checkbox"> Bezoekdienst/maatjes</label>
+                                <label class="checkbox-option"><input type="checkbox"> Mantelzorgondersteuning</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Wat zijn de grootste zorg-gerelateerde uitdagingen?</label>
+                            <textarea placeholder="bijv. wachtlijsten, coördinatie, bereikbaarheid..."></textarea>
+                        </div>
+                        
+                        <div class="intake-buttons">
+                            <button class="feature-action" style="background: var(--border-color); color: var(--text-color);" onclick="prevIntakeStep(2)">Terug</button>
+                            <button class="feature-action" onclick="nextIntakeStep(4)">Volgende</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Stap 4: Digitaal -->
+                <div class="intake-section section-hidden" data-intake="4">
+                    <div class="feature-block">
+                        <h4>Digitale Situatie</h4>
+                        
+                        <h5>Huidige digitale middelen</h5>
+                        <div class="form-group">
+                            <label>Welke digitale middelen gebruikt uw gemeenschap nu?</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-option"><input type="checkbox"> Website</label>
+                                <label class="checkbox-option"><input type="checkbox"> Facebook-groep</label>
+                                <label class="checkbox-option"><input type="checkbox"> WhatsApp-groepen</label>
+                                <label class="checkbox-option"><input type="checkbox"> Nieuwsbrief (digitaal)</label>
+                                <label class="checkbox-option"><input type="checkbox"> Planning/rooster-tool</label>
+                                <label class="checkbox-option"><input type="checkbox"> App voor hulpvragen</label>
+                                <label class="checkbox-option"><input type="checkbox"> Geen digitale middelen</label>
+                            </div>
+                        </div>
+                        
+                        <h5>Wensen en verwachtingen</h5>
+                        <div class="form-group">
+                            <label>Waar zou digitale ondersteuning het meest helpen?</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-option"><input type="checkbox"> Coördinatie van hulpvragen</label>
+                                <label class="checkbox-option"><input type="checkbox"> Communicatie met bewoners</label>
+                                <label class="checkbox-option"><input type="checkbox"> Planning vrijwilligers</label>
+                                <label class="checkbox-option"><input type="checkbox"> Samenwerking met zorgverleners</label>
+                                <label class="checkbox-option"><input type="checkbox"> Signalering kwetsbare bewoners</label>
+                                <label class="checkbox-option"><input type="checkbox"> We weten het nog niet precies</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Wat zijn de grootste zorgen of drempels rondom digitalisering?</label>
+                            <textarea placeholder="bijv. privacy, vaardigheden bewoners, kosten, tijd..."></textarea>
+                        </div>
+                        
+                        <div class="intake-buttons">
+                            <button class="feature-action" style="background: var(--border-color); color: var(--text-color);" onclick="prevIntakeStep(3)">Terug</button>
+                            <button class="feature-action" onclick="showIntakeResult()">Bekijk resultaat</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Stap 5: Resultaat -->
+                <div class="intake-section section-hidden" data-intake="5">
+                    <div class="feature-block" style="text-align: center;">
+                        <h4>Uw Intake Resultaat</h4>
+                        <p style="color: #888;">Op basis van uw antwoorden schatten wij uw gemeenschap in op:</p>
+                        <div class="phase-badge f0" id="intakeLevelIndicator" style="font-size: 1.1rem; padding: 0.75rem 1.5rem; margin: 1rem auto; display: inline-block;">F0 - Oriëntatie & Behoeftebepaling</div>
+                        <p id="intakeLevelDescription" style="margin-top: 1rem; font-size: 0.9rem;">Uw gemeenschap is actief maar heeft behoefte aan ondersteuning bij het helder krijgen van de digitale behoeften en mogelijkheden.</p>
+                    </div>
+                    
+                    <div class="feature-block">
+                        <h4>Aanbevolen vervolgstappen</h4>
+                        <div id="intakeRecommendations">
+                            <div class="checklist-item">Deelname aan behoefteanalyse-traject (o.b.v. ADS Blauwdruk)</div>
+                            <div class="checklist-item">Wijkmonitor uitzetten onder bewoners</div>
+                            <div class="checklist-item">Persona's opstellen met bewoners en vrijwilligers</div>
+                            <div class="checklist-item">Netwerkanalyse: wie doet wat en waar zitten de gaten?</div>
+                        </div>
+                        
+                        <div class="info-box-success" style="margin-top: 1rem;">
+                            <strong>Goed nieuws!</strong> Uw gemeenschap komt in aanmerking voor begeleiding vanuit het project Digitale Wijkinfrastructuur. Wij nemen binnen 5 werkdagen contact met u op.
+                        </div>
+                    </div>
+                    
+                    <div class="feature-block">
+                        <h4>Direct aan de slag</h4>
+                        <p style="margin-bottom: 1rem; color: #888;">Terwijl u wacht, kunt u alvast:</p>
+                        
+                        <div class="best-practice-card" id="intakeWijkmonitorAction">
+                            <div class="practice-content">
+                                <p><strong>Wijkmonitor verspreiden</strong></p>
+                                <a href="wijkbewoner.html?tab=wijkmonitor">Bewoners uitnodigen voor de Wijkmonitor</a>
+                            </div>
+                        </div>
+                        
+                        <div class="best-practice-card">
+                            <div class="practice-content">
+                                <p><strong>Stappenplan bekijken</strong></p>
+                                <a href="#stappenplan" onclick="showTab('stappenplan'); return false;">Bekijk het volledige F0-F5 stappenplan</a>
+                            </div>
+                        </div>
+                        
+                        <div class="intake-buttons">
+                            <button class="feature-action" style="background: var(--border-color); color: var(--text-color);" onclick="prevIntakeStep(4)">Terug naar vragen</button>
+                            <button class="feature-action" onclick="submitIntake()">Intake versturen</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ========== STAPPENPLAN F0-F5 ========== -->
+            <div id="stappenplan-content" class="content-section" style="display: none;">
                 <div class="feature-block">
                     <h3>Stappenplan Zorgzame Gemeenschap</h3>
                     <p>Van oriëntatie tot kennisdeling — in uw eigen tempo door het F0-F5 framework.</p>
                     
                     <div class="phase-filter">
-                        <label for="phaseFilter">🎯 Selecteer uw fase:</label>
+                        <label for="phaseFilter">Selecteer uw fase:</label>
                         <select id="phaseFilter" onchange="filterPhases()">
                             <option value="all">Alle fases tonen</option>
                             <option value="0">F0 — Oriëntatie & Behoeftebepaling</option>
@@ -410,7 +934,7 @@
                                     <div class="step-content">
                                         <div class="step-title">Intake invullen</div>
                                         <div class="step-desc">Breng uw gemeenschap in kaart: wie zijn jullie, wat is de structuur, wat is de aanleiding?</div>
-                                        <a href="../intake.html" class="step-link">→ Naar de Intake</a>
+                                        <a href="#intake" class="step-link" onclick="showTab('intake'); return false;">Naar de Intake</a>
                                     </div>
                                 </div>
                                 
@@ -419,9 +943,9 @@
                                     <div class="step-content">
                                         <div class="step-title">Wijkmonitor uitzetten (optioneel)</div>
                                         <div class="step-desc">Laat bewoners de wijkmonitor invullen om individuele behoeften en vaardigheden in kaart te brengen.</div>
-                                        <a href="wijkbewoner.html?tab=wijkmonitor" class="step-link">→ Naar de Wijkmonitor</a>
+                                        <a href="wijkbewoner.html?tab=wijkmonitor" class="step-link">Naar de Wijkmonitor</a>
                                         <div class="step-tools">
-                                            <span class="tool-tag">📊 Wijkmonitor</span>
+                                            <span class="tool-tag">Wijkmonitor</span>
                                         </div>
                                     </div>
                                 </div>
@@ -431,10 +955,10 @@
                                     <div class="step-content">
                                         <div class="step-title">Behoefteanalyse uitvoeren</div>
                                         <div class="step-desc">Doorloop de ADS Blauwdruk-methodiek: inventariseer, analyseer met het ijsbergmodel, bepaal de gewenste toekomst.</div>
-                                        <a href="../handreikingen.html" class="step-link">→ Blauwdruk werkvormen</a>
+                                        <a href="../handreikingen.html" class="step-link">Blauwdruk werkvormen</a>
                                         <div class="step-tools">
-                                            <span class="tool-tag">📘 ADS Blauwdruk</span>
-                                            <span class="tool-tag">🧊 IJsbergmodel</span>
+                                            <span class="tool-tag">ADS Blauwdruk</span>
+                                            <span class="tool-tag">IJsbergmodel</span>
                                         </div>
                                     </div>
                                 </div>
@@ -444,9 +968,9 @@
                                     <div class="step-content">
                                         <div class="step-title">Persona's opstellen</div>
                                         <div class="step-desc">Maak 2-3 persona's op basis van interviews en wijkmonitor-data.</div>
-                                        <a href="../handreikingen.html" class="step-link">→ Persona template</a>
+                                        <a href="../handreikingen.html" class="step-link">Persona template</a>
                                         <div class="step-tools">
-                                            <span class="tool-tag">👤 Persona template</span>
+                                            <span class="tool-tag">Persona template</span>
                                         </div>
                                     </div>
                                 </div>
@@ -456,16 +980,16 @@
                                     <div class="step-content">
                                         <div class="step-title">Netwerkanalyse</div>
                                         <div class="step-desc">Breng in kaart wie welke rol speelt, waar de gaten zitten en hoe de huidige vs. gewenste route eruitziet.</div>
-                                        <a href="../handreikingen.html" class="step-link">→ Netwerkcirkels werkvorm</a>
+                                        <a href="../handreikingen.html" class="step-link">Netwerkcirkels werkvorm</a>
                                         <div class="step-tools">
-                                            <span class="tool-tag">🔗 Netwerkcirkels</span>
-                                            <span class="tool-tag">🗺️ Klantreis</span>
+                                            <span class="tool-tag">Netwerkcirkels</span>
+                                            <span class="tool-tag">Klantreis</span>
                                         </div>
                                     </div>
                                 </div>
                                 
                                 <div class="transition-box">
-                                    <h4>✓ Klaar voor de volgende fase wanneer:</h4>
+                                    <h4>Klaar voor de volgende fase wanneer:</h4>
                                     <ul>
                                         <li>Behoeften zijn gedocumenteerd in persona's</li>
                                         <li>Netwerk is in kaart gebracht</li>
@@ -494,10 +1018,10 @@
                                     <div class="step-content">
                                         <div class="step-title">Leveranciers verkennen</div>
                                         <div class="step-desc">Bekijk welke platforms beschikbaar zijn via de Functionaliteitenwijzer. Filter op uw behoeften.</div>
-                                        <a href="../architectuur.html" class="step-link">→ Functionaliteitenwijzer</a>
+                                        <a href="../architectuur.html" class="step-link">Functionaliteitenwijzer</a>
                                         <div class="step-tools">
-                                            <span class="tool-tag">🔍 Functionaliteitenwijzer</span>
-                                            <span class="tool-tag">📊 Vergelijkingstabel</span>
+                                            <span class="tool-tag">Functionaliteitenwijzer</span>
+                                            <span class="tool-tag">Vergelijkingstabel</span>
                                         </div>
                                     </div>
                                 </div>
@@ -507,7 +1031,7 @@
                                     <div class="step-content">
                                         <div class="step-title">Matching met behoeften</div>
                                         <div class="step-desc">Vergelijk 2-3 platforms op basis van uw persona's en ontwerpvraag. Gebruik het D-ICC framework.</div>
-                                        <a href="../architectuur.html" class="step-link">→ D-ICC Framework</a>
+                                        <a href="../architectuur.html" class="step-link">D-ICC Framework</a>
                                     </div>
                                 </div>
                                 
@@ -528,7 +1052,7 @@
                                 </div>
                                 
                                 <div class="transition-box">
-                                    <h4>✓ Klaar voor de volgende fase wanneer:</h4>
+                                    <h4>Klaar voor de volgende fase wanneer:</h4>
                                     <ul>
                                         <li>Tool is gekozen en gecontracteerd</li>
                                         <li>Implementatieplan is opgesteld</li>
@@ -584,7 +1108,7 @@
                                 </div>
                                 
                                 <div class="transition-box">
-                                    <h4>✓ Klaar voor de volgende fase wanneer:</h4>
+                                    <h4>Klaar voor de volgende fase wanneer:</h4>
                                     <ul>
                                         <li>Tool is in gebruik bij kernteam</li>
                                         <li>Eerste bewoners maken actief gebruik</li>
@@ -632,7 +1156,7 @@
                                 </div>
                                 
                                 <div class="transition-box">
-                                    <h4>✓ Klaar voor de volgende fase wanneer:</h4>
+                                    <h4>Klaar voor de volgende fase wanneer:</h4>
                                     <ul>
                                         <li>Formele en informele zorg werken samen via het platform</li>
                                         <li>Data-uitwisseling is geregeld</li>
@@ -680,7 +1204,7 @@
                                 </div>
                                 
                                 <div class="transition-box">
-                                    <h4>✓ Klaar voor de volgende fase wanneer:</h4>
+                                    <h4>Klaar voor de volgende fase wanneer:</h4>
                                     <ul>
                                         <li>Monitoring draait en levert bruikbare inzichten</li>
                                         <li>Preventieve interventies zijn getest</li>
@@ -728,7 +1252,7 @@
                                 </div>
                                 
                                 <div class="transition-box">
-                                    <h4>🎯 Continu proces:</h4>
+                                    <h4>Continu proces:</h4>
                                     <ul>
                                         <li>Kennis actief gedeeld met netwerk</li>
                                         <li>Minimaal 1 andere gemeenschap begeleid</li>
@@ -741,107 +1265,63 @@
                 </div>
             </div>
             
-            <!-- Best Practices -->
-            <div id="best-practices-content" class="content-section" style="display: none;">
-                <div class="feature-block">
-                    <h3>Best practices voor wijkinitiatieven</h3>
-                    <p>Ontdek succesvolle aanpakken van andere wijkinitiatieven voor het implementeren van digitale zorgoplossingen.</p>
-                    
-                    <div class="best-practice-card">
-                        <div class="practice-header"><h4>Buurtverbinder App in Amsterdam-West</h4></div>
-                        <div class="practice-content">
-                            <p>In Amsterdam-West is een succesvol platform opgezet dat buurtbewoners helpt om hulpvragen en -aanbod bij elkaar te brengen.</p>
-                            <p><strong>Resultaten:</strong> 75% van de hulpvragen wordt binnen 48 uur beantwoord.</p>
-                        </div>
-                        <div class="practice-footer"><a href="#">Lees de volledige case study »</a></div>
-                    </div>
-                    
-                    <div class="best-practice-card">
-                        <div class="practice-header"><h4>Digitale Huiskamer in Groningen</h4></div>
-                        <div class="practice-content">
-                            <p>In Groningen is een 'Digitale Huiskamer' opgezet waar ouderen terecht kunnen voor ondersteuning bij digitale middelen.</p>
-                            <p><strong>Resultaten:</strong> 200+ ouderen leerden videobellen. 80% voelt zich minder eenzaam.</p>
-                        </div>
-                        <div class="practice-footer"><a href="#">Lees de volledige case study »</a></div>
-                    </div>
-                    
-                    <a href="#" class="feature-action">Alle best practices bekijken</a>
-                </div>
-            </div>
-            
-            <!-- Subsidies -->
-            <div id="subsidies-content" class="content-section" style="display: none;">
-                <div class="feature-block">
-                    <h3>Subsidiemogelijkheden voor wijkinitiatieven</h3>
-                    <p>Overzicht van actuele subsidieregelingen voor digitale zorgoplossingen.</p>
-                    
-                    <div class="best-practice-card">
-                        <div class="practice-header"><h4>Alliantie Digitaal Samenleven</h4></div>
-                        <div class="practice-content">
-                            <p>Subsidie voor digitale inclusie en bewonersinitiatieven.</p>
-                            <p><strong>Subsidiebedrag:</strong> €15.000 per gemeenschap</p>
-                        </div>
-                        <div class="practice-footer"><a href="#">Meer informatie »</a></div>
-                    </div>
-                    
-                    <div class="best-practice-card">
-                        <div class="practice-header"><h4>Noaber Foundation</h4></div>
-                        <div class="practice-content">
-                            <p>Ondersteuning voor sociale innovatie in gemeenschappen.</p>
-                            <p><strong>Subsidiebedrag:</strong> Tot €20.000</p>
-                        </div>
-                        <div class="practice-footer"><a href="#">Meer informatie »</a></div>
-                    </div>
-                    
-                    <div class="best-practice-card">
-                        <div class="practice-header"><h4>STOZ - Stimuleringsregeling</h4></div>
-                        <div class="practice-content">
-                            <p>Voor projecten met formele zorgpartners (via NNZC, Cosis e.d.).</p>
-                            <p><strong>Subsidiebedrag:</strong> Tot €25.000</p>
-                        </div>
-                        <div class="practice-footer"><a href="#">Meer informatie »</a></div>
-                    </div>
-                    
-                    <a href="#" class="feature-action">Alle subsidiemogelijkheden bekijken</a>
-                </div>
-            </div>
-            
-            <!-- Netwerk -->
+            <!-- ========== NETWERK TAB ========== -->
             <div id="netwerk-content" class="content-section" style="display: none;">
                 <div class="feature-block">
-                    <h3>Netwerk voor wijkinitiatieven</h3>
-                    <p>Maak deel uit van een netwerk van wijkinitiatieven. Deel ervaringen, leer van elkaar.</p>
+                    <h3>Aangesloten Gemeenschappen</h3>
+                    <p>Deze gemeenschappen maken deel uit van ons netwerk en werken met ons samen aan digitale wijkinfrastructuur. Leer van hun ervaringen of neem contact op voor kennisuitwisseling.</p>
                     
-                    <h4>Aankomende bijeenkomsten</h4>
-                    <div class="best-practice-card">
-                        <div class="practice-header"><h4>Kennisuitwisseling Digitale Wijkzorg</h4></div>
-                        <div class="practice-content">
-                            <p><strong>Datum:</strong> 25 maart 2025<br>
-                            <strong>Locatie:</strong> Congrescentrum Utrecht<br>
-                            <strong>Thema:</strong> Dataveiligheid en privacy</p>
+                    <div class="gemeenschap-grid">
+                        <div class="gemeenschap-card">
+                            <h4>Glimmen Zorgt</h4>
+                            <div class="location">Glimmen, Groningen</div>
+                            <p>Actieve dorpsgemeenschap met focus op onderlinge hulp en zorg voor ouderen. Werkt samen met Alliantie Digitaal Samenleven aan digitale behoefteanalyse.</p>
+                            <span class="phase-badge f0">F0</span>
                         </div>
-                        <div class="practice-footer"><a href="#">Aanmelden »</a></div>
+                        
+                        <div class="gemeenschap-card">
+                            <h4>Noordbroek</h4>
+                            <div class="location">Noordbroek, Groningen</div>
+                            <p>Dorp met bestaand Dorpsloket en participatie in Domein-Overstijgende Samenwerking pilot. Verkenning van STOZ-subsidie via NNZC en Cosis.</p>
+                            <span class="phase-badge f0">F0</span>
+                        </div>
+                        
+                        <div class="gemeenschap-card">
+                            <h4>Akkrum</h4>
+                            <div class="location">Akkrum, Friesland</div>
+                            <p>Friese gemeenschap die deelneemt aan het ADS-implementatietraject. Focus op het expliciet maken van digitale behoeften.</p>
+                            <span class="phase-badge f0">F0</span>
+                        </div>
+                        
+                        <div class="gemeenschap-card">
+                            <h4>Austerlitz</h4>
+                            <div class="location">Austerlitz, Utrecht</div>
+                            <p>Gemeenschap met bestaande zorginfrastructuur die de mogelijkheden voor digitale ondersteuning verkent.</p>
+                            <span class="phase-badge f0">F0</span>
+                        </div>
                     </div>
-                    
-                    <h4>Online community</h4>
-                    <p>Word lid van onze online community waar wijkinitiatieven kennis en ervaringen delen.</p>
-                    <a href="#" class="feature-action">Lid worden van de community</a>
+                </div>
+                
+                <div class="feature-block">
+                    <h4>Ook aansluiten bij het netwerk?</h4>
+                    <p>Wilt u met uw gemeenschap deel uitmaken van dit netwerk? Vul de intake in en ontdek welke ondersteuning bij u past.</p>
+                    <a href="#intake" class="feature-action" onclick="showTab('intake'); return false;">Start de intake</a>
                 </div>
             </div>
         </div>
         
         <aside>
             <div class="news-updates">
-                <h3>Nieuws</h3>
+                <h3>Actueel</h3>
                 <div class="news-item">
-                    <h4>ADS Partnership Glimmen & Akkrum</h4>
+                    <h4>Nieuwe gemeenschappen aangesloten</h4>
                     <div class="news-date">December 2024</div>
-                    <p>Start implementatie via Alliantie Digitaal Samenleven met 2x €15.000 financiering.</p>
+                    <p>Glimmen, Akkrum, Noordbroek en Austerlitz zijn gestart met het intake-traject.</p>
                 </div>
                 <div class="news-item">
-                    <h4>STOZ aanvraag Noordbroek</h4>
+                    <h4>F0-F5 Framework gelanceerd</h4>
                     <div class="news-date">November 2024</div>
-                    <p>Verkenning €25.000 subsidie via NNZC en Cosis partnership.</p>
+                    <p>Het nieuwe fasemodel helpt gemeenschappen hun ontwikkeltraject te plannen.</p>
                 </div>
             </div>
             
@@ -882,40 +1362,103 @@
                 }
             });
         }
+        
+        // ========== INTAKE FUNCTIONS ==========
+        let currentIntakeStep = 1;
+        let hasWijkmonitor = false;
+        
+        function hasWijkmonitorData() {
+            hasWijkmonitor = true;
+            document.getElementById('wijkmonitorBanner').classList.add('section-hidden');
+            document.getElementById('wijkmonitorLinked').classList.remove('section-hidden');
+        }
+        
+        function noWijkmonitorYet() {
+            hasWijkmonitor = false;
+            document.getElementById('wijkmonitorBanner').classList.add('section-hidden');
+        }
+        
+        function updateIntakeProgress() {
+            document.querySelectorAll('.intake-step').forEach((step, index) => {
+                const stepNum = index + 1;
+                step.classList.remove('active', 'completed');
+                if (stepNum === currentIntakeStep) step.classList.add('active');
+                else if (stepNum < currentIntakeStep) step.classList.add('completed');
+            });
+        }
+        
+        function showIntakeSection(num) {
+            document.querySelectorAll('.intake-section').forEach(s => s.classList.add('section-hidden'));
+            document.querySelector(`[data-intake="${num}"]`).classList.remove('section-hidden');
+        }
+        
+        function nextIntakeStep(num) {
+            currentIntakeStep = num;
+            updateIntakeProgress();
+            showIntakeSection(num);
+        }
+        
+        function prevIntakeStep(num) {
+            currentIntakeStep = num;
+            updateIntakeProgress();
+            showIntakeSection(num);
+        }
+        
+        function showIntakeResult() {
+            currentIntakeStep = 5;
+            updateIntakeProgress();
+            showIntakeSection(5);
+            
+            if (hasWijkmonitor) {
+                document.getElementById('intakeWijkmonitorAction').classList.add('section-hidden');
+            }
+        }
+        
+        function submitIntake() {
+            alert('Intake verstuurd! (In productie: data opslaan en notificatie versturen)');
+        }
+        
+        // Click handlers for intake progress steps
+        document.querySelectorAll('.intake-step').forEach(step => {
+            step.addEventListener('click', () => {
+                const stepNum = parseInt(step.dataset.step);
+                if (stepNum <= currentIntakeStep) {
+                    currentIntakeStep = stepNum;
+                    updateIntakeProgress();
+                    showIntakeSection(stepNum);
+                }
+            });
+        });
 
-        // Tab navigation
+        // ========== TAB NAVIGATION ==========
+        function showTab(tabId) {
+            document.querySelectorAll('.content-section').forEach(s => s.style.display = 'none');
+            document.querySelectorAll('.persona-nav a').forEach(t => t.classList.remove('active'));
+            
+            const section = document.getElementById(tabId + '-content');
+            if (section) section.style.display = 'block';
+            
+            const tab = document.getElementById(tabId + '-tab');
+            if (tab) tab.classList.add('active');
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             const urlParams = new URLSearchParams(window.location.search);
             const tab = urlParams.get('tab');
             
-            function hideAllSections() {
-                document.querySelectorAll('.content-section').forEach(s => s.style.display = 'none');
-            }
-            
-            function showSection(sectionId) {
-                hideAllSections();
-                const section = document.getElementById(sectionId + '-content');
-                if (section) section.style.display = 'block';
-            }
-            
             document.querySelectorAll('.persona-nav a').forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
-                    document.querySelectorAll('.persona-nav a').forEach(t => t.classList.remove('active'));
-                    this.classList.add('active');
-                    showSection(this.getAttribute('href').substring(1));
+                    const tabId = this.getAttribute('href').substring(1);
+                    showTab(tabId);
                 });
             });
             
+            // Default tab or from URL
             if (tab) {
-                document.querySelectorAll('.persona-nav a').forEach(l => l.classList.remove('active'));
-                const tabEl = document.querySelector('#' + tab + '-tab');
-                if (tabEl) {
-                    tabEl.classList.add('active');
-                    showSection(tab);
-                }
+                showTab(tab);
             } else {
-                showSection('stappenplan');
+                showTab('introductie');
             }
         });
     </script>
