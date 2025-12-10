@@ -14,9 +14,15 @@
             --light-bg: #f3f6fa;
             --card-shadow: 0 4px 6px rgba(0,0,0,0.1);
             --transition: all 0.3s ease;
+            /* Fase kleuren */
+            --f0: #f59e0b; --f0-bg: #fffbeb;
+            --f1: #3b82f6; --f1-bg: #eff6ff;
+            --f2: #10b981; --f2-bg: #ecfdf5;
+            --f3: #8b5cf6; --f3-bg: #f5f3ff;
+            --f4: #ec4899; --f4-bg: #fdf2f8;
+            --f5: #06b6d4; --f5-bg: #ecfeff;
         }
         
-        /* Use Cayman theme font settings */
         body {
             font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
             line-height: 1.5;
@@ -47,20 +53,9 @@
             text-align: center;
         }
         
-        .persona-header h1 {
-            color: white;
-            margin-bottom: 1rem;
-        }
-        
-        .persona-title {
-            font-size: 2.25rem;
-            margin-bottom: 1rem;
-        }
-        
-        .subtitle {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
+        .persona-header h1 { color: white; margin-bottom: 1rem; }
+        .persona-title { font-size: 2.25rem; margin-bottom: 1rem; }
+        .subtitle { font-size: 1.1rem; margin-bottom: 0.5rem; }
         
         .persona-nav {
             background-color: var(--light-bg);
@@ -83,8 +78,7 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         
-        .persona-nav a:hover,
-        .persona-nav a.active {
+        .persona-nav a:hover, .persona-nav a.active {
             background-color: var(--primary-color);
             color: white;
             text-decoration: none;
@@ -96,14 +90,8 @@
             color: #666;
         }
         
-        .breadcrumb a {
-            color: var(--link-color);
-            text-decoration: none;
-        }
-        
-        .breadcrumb a:hover {
-            text-decoration: underline;
-        }
+        .breadcrumb a { color: var(--link-color); text-decoration: none; }
+        .breadcrumb a:hover { text-decoration: underline; }
         
         main {
             display: grid;
@@ -111,14 +99,8 @@
             gap: 20px;
         }
         
-        a {
-            color: var(--link-color);
-            text-decoration: none;
-        }
-        
-        a:hover {
-            text-decoration: underline;
-        }
+        a { color: var(--link-color); text-decoration: none; }
+        a:hover { text-decoration: underline; }
         
         .feature-block {
             background-color: white;
@@ -155,14 +137,14 @@
             text-decoration: none;
         }
         
-        .news-updates {
+        .news-updates, .contact-block {
             background-color: var(--light-bg);
             border-radius: 5px;
             padding: 20px;
             margin-bottom: 30px;
         }
         
-        .news-updates h3 {
+        .news-updates h3, .contact-block h3 {
             color: var(--secondary-color);
             margin-top: 0;
             padding-bottom: 10px;
@@ -174,36 +156,9 @@
             padding-bottom: 15px;
             border-bottom: 1px solid #eee;
         }
-        
-        .news-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-        
-        .news-item h4 {
-            margin: 0 0 5px 0;
-            color: var(--secondary-color);
-        }
-        
-        .news-date {
-            font-size: 0.8rem;
-            color: #888;
-            margin-bottom: 5px;
-        }
-        
-        .contact-block {
-            background-color: var(--light-bg);
-            border-radius: 5px;
-            padding: 20px;
-        }
-        
-        .contact-block h3 {
-            color: var(--secondary-color);
-            margin-top: 0;
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--border-color);
-        }
+        .news-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .news-item h4 { margin: 0 0 5px 0; color: var(--secondary-color); }
+        .news-date { font-size: 0.8rem; color: #888; margin-bottom: 5px; }
         
         .persona-footer {
             text-align: center;
@@ -213,7 +168,6 @@
             color: #888;
         }
         
-        /* Specific styles for wijkinitiatief page */
         .best-practice-card {
             background-color: white;
             border-radius: 8px;
@@ -228,243 +182,649 @@
             color: white;
             padding: 15px;
         }
-        
-        .practice-header h4 {
-            margin: 0;
-            color: white;
-        }
-        
-        .practice-content {
-            padding: 15px;
-        }
-        
+        .practice-header h4 { margin: 0; color: white; }
+        .practice-content { padding: 15px; }
         .practice-footer {
             background-color: var(--light-bg);
             padding: 12px 15px;
             border-top: 1px solid var(--border-color);
         }
-        
-        .implementation-steps {
-            counter-reset: step-counter;
-            list-style-type: none;
-            padding-left: 0;
+
+        /* ========== L0-L5 STAPPENPLAN STYLING ========== */
+        .phase-filter {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: var(--light-bg);
+            border-radius: 5px;
+        }
+        .phase-filter label { font-weight: 600; color: var(--secondary-color); }
+        .phase-filter select {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 0.95rem;
+            min-width: 280px;
+        }
+        .phase-filter .hint {
+            font-size: 0.85rem;
+            color: #888;
+            margin-left: auto;
         }
         
-        .implementation-steps li {
-            position: relative;
-            padding-left: 50px;
-            margin-bottom: 20px;
-            counter-increment: step-counter;
+        .phase-card {
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+        .phase-card.hidden { display: none; }
+        
+        .phase-header {
+            padding: 1rem 1.25rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: background 0.2s;
+        }
+        .phase-header:hover { background: var(--light-bg); }
+        
+        .phase-badge {
+            padding: 0.25rem 0.6rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+        .phase-badge.f0 { background: var(--f0-bg); color: var(--f0); }
+        .phase-badge.f1 { background: var(--f1-bg); color: var(--f1); }
+        .phase-badge.f2 { background: var(--f2-bg); color: var(--f2); }
+        .phase-badge.f3 { background: var(--f3-bg); color: var(--f3); }
+        .phase-badge.f4 { background: var(--f4-bg); color: var(--f4); }
+        .phase-badge.f5 { background: var(--f5-bg); color: var(--f5); }
+        
+        .phase-title { flex: 1; font-weight: 600; color: var(--text-color); }
+        .phase-meta { font-size: 0.85rem; color: #888; }
+        .phase-toggle {
+            font-size: 1.1rem;
+            color: #888;
+            transition: transform 0.3s;
+        }
+        .phase-card.expanded .phase-toggle { transform: rotate(180deg); }
+        
+        .phase-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .phase-card.expanded .phase-content { max-height: 3000px; }
+        
+        .phase-inner { padding: 0 1.25rem 1.25rem; }
+        .phase-description {
+            color: var(--text-color);
+            font-size: 0.95rem;
+            margin-bottom: 1.25rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
         }
         
-        .implementation-steps li::before {
-            content: counter(step-counter);
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 36px;
-            height: 36px;
-            background-color: var(--secondary-color);
-            color: white;
-            border-radius: 18px;
+        .step-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .step-item:last-of-type { border-bottom: none; }
+        
+        .step-num {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
+            font-weight: 600;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+        .f0 .step-num { background: var(--f0-bg); color: var(--f0); }
+        .f1 .step-num { background: var(--f1-bg); color: var(--f1); }
+        .f2 .step-num { background: var(--f2-bg); color: var(--f2); }
+        .f3 .step-num { background: var(--f3-bg); color: var(--f3); }
+        .f4 .step-num { background: var(--f4-bg); color: var(--f4); }
+        .f5 .step-num { background: var(--f5-bg); color: var(--f5); }
+        
+        .step-content { flex: 1; }
+        .step-title { font-weight: 600; margin-bottom: 0.25rem; color: var(--text-color); }
+        .step-desc { font-size: 0.9rem; color: #888; margin-bottom: 0.5rem; }
+        .step-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.85rem;
+            color: var(--link-color);
         }
         
-        /* Media queries for responsiveness */
+        .step-tools {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+        .tool-tag {
+            font-size: 0.75rem;
+            padding: 0.2rem 0.5rem;
+            background: var(--light-bg);
+            border-radius: 4px;
+            color: #666;
+        }
+        
+        .transition-box {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 1px solid #86efac;
+            border-radius: 5px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        .transition-box h4 {
+            color: #166534;
+            font-size: 0.9rem;
+            margin: 0 0 0.5rem 0;
+        }
+        .transition-box ul {
+            margin: 0;
+            padding-left: 1.25rem;
+            font-size: 0.85rem;
+            color: #166534;
+        }
+        .transition-box li { margin-bottom: 0.25rem; }
+
         @media (max-width: 768px) {
-            main {
-                grid-template-columns: 1fr;
-            }
+            main { grid-template-columns: 1fr; }
+            .phase-filter { flex-direction: column; align-items: stretch; }
+            .phase-filter select { min-width: 100%; }
+            .phase-filter .hint { margin-left: 0; }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-    <!-- Header with persona title -->
     <header class="persona-header">
         <h1 class="persona-title">Voor Wijkinitiatieven</h1>
         <div class="subtitle">Best practices en implementatiehandleidingen voor lokale initiatieven</div>
     </header>
 
-    <!-- Breadcrumb for returning to main landing page -->
     <div class="breadcrumb">
         <a href="../index.html">Home</a> &gt; Voor Wijkinitiatieven
     </div>
     
-    <!-- Persona-specific navigation -->
     <div class="persona-nav">
         <a href="#stappenplan" id="stappenplan-tab" class="active">Stappenplan</a>
-        <a href="#best-practices" id="best-practices-tab" class="active">Best Practices</a>
+        <a href="#best-practices" id="best-practices-tab">Best Practices</a>
         <a href="#subsidies" id="subsidies-tab">Subsidiemogelijkheden</a>
         <a href="#netwerk" id="netwerk-tab">Netwerk</a>
     </div>
     
     <main>
         <div class="content">
-            <!-- Best Practices content section -->
-            <div id="best-practices-content" class="content-section">
+            <!-- ========== STAPPENPLAN L0-L5 ========== -->
+            <div id="stappenplan-content" class="content-section">
+                <div class="feature-block">
+                    <h3>Stappenplan Zorgzame Gemeenschap</h3>
+                    <p>Van oriëntatie tot kennisdeling — in uw eigen tempo door het F0-F5 framework.</p>
+                    
+                    <div class="phase-filter">
+                        <label for="phaseFilter">🎯 Selecteer uw fase:</label>
+                        <select id="phaseFilter" onchange="filterPhases()">
+                            <option value="all">Alle fases tonen</option>
+                            <option value="0">F0 — Oriëntatie & Behoeftebepaling</option>
+                            <option value="1">F1 — Tool Oriëntatie & Selectie</option>
+                            <option value="2">F2 — Implementatie & Adoptie</option>
+                            <option value="3">F3 — Integratie & Samenwerking</option>
+                            <option value="4">F4 — Proactieve Coördinatie</option>
+                            <option value="5">F5 — Kennisdeling & Innovatie</option>
+                        </select>
+                        <span class="hint">Tip: Na de intake wordt uw fase automatisch bepaald</span>
+                    </div>
+                    
+                    <!-- F0 -->
+                    <div class="phase-card expanded f0" data-phase="0">
+                        <div class="phase-header" onclick="togglePhase(this)">
+                            <span class="phase-badge f0">F0</span>
+                            <span class="phase-title">Oriëntatie & Behoeftebepaling</span>
+                            <span class="phase-meta">5 stappen</span>
+                            <span class="phase-toggle">▼</span>
+                        </div>
+                        <div class="phase-content">
+                            <div class="phase-inner">
+                                <p class="phase-description">In deze fase brengt u de behoeften van uw gemeenschap helder in kaart. U onderzoekt wat er speelt, wie betrokken zijn en wat er nodig is — voordat u nadenkt over digitale oplossingen.</p>
+                                
+                                <div class="step-item">
+                                    <div class="step-num">1</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Intake invullen</div>
+                                        <div class="step-desc">Breng uw gemeenschap in kaart: wie zijn jullie, wat is de structuur, wat is de aanleiding?</div>
+                                        <a href="../intake.html" class="step-link">→ Naar de Intake</a>
+                                    </div>
+                                </div>
+                                
+                                <div class="step-item">
+                                    <div class="step-num">2</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Wijkmonitor uitzetten (optioneel)</div>
+                                        <div class="step-desc">Laat bewoners de wijkmonitor invullen om individuele behoeften en vaardigheden in kaart te brengen.</div>
+                                        <a href="wijkbewoner.html?tab=wijkmonitor" class="step-link" target="_blank">→ Naar de Wijkmonitor</a>
+                                        <div class="step-tools">
+                                            <span class="tool-tag">📊 Wijkmonitor</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="step-item">
+                                    <div class="step-num">3</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Behoefteanalyse uitvoeren</div>
+                                        <div class="step-desc">Doorloop de ADS Blauwdruk-methodiek: inventariseer, analyseer met het ijsbergmodel, bepaal de gewenste toekomst.</div>
+                                        <a href="../handreikingen.html" class="step-link">→ Blauwdruk werkvormen</a>
+                                        <div class="step-tools">
+                                            <span class="tool-tag">📘 ADS Blauwdruk</span>
+                                            <span class="tool-tag">🧊 IJsbergmodel</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="step-item">
+                                    <div class="step-num">4</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Persona's opstellen</div>
+                                        <div class="step-desc">Maak 2-3 persona's op basis van interviews en wijkmonitor-data.</div>
+                                        <a href="../handreikingen.html" class="step-link">→ Persona template</a>
+                                        <div class="step-tools">
+                                            <span class="tool-tag">👤 Persona template</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="step-item">
+                                    <div class="step-num">5</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Netwerkanalyse</div>
+                                        <div class="step-desc">Breng in kaart wie welke rol speelt, waar de gaten zitten en hoe de huidige vs. gewenste route eruitziet.</div>
+                                        <a href="../handreikingen.html" class="step-link">→ Netwerkcirkels werkvorm</a>
+                                        <div class="step-tools">
+                                            <span class="tool-tag">🔗 Netwerkcirkels</span>
+                                            <span class="tool-tag">🗺️ Klantreis</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="transition-box">
+                                    <h4>✓ Klaar voor de volgende fase wanneer:</h4>
+                                    <ul>
+                                        <li>Behoeften zijn gedocumenteerd in persona's</li>
+                                        <li>Netwerk is in kaart gebracht</li>
+                                        <li>Concrete ontwerpvraag is geformuleerd</li>
+                                        <li>Kernteam weet welke functionaliteiten nodig zijn</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- F1 -->
+                    <div class="phase-card f1" data-phase="1">
+                        <div class="phase-header" onclick="togglePhase(this)">
+                            <span class="phase-badge f1">F1</span>
+                            <span class="phase-title">Tool Oriëntatie & Selectie</span>
+                            <span class="phase-meta">4 stappen</span>
+                            <span class="phase-toggle">▼</span>
+                        </div>
+                        <div class="phase-content">
+                            <div class="phase-inner">
+                                <p class="phase-description">Nu uw behoeften helder zijn, gaat u op zoek naar de juiste digitale tools. U verkent het aanbod, matcht met uw behoeften en maakt een onderbouwde keuze.</p>
+                                
+                                <div class="step-item">
+                                    <div class="step-num">1</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Leveranciers verkennen</div>
+                                        <div class="step-desc">Bekijk welke platforms beschikbaar zijn via de Functionaliteitenwijzer. Filter op uw behoeften.</div>
+                                        <a href="../architectuur.html" class="step-link">→ Functionaliteitenwijzer</a>
+                                        <div class="step-tools">
+                                            <span class="tool-tag">🔍 Functionaliteitenwijzer</span>
+                                            <span class="tool-tag">📊 Vergelijkingstabel</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="step-item">
+                                    <div class="step-num">2</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Matching met behoeften</div>
+                                        <div class="step-desc">Vergelijk 2-3 platforms op basis van uw persona's en ontwerpvraag. Gebruik het D-ICC framework.</div>
+                                        <a href="../architectuur.html" class="step-link">→ D-ICC Framework</a>
+                                    </div>
+                                </div>
+                                
+                                <div class="step-item">
+                                    <div class="step-num">3</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Demo's & trials</div>
+                                        <div class="step-desc">Vraag demo's aan bij shortlist-leveranciers. Test met kernteam én bewoners uit uw persona's.</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="step-item">
+                                    <div class="step-num">4</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Selectie & besluit</div>
+                                        <div class="step-desc">Maak een onderbouwde keuze. Documenteer de afweging en betrek het netwerk bij het besluit.</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="transition-box">
+                                    <h4>✓ Klaar voor de volgende fase wanneer:</h4>
+                                    <ul>
+                                        <li>Tool is gekozen en gecontracteerd</li>
+                                        <li>Implementatieplan is opgesteld</li>
+                                        <li>Kernteam is gecommitteerd</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- F2 -->
+                    <div class="phase-card f2" data-phase="2">
+                        <div class="phase-header" onclick="togglePhase(this)">
+                            <span class="phase-badge f2">F2</span>
+                            <span class="phase-title">Implementatie & Adoptie</span>
+                            <span class="phase-meta">4 stappen</span>
+                            <span class="phase-toggle">▼</span>
+                        </div>
+                        <div class="phase-content">
+                            <div class="phase-inner">
+                                <p class="phase-description">De tool is gekozen, nu gaat u aan de slag met implementatie. Focus op werkprocessen, training en het meekrijgen van gebruikers.</p>
+                                
+                                <div class="step-item">
+                                    <div class="step-num">1</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Tool inrichten</div>
+                                        <div class="step-desc">Configureer de tool voor uw gemeenschap. Richt accounts in, pas instellingen aan.</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="step-item">
+                                    <div class="step-num">2</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Werkprocessen definiëren</div>
+                                        <div class="step-desc">Bepaal wie wat doet. Wie neemt hulpvragen aan? Wie plant vrijwilligers? Documenteer de afspraken.</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="step-item">
+                                    <div class="step-num">3</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Training kernteam</div>
+                                        <div class="step-desc">Train de kerngebruikers. Maak handleidingen en vraagbaak beschikbaar.</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="step-item">
+                                    <div class="step-num">4</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Gebruikersadoptie</div>
+                                        <div class="step-desc">Rol uit naar bewoners. Organiseer inloopsessies, bied hulp aan minder digitaal vaardigen.</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="transition-box">
+                                    <h4>✓ Klaar voor de volgende fase wanneer:</h4>
+                                    <ul>
+                                        <li>Tool is in gebruik bij kernteam</li>
+                                        <li>Eerste bewoners maken actief gebruik</li>
+                                        <li>Werkprocessen draaien stabiel</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- F3 -->
+                    <div class="phase-card f3" data-phase="3">
+                        <div class="phase-header" onclick="togglePhase(this)">
+                            <span class="phase-badge f3">F3</span>
+                            <span class="phase-title">Integratie & Samenwerking</span>
+                            <span class="phase-meta">3 stappen</span>
+                            <span class="phase-toggle">▼</span>
+                        </div>
+                        <div class="phase-content">
+                            <div class="phase-inner">
+                                <p class="phase-description">Uw digitale infrastructuur werkt. Nu gaat u de verbinding leggen met formele zorg en andere partijen in het netwerk.</p>
+                                
+                                <div class="step-item">
+                                    <div class="step-num">1</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Koppelingen verkennen</div>
+                                        <div class="step-desc">Welke formele zorgpartijen willen/kunnen aansluiten? Inventariseer technische en organisatorische mogelijkheden.</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="step-item">
+                                    <div class="step-num">2</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Data-uitwisseling inrichten</div>
+                                        <div class="step-desc">Maak afspraken over welke informatie gedeeld wordt. Let op privacy en toestemming.</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="step-item">
+                                    <div class="step-num">3</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Samenwerkingsafspraken</div>
+                                        <div class="step-desc">Formaliseer de samenwerking. Wie doet wat? Hoe verloopt de overdracht?</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="transition-box">
+                                    <h4>✓ Klaar voor de volgende fase wanneer:</h4>
+                                    <ul>
+                                        <li>Formele en informele zorg werken samen via het platform</li>
+                                        <li>Data-uitwisseling is geregeld</li>
+                                        <li>Werkafspraken zijn gedocumenteerd</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- F4 -->
+                    <div class="phase-card f4" data-phase="4">
+                        <div class="phase-header" onclick="togglePhase(this)">
+                            <span class="phase-badge f4">F4</span>
+                            <span class="phase-title">Proactieve Coördinatie</span>
+                            <span class="phase-meta">3 stappen</span>
+                            <span class="phase-toggle">▼</span>
+                        </div>
+                        <div class="phase-content">
+                            <div class="phase-inner">
+                                <p class="phase-description">Van reactief naar proactief. U gaat signalen monitoren en preventief handelen voordat problemen escaleren.</p>
+                                
+                                <div class="step-item">
+                                    <div class="step-num">1</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Monitoring inrichten</div>
+                                        <div class="step-desc">Welke signalen wilt u volgen? Activiteit, hulpvragen, sociale contacten? Richt dashboards in.</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="step-item">
+                                    <div class="step-num">2</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Signalering & alerts</div>
+                                        <div class="step-desc">Stel alerts in voor risicosignalen. Wie krijgt een signaal? Wat is de opvolging?</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="step-item">
+                                    <div class="step-num">3</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Preventieve interventies</div>
+                                        <div class="step-desc">Ontwikkel protocollen voor vroegtijdig ingrijpen. Voorkom escalatie naar duurdere zorg.</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="transition-box">
+                                    <h4>✓ Klaar voor de volgende fase wanneer:</h4>
+                                    <ul>
+                                        <li>Monitoring draait en levert bruikbare inzichten</li>
+                                        <li>Preventieve interventies zijn getest</li>
+                                        <li>Aantoonbare impact op vroegsignalering</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- F5 -->
+                    <div class="phase-card f5" data-phase="5">
+                        <div class="phase-header" onclick="togglePhase(this)">
+                            <span class="phase-badge f5">F5</span>
+                            <span class="phase-title">Kennisdeling & Innovatie</span>
+                            <span class="phase-meta">3 stappen</span>
+                            <span class="phase-toggle">▼</span>
+                        </div>
+                        <div class="phase-content">
+                            <div class="phase-inner">
+                                <p class="phase-description">Uw gemeenschap heeft een werkend model. Nu deelt u uw kennis met anderen en blijft u innoveren.</p>
+                                
+                                <div class="step-item">
+                                    <div class="step-num">1</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Documenteren & publiceren</div>
+                                        <div class="step-desc">Schrijf uw aanpak uit. Wat werkt? Wat niet? Deel via het kennisportaal.</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="step-item">
+                                    <div class="step-num">2</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Andere gemeenschappen begeleiden</div>
+                                        <div class="step-desc">Word ambassadeur. Help gemeenschappen die nog in F0-F2 zitten.</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="step-item">
+                                    <div class="step-num">3</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Blijven innoveren</div>
+                                        <div class="step-desc">Evalueer regelmatig. Experimenteer met nieuwe functionaliteiten. Deel learnings.</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="transition-box">
+                                    <h4>🎯 Continu proces:</h4>
+                                    <ul>
+                                        <li>Kennis actief gedeeld met netwerk</li>
+                                        <li>Minimaal 1 andere gemeenschap begeleid</li>
+                                        <li>Jaarlijkse evaluatie en doorontwikkeling</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Best Practices -->
+            <div id="best-practices-content" class="content-section" style="display: none;">
                 <div class="feature-block">
                     <h3>Best practices voor wijkinitiatieven</h3>
-                    <p>Ontdek succesvolle aanpakken van andere wijkinitiatieven voor het implementeren van digitale zorgoplossingen. Deze best practices kunnen u helpen om uw eigen initiatief te verbeteren of nieuwe ideeën op te doen.</p>
+                    <p>Ontdek succesvolle aanpakken van andere wijkinitiatieven voor het implementeren van digitale zorgoplossingen.</p>
                     
                     <div class="best-practice-card">
-                        <div class="practice-header">
-                            <h4>Buurtverbinder App in Amsterdam-West</h4>
-                        </div>
+                        <div class="practice-header"><h4>Buurtverbinder App in Amsterdam-West</h4></div>
                         <div class="practice-content">
-                            <p>In Amsterdam-West is een succesvol platform opgezet dat buurtbewoners helpt om hulpvragen en -aanbod bij elkaar te brengen. Via een laagdrempelige app kunnen buurtbewoners aangeven waarbij ze hulp nodig hebben of juist hulp kunnen bieden.</p>
-                            <p><strong>Resultaten:</strong> 75% van de hulpvragen wordt binnen 48 uur beantwoord. Meer dan 500 buurtbewoners maken actief gebruik van het platform.</p>
+                            <p>In Amsterdam-West is een succesvol platform opgezet dat buurtbewoners helpt om hulpvragen en -aanbod bij elkaar te brengen.</p>
+                            <p><strong>Resultaten:</strong> 75% van de hulpvragen wordt binnen 48 uur beantwoord.</p>
                         </div>
-                        <div class="practice-footer">
-                            <a href="#">Lees de volledige case study &raquo;</a>
-                        </div>
+                        <div class="practice-footer"><a href="#">Lees de volledige case study »</a></div>
                     </div>
                     
                     <div class="best-practice-card">
-                        <div class="practice-header">
-                            <h4>Digitale Huiskamer in Groningen</h4>
-                        </div>
+                        <div class="practice-header"><h4>Digitale Huiskamer in Groningen</h4></div>
                         <div class="practice-content">
-                            <p>In Groningen is een 'Digitale Huiskamer' opgezet waar ouderen terecht kunnen voor ondersteuning bij het gebruik van digitale middelen. Vrijwilligers bieden één-op-één begeleiding en er worden regelmatig workshops georganiseerd.</p>
-                            <p><strong>Resultaten:</strong> Meer dan 200 ouderen hebben geleerd om te videobellen met familie. 80% van de deelnemers geeft aan zich minder eenzaam te voelen.</p>
+                            <p>In Groningen is een 'Digitale Huiskamer' opgezet waar ouderen terecht kunnen voor ondersteuning bij digitale middelen.</p>
+                            <p><strong>Resultaten:</strong> 200+ ouderen leerden videobellen. 80% voelt zich minder eenzaam.</p>
                         </div>
-                        <div class="practice-footer">
-                            <a href="#">Lees de volledige case study &raquo;</a>
-                        </div>
-                    </div>
-                    
-                    <div class="best-practice-card">
-                        <div class="practice-header">
-                            <h4>Gezondheidsmonitor Eindhoven-Noord</h4>
-                        </div>
-                        <div class="practice-content">
-                            <p>In Eindhoven-Noord is een lokale gezondheidsmonitor opgezet die bewoners helpt om hun gezondheid te monitoren en te verbeteren. De monitor wordt ondersteund door lokale huisartsen en fysiotherapeuten.</p>
-                            <p><strong>Resultaten:</strong> 30% minder no-shows bij huisartsafspraken. Verbeterde gezondheidsuitkomsten voor chronische patiënten.</p>
-                        </div>
-                        <div class="practice-footer">
-                            <a href="#">Lees de volledige case study &raquo;</a>
-                        </div>
+                        <div class="practice-footer"><a href="#">Lees de volledige case study »</a></div>
                     </div>
                     
                     <a href="#" class="feature-action">Alle best practices bekijken</a>
                 </div>
             </div>
             
-            <!-- Stappenplan content section -->
-            <div id="stappenplan-content" class="content-section" style="display: none;">
-                <div class="feature-block">
-                    <h3>Implementatiehandleiding voor digitale wijkoplossingen</h3>
-                    <p>Deze handleiding biedt een stapsgewijze aanpak voor het implementeren van digitale oplossingen in uw wijk. Volg deze stappen voor een succesvolle uitrol van uw initiatief.</p>
-                    
-                    <h4>Stapsgewijs implementeren</h4>
-                    <ul class="implementation-steps">
-                        <li>
-                            <h5>Behoefteanalyse</h5>
-                            <p>Breng de behoeften van de buurtbewoners in kaart door middel van interviews, enquêtes of buurtbijeenkomsten. Identificeer de belangrijkste uitdagingen die met digitale middelen kunnen worden aangepakt.</p>
-                        </li>
-                        <li>
-                            <h5>Stakeholders betrekken</h5>
-                            <p>Identificeer en betrek alle relevante partijen: buurtbewoners, zorgverleners, welzijnsorganisaties, gemeente en eventuele financiers.</p>
-                        </li>
-                        <li>
-                            <h5>Oplossing selecteren</h5>
-                            <p>Kies een passende digitale oplossing die aansluit bij de behoeften van de wijk. Overweeg bestaande tools of ontwikkel een oplossing op maat.</p>
-                        </li>
-                        <li>
-                            <h5>Pilotfase</h5>
-                            <p>Start met een kleine groep gebruikers om de oplossing te testen en feedback te verzamelen. Pas de oplossing aan op basis van deze feedback.</p>
-                        </li>
-                        <li>
-                            <h5>Implementatie</h5>
-                            <p>Rol de oplossing uit naar de gehele doelgroep. Zorg voor adequate ondersteuning en training voor gebruikers.</p>
-                        </li>
-                        <li>
-                            <h5>Evaluatie en verbetering</h5>
-                            <p>Monitor het gebruik en effect van de oplossing. Verzamel feedback en verbeter de oplossing continu.</p>
-                        </li>
-                    </ul>
-                    
-                    <a href="#" class="feature-action">Download volledige implementatiehandleiding</a>
-                </div>
-            </div>
-            
-            <!-- Subsidies content section -->
+            <!-- Subsidies -->
             <div id="subsidies-content" class="content-section" style="display: none;">
                 <div class="feature-block">
                     <h3>Subsidiemogelijkheden voor wijkinitiatieven</h3>
-                    <p>Er zijn verschillende subsidiemogelijkheden beschikbaar voor wijkinitiatieven die zich richten op digitale zorgoplossingen. Hieronder vindt u een overzicht van actuele subsidieregelingen.</p>
+                    <p>Overzicht van actuele subsidieregelingen voor digitale zorgoplossingen.</p>
                     
                     <div class="best-practice-card">
-                        <div class="practice-header">
-                            <h4>ZonMw - Programma Digitale Zorg</h4>
-                        </div>
+                        <div class="practice-header"><h4>Alliantie Digitaal Samenleven</h4></div>
                         <div class="practice-content">
-                            <p>Subsidie voor innovatieve projecten die bijdragen aan de ontwikkeling en implementatie van digitale zorgoplossingen.</p>
-                            <p><strong>Subsidiebedrag:</strong> €50.000 - €200.000</p>
-                            <p><strong>Deadline aanvraag:</strong> 30 april 2025</p>
+                            <p>Subsidie voor digitale inclusie en bewonersinitiatieven.</p>
+                            <p><strong>Subsidiebedrag:</strong> €15.000 per gemeenschap</p>
                         </div>
-                        <div class="practice-footer">
-                            <a href="#">Meer informatie &raquo;</a>
-                        </div>
+                        <div class="practice-footer"><a href="#">Meer informatie »</a></div>
                     </div>
                     
                     <div class="best-practice-card">
-                        <div class="practice-header">
-                            <h4>VWS - Stimuleringsregeling E-health Thuis</h4>
-                        </div>
+                        <div class="practice-header"><h4>Noaber Foundation</h4></div>
                         <div class="practice-content">
-                            <p>Subsidie voor het opschalen en borgen van het gebruik van bestaande e-health toepassingen bij ouderen en mensen met een chronische ziekte of beperking.</p>
-                            <p><strong>Subsidiebedrag:</strong> Tot €75.000</p>
-                            <p><strong>Deadline aanvraag:</strong> Doorlopend tot 31 december 2025</p>
+                            <p>Ondersteuning voor sociale innovatie in gemeenschappen.</p>
+                            <p><strong>Subsidiebedrag:</strong> Tot €20.000</p>
                         </div>
-                        <div class="practice-footer">
-                            <a href="#">Meer informatie &raquo;</a>
-                        </div>
+                        <div class="practice-footer"><a href="#">Meer informatie »</a></div>
                     </div>
                     
                     <div class="best-practice-card">
-                        <div class="practice-header">
-                            <h4>Gemeente Subsidieregelingen</h4>
-                        </div>
+                        <div class="practice-header"><h4>STOZ - Stimuleringsregeling</h4></div>
                         <div class="practice-content">
-                            <p>Veel gemeenten hebben lokale subsidieregelingen voor buurtinitiatieven. Neem contact op met uw gemeente voor meer informatie over de mogelijkheden.</p>
+                            <p>Voor projecten met formele zorgpartners (via NNZC, Cosis e.d.).</p>
+                            <p><strong>Subsidiebedrag:</strong> Tot €25.000</p>
                         </div>
-                        <div class="practice-footer">
-                            <a href="#">Zoek uw gemeente &raquo;</a>
-                        </div>
+                        <div class="practice-footer"><a href="#">Meer informatie »</a></div>
                     </div>
                     
                     <a href="#" class="feature-action">Alle subsidiemogelijkheden bekijken</a>
                 </div>
             </div>
             
-            <!-- Netwerk content section -->
+            <!-- Netwerk -->
             <div id="netwerk-content" class="content-section" style="display: none;">
                 <div class="feature-block">
                     <h3>Netwerk voor wijkinitiatieven</h3>
-                    <p>Maak deel uit van een netwerk van wijkinitiatieven die zich bezighouden met digitale zorgoplossingen. Deel ervaringen, leer van elkaar en werk samen aan nieuwe oplossingen.</p>
+                    <p>Maak deel uit van een netwerk van wijkinitiatieven. Deel ervaringen, leer van elkaar.</p>
                     
-                    <h4>Aankomende netwerkbijeenkomsten</h4>
+                    <h4>Aankomende bijeenkomsten</h4>
                     <div class="best-practice-card">
-                        <div class="practice-header">
-                            <h4>Kennisuitwisseling Digitale Wijkzorg</h4>
-                        </div>
+                        <div class="practice-header"><h4>Kennisuitwisseling Digitale Wijkzorg</h4></div>
                         <div class="practice-content">
-                            <p><strong>Datum:</strong> 25 maart 2025</p>
-                            <p><strong>Locatie:</strong> Congrescentrum Utrecht</p>
-                            <p><strong>Thema:</strong> Dataveiligheid en privacy bij digitale wijkinitiatieven</p>
+                            <p><strong>Datum:</strong> 25 maart 2025<br>
+                            <strong>Locatie:</strong> Congrescentrum Utrecht<br>
+                            <strong>Thema:</strong> Dataveiligheid en privacy</p>
                         </div>
-                        <div class="practice-footer">
-                            <a href="#">Aanmelden &raquo;</a>
-                        </div>
+                        <div class="practice-footer"><a href="#">Aanmelden »</a></div>
                     </div>
                     
                     <h4>Online community</h4>
-                    <p>Word lid van onze online community waar wijkinitiatieven kennis en ervaringen delen. Stel vragen, deel successen en leer van uitdagingen van anderen.</p>
-                    
+                    <p>Word lid van onze online community waar wijkinitiatieven kennis en ervaringen delen.</p>
                     <a href="#" class="feature-action">Lid worden van de community</a>
                 </div>
             </div>
@@ -474,29 +834,21 @@
             <div class="news-updates">
                 <h3>Nieuws</h3>
                 <div class="news-item">
-                    <h4>Nieuwe subsidieregeling digitale wijkoplossingen</h4>
-                    <div class="news-date">22 februari 2025</div>
-                    <p>Het ministerie van VWS stelt €5 miljoen beschikbaar voor digitale oplossingen in wijken.</p>
+                    <h4>ADS Partnership Glimmen & Akkrum</h4>
+                    <div class="news-date">December 2024</div>
+                    <p>Start implementatie via Alliantie Digitaal Samenleven met 2x €15.000 financiering.</p>
                 </div>
-                
                 <div class="news-item">
-                    <h4>Succesvol wijkinitiatief wint innovatieprijs</h4>
-                    <div class="news-date">18 februari 2025</div>
-                    <p>Het digitale wijkinitiatief 'Buurtverbinder' uit Amsterdam heeft de nationale innovatieprijs gewonnen.</p>
-                </div>
-                
-                <div class="news-item">
-                    <h4>Webinar over privacywetgeving</h4>
-                    <div class="news-date">10 februari 2025</div>
-                    <p>Op 5 maart wordt een webinar georganiseerd over privacywetgeving voor wijkinitiatieven.</p>
+                    <h4>STOZ aanvraag Noordbroek</h4>
+                    <div class="news-date">November 2024</div>
+                    <p>Verkenning €25.000 subsidie via NNZC en Cosis partnership.</p>
                 </div>
             </div>
             
             <div class="contact-block">
                 <h3>Hulp nodig?</h3>
-                <p>Heeft u vragen over het opzetten van een wijkinitiatief? Neem contact met ons op:</p>
-                <p>Email: initiatieven@projectnaam.nl</p>
-                <p>Tel: 020-1234567</p>
+                <p>Heeft u vragen over het opzetten van een wijkinitiatief?</p>
+                <p>Email: <a href="mailto:info@nlzve.nl">info@nlzve.nl</a></p>
                 <a href="../contact.html" class="feature-action">Contact opnemen</a>
             </div>
         </aside>
@@ -507,63 +859,62 @@
         <p><a href="../index.html">Terug naar de hoofdpagina</a></p>
     </footer>
 
-    <!-- JavaScript for tab navigation -->
     <script>
+        // Phase accordion toggle
+        function togglePhase(header) {
+            const phase = header.closest('.phase-card');
+            phase.classList.toggle('expanded');
+        }
+        
+        // Phase filter
+        function filterPhases() {
+            const filter = document.getElementById('phaseFilter').value;
+            const phases = document.querySelectorAll('.phase-card');
+            
+            phases.forEach(phase => {
+                const phaseNum = phase.dataset.phase;
+                if (filter === 'all') {
+                    phase.classList.remove('hidden');
+                    phase.classList.toggle('expanded', phaseNum === '0');
+                } else {
+                    phase.classList.toggle('hidden', phaseNum !== filter);
+                    if (phaseNum === filter) phase.classList.add('expanded');
+                }
+            });
+        }
+
+        // Tab navigation
         document.addEventListener('DOMContentLoaded', function() {
-            // Get URL parameters
             const urlParams = new URLSearchParams(window.location.search);
             const tab = urlParams.get('tab');
             
-            // Function to hide all content sections
             function hideAllSections() {
-                document.querySelectorAll('.content-section').forEach(section => {
-                    section.style.display = 'none';
-                });
+                document.querySelectorAll('.content-section').forEach(s => s.style.display = 'none');
             }
             
-            // Function to show a specific content section
             function showSection(sectionId) {
                 hideAllSections();
                 const section = document.getElementById(sectionId + '-content');
-                if (section) {
-                    section.style.display = 'block';
-                }
+                if (section) section.style.display = 'block';
             }
             
-            // Add click events to all navigation tabs
             document.querySelectorAll('.persona-nav a').forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
-                    
-                    // Remove active class from all tabs
-                    document.querySelectorAll('.persona-nav a').forEach(tab => {
-                        tab.classList.remove('active');
-                    });
-                    
-                    // Add active class to clicked tab
+                    document.querySelectorAll('.persona-nav a').forEach(t => t.classList.remove('active'));
                     this.classList.add('active');
-                    
-                    // Show the corresponding section
-                    const tabId = this.getAttribute('href').substring(1); // Remove the # character
-                    showSection(tabId);
+                    showSection(this.getAttribute('href').substring(1));
                 });
             });
             
-            // If tab parameter exists, activate the appropriate tab
             if (tab) {
-                // Remove active class from all tabs
-                document.querySelectorAll('.persona-nav a').forEach(link => {
-                    link.classList.remove('active');
-                });
-                
-                // Show the requested tab and its content
-                const tabElement = document.querySelector('#' + tab + '-tab');
-                if (tabElement) {
-                    tabElement.classList.add('active');
+                document.querySelectorAll('.persona-nav a').forEach(l => l.classList.remove('active'));
+                const tabEl = document.querySelector('#' + tab + '-tab');
+                if (tabEl) {
+                    tabEl.classList.add('active');
                     showSection(tab);
                 }
             } else {
-                // If no tab parameter, show the default tab (stappenplan)
                 showSection('stappenplan');
             }
         });
