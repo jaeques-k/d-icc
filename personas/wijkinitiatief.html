@@ -183,6 +183,82 @@
         .persona-footer { text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color); color: #888; }
         
         @media (max-width: 768px) { main { grid-template-columns: 1fr; } .form-grid { grid-template-columns: 1fr; } .phase-filter { flex-direction: column; align-items: stretch; } .phase-filter select { min-width: 100%; } .intake-step-label { display: none; } }
+        /* Functionaliteitenwijzer styles */
+        .fw-container { display: grid; grid-template-columns: 280px 1fr; gap: 1.5rem; }
+        .fw-filters { background: white; border-radius: 8px; padding: 1.25rem; box-shadow: var(--card-shadow); position: sticky; top: 20px; height: fit-content; }
+        .fw-filters h4 { color: var(--secondary-color); margin: 0 0 1rem 0; font-size: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+        .fw-filter-section { margin-bottom: 1.25rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border-color); }
+        .fw-filter-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .fw-filter-section h5 { font-size: 0.85rem; color: var(--text-color); margin: 0 0 0.75rem 0; font-weight: 600; }
+        .fw-filter-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .fw-tag { padding: 0.35rem 0.75rem; border-radius: 20px; font-size: 0.75rem; cursor: pointer; border: 1px solid var(--border-color); background: white; color: var(--text-color); transition: all 0.2s; }
+        .fw-tag:hover { border-color: var(--primary-color); color: var(--primary-color); }
+        .fw-tag.active { background: var(--primary-color); color: white; border-color: var(--primary-color); }
+        .fw-tag.domain { border-color: #e0e7ff; }
+        .fw-tag.domain.active { background: var(--secondary-color); border-color: var(--secondary-color); }
+        .fw-search { width: 100%; padding: 0.625rem; border: 1px solid var(--border-color); border-radius: 5px; font-size: 0.9rem; margin-bottom: 1rem; }
+        .fw-search:focus { outline: none; border-color: var(--primary-color); }
+        .fw-clear { font-size: 0.8rem; color: var(--link-color); cursor: pointer; float: right; margin-top: -1.5rem; }
+        .fw-clear:hover { text-decoration: underline; }
+        .fw-count { font-size: 0.85rem; color: #888; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border-color); }
+        
+        .fw-results { display: flex; flex-direction: column; gap: 1rem; }
+        .fw-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .fw-header h3 { margin: 0; }
+        .fw-compare-toggle { padding: 0.5rem 1rem; border-radius: 5px; border: 1px solid var(--border-color); background: white; cursor: pointer; font-size: 0.85rem; transition: all 0.2s; }
+        .fw-compare-toggle:hover { border-color: var(--primary-color); }
+        .fw-compare-toggle.active { background: var(--secondary-color); color: white; border-color: var(--secondary-color); }
+        
+        .fw-card { background: white; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; box-shadow: var(--card-shadow); transition: all 0.2s; }
+        .fw-card:hover { box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
+        .fw-card.selected { border-color: var(--secondary-color); background: #f8faff; }
+        .fw-card-header { padding: 1rem 1.25rem; display: flex; justify-content: space-between; align-items: flex-start; cursor: pointer; }
+        .fw-card-header:hover { background: var(--light-bg); }
+        .fw-card-info { flex: 1; }
+        .fw-card-name { font-weight: 600; color: var(--text-color); font-size: 1.1rem; margin-bottom: 0.5rem; }
+        .fw-card-meta { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+        .fw-score { background: #ecfdf5; color: #059669; padding: 0.25rem 0.6rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; }
+        .fw-levels { font-size: 0.8rem; color: #888; }
+        .fw-card-actions { display: flex; gap: 0.5rem; align-items: center; }
+        .fw-compare-btn { padding: 0.4rem 0.8rem; border-radius: 4px; border: 1px solid var(--border-color); background: white; cursor: pointer; font-size: 0.75rem; transition: all 0.2s; }
+        .fw-compare-btn:hover { border-color: var(--secondary-color); }
+        .fw-compare-btn.added { background: var(--secondary-color); color: white; border-color: var(--secondary-color); }
+        .fw-compare-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .fw-expand-btn { background: none; border: none; cursor: pointer; color: #888; font-size: 1.2rem; transition: transform 0.3s; padding: 0.25rem; }
+        .fw-card.expanded .fw-expand-btn { transform: rotate(180deg); }
+        
+        .fw-card-summary { padding: 0 1.25rem 1rem; font-size: 0.9rem; }
+        .fw-card-summary span { color: var(--text-color); font-weight: 500; }
+        
+        .fw-card-details { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+        .fw-card.expanded .fw-card-details { max-height: 500px; }
+        .fw-card-details-inner { padding: 1rem 1.25rem; border-top: 1px solid var(--border-color); }
+        .fw-detail-section { margin-bottom: 1rem; }
+        .fw-detail-section:last-child { margin-bottom: 0; }
+        .fw-detail-section h5 { font-size: 0.85rem; color: var(--text-color); margin: 0 0 0.5rem 0; }
+        .fw-detail-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+        .fw-detail-tag { font-size: 0.75rem; padding: 0.2rem 0.5rem; background: var(--light-bg); border-radius: 4px; color: #666; }
+        .fw-wiki-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--link-color); font-size: 0.85rem; margin-top: 0.5rem; }
+        .fw-wiki-link:hover { text-decoration: underline; }
+        
+        /* Vergelijkingstabel */
+        .fw-comparison { background: white; border-radius: 8px; box-shadow: var(--card-shadow); padding: 1.25rem; margin-bottom: 1.5rem; display: none; }
+        .fw-comparison.visible { display: block; }
+        .fw-comparison-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color); }
+        .fw-comparison-header h4 { margin: 0; color: var(--secondary-color); }
+        .fw-comparison-actions { display: flex; gap: 0.5rem; }
+        .fw-comparison table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+        .fw-comparison th, .fw-comparison td { padding: 0.75rem; text-align: left; border-bottom: 1px solid var(--border-color); }
+        .fw-comparison th { font-weight: 600; color: var(--text-color); background: var(--light-bg); }
+        .fw-comparison th:first-child { width: 160px; }
+        .fw-comparison td { vertical-align: top; }
+        
+        .fw-empty { text-align: center; padding: 3rem; background: white; border-radius: 8px; color: #888; }
+        
+        @media (max-width: 900px) {
+            .fw-container { grid-template-columns: 1fr; }
+            .fw-filters { position: static; }
+            }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
@@ -200,6 +276,7 @@
         <a href="#intake" id="intake-tab" class="main-tab">Intake</a>
         <a href="#wijkmonitor" id="wijkmonitor-tab" class="main-tab">Wijkmonitor</a>
         <a href="#netwerk" id="netwerk-tab" class="main-tab">Netwerk</a>
+        <a href="#functionaliteitenwijzer" id="functionaliteitenwijzer-tab" class="main-tab">Functionaliteitenwijzer</a>
     </div>
     
     
@@ -522,7 +599,88 @@
     </main>
     
     <footer class="persona-footer"><p>© 2025 Project Kennisportaal - Alle rechten voorbehouden</p><p><a href="../index.html">Terug naar de hoofdpagina</a></p></footer>
+         
+        <!-- ========== FUNCTIONALITEITENWIJZER ========== -->                 
+        <div id="functionaliteitenwijzer-content" class="content-section">
+                <div class="feature-block">
+                    <h3>Functionaliteitenwijzer</h3>
+                    <p>Verken en vergelijk ICT-leveranciers op basis van functionaliteit, open standaarden en ontwikkelingsniveau. Filter op uw behoeften en vergelijk maximaal 3 platforms.</p>
+                </div>
+                
+                <!-- Vergelijkingstabel -->
+                <div class="fw-comparison" id="fwComparison">
+                    <div class="fw-comparison-header">
+                        <h4>Vergelijking (<span id="compareCount">0</span> platforms)</h4>
+                        <div class="fw-comparison-actions">
+                            <button class="feature-action secondary" onclick="clearComparison()">Wissen</button>
+                        </div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Criterium</th>
+                                <th id="compareCol1"></th>
+                                <th id="compareCol2"></th>
+                                <th id="compareCol3"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="compareBody">
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="fw-container">
+                    <!-- Filters -->
+                    <div class="fw-filters">
+                        <h4><i class="fas fa-filter"></i> Filters</h4>
+                        <input type="text" class="fw-search" id="fwSearch" placeholder="Zoek op naam of functie..." oninput="filterLeveranciers()">
+                        <span class="fw-clear" onclick="clearFilters()">Wis alles</span>
+                        
+                        <div class="fw-filter-section">
+                            <h5>Functioneel Domein</h5>
+                            <div class="fw-filter-tags" id="domainFilters"></div>
+                        </div>
+                        
+                        <div class="fw-filter-section">
+                            <h5>Gebruikersrol</h5>
+                            <div class="fw-filter-tags" id="roleFilters"></div>
+                        </div>
+                        
+                        <div class="fw-filter-section">
+                            <h5>Ontwikkelingsniveau</h5>
+                            <div class="fw-filter-tags" id="levelFilters"></div>
+                        </div>
+                        
+                        <div class="fw-filter-section">
+                            <h5>Open Standaarden</h5>
+                            <div class="fw-filter-tags" id="standardFilters"></div>
+                        </div>
+                        
+                        <div class="fw-count">
+                            <strong id="resultCount">6</strong> van 6 leveranciers
+                        </div>
+                    </div>
+                    
+                    <!-- Results -->
+                    <div class="fw-results">
+                        <div class="fw-header">
+                            <div></div>
+                            <button class="fw-compare-toggle" id="compareModeBtn" onclick="toggleCompareMode()">
+                                Vergelijkmodus
+                            </button>
+                        </div>
+                        
+                        <div id="leveranciersList"></div>
+                        
+                        <div class="fw-empty" id="noResults" style="display:none;">
+                            <p>Geen leveranciers gevonden met deze filters</p>
+                            <a href="#" onclick="clearFilters(); return false;" style="color: var(--link-color);">Filters wissen</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+    
     <script>
         let currentIntakePage = 1;
         let currentMonitorPage = 1;
@@ -597,6 +755,302 @@
             const tab = params.get('tab');
             if (tab) showTab(tab);
         });
+        // Functionaliteitenwijzer Data & Logic
+            const fwData = {
+                domeinen: ['Communicatie', 'Coördinatie', 'Documentatie', 'Monitoring', 'Matching', 'Gemeenschapsvorming', 'Besluitvorming'],
+                rollen: ['Zorgvrager', 'Mantelzorger', 'Vrijwilliger', 'Coördinator', 'Zorgprofessional', 'Gemeenschapsbestuurder'],
+                niveaus: ['L0', 'L1', 'L2', 'L3', 'L4', 'L5'],
+                standaarden: ['FHIR', 'MedMij', 'HTI', 'iCalendar', 'vCard', 'OAuth2', 'Nuts', 'ActivityPub'],
+                leveranciers: [
+                    {
+                        naam: 'OZO Verbindzorg',
+                        domeinen: ['Communicatie', 'Coördinatie', 'Matching', 'Gemeenschapsvorming'],
+                        rollen: ['Zorgvrager', 'Mantelzorger', 'Vrijwilliger', 'Coördinator'],
+                        niveaus: ['L1', 'L2', 'L3', 'L4'],
+                        standaarden: ['OAuth2', 'vCard', 'ActivityPub'],
+                        diccScore: 90,
+                        wikiUrl: 'https://wiki.services.gidsopenstandaarden.org/wiki/OZO_Verbindzorg',
+                        kernfuncties: ['Vrijwilligersmatching', 'Sociale netwerken', 'Hulpvraag registratie', 'Netwerkzorg']
+                    },
+                    {
+                        naam: 'GebiedOnline',
+                        domeinen: ['Communicatie', 'Gemeenschapsvorming', 'Besluitvorming', 'Coördinatie'],
+                        rollen: ['Vrijwilliger', 'Coördinator', 'Gemeenschapsbestuurder'],
+                        niveaus: ['L0', 'L1', 'L2', 'L3'],
+                        standaarden: ['OAuth2', 'ActivityPub', 'iCalendar'],
+                        diccScore: 88,
+                        wikiUrl: 'https://wiki.services.gidsopenstandaarden.org/wiki/GebiedOnline',
+                        kernfuncties: ['Digitaal dorpsplein', 'Activiteitenkalender', 'Nieuwsbrieven', 'Groepen']
+                    },
+                    {
+                        naam: 'TimeSteps (Amulet)',
+                        domeinen: ['Communicatie', 'Coördinatie', 'Documentatie', 'Monitoring', 'Matching'],
+                        rollen: ['Zorgvrager', 'Mantelzorger', 'Vrijwilliger', 'Coördinator', 'Zorgprofessional'],
+                        niveaus: ['L2', 'L3', 'L4', 'L5'],
+                        standaarden: ['FHIR', 'OAuth2', 'iCalendar'],
+                        diccScore: 85,
+                        wikiUrl: 'https://wiki.services.gidsopenstandaarden.org/wiki/TimeSteps_(Amulet)',
+                        kernfuncties: ['Zorgcoördinatie', 'Taakbeheer', 'Communicatie netwerk', 'Agenda integratie']
+                    },
+                    {
+                        naam: 'Digitaal Dorpsplein',
+                        domeinen: ['Communicatie', 'Gemeenschapsvorming', 'Coördinatie'],
+                        rollen: ['Vrijwilliger', 'Coördinator', 'Gemeenschapsbestuurder'],
+                        niveaus: ['L0', 'L1', 'L2'],
+                        standaarden: ['OAuth2', 'iCalendar', 'vCard'],
+                        diccScore: 82,
+                        wikiUrl: 'https://wiki.services.gidsopenstandaarden.org/wiki/Digitaal_Dorpsplein',
+                        kernfuncties: ['Community platform', 'Evenementen', 'Groepen', 'Berichten']
+                    },
+                    {
+                        naam: 'DeLori',
+                        domeinen: ['Communicatie', 'Matching', 'Gemeenschapsvorming'],
+                        rollen: ['Vrijwilliger', 'Mantelzorger', 'Coördinator'],
+                        niveaus: ['L1', 'L2', 'L3'],
+                        standaarden: ['OAuth2', 'vCard'],
+                        diccScore: 80,
+                        wikiUrl: 'https://wiki.services.gidsopenstandaarden.org/wiki/DeLori',
+                        kernfuncties: ['Hulpvraag matching', 'Vrijwilligersbeheer', 'Groepsorganisatie']
+                    },
+                    {
+                        naam: 'AdSysCo (RegiCare)',
+                        domeinen: ['Documentatie', 'Monitoring', 'Coördinatie', 'Communicatie'],
+                        rollen: ['Zorgprofessional', 'Coördinator', 'Zorgvrager'],
+                        niveaus: ['L3', 'L4', 'L5'],
+                        standaarden: ['FHIR', 'MedMij', 'HTI', 'OAuth2'],
+                        diccScore: 75,
+                        wikiUrl: 'https://wiki.services.gidsopenstandaarden.org/wiki/AdSysCo',
+                        kernfuncties: ['Zorgleefplan', 'Dossier', 'Rapportage', 'Zorgregistratie']
+                    }
+                ]
+            };
+            
+            let fwState = {
+                selectedDomains: [],
+                selectedRoles: [],
+                selectedLevels: [],
+                selectedStandards: [],
+                searchQuery: '',
+                compareMode: false,
+                compareList: [],
+                expandedCard: null
+            };
+            
+            function initFunctionaliteitenwijzer() {
+                renderFilterTags('domainFilters', fwData.domeinen, 'domain', fwState.selectedDomains);
+                renderFilterTags('roleFilters', fwData.rollen, 'role', fwState.selectedRoles);
+                renderFilterTags('levelFilters', fwData.niveaus, 'level', fwState.selectedLevels);
+                renderFilterTags('standardFilters', fwData.standaarden, 'standard', fwState.selectedStandards);
+                renderLeveranciers();
+            }
+            
+            function renderFilterTags(containerId, items, type, selected) {
+                const container = document.getElementById(containerId);
+                container.innerHTML = items.map(item => `
+                    <button class="fw-tag ${type === 'domain' ? 'domain' : ''} ${selected.includes(item) ? 'active' : ''}" 
+                            onclick="toggleFilter('${type}', '${item}')">
+                        ${item}
+                    </button>
+                `).join('');
+            }
+            
+            function toggleFilter(type, value) {
+                const stateMap = {
+                    'domain': 'selectedDomains',
+                    'role': 'selectedRoles', 
+                    'level': 'selectedLevels',
+                    'standard': 'selectedStandards'
+                };
+                const key = stateMap[type];
+                const idx = fwState[key].indexOf(value);
+                if (idx > -1) {
+                    fwState[key].splice(idx, 1);
+                } else {
+                    fwState[key].push(value);
+                }
+                initFunctionaliteitenwijzer();
+            }
+            
+            function filterLeveranciers() {
+                fwState.searchQuery = document.getElementById('fwSearch').value.toLowerCase();
+                renderLeveranciers();
+            }
+            
+            function clearFilters() {
+                fwState.selectedDomains = [];
+                fwState.selectedRoles = [];
+                fwState.selectedLevels = [];
+                fwState.selectedStandards = [];
+                fwState.searchQuery = '';
+                document.getElementById('fwSearch').value = '';
+                initFunctionaliteitenwijzer();
+            }
+            
+            function getFilteredLeveranciers() {
+                return fwData.leveranciers.filter(lev => {
+                    if (fwState.selectedDomains.length > 0 && !fwState.selectedDomains.some(d => lev.domeinen.includes(d))) return false;
+                    if (fwState.selectedRoles.length > 0 && !fwState.selectedRoles.some(r => lev.rollen.includes(r))) return false;
+                    if (fwState.selectedLevels.length > 0 && !fwState.selectedLevels.some(l => lev.niveaus.includes(l))) return false;
+                    if (fwState.selectedStandards.length > 0 && !fwState.selectedStandards.some(s => lev.standaarden.includes(s))) return false;
+                    if (fwState.searchQuery && !lev.naam.toLowerCase().includes(fwState.searchQuery) && 
+                        !lev.kernfuncties.some(f => f.toLowerCase().includes(fwState.searchQuery))) return false;
+                    return true;
+                });
+            }
+            
+            function renderLeveranciers() {
+                const filtered = getFilteredLeveranciers();
+                const container = document.getElementById('leveranciersList');
+                const noResults = document.getElementById('noResults');
+                
+                document.getElementById('resultCount').textContent = filtered.length;
+                
+                if (filtered.length === 0) {
+                    container.innerHTML = '';
+                    noResults.style.display = 'block';
+                    return;
+                }
+                
+                noResults.style.display = 'none';
+                container.innerHTML = filtered.map(lev => {
+                    const isExpanded = fwState.expandedCard === lev.naam;
+                    const isSelected = fwState.compareList.includes(lev.naam);
+                    const canAdd = fwState.compareList.length < 3 || isSelected;
+                    
+                    return `
+                    <div class="fw-card ${isExpanded ? 'expanded' : ''} ${isSelected ? 'selected' : ''}">
+                        <div class="fw-card-header" onclick="toggleCard('${lev.naam}')">
+                            <div class="fw-card-info">
+                                <div class="fw-card-name">${lev.naam}</div>
+                                <div class="fw-card-meta">
+                                    <span class="fw-score">D-ICC: ${lev.diccScore}%</span>
+                                    <span class="fw-levels">${lev.niveaus.join(', ')}</span>
+                                </div>
+                            </div>
+                            <div class="fw-card-actions">
+                                ${fwState.compareMode ? `
+                                    <button class="fw-compare-btn ${isSelected ? 'added' : ''}" 
+                                            onclick="event.stopPropagation(); toggleCompare('${lev.naam}')"
+                                            ${!canAdd ? 'disabled' : ''}>
+                                        ${isSelected ? '✓ Toegevoegd' : 'Vergelijk'}
+                                    </button>
+                                ` : ''}
+                                <button class="fw-expand-btn">▼</button>
+                            </div>
+                        </div>
+                        <div class="fw-card-summary">
+                            <span>Domeinen:</span> ${lev.domeinen.join(', ')}<br>
+                            <span>Standaarden:</span> ${lev.standaarden.join(', ')}
+                        </div>
+                        <div class="fw-card-details">
+                            <div class="fw-card-details-inner">
+                                <div class="fw-detail-section">
+                                    <h5>Kernfuncties</h5>
+                                    <div class="fw-detail-tags">
+                                        ${lev.kernfuncties.map(f => `<span class="fw-detail-tag">${f}</span>`).join('')}
+                                    </div>
+                                </div>
+                                <div class="fw-detail-section">
+                                    <h5>Gebruikersrollen</h5>
+                                    <div class="fw-detail-tags">
+                                        ${lev.rollen.map(r => `<span class="fw-detail-tag">${r}</span>`).join('')}
+                                    </div>
+                                </div>
+                                <a href="${lev.wikiUrl}" target="_blank" class="fw-wiki-link">
+                                    <i class="fas fa-external-link-alt"></i> Bekijk volledige analyse op GIDS Wiki
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                }).join('');
+            }
+            
+            function toggleCard(naam) {
+                fwState.expandedCard = fwState.expandedCard === naam ? null : naam;
+                renderLeveranciers();
+            }
+            
+            function toggleCompareMode() {
+                fwState.compareMode = !fwState.compareMode;
+                document.getElementById('compareModeBtn').classList.toggle('active', fwState.compareMode);
+                if (!fwState.compareMode) {
+                    fwState.compareList = [];
+                    updateComparison();
+                }
+                renderLeveranciers();
+            }
+            
+            function toggleCompare(naam) {
+                const idx = fwState.compareList.indexOf(naam);
+                if (idx > -1) {
+                    fwState.compareList.splice(idx, 1);
+                } else if (fwState.compareList.length < 3) {
+                    fwState.compareList.push(naam);
+                }
+                updateComparison();
+                renderLeveranciers();
+            }
+            
+            function updateComparison() {
+                const comparison = document.getElementById('fwComparison');
+                const count = fwState.compareList.length;
+                document.getElementById('compareCount').textContent = count;
+                
+                if (count === 0) {
+                    comparison.classList.remove('visible');
+                    return;
+                }
+                
+                comparison.classList.add('visible');
+                
+                const data = fwState.compareList.map(naam => fwData.leveranciers.find(l => l.naam === naam));
+                
+                // Update column headers
+                for (let i = 1; i <= 3; i++) {
+                    document.getElementById(`compareCol${i}`).textContent = data[i-1]?.naam || '';
+                }
+                
+                // Build comparison rows
+                const rows = [
+                    { label: 'D-ICC Score', key: 'diccScore', format: v => `<span class="fw-score">${v}%</span>` },
+                    { label: 'Niveaus', key: 'niveaus', format: v => v.join(', ') },
+                    { label: 'Domeinen', key: 'domeinen', format: v => v.map(d => `<div>${d}</div>`).join('') },
+                    { label: 'Standaarden', key: 'standaarden', format: v => v.map(s => `<div>${s}</div>`).join('') },
+                    { label: 'Wiki', key: 'wikiUrl', format: v => `<a href="${v}" target="_blank" class="fw-wiki-link"><i class="fas fa-external-link-alt"></i> Bekijk</a>` }
+                ];
+                
+                document.getElementById('compareBody').innerHTML = rows.map(row => `
+                    <tr>
+                        <td><strong>${row.label}</strong></td>
+                        ${[0, 1, 2].map(i => `<td>${data[i] ? row.format(data[i][row.key]) : ''}</td>`).join('')}
+                    </tr>
+                `).join('');
+            }
+            
+            function clearComparison() {
+                fwState.compareList = [];
+                updateComparison();
+                renderLeveranciers();
+            }
+            
+            // Initialize when tab is shown
+            document.addEventListener('DOMContentLoaded', function() {
+                // Add to existing tab click handler
+                const origShowTab = showTab;
+                showTab = function(tabId) {
+                    origShowTab(tabId);
+                    if (tabId === 'functionaliteitenwijzer') {
+                        initFunctionaliteitenwijzer();
+                    }
+                };
+                
+                // Check if we're starting on this tab
+                const params = new URLSearchParams(window.location.search);
+                if (params.get('tab') === 'functionaliteitenwijzer') {
+                    initFunctionaliteitenwijzer();
+                }
+            });
     </script>
 </body>
 </html>
