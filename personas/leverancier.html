@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Voor Leveranciers - Project Kennisportaal</title>
+    <title>Voor ICT Leveranciers - Project Kennisportaal</title>
     <style>
         :root {
             --primary-color: #159957;
@@ -13,31 +13,21 @@
             --border-color: #dce6f0;
             --light-bg: #f3f6fa;
             --card-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            --transition: all 0.3s ease;
+            --f0: #f59e0b; --f0-bg: #fffbeb;
+            --f1: #3b82f6; --f1-bg: #eff6ff;
+            --f2: #10b981; --f2-bg: #ecfdf5;
+            --f3: #8b5cf6; --f3-bg: #f5f3ff;
+            --f4: #ec4899; --f4-bg: #fdf2f8;
+            --f5: #06b6d4; --f5-bg: #ecfeff;
         }
-        
-        /* Use Cayman theme font settings */
-        body {
-            font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-            line-height: 1.5;
-            color: var(--text-color);
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        h1, h2, h3, h4, h5, h6 {
-            font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            font-weight: normal;
-            color: #159957;
-        }
+        * { box-sizing: border-box; }
+        body { font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif; line-height: 1.5; color: var(--text-color); max-width: 1200px; margin: 0 auto; padding: 20px; }
+        h1, h2, h3, h4, h5, h6 { font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif; margin-top: 2rem; margin-bottom: 1rem; font-weight: normal; color: #159957; }
+        a { color: var(--link-color); text-decoration: none; }
+        a:hover { text-decoration: underline; }
         
         .persona-header {
-            background-image: 
-                linear-gradient(120deg, rgba(21, 87, 153, 0.7), rgba(21, 153, 87, 0.7)), 
-                url('../assets/images/banner.jpg');
+            background-image: linear-gradient(120deg, rgba(21, 87, 153, 0.4), rgba(21, 153, 87, 0.4)), url('../assets/images/groenenberg.jpg');
             background-size: cover;
             background-position: center;
             color: white;
@@ -46,659 +36,542 @@
             border-radius: 5px;
             text-align: center;
         }
+        .persona-header h1 { color: white; margin-bottom: 1rem; }
+        .persona-title { font-size: 2.25rem; margin-bottom: 1rem; }
+        .subtitle { font-size: 1.1rem; margin-bottom: 0.5rem; }
         
-        .persona-header h1 {
-            color: white;
-            margin-bottom: 1rem;
-        }
+        .breadcrumb { margin-bottom: 20px; font-size: 0.9rem; color: #666; }
+        .breadcrumb a { color: var(--link-color); }
         
-        .persona-title {
-            font-size: 2.25rem;
-            margin-bottom: 1rem;
-        }
+        .persona-nav { background-color: var(--light-bg); padding: 15px; border-radius: 5px; margin-bottom: 20px; display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; }
+        .persona-nav a { padding: 10px 20px; background-color: white; color: var(--link-color); border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: all 0.2s ease; }
+        .persona-nav a:hover, .persona-nav a.active { background-color: var(--primary-color); color: white; text-decoration: none; }
         
-        .subtitle {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
+        main { display: grid; grid-template-columns: 3fr 1fr; gap: 20px; }
         
-        .persona-nav {
-            background-color: var(--light-bg);
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
+        .feature-block { background-color: white; border-radius: 5px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); padding: 20px; margin-bottom: 30px; display: flex; flex-direction: column; gap: 15px; }
+        .feature-block h3 { color: var(--primary-color); margin-top: 0; padding-bottom: 10px; border-bottom: 1px solid var(--border-color); }
         
-        .persona-nav a {
-            padding: 10px 20px;
-            background-color: white;
-            color: var(--link-color);
-            text-decoration: none;
-            border-radius: 5px;
-            transition: all 0.2s ease;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
+        .feature-action { display: inline-block; background-color: var(--primary-color); color: white; text-decoration: none; padding: 12px 20px; border-radius: 5px; font-weight: bold; text-align: center; width: fit-content; transition: background-color 0.2s; border: none; cursor: pointer; }
+        .feature-action:hover { background-color: #107745; text-decoration: none; color: white; }
+        .feature-action.secondary { background: var(--border-color); color: var(--text-color); }
         
-        .persona-nav a:hover,
-        .persona-nav a.active {
-            background-color: var(--primary-color);
-            color: white;
-            text-decoration: none;
-        }
+        .content-section { display: none; }
+        .content-section.active { display: block; }
         
-        .breadcrumb {
-            margin-bottom: 20px;
-            font-size: 0.9rem;
-            color: #666;
-        }
+        /* Fase overview */
+        .fase-overview { display: flex; flex-direction: column; gap: 0.75rem; margin: 1.5rem 0; }
+        .fase-item { display: flex; align-items: flex-start; gap: 1rem; padding: 0.75rem; background: var(--light-bg); border-radius: 5px; }
+        .fase-item .phase-badge { flex-shrink: 0; margin-top: 0.25rem; }
+        .fase-item strong { display: block; color: var(--text-color); margin-bottom: 0.25rem; }
+        .fase-item p { font-size: 0.85rem; color: #888; margin: 0; }
         
-        .breadcrumb a {
-            color: var(--link-color);
-            text-decoration: none;
-        }
+        .phase-badge { padding: 0.25rem 0.6rem; border-radius: 12px; font-weight: 600; font-size: 0.8rem; white-space: nowrap; }
+        .phase-badge.f0 { background: var(--f0-bg); color: var(--f0); }
+        .phase-badge.f1 { background: var(--f1-bg); color: var(--f1); }
+        .phase-badge.f2 { background: var(--f2-bg); color: var(--f2); }
+        .phase-badge.f3 { background: var(--f3-bg); color: var(--f3); }
+        .phase-badge.f4 { background: var(--f4-bg); color: var(--f4); }
+        .phase-badge.f5 { background: var(--f5-bg); color: var(--f5); }
         
-        .breadcrumb a:hover {
-            text-decoration: underline;
-        }
+        /* Stappenplan */
+        .phase-card { background: white; border-radius: 8px; margin-bottom: 1rem; box-shadow: var(--card-shadow); overflow: hidden; border: 1px solid var(--border-color); }
+        .phase-card.hidden { display: none; }
+        .phase-header { padding: 1rem 1.25rem; cursor: pointer; display: flex; align-items: center; gap: 1rem; transition: background 0.2s; }
+        .phase-header:hover { background: var(--light-bg); }
+        .phase-title { flex: 1; font-weight: 600; color: var(--text-color); }
+        .phase-meta { font-size: 0.85rem; color: #888; }
+        .phase-toggle { font-size: 1.1rem; color: #888; transition: transform 0.3s; }
+        .phase-card.expanded .phase-toggle { transform: rotate(180deg); }
+        .phase-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+        .phase-card.expanded .phase-content { max-height: 3000px; }
+        .phase-inner { padding: 0 1.25rem 1.25rem; }
+        .phase-description { color: var(--text-color); font-size: 0.95rem; margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color); }
         
-        main {
-            display: grid;
-            grid-template-columns: 3fr 1fr;
-            gap: 20px;
-        }
+        .step-item { display: flex; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--border-color); }
+        .step-item:last-of-type { border-bottom: none; }
+        .step-num { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.85rem; flex-shrink: 0; }
+        .f0 .step-num { background: var(--f0-bg); color: var(--f0); }
+        .f1 .step-num { background: var(--f1-bg); color: var(--f1); }
+        .f2 .step-num { background: var(--f2-bg); color: var(--f2); }
+        .f3 .step-num { background: var(--f3-bg); color: var(--f3); }
+        .f4 .step-num { background: var(--f4-bg); color: var(--f4); }
+        .f5 .step-num { background: var(--f5-bg); color: var(--f5); }
+        .step-content { flex: 1; }
+        .step-title { font-weight: 600; margin-bottom: 0.25rem; color: var(--text-color); }
+        .step-desc { font-size: 0.9rem; color: #888; margin-bottom: 0.5rem; }
+        .step-link { display: inline-flex; align-items: center; gap: 0.25rem; font-size: 0.85rem; color: var(--link-color); }
         
-        a {
-            color: var(--link-color);
-            text-decoration: none;
-        }
+        .facilitation-box { background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border: 1px solid #93c5fd; border-radius: 5px; padding: 1rem; margin-top: 0.75rem; }
+        .facilitation-box h5 { color: #1e40af; font-size: 0.85rem; margin: 0 0 0.5rem 0; }
+        .facilitation-box ul { margin: 0; padding-left: 1.25rem; font-size: 0.85rem; color: #1e40af; }
         
-        a:hover {
-            text-decoration: underline;
-        }
+        .relevant-phases { display: flex; gap: 0.5rem; margin-top: 0.75rem; flex-wrap: wrap; align-items: center; }
+        .relevant-phases span:first-child { font-size: 0.8rem; color: #888; }
         
-        .feature-block {
-            background-color: white;
-            border-radius: 5px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-            padding: 20px;
-            margin-bottom: 30px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
+        /* Onboarding Progress */
+        .intake-progress-container { background: white; border-radius: 8px; box-shadow: var(--card-shadow); padding: 24px; margin-bottom: 24px; }
+        .intake-progress { display: flex; justify-content: space-between; position: relative; margin: 1rem 20px 0; }
+        .intake-progress::before { content: ''; position: absolute; top: 20px; left: 0; right: 0; height: 3px; background: var(--border-color); }
+        .intake-progress::after { content: ''; position: absolute; top: 20px; left: 0; height: 3px; background: var(--primary-color); transition: width 0.4s ease; width: var(--progress, 0%); }
+        .intake-step { display: flex; flex-direction: column; align-items: center; position: relative; z-index: 1; cursor: pointer; }
+        .intake-step-num { width: 40px; height: 40px; border-radius: 50%; background: white; border: 3px solid var(--border-color); color: var(--text-color); display: flex; align-items: center; justify-content: center; font-weight: 600; margin-bottom: 8px; transition: all 0.3s; }
+        .intake-step.active .intake-step-num { border-color: var(--primary-color); background: var(--primary-color); color: white; transform: scale(1.1); }
+        .intake-step.completed .intake-step-num { border-color: var(--primary-color); background: var(--primary-color); color: white; }
+        .intake-step-label { font-size: 0.75rem; color: var(--text-color); text-align: center; max-width: 80px; }
+        .intake-step.active .intake-step-label { color: var(--primary-color); font-weight: 600; }
         
-        .feature-block h3 {
-            color: var(--primary-color);
-            margin-top: 0;
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--border-color);
-        }
+        .intake-page { display: none; animation: fadeIn 0.4s ease; }
+        .intake-page.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
         
-        .feature-action {
-            background-color: var(--primary-color);
-            color: white;
-            text-decoration: none;
-            padding: 12px 20px;
-            border-radius: 5px;
-            font-weight: bold;
-            text-align: center;
-            width: fit-content;
-            transition: background-color 0.2s;
-        }
+        .intake-buttons { display: flex; justify-content: space-between; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); }
         
-        .feature-action:hover {
-            background-color: #107745;
-            text-decoration: none;
-        }
+        /* Forms */
+        .form-group { margin-bottom: 1rem; }
+        .form-group label { display: block; font-weight: 500; margin-bottom: 0.375rem; font-size: 0.9rem; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.625rem; border: 1px solid var(--border-color); border-radius: 5px; font-size: 0.9rem; font-family: inherit; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--primary-color); }
+        .form-group textarea { min-height: 80px; resize: vertical; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
         
-        .news-updates {
-            background-color: var(--light-bg);
-            border-radius: 5px;
-            padding: 20px;
-            margin-bottom: 30px;
-        }
+        .checkbox-group { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.5rem; }
+        .checkbox-option { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0.75rem; border: 1px solid var(--border-color); border-radius: 5px; cursor: pointer; font-size: 0.875rem; font-weight: normal; }
+        .checkbox-option:hover { border-color: var(--primary-color); }
+        .checkbox-option input { margin: 0; }
         
-        .news-updates h3 {
-            color: var(--secondary-color);
-            margin-top: 0;
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--border-color);
-        }
+        .info-box-success { background: #ecfdf5; border-left: 4px solid #059669; padding: 1rem; border-radius: 0 5px 5px 0; font-size: 0.875rem; }
         
-        .news-item {
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #eee;
-        }
+        /* Netwerk grid */
+        .partner-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem; }
+        .partner-card { background: white; border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; box-shadow: var(--card-shadow); }
+        .partner-card h4 { color: var(--primary-color); margin: 0 0 0.5rem 0; font-weight: 600; }
+        .partner-card .type { font-size: 0.85rem; color: #888; margin-bottom: 0.5rem; }
+        .partner-card p { font-size: 0.875rem; margin-bottom: 0.75rem; }
+        .partner-domains { display: flex; flex-wrap: wrap; gap: 0.25rem; }
+        .domain-tag { background: var(--light-bg); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem; color: #666; }
         
-        .news-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
+        /* Sidebar */
+        .news-updates, .contact-block { background-color: var(--light-bg); border-radius: 5px; padding: 20px; margin-bottom: 30px; }
+        .news-updates h3, .contact-block h3 { color: var(--secondary-color); margin-top: 0; padding-bottom: 10px; border-bottom: 1px solid var(--border-color); }
+        .news-item { margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee; }
+        .news-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .news-item h4 { margin: 0 0 5px 0; color: var(--secondary-color); }
+        .news-date { font-size: 0.8rem; color: #888; margin-bottom: 5px; }
         
-        .news-item h4 {
-            margin: 0 0 5px 0;
-            color: var(--secondary-color);
-        }
+        .persona-footer { text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color); color: #888; }
         
-        .news-date {
-            font-size: 0.8rem;
-            color: #888;
-            margin-bottom: 5px;
-        }
-        
-        .contact-block {
-            background-color: var(--light-bg);
-            border-radius: 5px;
-            padding: 20px;
-        }
-        
-        .contact-block h3 {
-            color: var(--secondary-color);
-            margin-top: 0;
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--border-color);
-        }
-        
-        .persona-footer {
-            text-align: center;
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border-color);
-            color: #888;
-        }
-        
-        /* Specific styles for leverancier page */
-        .solution-card {
-            background-color: white;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            margin-bottom: 20px;
-            box-shadow: var(--card-shadow);
-        }
-        
-        .solution-header {
-            background-color: var(--secondary-color);
-            color: white;
-            padding: 15px;
-        }
-        
-        .solution-header h4 {
-            margin: 0;
-            color: white;
-        }
-        
-        .solution-content {
-            padding: 15px;
-        }
-        
-        .solution-footer {
-            background-color: var(--light-bg);
-            padding: 12px 15px;
-            border-top: 1px solid var(--border-color);
-        }
-        
-        .certification-levels {
-            display: flex;
-            justify-content: space-between;
-            margin: 20px 0;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        
-        .certification-level {
-            background-color: var(--light-bg);
-            padding: 15px;
-            border-radius: 5px;
-            flex: 1;
-            min-width: 200px;
-        }
-        
-        .certification-level h4 {
-            color: var(--secondary-color);
-            margin-top: 0;
-        }
-        
-        .check-list {
-            list-style: none;
-            padding-left: 0;
-        }
-        
-        .check-list li {
-            position: relative;
-            padding-left: 30px;
-            margin-bottom: 10px;
-        }
-        
-        .check-list li:before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            top: 0;
-            color: var(--primary-color);
-            font-weight: bold;
-        }
-        
-        .partner-logos {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-            align-items: center;
-            margin: 20px 0;
-        }
-        
-        .partner-logo {
-            width: 120px;
-            height: 80px;
-            background-color: #e0e0e0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 5px;
-            font-size: 0.8rem;
-            color: #555;
-        }
-        
-        .steps-list {
-            counter-reset: step-counter;
-            list-style-type: none;
-            padding-left: 0;
-        }
-        
-        .steps-list li {
-            position: relative;
-            padding-left: 50px;
-            margin-bottom: 20px;
-            counter-increment: step-counter;
-        }
-        
-        .steps-list li::before {
-            content: counter(step-counter);
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 36px;
-            height: 36px;
-            background-color: var(--secondary-color);
-            color: white;
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-        
-        .assessment-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
-        }
-        
-        .assessment-card {
-            background-color: white;
-            border-radius: 5px;
-            border: 1px solid var(--border-color);
-            padding: 15px;
-            box-shadow: var(--card-shadow);
-        }
-        
-        .assessment-card h4 {
-            color: var(--secondary-color);
-            margin-top: 0;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 10px;
-        }
-        
-        /* Media queries for responsiveness */
-        @media (max-width: 768px) {
-            main {
-                grid-template-columns: 1fr;
-            }
-            
-            .certification-levels {
-                flex-direction: column;
-            }
-        }
+        @media (max-width: 768px) { main { grid-template-columns: 1fr; } .form-grid { grid-template-columns: 1fr; } .intake-step-label { display: none; } }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-    <!-- Header with persona title -->
     <header class="persona-header">
-        <h1 class="persona-title">Voor Leveranciers</h1>
-        <div class="subtitle">Aansluiten bij het netwerk, ondersteunen van wijkinitiatieven en partnerschap</div>
+        <h1 class="persona-title">Voor ICT Leveranciers</h1>
+        <div class="subtitle">Partner worden in het netwerk Digitale Wijkinfrastructuur</div>
     </header>
-     
-    <!-- Breadcrumb for returning to main landing page -->
-    <div class="breadcrumb">
-        <a href="../index.html">Home</a> &gt; Voor Leveranciers
+
+    <div class="breadcrumb"><a href="../index.html">Home</a> &gt; Voor ICT Leveranciers</div>
+    
+    <div class="persona-nav">
+        <a href="#introductie" id="introductie-tab" class="main-tab active">Introductie</a>
+        <a href="#stappenplan" id="stappenplan-tab" class="main-tab">Stappenplan</a>
+        <a href="#onboarding" id="onboarding-tab" class="main-tab">Onboarding</a>
+        <a href="#netwerk" id="netwerk-tab" class="main-tab">Netwerk</a>
     </div>
     
-    <!-- Persona-specific navigation -->
-    <div class="persona-nav">
-        <a href="#netwerk" id="netwerk-tab" class="active">Aansluiten bij Netwerk</a>
-        <a href="#ondersteunen" id="ondersteunen-tab">Wijkinitiatieven Ondersteunen</a>
-        <a href="#partnerschap" id="partnerschap-tab">Partnerschap</a>
-    </div>
-
     <main>
         <div class="content">
-            <!-- Netwerk content section -->
+            <!-- ========== INTRODUCTIE ========== -->
+            <div id="introductie-content" class="content-section active">
+                <div class="feature-block">
+                    <h3>Samenwerken aan Digitale Wijkinfrastructuur</h3>
+                    <p>Het project Digitale Wijkinfrastructuur verbindt ICT-leveranciers met zorgzame gemeenschappen in heel Nederland. Wij geloven in pre-concurrentiële samenwerking: samen bouwen aan een ecosysteem waarin verschillende oplossingen elkaar aanvullen.</p>
+                    
+                    <p>Als leverancier krijgt u toegang tot een groeiend netwerk van gemeenschappen die actief zoeken naar digitale ondersteuning — van kleine dorpsinitiatieven tot gevestigde wijknetwerken.</p>
+                    
+                    <h4>Waarom aansluiten?</h4>
+                    <ul style="margin: 1rem 0 1rem 1.5rem;">
+                        <li><strong>Toegang tot gemeenschappen</strong> — Direct contact met wijkinitiatieven die zoeken naar passende digitale oplossingen</li>
+                        <li><strong>Gedeelde standaarden</strong> — Werk met open standaarden die koppelingen tussen systemen vergemakkelijken</li>
+                        <li><strong>Pre-concurrentieel</strong> — Samen investeren in basisinfrastructuur waar iedereen van profiteert</li>
+                        <li><strong>Kennisdeling</strong> — Leer van implementaties bij andere gemeenschappen en deel uw eigen ervaringen</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-block">
+                    <p>Gemeenschappen doorlopen een ontwikkeltraject van oriëntatie (F0) tot kennisdeling (F5). Als leverancier kunt u hen ondersteunen in elke fase. Bekijk het <a href="#stappenplan" onclick="showTab('stappenplan'); return false;">stappenplan</a> voor de concrete stappen om partner te worden.</p>
+                </div>
+            </div>
+            
+            <!-- ========== STAPPENPLAN ========== -->
+            <div id="stappenplan-content" class="content-section">
+                <div class="feature-block">
+                    <h3>Stappenplan voor Leveranciers</h3>
+                    <p>Van kennismaking tot volwaardig partner in het netwerk — in uw eigen tempo.</p>
+                </div>
+                
+                <!-- Stap 1: F0 kleur -->
+                <div class="phase-card f0 expanded">
+                    <div class="phase-header" onclick="togglePhase(this)"><span class="phase-badge f0">1</span><span class="phase-title">Kennismaking en oriëntatie</span><span class="phase-meta">3 activiteiten</span><span class="phase-toggle">▼</span></div>
+                    <div class="phase-content"><div class="phase-inner">
+                        <p class="phase-description">Maak kennis met het project en de D-ICC principes. Begrijp hoe het netwerk werkt en wat de waardepropositie is.</p>
+                        <div class="step-item"><div class="step-num">1</div><div class="step-content"><div class="step-title">Handvest D-ICC lezen</div><div class="step-desc">Begrijp de uitgangspunten van Digitaal Geïntegreerde Gemeenschapszorg.</div><a href="../handvest.html" class="step-link">Naar het Handvest</a></div></div>
+                        <div class="step-item"><div class="step-num">2</div><div class="step-content"><div class="step-title">Referentie-architectuur bekijken</div><div class="step-desc">Verken de open standaarden en het technisch kader.</div><a href="../architectuur.html" class="step-link">Naar Referentie-architectuur</a></div></div>
+                        <div class="step-item"><div class="step-num">3</div><div class="step-content"><div class="step-title">Kennismakingsgesprek</div><div class="step-desc">Plan een gesprek om uw oplossing en de samenwerking te bespreken.</div><a href="mailto:info@nlzve.nl" class="step-link">Contact opnemen</a></div></div>
+                    </div></div>
+                </div>
+                
+                <!-- Stap 2: F1 kleur -->
+                <div class="phase-card f1">
+                    <div class="phase-header" onclick="togglePhase(this)"><span class="phase-badge f1">2</span><span class="phase-title">Onboarding en registratie</span><span class="phase-meta">3 activiteiten</span><span class="phase-toggle">▼</span></div>
+                    <div class="phase-content"><div class="phase-inner">
+                        <p class="phase-description">Vul de onboarding in en registreer uw aanbod zodat gemeenschappen u kunnen vinden.</p>
+                        <div class="step-item"><div class="step-num">1</div><div class="step-content"><div class="step-title">Onboarding doorlopen</div><div class="step-desc">Beantwoord vragen over uw organisatie, functionele domeinen en D-ICC alignment.</div><a href="#onboarding" onclick="showTab('onboarding'); return false;" class="step-link">Naar Onboarding</a></div></div>
+                        <div class="step-item"><div class="step-num">2</div><div class="step-content"><div class="step-title">Functionaliteiten beschrijven</div><div class="step-desc">Beschrijf uw oplossing volgens de methodiek functiebeschrijving.</div><a href="https://wiki.services.gidsopenstandaarden.org/wiki/Methodiek_Functiebeschrijving" class="step-link" target="_blank">Methodiek bekijken</a></div></div>
+                        <div class="step-item"><div class="step-num">3</div><div class="step-content"><div class="step-title">Open standaarden aangeven</div><div class="step-desc">Geef aan welke standaarden u ondersteunt of wilt ondersteunen.</div></div></div>
+                        <div class="relevant-phases"><span>Relevant voor gemeenschappen in:</span><span class="phase-badge f1">F1</span></div>
+                    </div></div>
+                </div>
+                
+                <!-- Stap 3: F2 kleur -->
+                <div class="phase-card f2">
+                    <div class="phase-header" onclick="togglePhase(this)"><span class="phase-badge f2">3</span><span class="phase-title">Zichtbaarheid en demo's</span><span class="phase-meta">3 activiteiten</span><span class="phase-toggle">▼</span></div>
+                    <div class="phase-content"><div class="phase-inner">
+                        <p class="phase-description">Word zichtbaar voor gemeenschappen die zich oriënteren op digitale tools.</p>
+                        <div class="step-item"><div class="step-num">1</div><div class="step-content"><div class="step-title">Vermelding in Functionaliteitenwijzer</div><div class="step-desc">Uw oplossing wordt opgenomen in de vergelijkingstool voor gemeenschappen.</div><a href="../architectuur.html" class="step-link">Functionaliteitenwijzer bekijken</a></div></div>
+                        <div class="step-item"><div class="step-num">2</div><div class="step-content"><div class="step-title">Deelname aan ronde tafels</div><div class="step-desc">Neem deel aan leveranciersbijeenkomsten en kennissessies.</div></div></div>
+                        <div class="step-item"><div class="step-num">3</div><div class="step-content"><div class="step-title">Demo's aan gemeenschappen</div><div class="step-desc">Geef demonstraties aan geïnteresseerde gemeenschappen.</div></div></div>
+                        <div class="relevant-phases"><span>Relevant voor gemeenschappen in:</span><span class="phase-badge f0">F0</span><span class="phase-badge f1">F1</span></div>
+                    </div></div>
+                </div>
+                
+                <!-- Stap 4: F3 kleur -->
+                <div class="phase-card f3">
+                    <div class="phase-header" onclick="togglePhase(this)"><span class="phase-badge f3">4</span><span class="phase-title">Pilots en implementatie</span><span class="phase-meta">3 activiteiten</span><span class="phase-toggle">▼</span></div>
+                    <div class="phase-content"><div class="phase-inner">
+                        <p class="phase-description">Voer pilots uit met gemeenschappen en begeleid implementaties.</p>
+                        <div class="step-item"><div class="step-num">1</div><div class="step-content"><div class="step-title">Pilot met gemeenschap</div><div class="step-desc">Werk samen met een gemeenschap aan een concrete implementatie.</div></div></div>
+                        <div class="step-item"><div class="step-num">2</div><div class="step-content"><div class="step-title">Tool inrichten en training</div><div class="step-desc">Configureer de tool en train de gebruikers.</div></div></div>
+                        <div class="step-item"><div class="step-num">3</div><div class="step-content"><div class="step-title">Documenteren en evalueren</div><div class="step-desc">Documenteer de implementatie en deel lessons learned.</div></div></div>
+                        <div class="facilitation-box">
+                            <h5>Wat wij faciliteren:</h5>
+                            <ul>
+                                <li>Matching met gemeenschappen die bij uw oplossing passen</li>
+                                <li>Gestandaardiseerde behoefteanalyse (persona's, use cases) als startpunt</li>
+                                <li>Implementatiesjablonen en best practices uit eerdere pilots</li>
+                                <li>Ondersteuning bij change management en adoptie</li>
+                            </ul>
+                        </div>
+                        <div class="relevant-phases"><span>Relevant voor gemeenschappen in:</span><span class="phase-badge f2">F2</span></div>
+                    </div></div>
+                </div>
+                
+                <!-- Stap 5: F4 kleur -->
+                <div class="phase-card f4">
+                    <div class="phase-header" onclick="togglePhase(this)"><span class="phase-badge f4">5</span><span class="phase-title">Integratie en koppelingen</span><span class="phase-meta">3 activiteiten</span><span class="phase-toggle">▼</span></div>
+                    <div class="phase-content"><div class="phase-inner">
+                        <p class="phase-description">Realiseer koppelingen met andere systemen via open standaarden.</p>
+                        <div class="step-item"><div class="step-num">1</div><div class="step-content"><div class="step-title">Integreren met open standaarden</div><div class="step-desc">Koppel met open standaarden waar relevant voor uw oplossing.</div></div></div>
+                        <div class="step-item"><div class="step-num">2</div><div class="step-content"><div class="step-title">Koppelingen met andere leveranciers</div><div class="step-desc">Realiseer integraties met andere oplossingen in het netwerk.</div></div></div>
+                        <div class="step-item"><div class="step-num">3</div><div class="step-content"><div class="step-title">Data-uitwisseling formele zorg</div><div class="step-desc">Ondersteun koppeling met huisarts, thuiszorg en andere zorgpartijen.</div></div></div>
+                        <div class="facilitation-box">
+                            <h5>Wat wij faciliteren:</h5>
+                            <ul>
+                                <li>Technische specificaties en referentie-implementaties</li>
+                                <li>Testomgeving voor koppelingen tussen leveranciers</li>
+                                <li>Coördinatie bij integraties met meerdere partijen</li>
+                                <li>Toegang tot expertise van GIDS Open Standaarden</li>
+                            </ul>
+                        </div>
+                        <div class="relevant-phases"><span>Relevant voor gemeenschappen in:</span><span class="phase-badge f3">F3</span><span class="phase-badge f4">F4</span></div>
+                    </div></div>
+                </div>
+                
+                <!-- Stap 6: F5 kleur -->
+                <div class="phase-card f5">
+                    <div class="phase-header" onclick="togglePhase(this)"><span class="phase-badge f5">6</span><span class="phase-title">Kennisdeling en innovatie</span><span class="phase-meta">3 activiteiten</span><span class="phase-toggle">▼</span></div>
+                    <div class="phase-content"><div class="phase-inner">
+                        <p class="phase-description">Draag bij aan de verdere ontwikkeling van het ecosysteem.</p>
+                        <div class="step-item"><div class="step-num">1</div><div class="step-content"><div class="step-title">Ervaringen delen</div><div class="step-desc">Deel best practices en lessons learned met andere leveranciers.</div></div></div>
+                        <div class="step-item"><div class="step-num">2</div><div class="step-content"><div class="step-title">Nieuwe leveranciers begeleiden</div><div class="step-desc">Help nieuwe partners bij hun onboarding.</div></div></div>
+                        <div class="step-item"><div class="step-num">3</div><div class="step-content"><div class="step-title">Samen innoveren</div><div class="step-desc">Werk mee aan nieuwe functionaliteit op basis van gemeenschapsbehoeften.</div></div></div>
+                        <div class="facilitation-box">
+                            <h5>Wat wij faciliteren:</h5>
+                            <ul>
+                                <li>Platform voor kennisdeling (portaal, wiki, bijeenkomsten)</li>
+                                <li>Gezamenlijke ontwikkeling van referentie-architectuur</li>
+                                <li>Coördinatie van pre-concurrentiële samenwerking</li>
+                                <li>Toegang tot onderzoek en trendanalyses uit het netwerk</li>
+                            </ul>
+                        </div>
+                        <div class="relevant-phases"><span>Relevant voor gemeenschappen in:</span><span class="phase-badge f5">F5</span></div>
+                    </div></div>
+                </div>
+            </div>
+            
+            <!-- ========== ONBOARDING (Multi-page) ========== -->
+            <div id="onboarding-content" class="content-section">
+                <div class="intake-progress-container">
+                    <h3 style="margin-top:0; text-align:center;">Onboarding ICT Leverancier</h3>
+                    <div class="intake-progress" style="--progress: 0%;">
+                        <div class="intake-step active" data-step="1"><span class="intake-step-num">1</span><span class="intake-step-label">Organisatie</span></div>
+                        <div class="intake-step" data-step="2"><span class="intake-step-num">2</span><span class="intake-step-label">Functionaliteit</span></div>
+                        <div class="intake-step" data-step="3"><span class="intake-step-num">3</span><span class="intake-step-label">D-ICC</span></div>
+                        <div class="intake-step" data-step="4"><span class="intake-step-num">4</span><span class="intake-step-label">Technisch</span></div>
+                        <div class="intake-step" data-step="5"><span class="intake-step-num">5</span><span class="intake-step-label">Bevestiging</span></div>
+                    </div>
+                </div>
+                
+                <!-- Page 1: Organisatie -->
+                <div class="intake-page active" data-page="1">
+                    <div class="feature-block">
+                        <h4>Stap 1: Uw Organisatie</h4>
+                        <p style="color:#888;">Basisgegevens over uw organisatie en contactpersoon.</p>
+                        
+                        <div class="form-grid">
+                            <div class="form-group"><label>Organisatienaam *</label><input type="text" id="org-naam" placeholder="bijv. TimeSteps"></div>
+                            <div class="form-group"><label>Website</label><input type="url" id="org-website" placeholder="https://..."></div>
+                        </div>
+                        
+                        <h5>Contactpersoon</h5>
+                        <div class="form-grid">
+                            <div class="form-group"><label>Naam *</label><input type="text" id="contact-naam"></div>
+                            <div class="form-group"><label>E-mail *</label><input type="email" id="contact-email"></div>
+                        </div>
+                        <div class="form-group"><label>Functie/rol</label><input type="text" id="contact-rol" placeholder="bijv. Product Owner, Directeur"></div>
+                        
+                        <div class="form-group">
+                            <label>Korte beschrijving van uw organisatie</label>
+                            <textarea id="org-beschrijving" placeholder="Wat doet uw organisatie? Wat is uw missie?"></textarea>
+                        </div>
+                        
+                        <div class="intake-buttons"><div></div><button class="feature-action" onclick="goToOnboardingPage(2)">Volgende</button></div>
+                    </div>
+                </div>
+                
+                <!-- Page 2: Functionaliteit -->
+                <div class="intake-page" data-page="2">
+                    <div class="feature-block">
+                        <h4>Stap 2: Functionaliteiten</h4>
+                        <p style="color:#888;">Beschrijf de functionaliteiten van uw oplossing volgens de <a href="https://wiki.services.gidsopenstandaarden.org/wiki/Methodiek_Functiebeschrijving" target="_blank">methodiek functiebeschrijving</a>.</p>
+                        
+                        <h5>Functionele domeinen</h5>
+                        <div class="form-group">
+                            <label>In welke domeinen valt uw oplossing? *</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-option"><input type="checkbox" name="domein" value="communicatie"> Communicatie (berichten, notificaties, forums)</label>
+                                <label class="checkbox-option"><input type="checkbox" name="domein" value="coordinatie"> Coördinatie (agenda's, planning, resourcetoewijzing)</label>
+                                <label class="checkbox-option"><input type="checkbox" name="domein" value="documentatie"> Documentatie (dossiers, rapportages, kennisbank)</label>
+                                <label class="checkbox-option"><input type="checkbox" name="domein" value="monitoring"> Monitoring (dashboards, statistieken, voortgang)</label>
+                                <label class="checkbox-option"><input type="checkbox" name="domein" value="matching"> Matching (vraag-aanbod, vrijwilligersmatch)</label>
+                                <label class="checkbox-option"><input type="checkbox" name="domein" value="gemeenschapsvorming"> Gemeenschapsvorming (activiteiten, sociaal platform)</label>
+                                <label class="checkbox-option"><input type="checkbox" name="domein" value="besluitvorming"> Besluitvorming (polls, participatie)</label>
+                            </div>
+                        </div>
+                        
+                        <h5>Gebruikersrollen</h5>
+                        <div class="form-group">
+                            <label>Voor welke gebruikers is uw oplossing bedoeld? *</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-option"><input type="checkbox" name="rol" value="zorgvrager"> Zorgvrager (bewoner met ondersteuningsbehoefte)</label>
+                                <label class="checkbox-option"><input type="checkbox" name="rol" value="mantelzorger"> Mantelzorger (familie, vrienden)</label>
+                                <label class="checkbox-option"><input type="checkbox" name="rol" value="vrijwilliger"> Vrijwilliger</label>
+                                <label class="checkbox-option"><input type="checkbox" name="rol" value="coordinator"> Coördinator (dorpsondersteuner, vrijwilligerscoördinator)</label>
+                                <label class="checkbox-option"><input type="checkbox" name="rol" value="professional"> Zorgprofessional (huisarts, wijkverpleegkundige)</label>
+                                <label class="checkbox-option"><input type="checkbox" name="rol" value="bestuurder"> Gemeenschapsbestuurder</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Beschrijf de kernfunctionaliteit van uw oplossing</label>
+                            <textarea id="functie-beschrijving" placeholder="Wat is het hoofddoel? Welke input is nodig? Wat levert het op?"></textarea>
+                        </div>
+                        
+                        <div class="intake-buttons"><button class="feature-action secondary" onclick="goToOnboardingPage(1)">Terug</button><button class="feature-action" onclick="goToOnboardingPage(3)">Volgende</button></div>
+                    </div>
+                </div>
+                
+                <!-- Page 3: D-ICC Alignment -->
+                <div class="intake-page" data-page="3">
+                    <div class="feature-block">
+                        <h4>Stap 3: D-ICC Alignment</h4>
+                        <p style="color:#888;">Hoe sluit uw oplossing aan bij de principes van Digitaal Geïntegreerde Gemeenschapszorg?</p>
+                        
+                        <div class="form-group">
+                            <label>Gelijkwaardigheid</label>
+                            <p style="font-size:0.85rem; color:#888; margin-bottom:0.5rem;">Kunnen verschillende typen gebruikers gelijkwaardig participeren?</p>
+                            <textarea id="dicc-gelijkwaardigheid" placeholder="Beschrijf hoe uw oplossing gelijkwaardige samenwerking ondersteunt..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Samen besturen</label>
+                            <p style="font-size:0.85rem; color:#888; margin-bottom:0.5rem;">Faciliteert uw oplossing gedeelde verantwoordelijkheid en besluitvorming?</p>
+                            <textarea id="dicc-samenbesturen" placeholder="Beschrijf hoe uw oplossing gezamenlijke besluitvorming ondersteunt..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Sleutelprincipes</label>
+                            <p style="font-size:0.85rem; color:#888; margin-bottom:0.5rem;">Bevordert uw oplossing nabijheid, vertrouwen en eigenaarschap?</p>
+                            <textarea id="dicc-sleutelprincipes" placeholder="Beschrijf hoe uw oplossing aansluit bij de kernwaarden van ICC..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Sociale basisinfrastructuur</label>
+                            <p style="font-size:0.85rem; color:#888; margin-bottom:0.5rem;">Versterkt uw oplossing sociale netwerken en onderlinge hulp?</p>
+                            <textarea id="dicc-sociaal" placeholder="Beschrijf hoe uw oplossing bijdraagt aan de sociale infrastructuur..."></textarea>
+                        </div>
+                        
+                        <div class="intake-buttons"><button class="feature-action secondary" onclick="goToOnboardingPage(2)">Terug</button><button class="feature-action" onclick="goToOnboardingPage(4)">Volgende</button></div>
+                    </div>
+                </div>
+                
+                <!-- Page 4: Technisch -->
+                <div class="intake-page" data-page="4">
+                    <div class="feature-block">
+                        <h4>Stap 4: Technische Aspecten</h4>
+                        <p style="color:#888;">Informatie over interfaces, standaarden en integratiemogelijkheden.</p>
+                        
+                        <h5>Open standaarden</h5>
+                        <div class="form-group">
+                            <label>Welke standaarden ondersteunt uw oplossing (of wilt u ondersteunen)?</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-option"><input type="checkbox" name="standaard" value="gids"> GIDS Open Standaarden</label>
+                                <label class="checkbox-option"><input type="checkbox" name="standaard" value="fhir"> HL7 FHIR</label>
+                                <label class="checkbox-option"><input type="checkbox" name="standaard" value="oauth"> OAuth 2.0 / OpenID Connect</label>
+                                <label class="checkbox-option"><input type="checkbox" name="standaard" value="rest"> REST API's</label>
+                                <label class="checkbox-option"><input type="checkbox" name="standaard" value="export"> Data-export mogelijkheden</label>
+                                <label class="checkbox-option"><input type="checkbox" name="standaard" value="anders"> Anders (specificeer hieronder)</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Beschrijf uw interfaces en integratiemogelijkheden</label>
+                            <textarea id="tech-interfaces" placeholder="Welke API's biedt u? Met welke systemen kan worden gekoppeld?"></textarea>
+                        </div>
+                        
+                        <h5>Privacy en beveiliging</h5>
+                        <div class="form-group">
+                            <label>Welke maatregelen treft u voor privacy en beveiliging?</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-option"><input type="checkbox" name="privacy" value="avg"> AVG-compliant</label>
+                                <label class="checkbox-option"><input type="checkbox" name="privacy" value="iso27001"> ISO 27001 gecertificeerd</label>
+                                <label class="checkbox-option"><input type="checkbox" name="privacy" value="nen7510"> NEN 7510 (zorgsector)</label>
+                                <label class="checkbox-option"><input type="checkbox" name="privacy" value="encryptie"> End-to-end encryptie</label>
+                                <label class="checkbox-option"><input type="checkbox" name="privacy" value="2fa"> Two-factor authenticatie</label>
+                                <label class="checkbox-option"><input type="checkbox" name="privacy" value="hosting-nl"> Hosting in Nederland/EU</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Overige opmerkingen over technische aspecten</label>
+                            <textarea id="tech-overig" placeholder="Bijv. gegevensmodel, specifieke integraties, roadmap..."></textarea>
+                        </div>
+                        
+                        <div class="intake-buttons"><button class="feature-action secondary" onclick="goToOnboardingPage(3)">Terug</button><button class="feature-action" onclick="goToOnboardingPage(5)">Voltooien</button></div>
+                    </div>
+                </div>
+                
+                <!-- Page 5: Bevestiging -->
+                <div class="intake-page" data-page="5">
+                    <div class="feature-block">
+                        <h4>Onboarding Compleet</h4>
+                        
+                        <div class="info-box-success" style="margin-bottom:1.5rem;">
+                            <strong>Bedankt voor uw aanmelding!</strong><br>
+                            Wij nemen binnen 5 werkdagen contact met u op om de volgende stappen te bespreken.
+                        </div>
+                        
+                        <h5>Wat gebeurt er nu?</h5>
+                        <ul style="margin: 1rem 0 1.5rem 1.5rem;">
+                            <li>Wij bekijken uw aanmelding en bereiden een kennismakingsgesprek voor</li>
+                            <li>We bespreken hoe uw oplossing past binnen het netwerk</li>
+                            <li>Uw functionaliteiten worden verwerkt in de wiki volgens de methodiek functiebeschrijving</li>
+                            <li>Na akkoord wordt uw oplossing opgenomen in de Functionaliteitenwijzer</li>
+                        </ul>
+                        
+                        <h5>In de tussentijd kunt u:</h5>
+                        <ul style="margin: 1rem 0 1.5rem 1.5rem;">
+                            <li><a href="../handvest.html">Het D-ICC Handvest verder bestuderen</a></li>
+                            <li><a href="https://wiki.services.gidsopenstandaarden.org/wiki/Methodiek_Functiebeschrijving" target="_blank">De methodiek functiebeschrijving bekijken</a></li>
+                            <li><a href="#netwerk" onclick="showTab('netwerk'); return false;">De aangesloten leveranciers bekijken</a></li>
+                        </ul>
+                        
+                        <div class="intake-buttons"><button class="feature-action secondary" onclick="goToOnboardingPage(4)">Terug</button><button class="feature-action" onclick="submitOnboarding()">Versturen</button></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ========== NETWERK ========== -->
             <div id="netwerk-content" class="content-section">
                 <div class="feature-block">
-                    <h3>Aansluiten bij het netwerk</h3>
-                    <p>Als leverancier van zorg- en welzijnsoplossingen kunt u aansluiten bij het Project Kennisportaal netwerk. Door aan te sluiten, maakt u uw oplossingen beschikbaar voor wijkinitiatieven en wordt u onderdeel van een groeiend ecosysteem voor digitale wijkzorg.</p>
+                    <h3>Aangesloten Leveranciers</h3>
+                    <p>Deze ICT-leveranciers werken samen binnen het project Digitale Wijkinfrastructuur.</p>
                     
-                    <h4>Voordelen van aansluiten</h4>
-                    <ul>
-                        <li><strong>Toegang tot gebruikers</strong> - Bereik lokale wijkinitiatieven en hun gebruikers</li>
-                        <li><strong>Interoperabiliteit</strong> - Sluit aan op een interoperabel platform met bestaande koppelingen</li>
-                        <li><strong>Zichtbaarheid</strong> - Profileer uw oplossing in de platformcatalogus</li>
-                        <li><strong>Innovatie</strong> - Werk samen met andere leveranciers aan innovatieve oplossingen</li>
-                        <li><strong>Implementatieondersteuning</strong> - Ontvang ondersteuning bij het implementeren van uw oplossing</li>
-                    </ul>
-                    
-                    <h4>Aansluitproces</h4>
-                    <ol class="steps-list">
-                        <li>
-                            <h5>Voorbereiden</h5>
-                            <p>Bereid uw oplossing voor op integratie met het platform. Gebruik de <a href="../architectuur.html">Referentie-architectuur</a> en bijbehorende open standaarden als leidraad.</p>
-                        </li>
-                        <li>
-                            <h5>Aanmelden</h5>
-                            <p>Meld uw oplossing aan via het leveranciersportaal. Geef informatie over uw oplossing, doelgroep en de wijze waarop u wilt aansluiten.</p>
-                        </li>
-                        <li>
-                            <h5>Testen en valideren</h5>
-                            <p>Test uw oplossing in de testomgeving en valideer de interoperabiliteit met het platform en andere oplossingen.</p>
-                        </li>
-                        <li>
-                            <h5>Beoordeling</h5>
-                            <p>Uw oplossing wordt beoordeeld op compatibiliteit, veiligheid, en aansluiting bij de standaarden van het platform.</p>
-                        </li>
-                        <li>
-                            <h5>Publiceren</h5>
-                            <p>Na goedkeuring wordt uw oplossing gepubliceerd in de catalogus en kunnen wijkinitiatieven uw oplossing gaan gebruiken.</p>
-                        </li>
-                    </ol>
-                    
-                    <div class="solution-card">
-                        <div class="solution-header">
-                            <h4>Technische aansluitmogelijkheden</h4>
-                        </div>
-                        <div class="solution-content">
-                            <p>Er zijn verschillende manieren om aan te sluiten op het platform:</p>
-                            <ul>
-                                <li><strong>API-integratie</strong> - Sluit aan via de REST API voor directe gegevensuitwisseling</li>
-                                <li><strong>FHIR-integratie</strong> - Gebruik FHIR voor zorgspecifieke gegevensuitwisseling</li>
-                                <li><strong>Single Sign-On</strong> - Integreer met het centrale identiteitsbeheer</li>
-                                <li><strong>App-integratie</strong> - Embed uw applicatie in het platform via widgets of iframes</li>
-                            </ul>
-                        </div>
-                        <div class="solution-footer">
-                            <a href="#">Technische integratiehandleiding downloaden &raquo;</a>
-                        </div>
-                    </div>
-                    
-                    <a href="#" class="feature-action">Aanmelden als leverancier</a>
-                </div>
-            </div>
-            
-            <!-- Ondersteunen content section -->
-            <div id="ondersteunen-content" class="content-section" style="display: none;">
-                <div class="feature-block">
-                    <h3>Wijkinitiatieven ondersteunen met uw oplossingen</h3>
-                    <p>Wijkinitiatieven zijn op zoek naar digitale oplossingen die hun specifieke uitdagingen kunnen adresseren. Als leverancier kunt u deze initiatieven ondersteunen door uw oplossingen aan te bieden en aan te passen aan hun behoeften.</p>
-                    
-                    <h4>Huidige behoeften van wijkinitiatieven</h4>
-                    <div class="solution-card">
-                        <div class="solution-header">
-                            <h4>Communicatie en coördinatie</h4>
-                        </div>
-                        <div class="solution-content">
-                            <p>Wijkinitiatieven hebben behoefte aan oplossingen voor effectieve communicatie en coördinatie tussen bewoners, zorgverleners en vrijwilligers.</p>
-                            <p><strong>Gewenste functionaliteiten:</strong></p>
-                            <ul>
-                                <li>Berichtenuitwisseling tussen verschillende betrokkenen</li>
-                                <li>Agendabeheer en afsprakenplanning</li>
-                                <li>Taakcoördinatie en toewijzing</li>
-                                <li>Statusupdates en notificaties</li>
-                            </ul>
-                        </div>
-                        <div class="solution-footer">
-                            <a href="#">Meer informatie over communicatiebehoeften &raquo;</a>
-                        </div>
-                    </div>
-                    
-                    <div class="solution-card">
-                        <div class="solution-header">
-                            <h4>Monitoring en ondersteuning op afstand</h4>
-                        </div>
-                        <div class="solution-content">
-                            <p>Er is een groeiende behoefte aan oplossingen voor monitoring en ondersteuning van kwetsbare bewoners op afstand.</p>
-                            <p><strong>Gewenste functionaliteiten:</strong></p>
-                            <ul>
-                                <li>Videoconsulten met zorgprofessionals</li>
-                                <li>Monitoring van gezondheidsparameters</li>
-                                <li>Medicatieherinneringen en -beheer</li>
-                                <li>Alarmering bij afwijkende waarden</li>
-                            </ul>
-                        </div>
-                        <div class="solution-footer">
-                            <a href="#">Meer informatie over monitoring &raquo;</a>
-                        </div>
-                    </div>
-                    
-                    <div class="solution-card">
-                        <div class="solution-header">
-                            <h4>Vraag en aanbod matching</h4>
-                        </div>
-                        <div class="solution-content">
-                            <p>Wijkinitiatieven zoeken naar effectieve manieren om hulpvragen van bewoners te matchen met beschikbare hulp en diensten.</p>
-                            <p><strong>Gewenste functionaliteiten:</strong></p>
-                            <ul>
-                                <li>Registratie van hulpvragen en -aanbod</li>
-                                <li>Intelligente matching-algoritmes</li>
-                                <li>Feedback- en waarderingssysteem</li>
-                                <li>Rapportage en analysetools</li>
-                            </ul>
-                        </div>
-                        <div class="solution-footer">
-                            <a href="#">Meer informatie over matching-behoeften &raquo;</a>
-                        </div>
-                    </div>
-                    
-                    <h4>Succesverhalen</h4>
-                    <div class="solution-card">
-                        <div class="solution-header">
-                            <h4>BuurtConnect implementatie in Rotterdam-Zuid</h4>
-                        </div>
-                        <div class="solution-content">
-                            <p>MediTech Solutions heeft hun BuurtConnect-platform geïmplementeerd in Rotterdam-Zuid, wat heeft geleid tot een aanzienlijke verbetering in de communicatie tussen bewoners en zorgverleners.</p>
-                            <p><strong>Resultaten:</strong></p>
-                            <ul>
-                                <li>35% meer onderlinge hulp tussen bewoners</li>
-                                <li>Afname van eenzaamheid met 24%</li>
-                                <li>Efficiëntere inzet van professionele zorg</li>
-                            </ul>
-                        </div>
-                        <div class="solution-footer">
-                            <a href="#">Lees het volledige succesverhaal &raquo;</a>
-                        </div>
-                    </div>
-                    
-                    <a href="#" class="feature-action">Contact opnemen voor ondersteuning van wijkinitiatieven</a>
-                </div>
-            </div>
-            
-            <!-- Partnerschap content section -->
-            <div id="partnerschap-content" class="content-section" style="display: none;">
-                <div class="feature-block">
-                    <h3>Partnerschap met Project Kennisportaal</h3>
-                    <p>Als partner van Project Kennisportaal werkt u samen met ons aan het verbeteren van digitale wijkzorg. Partners onderschrijven de gedeelde waarden en principes, en hun oplossingen voldoen aan de open standaarden.</p>
-                    
-                    <h4>Visie en waarden</h4>
-                    <p>Partners van Project Kennisportaal onderschrijven de volgende visie en waarden:</p>
-                    <ul>
-                        <li><strong>Toegankelijkheid</strong> - Digitale zorg moet toegankelijk zijn voor alle wijkbewoners, ongeacht hun digitale vaardigheden of beperkingen</li>
-                        <li><strong>Privacy en veiligheid</strong> - De privacy van gebruikers staat centraal en gegevens worden veilig verwerkt</li>
-                        <li><strong>Samenwerking</strong> - Alleen door samen te werken kunnen we de zorg in de wijk verbeteren</li>
-                        <li><strong>Openheid</strong> - Open standaarden en interoperabiliteit zijn essentieel voor een duurzaam ecosysteem</li>
-                        <li><strong>Mensgerichtheid</strong> - Technologie staat ten dienste van de mens, niet andersom</li>
-                    </ul>
-                    
-                    <h4>Assessment en screening</h4>
-                    <p>Alle partners doorlopen een assessment om te bepalen of hun oplossing in lijn is met onze waarden en voldoet aan de technische vereisten. Dit assessment bestaat uit:</p>
-                    
-                    <div class="assessment-grid">
-                        <div class="assessment-card">
-                            <h4>Alignment met waarden</h4>
-                            <ul class="check-list">
-                                <li>Uw oplossing ondersteunt de kernwaarden van het platform</li>
-                                <li>De oplossing draagt bij aan betere wijkzorg</li>
-                                <li>Eindgebruikers staan centraal in het ontwerp</li>
-                                <li>De oplossing is inclusief en toegankelijk</li>
-                            </ul>
+                    <div class="partner-grid">
+                        <div class="partner-card">
+                            <h4>AdSysco / RegiCare</h4>
+                            <div class="type">Zorg- en welzijnsregistratie</div>
+                            <p>Professionele registratie en coördinatie voor formele en informele zorg.</p>
+                            <div class="partner-domains"><span class="domain-tag">Documentatie</span><span class="domain-tag">Coördinatie</span><span class="domain-tag">Monitoring</span></div>
                         </div>
                         
-                        <div class="assessment-card">
-                            <h4>Technische compliance</h4>
-                            <ul class="check-list">
-                                <li>Gebruik van open standaarden</li>
-                                <li>Interoperabiliteit met andere systemen</li>
-                                <li>Voldoet aan beveiligingsrichtlijnen</li>
-                                <li>Privacy by design principes</li>
-                            </ul>
+                        <div class="partner-card">
+                            <h4>Gebied Online</h4>
+                            <div class="type">Community platform</div>
+                            <p>Digitaal dorpsplein voor lokale communicatie en participatie.</p>
+                            <div class="partner-domains"><span class="domain-tag">Communicatie</span><span class="domain-tag">Gemeenschapsvorming</span></div>
                         </div>
                         
-                        <div class="assessment-card">
-                            <h4>Gebruikskwaliteit</h4>
-                            <ul class="check-list">
-                                <li>Gebruiksvriendelijk ontwerp</li>
-                                <li>Toegankelijkheid (WCAG 2.1)</li>
-                                <li>Betrouwbaarheid en stabiliteit</li>
-                                <li>Responsieve ondersteuning</li>
-                            </ul>
+                        <div class="partner-card">
+                            <h4>TimeSteps (Amulet)</h4>
+                            <div class="type">Coördinatie en planning</div>
+                            <p>Matching en planning van vrijwilligers en hulpvragen.</p>
+                            <div class="partner-domains"><span class="domain-tag">Matching</span><span class="domain-tag">Coördinatie</span></div>
+                        </div>
+                        
+                        <div class="partner-card">
+                            <h4>Digitale Dorpspleinen</h4>
+                            <div class="type">Community platform</div>
+                            <p>Online ontmoetingsplaats voor dorps- en wijkgemeenschappen.</p>
+                            <div class="partner-domains"><span class="domain-tag">Communicatie</span><span class="domain-tag">Gemeenschapsvorming</span></div>
+                        </div>
+                        
+                        <div class="partner-card">
+                            <h4>OZO Verbindzorg</h4>
+                            <div class="type">Zorgcoördinatie</div>
+                            <p>Verbinden van informele en formele zorg rondom de cliënt.</p>
+                            <div class="partner-domains"><span class="domain-tag">Coördinatie</span><span class="domain-tag">Communicatie</span></div>
+                        </div>
+                        
+                        <div class="partner-card">
+                            <h4>GIDS Open Standaarden</h4>
+                            <div class="type">Standaardisatie</div>
+                            <p>Coöperatie voor open standaarden in zorg en welzijn.</p>
+                            <div class="partner-domains"><span class="domain-tag">Standaarden</span><span class="domain-tag">Architectuur</span></div>
                         </div>
                     </div>
-                    
-                    <h4>Partnerschapsproces</h4>
-                    <ol class="steps-list">
-                        <li>
-                            <h5>Aanvraag indienen</h5>
-                            <p>Dien een partnerschapsaanvraag in via het leveranciersportaal, inclusief informatie over uw oplossing en hoe deze aansluit bij onze waarden.</p>
-                        </li>
-                        <li>
-                            <h5>Kennismakingsgesprek</h5>
-                            <p>We plannen een gesprek om uw oplossing en de mogelijke samenwerking te bespreken.</p>
-                        </li>
-                        <li>
-                            <h5>Assessment</h5>
-                            <p>Uw oplossing wordt beoordeeld op alignment met onze waarden en compliance met technische standaarden.</p>
-                        </li>
-                        <li>
-                            <h5>Partnerschapsverklaring</h5>
-                            <p>Bij een positieve beoordeling ondertekenen beide partijen een partnerschapsverklaring waarin wederzijdse verwachtingen worden vastgelegd.</p>
-                        </li>
-                        <li>
-                            <h5>Integratie en implementatie</h5>
-                            <p>We werken samen aan de integratie van uw oplossing in het platform en de implementatie bij wijkinitiatieven.</p>
-                        </li>
-                        <li>
-                            <h5>Evaluatie en doorontwikkeling</h5>
-                            <p>Regelmatige evaluaties en gezamenlijke doorontwikkeling van de samenwerking en de oplossing.</p>
-                        </li>
-                    </ol>
-                    
-                    <h4>Huidige partners</h4>
-                    <p>Deze leveranciers zijn al partner van het Project Kennisportaal:</p>
-                    <div class="partner-logos">
-                        <div class="partner-logo">Zorg & Zo</div>
-                        <div class="partner-logo">DigiCare</div>
-                        <div class="partner-logo">HealthConnect</div>
-                        <div class="partner-logo">MediTech</div>
-                        <div class="partner-logo">WijkApp</div>
-                        <div class="partner-logo">ZorgBuddy</div>
-                    </div>
-                    
-                    <div class="solution-card">
-                        <div class="solution-header">
-                            <h4>Open Standaarden Compliance</h4>
-                        </div>
-                        <div class="solution-content">
-                            <p>Als partner is het essentieel dat uw oplossing de open standaarden van het platform ondersteunt. Deze standaarden zijn gebaseerd op:</p>
-                            <ul>
-                                <li><strong>FHIR (Fast Healthcare Interoperability Resources)</strong> - Voor uitwisseling van zorginformatie</li>
-                                <li><strong>Zorg Informatie Bouwstenen (ZIB's)</strong> - Voor gestandaardiseerde gegevensuitwisseling</li>
-                                <li><strong>OAuth 2.0 & OpenID Connect</strong> - Voor veilige authenticatie en autorisatie</li>
-                                <li><strong>Web Content Accessibility Guidelines (WCAG) 2.1</strong> - Voor toegankelijkheid</li>
-                            </ul>
-                            <p>De volledige lijst van standaarden en implementatierichtlijnen is beschikbaar in de technische documentatie.</p>
-                        </div>
-                        <div class="solution-footer">
-                            <a href="../architectuur.html">Bekijk de referentie-architectuur &raquo;</a>
-                        </div>
-                    </div>
-                    
-                    <a href="#" class="feature-action">Partner worden</a>
+                </div>
+                
+                <div class="feature-block">
+                    <h4>Ook partner worden?</h4>
+                    <p>Sluit u aan bij het netwerk en werk samen met gemeenschappen aan digitale wijkinfrastructuur.</p>
+                    <a href="#onboarding" class="feature-action" onclick="showTab('onboarding'); return false;">Start de onboarding</a>
                 </div>
             </div>
         </div>
         
         <aside>
             <div class="news-updates">
-                <h3>Leveranciersnieuws</h3>
-                <div class="news-item">
-                    <h4>Nieuwe open standaarden implementatiegids</h4>
-                    <div class="news-date">1 maart 2025</div>
-                    <p>De nieuwe implementatiegids voor open standaarden is nu beschikbaar voor alle leveranciers.</p>
-                </div>
-                
-                <div class="news-item">
-                    <h4>Leverancierssymposium 2025</h4>
-                    <div class="news-date">15 februari 2025</div>
-                    <p>Op 15 april organiseren we het jaarlijkse leverancierssymposium. Meld u nu aan!</p>
-                </div>
-                
-                <div class="news-item">
-                    <h4>Platform-update v3.2</h4>
-                    <div class="news-date">5 februari 2025</div>
-                    <p>De nieuwste platformversie bevat verbeterde API's voor leveranciers. Lees de release notes.</p>
-                </div>
+                <h3>Actueel</h3>
+                <div class="news-item"><h4>Methodiek functiebeschrijving gepubliceerd</h4><div class="news-date">December 2024</div><p>De standaard methodiek voor het beschrijven van functionaliteiten is beschikbaar op de wiki.</p></div>
+                <div class="news-item"><h4>Leveranciersnetwerk groeit</h4><div class="news-date">November 2024</div><p>Zes leveranciers werken samen aan het digitale ecosysteem voor gemeenschapszorg.</p></div>
             </div>
             
             <div class="contact-block">
-                <h3>Leveranciersondersteuning</h3>
-                <p>Heeft u vragen over aansluiten of partnerschap? Neem contact op met ons leveranciersteam:</p>
-                <p>Email: leveranciers@projectkennisportaal.nl</p>
-                <p>Tel: 020-1234569</p>
+                <h3>Contact</h3>
+                <p>Vragen over het leveranciersnetwerk?</p>
+                <p>Email: <a href="mailto:info@nlzve.nl">info@nlzve.nl</a></p>
                 <a href="../contact.html" class="feature-action">Contact opnemen</a>
-            </div>
-            
-            <div class="news-updates">
-                <h3>Belangrijke datums</h3>
-                <div class="news-item">
-                    <h4>Leverancierssymposium</h4>
-                    <div class="news-date">15 april 2025</div>
-                </div>
-                
-                <div class="news-item">
-                    <h4>Kennisdelingsbijeenkomsten</h4>
-                    <div class="news-date">Elke eerste donderdag van de maand</div>
-                </div>
-                
-                <div class="news-item">
-                    <h4>Workshop Open Standaarden</h4>
-                    <div class="news-date">22 maart 2025</div>
-                </div>
             </div>
         </aside>
     </main>
@@ -708,65 +581,57 @@
         <p><a href="../index.html">Terug naar de hoofdpagina</a></p>
     </footer>
 
-    <!-- JavaScript for tab navigation -->
     <script>
+        let currentOnboardingPage = 1;
+        
+        function goToOnboardingPage(page) {
+            currentOnboardingPage = page;
+            document.querySelectorAll('#onboarding-content .intake-page').forEach(p => p.classList.remove('active'));
+            document.querySelector(`#onboarding-content .intake-page[data-page="${page}"]`).classList.add('active');
+            document.querySelectorAll('#onboarding-content .intake-step').forEach((step, i) => {
+                step.classList.remove('active', 'completed');
+                if (i + 1 < page) step.classList.add('completed');
+                if (i + 1 === page) step.classList.add('active');
+            });
+            document.querySelector('.intake-progress').style.setProperty('--progress', ((page - 1) / 4) * 100 + '%');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        function submitOnboarding() {
+            alert('Bedankt voor uw aanmelding! Wij nemen binnen 5 werkdagen contact met u op.');
+        }
+        
+        function togglePhase(header) {
+            header.closest('.phase-card').classList.toggle('expanded');
+        }
+        
+        function showTab(tabId) {
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.main-tab').forEach(t => t.classList.remove('active'));
+            const section = document.getElementById(tabId + '-content');
+            if (section) section.classList.add('active');
+            const tab = document.getElementById(tabId + '-tab');
+            if (tab) tab.classList.add('active');
+        }
+        
         document.addEventListener('DOMContentLoaded', function() {
-            // Get URL parameters
-            const urlParams = new URLSearchParams(window.location.search);
-            const tab = urlParams.get('tab');
-            
-            // Function to hide all content sections
-            function hideAllSections() {
-                document.querySelectorAll('.content-section').forEach(section => {
-                    section.style.display = 'none';
-                });
-            }
-            
-            // Function to show a specific content section
-            function showSection(sectionId) {
-                hideAllSections();
-                const section = document.getElementById(sectionId + '-content');
-                if (section) {
-                    section.style.display = 'block';
-                }
-            }
-            
-            // Add click events to all navigation tabs
-            document.querySelectorAll('.persona-nav a').forEach(link => {
+            document.querySelectorAll('.main-tab').forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
-                    
-                    // Remove active class from all tabs
-                    document.querySelectorAll('.persona-nav a').forEach(tab => {
-                        tab.classList.remove('active');
-                    });
-                    
-                    // Add active class to clicked tab
-                    this.classList.add('active');
-                    
-                    // Show the corresponding section
-                    const tabId = this.getAttribute('href').substring(1); // Remove the # character
-                    showSection(tabId);
+                    showTab(this.getAttribute('href').substring(1));
                 });
             });
             
-            // If tab parameter exists, activate the appropriate tab
-            if (tab) {
-                // Remove active class from all tabs
-                document.querySelectorAll('.persona-nav a').forEach(link => {
-                    link.classList.remove('active');
+            document.querySelectorAll('#onboarding-content .intake-step').forEach(step => {
+                step.addEventListener('click', function() {
+                    const stepNum = parseInt(this.dataset.step);
+                    if (stepNum <= currentOnboardingPage) goToOnboardingPage(stepNum);
                 });
-                
-                // Show the requested tab and its content
-                const tabElement = document.querySelector('#' + tab + '-tab');
-                if (tabElement) {
-                    tabElement.classList.add('active');
-                    showSection(tab);
-                }
-            } else {
-                // If no tab parameter, show the default tab (netwerk)
-                showSection('netwerk');
-            }
+            });
+            
+            const params = new URLSearchParams(window.location.search);
+            const tab = params.get('tab');
+            if (tab) showTab(tab);
         });
     </script>
 </body>
